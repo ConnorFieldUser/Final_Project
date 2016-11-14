@@ -10,6 +10,10 @@ class Account(models.Model):
 
     user = models.OneToOneField('auth.User')
     created = models.DateTimeField(auto_now_add=True)
+    first_name = models.CharField(max_length=20, null=True, blank=True)
+    last_name = models.CharField(max_length=20, null=True, blank=True)
+    phone_number = models.IntegerField(null=True, blank=True)
+    adress = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -22,7 +26,7 @@ def create_user_profile(**kwargs):
     if created:
         Account.objects.create(user=instance)
 
-#
+
 # class ContactCard(models.Model):
 #     first_name = models.CharField(max_length=20, null=True, blank=True)
 #     last_name = models.CharField(max_length=20, null=True, blank=True)

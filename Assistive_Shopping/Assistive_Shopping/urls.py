@@ -18,6 +18,8 @@ from django.contrib import admin
 
 from shopping.views import UserCreateView, IndexView
 
+# URLs: create_user/ login/ admin/
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
