@@ -22,7 +22,7 @@ def create_user_profile(**kwargs):
     if created:
         Account.objects.create(user=instance)
 
-# 
+#
 # class ContactCard(models.Model):
 #     first_name = models.CharField(max_length=20, null=True, blank=True)
 #     last_name = models.CharField(max_length=20, null=True, blank=True)
