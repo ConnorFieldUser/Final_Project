@@ -11,6 +11,9 @@ class Account(models.Model):
     user = models.OneToOneField('auth.User')
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return str(self.user)
+
 
 @receiver(post_save, sender='auth.User')
 def create_user_profile(**kwargs):
@@ -18,3 +21,10 @@ def create_user_profile(**kwargs):
     instance = kwargs.get('instance')
     if created:
         Account.objects.create(user=instance)
+
+
+# class ContactCard(models.Model):
+    # first_name = models.CharField(max_length=20)
+    # last_name = models.CharField(max_length=20)
+    # phone_number = models.IntegerField()
+    # adress = (models.TextField)
