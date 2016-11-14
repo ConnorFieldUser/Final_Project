@@ -22,17 +22,17 @@ def create_user_profile(**kwargs):
     if created:
         Account.objects.create(user=instance)
 
-
-class ContactCard(models.Model):
-    first_name = models.CharField(max_length=20, null=True, blank=True)
-    last_name = models.CharField(max_length=20, null=True, blank=True)
-    phone_number = models.IntegerField(null=True, blank=True)
-    adress = models.TextField(null=True, blank=True)
-
-
-@receiver(post_save, sender='auth.User')
-def create_user_contact(**kwargs):
-    created = kwargs.get('created')
-    instance = kwargs.get('instance')
-    if created:
-        ContactCard.objects.create(user=instance)
+# 
+# class ContactCard(models.Model):
+#     first_name = models.CharField(max_length=20, null=True, blank=True)
+#     last_name = models.CharField(max_length=20, null=True, blank=True)
+#     phone_number = models.IntegerField(null=True, blank=True)
+#     adress = models.TextField(null=True, blank=True)
+#
+#
+# @receiver(post_save, sender='auth.User')
+# def create_user_contact(**kwargs):
+#     created = kwargs.get('created')
+#     instance = kwargs.get('instance')
+#     if created:
+#         ContactCard.objects.create(user=instance)
