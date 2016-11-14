@@ -21,7 +21,7 @@ from rest_framework.authtoken import views
 from shopping.views import UserCreateView, IndexView, UserCreateAPIView, UserDetailAPIView
 
 # URLs: create_user/ login/ admin/
-
+# comment
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
