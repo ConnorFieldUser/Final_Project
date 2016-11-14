@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView
 
 # URLs: create_user/ login/ admin/
 
@@ -27,5 +27,6 @@ urlpatterns = [
     url('^', include('django.contrib.auth.urls')),
     url(r'^$', IndexView.as_view(), name="index_view"),
     url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
-    url(r'^obtain_token/', views.obtain_auth_token, name="obtain_auth_token")
+    url(r'^obtain_token/', views.obtain_auth_token, name="obtain_auth_token"),
+    url(r'^user_create_api/$', UserCreateAPIView.as_view(), name="user_create_api_view"),
 ]
