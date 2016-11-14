@@ -5,7 +5,7 @@ from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
 
-from rest_framework.generics import CreateAPIView
+from rest_framework.generics import CreateAPIView, RetrieveAPIView
 from shopping.serializers import UserSerializer
 
 # Create your views here.
@@ -22,5 +22,10 @@ class UserCreateView(CreateView):
 
 
 class UserCreateAPIView(CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetailAPIView(RetrieveAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
