@@ -11,7 +11,7 @@ var User = Backbone.Model.extend({
     });
   }
 },{
-  login: function(username, password, callback){
+  signup: function(username, password, callback){
     var loginUrl = 'obtain_token/';
     $.post(loginUrl, {username: username, password: password}).then(function(result){
 
@@ -20,7 +20,7 @@ var User = Backbone.Model.extend({
       user.auth();
 
       localStorage.setItem('user', JSON.stringify(user.toJSON()));
-
+      // console.log('you are logged in!');
       callback(user);
     });
   }
