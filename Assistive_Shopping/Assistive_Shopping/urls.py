@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from rest_framework.authtoken import views
+
 
 from shopping.views import UserCreateView, IndexView
 
@@ -25,4 +27,5 @@ urlpatterns = [
     url('^', include('django.contrib.auth.urls')),
     url(r'^$', IndexView.as_view(), name="index_view"),
     url(r'^create_user/$', UserCreateView.as_view(), name="user_create_view"),
+    url(r'^obtain_token/', views.obtain_auth_token, name="obtain_auth_token")
 ]
