@@ -3,3 +3,9 @@ __pycache__/
 .envrc
 media/
 db.sqlite3
+node_modules
+.tmp
+.sass-cache
+.DS_Store
+.idea
+*.pyc
