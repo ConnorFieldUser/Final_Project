@@ -18,6 +18,9 @@ class Account(models.Model):
     last_name = models.CharField(max_length=20, null=True, blank=True)
     phone_number = models.IntegerField(null=True, blank=True)
     adress = models.TextField(null=True, blank=True)
+    city = models.CharField(max_length=25, null=True, blank=True)
+    state = models.CharField(max_length=25, null=True, blank=True)
+    email = models.EmailField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
