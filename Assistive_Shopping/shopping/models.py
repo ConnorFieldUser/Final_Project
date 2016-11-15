@@ -41,15 +41,24 @@ class List(models.Model):
     user = models.ForeignKey('auth.User')
     created_time = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return "{} {}".format(self.user, self.id)
+
 
 class Item(models.Model):
     name = models.CharField(max_length=25)
-    price = models.IntegerField()
+    price = models.FloatField()
+
+    def __str__(self):
+        return "{}, ${}0".format(self.name, self.price)
 
 
 class ListItem(models.Model):
     list = models.ForeignKey(List)
     item = models.ForeignKey(Item)
+
+    def __str__(self):
+        return "{}: {}".format(self.list, self.item)
 
 # class ContactCard(models.Model):
 #     first_name = models.CharField(max_length=20, null=True, blank=True)
