@@ -97,20 +97,25 @@ var LoginSignUpContainer = React.createClass({
   getInitialState: function(){
     var user = new User();
     var userData = localStorage.getItem('user');
-
+    // console.log(userData);
     if(userData){
       user.set(JSON.parse(userData));
       user.auth();
     }
-
+    //
     return {
       user: user
     };
   },
+  // signUp: function(username, password){
+  //   this.state.user.set({username: username, password: password});
+  //   this.state.user.signup()
+  // },
   signIn: function(userData){
     var self= this;
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
+      // console.log(user)
     });
   },
   render: function(){
