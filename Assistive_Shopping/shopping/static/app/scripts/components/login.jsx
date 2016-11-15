@@ -1,50 +1,49 @@
 var React = require('react');
-
 var User= require('../models/user.js').User;
 
 
-// var Signup = React.createClass({
-//   getInitialState: function(){
-//     return{
-//       username: '',
-//       password: ''
-//     };
-//   },
-//   handleUsernameInput: function(e){
-//     this.setState({username: e.target.value})
-//   },
-//   handlePasswordInput: function(e){
-//     this.setState({password: e.target.value})
-//   },
-//   handleSignUp: function(e){
-//     e.preventDefault();
-//     var username= this.state.username;
-//     var password= this.state.password;
-//
-//     this.props.signUp(username, password);
-//   },
-//   render: function(){
-//     return(
-//       <div className="col-md-6">
-//         <h2>Need an Account? Sign Up!</h2>
-//         <form onSubmit={this.handleSignUp} id="signup">
-//
-//           <div className="form-group">
-//             <label htmlFor="email">Email address</label>
-//             <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="email" id="email" type="email" placeholder="email" />
-//           </div>
-//
-//           <div className="form-group">
-//             <label htmlFor="password">Password</label>
-//             <input onChange={this.handlePasswordInput} value={this.state.password} className="form-control" name="password" id="password" type="password" placeholder="Password Please" />
-//           </div>
-//
-//           <input className="btn btn-primary" type="submit" value="Sign Me Up!" />
-//         </form>
-//       </div>
-//     )
-//   }
-// });
+var SignUpForm = React.createClass({
+  getInitialState: function(){
+    return{
+      username: '',
+      password: ''
+    };
+  },
+  handleUsernameInput: function(e){
+    this.setState({username: e.target.value})
+  },
+  handlePasswordInput: function(e){
+    this.setState({password: e.target.value})
+  },
+  handleSignUp: function(e){
+    e.preventDefault();
+    var username= this.state.username;
+    var password= this.state.password;
+
+    this.props.signUp(username, password);
+  },
+  render: function(){
+    return(
+      <div className="col-md-6">
+        <h2>Need an Account? Sign Up!</h2>
+        <form onSubmit={this.handleSignUp} id="signup">
+
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+            <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="email" id="email" type="email" placeholder="email" />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input onChange={this.handlePasswordInput} value={this.state.password} className="form-control" name="password" id="password" type="password" placeholder="Password Please" />
+          </div>
+
+          <input className="btn btn-primary" type="submit" value="Sign Me Up!" />
+        </form>
+      </div>
+    )
+  }
+});
 
 
 var SignInForm = React.createClass({
@@ -61,12 +60,17 @@ var SignInForm = React.createClass({
   handlePasswordInput: function(e){
     this.setState({password: e.target.value})
   },
+  // handleSignIn: function(e){
+  //   e.preventDefault();
+  //   var username= this.state.username;
+  //   var password= this.state.password;
+  //   // console.log("You submitted!")
+  //   this.props.signIn(username, password);
+  //   this.setState({username: '', password: ''});
+  // },
   handleSignIn: function(e){
     e.preventDefault();
-    var username= this.state.username;
-    var password= this.state.password;
-    // console.log("You submitted!")
-    this.props.signIn(username, password);
+    this.props.signIn(this.state);
     this.setState({username: '', password: ''});
   },
   render: function(){
@@ -107,10 +111,14 @@ var LoginSignUpContainer = React.createClass({
       user: user
     };
   },
-  // signUp: function(username, password){
-  //   this.state.user.set({username: username, password: password});
-  //   this.state.user.signup()
-  // },
+  signUp: function(userData){
+    var self = this;
+    User.signup(userData.username, userData.password, function(user){
+      self.setState({user: user});
+    });
+    // this.state.user.set({username: username, password: password});
+    // this.state.user.signup()
+  },
   signIn: function(userData){
     var self= this;
     User.signin(userData.username, userData.password, function(user){
@@ -124,8 +132,8 @@ var LoginSignUpContainer = React.createClass({
         <div className="row">
           <div className="col-md-12">
             <h1>Assistive Shopping {this.state.user.get('token') ? 'Logged In': ''}</h1>
-
-            <SignInForm signIn={this.signIn}/>
+              <SignUpForm signUp={this.signUp} />
+              <SignInForm signIn={this.signIn} />
           </div>
         </div>
       </div>
@@ -133,7 +141,6 @@ var LoginSignUpContainer = React.createClass({
   }
 });
 
-            // <Signup />
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
 };

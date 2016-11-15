@@ -11,12 +11,12 @@ var AppRouter = Backbone.Router.extend({
     '': 'index'
   },
   initialize: function(){
-    $.ajaxSetup({
-      beforeSend: function(xhr, settings){
-        django.setCsrfToken.call(this, xhr, settings);
-      }
-    });
-  },
+      $.ajaxSetup({
+        beforeSend: function(xhr, settings){
+          django.setCsrfToken.call(this, xhr, settings);
+        }
+      });
+    },
   index: function(){
     ReactDOM.render(
       React.createElement(LoginSignUpContainer),
