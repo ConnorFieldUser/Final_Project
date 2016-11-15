@@ -1,7 +1,7 @@
 var React = require('react');
 var User= require('../models/user.js').User;
 var Backbone = require('backbone');
-var TemplateContainer = require('../layout/`headerTemplate.jsx').TemplateContainer;
+var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 var SignUpForm = React.createClass({
   getInitialState: function(){
@@ -128,9 +128,6 @@ var LoginSignUpContainer = React.createClass({
       self.setState({user: user});
     });
     console.log(userData);
-    // console.log(userData);
-    // this.user.setState({username: username, password: password});
-    // this.state.user.signup()
   },
   signIn: function(userData){
     var self= this;
