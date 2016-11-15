@@ -5,10 +5,14 @@ var $ = require('jquery');
 var django = require('./djangoUtils');
 
 var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContainer;
+var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
-    '': 'index'
+    '': 'index',
+    'account/': 'accountInfo',
+    'store/' : 'storeSelect',
+
   },
   initialize: function(){
       $.ajaxSetup({
@@ -20,6 +24,12 @@ var AppRouter = Backbone.Router.extend({
   index: function(){
     ReactDOM.render(
       React.createElement(LoginSignUpContainer),
+      document.getElementById('app')
+    )
+  },
+  accountInfo: function(){
+    ReactDOM.render(
+      React.createElement(AccountInfoContainer),
       document.getElementById('app')
     )
   }

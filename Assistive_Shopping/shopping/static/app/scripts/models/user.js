@@ -4,10 +4,6 @@ var Backbone = require('backbone');
 var django = require('../djangoUtils');
 
 var User = Backbone.Model.extend({
-  defaults: {
-    username: '',
-    password: ''
-  },
   urlRoot: 'create_user/',
   auth: function(){
     var self = this;
@@ -18,7 +14,15 @@ var User = Backbone.Model.extend({
       }
     });
   }
-},{
+}, {
+  signup: function(username, password, callback){
+    var user = new User({username: username, password: password});
+
+    user.save().then(function(data){
+      console.log('saved')
+      callback(user);
+    });
+  },
   signin: function(username, password, callback){
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
@@ -28,21 +32,14 @@ var User = Backbone.Model.extend({
         user.auth();
 
         localStorage.setItem('user', JSON.stringify(user.toJSON()));
+        localStorage.setItem('username', username);
 
         callback(user);
         console.log("YOU HAVE NOW LOGGED IN");
+        Backbone.history.navigate('account/', {trigger:true});
       });
-    },
-  signup: function(){
-    // var self = this;
-    var username = this.get('username');
-    var password = this.get('password');
-
-    this.save().then(function(data){
-      signin();
-    });
-  },
-  });
+    }
+});
 
 module.exports = {
   User: User

@@ -1,6 +1,7 @@
 var React = require('react');
 var User= require('../models/user.js').User;
-
+var Backbone = require('backbone');
+var TemplateContainer = require('../layout/`headerTemplate.jsx').TemplateContainer;
 
 var SignUpForm = React.createClass({
   getInitialState: function(){
@@ -17,10 +18,11 @@ var SignUpForm = React.createClass({
   },
   handleSignUp: function(e){
     e.preventDefault();
-    var username= this.state.username;
-    var password= this.state.password;
+    // var username= this.state.username;
+    // var password= this.state.password;
 
-    this.props.signUp(username, password);
+    this.props.signUp(this.state);
+    this.setState({username: '', password: ''});
   },
   render: function(){
     return(
@@ -108,19 +110,31 @@ var LoginSignUpContainer = React.createClass({
     }
     //
     return {
-      user: user
+      user : user
     };
   },
+  // componentWillMount: function(){
+  //   var user = new User();
+  //   return {
+  //     user: user
+  //   };
+  // },
   signUp: function(userData){
     var self = this;
+    // var user = this.state;
+    // console.log(user);
+    console.log(User);
     User.signup(userData.username, userData.password, function(user){
       self.setState({user: user});
     });
-    // this.state.user.set({username: username, password: password});
+    console.log(userData);
+    // console.log(userData);
+    // this.user.setState({username: username, password: password});
     // this.state.user.signup()
   },
   signIn: function(userData){
     var self= this;
+    console.log(User);
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
       // console.log(user)
@@ -129,13 +143,15 @@ var LoginSignUpContainer = React.createClass({
   render: function(){
     return (
       <div className="container">
-        <div className="row">
-          <div className="col-md-12">
-            <h1>Assistive Shopping {this.state.user.get('token') ? 'Logged In': ''}</h1>
-              <SignUpForm signUp={this.signUp} />
-              <SignInForm signIn={this.signIn} />
+        <TemplateContainer>
+          <div className="row">
+            <div className="col-md-12">
+              <h1>Assistive Shopping {this.state.user.get('token') ? 'Logged in' : ''}</h1>
+                <SignUpForm signUp={this.signUp} />
+                <SignInForm signIn={this.signIn} />
+            </div>
           </div>
-        </div>
+        </TemplateContainer>
       </div>
     );
   }
