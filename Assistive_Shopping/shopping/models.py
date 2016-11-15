@@ -37,9 +37,16 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-# class List(models.Model):
-#     user = models.ForeignKey('auth.User')
-#     created_time = models.DateTimeField(auto_now_add=True)
+class List(models.Model):
+    user = models.ForeignKey('auth.User')
+    created_time = models.DateTimeField(auto_now_add=True)
+
+
+class Item(models.Model):
+    list = models.ForeignKey(List)
+    name = models.CharField(max_length=25)
+    price = models.IntegerField()
+    
 
 
 # class ContactCard(models.Model):
