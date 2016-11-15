@@ -46,7 +46,6 @@ class Item(models.Model):
     list = models.ForeignKey(List)
     name = models.CharField(max_length=25)
     price = models.IntegerField()
-    
 
 
 # class ContactCard(models.Model):
