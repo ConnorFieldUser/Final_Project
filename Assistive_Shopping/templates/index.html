@@ -7,10 +7,10 @@
     <link rel="stylesheet" href="{% static 'dist/css/app.css' %}">
   </head>
   <body>
-{{ request.user }}
-    <div id="app"></div>
 
-{% csrf_token %}
+
+    <div id="app"></div>
+    {% csrf_token %}
     <script src="{% static 'dist/js/bundle.js' %}"></script>
   </body>
 </html>
