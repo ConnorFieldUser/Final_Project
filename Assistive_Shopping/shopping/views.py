@@ -4,9 +4,12 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
+from shopping.models import Account
+from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
+from shopping.serializers import UserSerializer, AccountSerializer
 
-from rest_framework.generics import CreateAPIView
-from shopping.serializers import UserSerializer
+from rest_framework.permissions import IsAuthenticated
+
 
 # Create your views here.
 
@@ -24,3 +27,17 @@ class UserCreateView(CreateView):
 class UserCreateAPIView(CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+# class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
+#     queryset = Account.objects.all()
+#     serializer_class = AccountSerializer
+
+
+class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
+    # queryset = Account.objects.all()
+    serializer_class = AccountSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset(self):
+        return Account.objects.filter(user=self.request.user)

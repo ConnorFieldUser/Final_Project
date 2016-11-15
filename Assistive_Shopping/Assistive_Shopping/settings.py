@@ -123,7 +123,7 @@ USE_TZ = True
 LOGIN_REDIRECT_URL = '/'
 STATIC_URL = '/static/'
 
-EST_FRAMEWORK = {
+REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication'
     ]
