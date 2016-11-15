@@ -10,7 +10,7 @@
 {{ request.user }}
     <div id="app"></div>
 
-
+{% csrf_token %}
     <script src="{% static 'dist/js/bundle.js' %}"></script>
   </body>
 </html>
