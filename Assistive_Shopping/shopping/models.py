@@ -43,10 +43,13 @@ class List(models.Model):
 
 
 class Item(models.Model):
-    list = models.ForeignKey(List)
     name = models.CharField(max_length=25)
     price = models.IntegerField()
 
+
+class ListItem(models.Model):
+    list = models.ForeignKey(List)
+    item = models.ForeignKey(Item)
 
 # class ContactCard(models.Model):
 #     first_name = models.CharField(max_length=20, null=True, blank=True)

@@ -20,7 +20,7 @@ from rest_framework.authtoken import views
 
 from shopping.views import UserCreateView, IndexView, UserCreateAPIView
 
-# URLs: create_user/ login/ admin/
+# URLs: create_user/ login/ admin/ logout
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
