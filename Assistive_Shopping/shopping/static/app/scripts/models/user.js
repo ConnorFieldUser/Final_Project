@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 var django = require('../djangoUtils');
 
 var User = Backbone.Model.extend({
-  urlRoot: 'api/users/',
+  urlRoot: 'api/user/create',
   auth: function(){
     var self = this;
     $.ajaxSetup({
