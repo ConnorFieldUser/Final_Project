@@ -22,6 +22,7 @@ var TemplateContainer = React.createClass({
                 </li>
               </ul>
             </nav>
+            <button onClick={this.handleLogout}>Logout</button>
         </div>
 
 
