@@ -348,7 +348,8 @@ var TemplateContainer = React.createClass({displayName: "TemplateContainer",
                   React.createElement("a", {className: "nav-link", href: "#"}, "About")
                 )
               )
-            )
+            ), 
+            React.createElement("button", {onClick: this.handleLogout}, "Logout")
         ), 
 
 
