@@ -40,7 +40,7 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-class List(models.Model):
+class Cart(models.Model):
     user = models.ForeignKey('auth.User')
     created_time = models.DateTimeField(auto_now_add=True)
 
@@ -56,12 +56,12 @@ class Item(models.Model):
         return "{}, ${}0".format(self.name, self.price)
 
 
-class ListItem(models.Model):
-    list = models.ForeignKey(List)
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart)
     item = models.ForeignKey(Item)
 
     def __str__(self):
-        return "{}: {}".format(self.list, self.item)
+        return "{}: {}".format(self.cart, self.item)
 
 
 # class ContactCard(models.Model):

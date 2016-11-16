@@ -4,9 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
-from shopping.models import Account
-from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView
-from shopping.serializers import UserSerializer, AccountSerializer
+from shopping.models import Account, Cart
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView
+from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer
 
 from rest_framework.permissions import IsAuthenticated
 
@@ -15,7 +15,7 @@ from rest_framework.permissions import IsAuthenticated
 
 
 class IndexView(TemplateView):
-        template_name = 'index.html'
+    template_name = 'index.html'
 
 
 class UserCreateView(CreateView):
@@ -39,3 +39,11 @@ class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
 
     def get_queryset(self):
         return Account.objects.filter(user=self.request.user)
+
+
+class CartListCreateAPIView(ListCreateAPIView):
+    # queryset = List.objects.all()
+    serializer_class = CartSerializer
+
+    def get_queryset(self):
+        return Cart.objects.get(user=self.request.user)
