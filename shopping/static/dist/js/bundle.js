@@ -1,4 +1,3 @@
-
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 var Backbone = require('backbone');
@@ -24,46 +23,46 @@ var AccountForm = React.createClass({displayName: "AccountForm",
   render: function(){
     return (
 
-    React.createElement("form", {onSubmit: this.handleSubmit},
-    React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "FirstName"),
-        React.createElement("div", {className: "col-xs-10"},
+    React.createElement("form", {onSubmit: this.handleSubmit}, 
+    React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "FirstName"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "firstname", className: "form-control", type: "text", id: "example-text-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "LastName"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "LastName"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "lastname", className: "form-control", type: "text", id: "example-text-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "Street Address"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "Street Address"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "address", className: "form-control", type: "text", id: "example-text-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "City"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "City"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "city", className: "form-control", type: "text", id: "example-text-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "State"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "State"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "state", className: "form-control", type: "text", id: "example-text-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-email-input", className: "col-xs-2 col-form-label"}, "Email"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-email-input", className: "col-xs-2 col-form-label"}, "Email"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "email", className: "form-control", type: "email", id: "example-email-input"})
         )
-      ),
-      React.createElement("div", {className: "form-group row"},
-        React.createElement("label", {htmlFor: "example-tel-input", className: "col-xs-2 col-form-label"}, "Telephone"),
-        React.createElement("div", {className: "col-xs-10"},
+      ), 
+      React.createElement("div", {className: "form-group row"}, 
+        React.createElement("label", {htmlFor: "example-tel-input", className: "col-xs-2 col-form-label"}, "Telephone"), 
+        React.createElement("div", {className: "col-xs-10"}, 
           React.createElement("input", {onChange: this.handleInputChange, name: "telephone", className: "form-control", type: "tel", id: "example-tel-input"})
         )
       )
@@ -89,10 +88,10 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   // },
   render: function(){
     return (
-      React.createElement(TemplateContainer, null,
-        React.createElement("h1", null, "Account Information"),
-          React.createElement("h2", null, "Welcome ", localStorage.getItem('username')),
-          React.createElement(AccountForm, {user: this.state.user}),
+      React.createElement(TemplateContainer, null, 
+        React.createElement("h1", null, "Account Information"), 
+          React.createElement("h2", null, "Welcome ", localStorage.getItem('username')), 
+          React.createElement(AccountForm, {user: this.state.user}), 
             React.createElement("button", {type: ""}, "My Information is correct")
       )
     )
@@ -134,19 +133,19 @@ var SignUpForm = React.createClass({displayName: "SignUpForm",
   },
   render: function(){
     return(
-      React.createElement("div", {className: "col-md-6"},
-        React.createElement("h2", null, "Need an Account? Sign Up!"),
-        React.createElement("form", {onSubmit: this.handleSignUp, id: "signup"},
+      React.createElement("div", {className: "col-md-6"}, 
+        React.createElement("h2", null, "Need an Account? Sign Up!"), 
+        React.createElement("form", {onSubmit: this.handleSignUp, id: "signup"}, 
 
-          React.createElement("div", {className: "form-group"},
-            React.createElement("label", {htmlFor: "email"}, "Email address"),
+          React.createElement("div", {className: "form-group"}, 
+            React.createElement("label", {htmlFor: "email"}, "Email address"), 
             React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "email", id: "email", type: "email", placeholder: "email"})
-          ),
+          ), 
 
-          React.createElement("div", {className: "form-group"},
-            React.createElement("label", {htmlFor: "password"}, "Password"),
+          React.createElement("div", {className: "form-group"}, 
+            React.createElement("label", {htmlFor: "password"}, "Password"), 
             React.createElement("input", {onChange: this.handlePasswordInput, value: this.state.password, className: "form-control", name: "password", id: "password", type: "password", placeholder: "Password Please"})
-          ),
+          ), 
 
           React.createElement("input", {className: "btn btn-primary", type: "submit", value: "Sign Me Up!"})
         )
@@ -185,18 +184,18 @@ var SignInForm = React.createClass({displayName: "SignInForm",
   },
   render: function(){
     return(
-        React.createElement("div", {className: "col-md-6"},
-          React.createElement("h2", null, "Please Login"),
-          React.createElement("form", {onSubmit: this.handleSignIn, id: "login"},
-            React.createElement("div", {className: "form-group"},
-              React.createElement("label", {htmlFor: "email-login"}, "Email address"),
+        React.createElement("div", {className: "col-md-6"}, 
+          React.createElement("h2", null, "Please Login"), 
+          React.createElement("form", {onSubmit: this.handleSignIn, id: "login"}, 
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {htmlFor: "email-login"}, "Email address"), 
               React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "email", id: "email-login", type: "email", placeholder: "email"})
-            ),
+            ), 
 
-            React.createElement("div", {className: "form-group"},
-              React.createElement("label", {htmlFor: "password-login"}, "Password"),
+            React.createElement("div", {className: "form-group"}, 
+              React.createElement("label", {htmlFor: "password-login"}, "Password"), 
               React.createElement("input", {onChange: this.handlePasswordInput, value: this.state.password, className: "form-control", name: "password", id: "password-login", type: "password", placeholder: "Password Please"})
-            ),
+            ), 
 
             React.createElement("input", {className: "btn btn-primary", type: "submit", value: "Beam Me Up!"})
           )
@@ -249,12 +248,12 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
   },
   render: function(){
     return (
-      React.createElement("div", {className: "container"},
-        React.createElement(TemplateContainer, null,
-          React.createElement("div", {className: "row"},
-            React.createElement("div", {className: "col-md-12"},
-              React.createElement("h1", null, "Assistive Shopping ", this.state.user.get('token') ? 'Logged in' : ''),
-                React.createElement(SignUpForm, {signUp: this.signUp}),
+      React.createElement("div", {className: "container"}, 
+        React.createElement(TemplateContainer, null, 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-md-12"}, 
+              React.createElement("h1", null, "Assistive Shopping ", this.state.user.get('token') ? 'Logged in' : ''), 
+                React.createElement(SignUpForm, {signUp: this.signUp}), 
                 React.createElement(SignInForm, {signIn: this.signIn})
             )
           )
@@ -332,37 +331,37 @@ var React = require('react');
 var TemplateContainer = React.createClass({displayName: "TemplateContainer",
   render: function(){
     return (
-      React.createElement("div", {className: "container"},
-        React.createElement("div", {className: "row"},
-            React.createElement("nav", {className: "navbar navbar-light bg-faded"},
-              React.createElement("ul", {className: "nav navbar-nav"},
-                React.createElement("li", {className: "nav-item active"},
+      React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "row"}, 
+            React.createElement("nav", {className: "navbar navbar-light bg-faded"}, 
+              React.createElement("ul", {className: "nav navbar-nav"}, 
+                React.createElement("li", {className: "nav-item active"}, 
                   React.createElement("a", {className: "nav-link", href: "#"}, "Home ", React.createElement("span", {className: "sr-only"}, "(current)"))
-                ),
-                React.createElement("li", {className: "nav-item"},
+                ), 
+                React.createElement("li", {className: "nav-item"}, 
                   React.createElement("a", {className: "nav-link", href: "#"}, "Features")
-                ),
-                React.createElement("li", {className: "nav-item"},
+                ), 
+                React.createElement("li", {className: "nav-item"}, 
                   React.createElement("a", {className: "nav-link", href: "#"}, "Pricing")
-                ),
-                React.createElement("li", {className: "nav-item"},
+                ), 
+                React.createElement("li", {className: "nav-item"}, 
                   React.createElement("a", {className: "nav-link", href: "#"}, "About")
                 )
               )
             )
-        ),
+        ), 
 
 
 
-        this.props.children,
+        this.props.children, 
 
 
-        React.createElement("div", {className: "row footer"},
-          React.createElement("div", {className: "col-md-12"},
-            React.createElement("h2", null, "Contact Information"),
-            React.createElement("span", null, "Name"),
-            React.createElement("span", null, "Address"),
-            React.createElement("span", null, "Email"),
+        React.createElement("div", {className: "row footer"}, 
+          React.createElement("div", {className: "col-md-12"}, 
+            React.createElement("h2", null, "Contact Information"), 
+            React.createElement("span", null, "Name"), 
+            React.createElement("span", null, "Address"), 
+            React.createElement("span", null, "Email"), 
             React.createElement("span", null, "Phone")
           )
         )
@@ -3503,7 +3502,7 @@ module.exports = performanceNow;
  *
  * @providesModule shallowEqual
  * @typechecks
- *
+ * 
  */
 
 'use strict';
@@ -32888,4 +32887,3 @@ module.exports = require('./lib/React');
 }.call(this));
 
 },{}]},{},[4]);
->>>>>>> changes
