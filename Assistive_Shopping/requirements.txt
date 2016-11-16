@@ -1,2 +1,5 @@
 django
 djangorestframework
+gunicorn
+psycopg2
+dj-database-url
