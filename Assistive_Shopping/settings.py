@@ -25,7 +25,7 @@ SECRET_KEY = '1_(7mx-4llvc=s0ui5yrdny-b!w&m#nlu8uomu9f4ok71!%xju'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["sleepy-atoll-24899.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["shrouded-eyrie-43286.herokuapp.com", "localhost"]
 
 
 # Application definition
