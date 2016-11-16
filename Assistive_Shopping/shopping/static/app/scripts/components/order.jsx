@@ -1,6 +1,6 @@
 var React = require('react');
 
-var FoodItem = React.createClass({
+var OrderItem = React.createClass({
   render: function(){
     return (
 
@@ -8,7 +8,7 @@ var FoodItem = React.createClass({
   }
 });
 
-var FoodItemCollection = React.createClass({
+var OrderItemCollection = React.createClass({
   render: function(){
     return (
 
@@ -17,6 +17,6 @@ var FoodItemCollection = React.createClass({
 });
 
 module.exports = {
-  FoodItem: FoodItem,
-  FoodItemCollection: FoodItemCollection
+  OrderItem: OrderItem,
+  OrderItemCollection: OrderItemCollection
 };

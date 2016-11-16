@@ -126,6 +126,7 @@ var LoginSignUpContainer = React.createClass({
     console.log(User);
     User.signup(userData.username, userData.password, function(user){
       self.setState({user: user});
+      Backbone.history.navigate('account/', {trigger:true});
     });
     console.log(userData);
   },
@@ -134,6 +135,7 @@ var LoginSignUpContainer = React.createClass({
     console.log(User);
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
+      Backbone.history.navigate('account/', {trigger:true});
       // console.log(user)
     });
   },

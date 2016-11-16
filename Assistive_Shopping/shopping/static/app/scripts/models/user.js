@@ -13,12 +13,15 @@ var User = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+    localStorage.setItem('user', JSON.stringify(user.toJSON()));
   }
 }, {
   signup: function(username, password, callback){
       var user = new User({username: username, password: password});
       console.log('saved')
       user.save().then(function(data){
+        user.set('token', data.token);
+        user.auth();
 
       callback(user);
     });
@@ -27,16 +30,15 @@ var User = Backbone.Model.extend({
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
 
-        var user = new User();
+        var user = new User({username: username});
         user.set('token', result.token);
         user.auth();
 
         localStorage.setItem('user', JSON.stringify(user.toJSON()));
-        localStorage.setItem('username', username);
+
 
         callback(user);
         console.log("YOU HAVE NOW LOGGED IN");
-        Backbone.history.navigate('account/', {trigger:true});
       });
     }
 });
