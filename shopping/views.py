@@ -1,12 +1,12 @@
-from django.shortcuts import render
+# from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
-from shopping.models import Account, Cart
+from shopping.models import Account, Cart, Item
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView
-from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer
+from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer
 
 from rest_framework.permissions import IsAuthenticated
 
@@ -47,3 +47,9 @@ class CartListCreateAPIView(ListCreateAPIView):
 
     def get_queryset(self):
         return Cart.objects.filter(user=self.request.user)
+
+
+class ItemListCreateAPIView(ListCreateAPIView):
+
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
