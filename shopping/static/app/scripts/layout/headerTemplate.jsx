@@ -1,7 +1,13 @@
 var React = require('react');
+var Backbone = require('backbone');
 
 
 var TemplateContainer = React.createClass({
+  handleLogout: function(e){
+    e.preventDefault();
+    localStorage.clear();
+    Backbone.history.navigate('', {trigger:true});
+  },
   render: function(){
     return (
       <div className="container">
@@ -20,9 +26,11 @@ var TemplateContainer = React.createClass({
                 <li className="nav-item">
                   <a className="nav-link" href="#">About</a>
                 </li>
+                <li className="nav-item">
+                <button onClick={this.handleLogout}>Logout</button>
+                </li>
               </ul>
             </nav>
-            <button onClick={this.handleLogout}>Logout</button>
         </div>
 
 

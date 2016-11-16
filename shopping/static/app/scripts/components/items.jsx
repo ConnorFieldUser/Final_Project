@@ -1,7 +1,7 @@
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 
-var FoodItem = React.createClass({
+var FoodItemContainer = React.createClass({
   render: function(){
     var foodCollection = new FoodItemCollection();
     foodCollection.fetch().then(function(response){
@@ -16,5 +16,5 @@ var FoodItem = React.createClass({
 
 
 module.exports = {
-  FoodItem: FoodItem
+  FoodItemContainer: FoodItemContainer
 };

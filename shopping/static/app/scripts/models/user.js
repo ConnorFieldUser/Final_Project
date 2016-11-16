@@ -20,6 +20,7 @@ var User = Backbone.Model.extend({
       var user = new User({username: username, password: password});
       console.log('saved')
       user.save().then(function(data){
+        console.log('userdata', data);
         user.set('token', data.token);
         user.auth();
 
@@ -30,7 +31,7 @@ var User = Backbone.Model.extend({
   signin: function(username, password, callback){
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
-
+        console.log('userdata', result);
         var user = new User({username: username});
         user.set('token', result.token);
         user.auth();
