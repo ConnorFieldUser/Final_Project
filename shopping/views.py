@@ -46,4 +46,4 @@ class CartListCreateAPIView(ListCreateAPIView):
     serializer_class = CartSerializer
 
     def get_queryset(self):
-        return Cart.objects.get(user=self.request.user)
+        return Cart.objects.filter(user=self.request.user)

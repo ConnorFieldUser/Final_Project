@@ -29,5 +29,5 @@ urlpatterns = [
     url(r'^api/user/create/$', UserCreateAPIView.as_view(), name="user_create_api_view"),
     # url(r'^api/account/(?P<pk>\d+)/$', AccountDetailUpdateAPIView.as_view(), name="account_detail_update_api_view"),
     url(r'^api/account/profile/$', AccountDetailUpdateAPIView.as_view(), name="account_detail_update_api_view"),
-    url(r'^api/Carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view")
+    url(r'^api/carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view")
 ]
