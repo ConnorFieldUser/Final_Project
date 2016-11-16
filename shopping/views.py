@@ -34,5 +34,8 @@ class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
     serializer_class = AccountSerializer
     permission_classes = (IsAuthenticated, )
 
+    def get_object(self):
+        return Account.objects.get(user=self.request.user)
+
     def get_queryset(self):
         return Account.objects.filter(user=self.request.user)
