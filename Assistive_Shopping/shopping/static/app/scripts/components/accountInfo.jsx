@@ -4,7 +4,7 @@ var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContaine
 var User = require('../models/user.js').User;
 
 
-var AccountInfoContainer = React.createClass({
+var AccountForm = React.createClass({
   handleInputChange: function(){
     var accountInfoField = e. target;
 
@@ -12,17 +12,15 @@ var AccountInfoContainer = React.createClass({
     newState[accountInfoField.name] = accountInfoField.value;
     this.setState(newState);
 
-    this.props.user
+    this.props.user.set(accountInfoField.name, accountInfoField.value)
   },
   handleSubmit: function(e){
     e.preventDefault();
-    this.props.
+    this.props.saveInfo(this.state);
   },
   render: function(){
     return (
-      <TemplateContainer>
-        <h1>Account Information</h1>
-        <h2>Welcome {localStorage.getItem('username')}</h2>
+
     <form onSubmit={this.handleSubmit}>
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
@@ -67,8 +65,19 @@ var AccountInfoContainer = React.createClass({
         </div>
       </div>
       </form>
-      <button type="">My Information is correct</button>
-    </TemplateContainer>
+    )
+  }
+});
+
+var AccountInfoContainer = React.createClass({
+  render: function(){
+    return (
+      <TemplateContainer>
+        <h1>Account Information</h1>
+          <h2>Welcome {localStorage.getItem('username')}</h2>
+          <Form saveInfo={this.saveInfo}/>
+            <button type="">My Information is correct</button>
+      </TemplateContainer>
     )
   }
 });
