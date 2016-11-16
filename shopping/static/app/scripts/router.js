@@ -6,7 +6,7 @@ var django = require('./djangoUtils');
 
 var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContainer;
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
-var FoodItem = require('./components/items.jsx').FoodItem;
+// var FoodItem = require('./components/items.jsx').FoodItem;
 
 var AppRouter = Backbone.Router.extend({
   routes: {

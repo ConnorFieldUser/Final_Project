@@ -9,12 +9,12 @@ var FoodItem = React.createClass({
     })
     return (
       <h1>Hello</h1>
-    ),
+    )
   }
 });
 
 
 
 module.exports = {
-  FoodItem: FoodItem,
+  FoodItem: FoodItem
 };

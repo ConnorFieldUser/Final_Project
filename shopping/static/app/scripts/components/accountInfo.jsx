@@ -25,43 +25,43 @@ var AccountForm = React.createClass({
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="firstname" className="form-control" type="text" value={this.state.firstname} id="example-text-input" />
+          <input onChange={this.handleInputChange} name="firstname" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">LastName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="lastname" className="form-control" type="text" value={this.state.lastname} id="example-text-input" />
+          <input onChange={this.handleInputChange} name="lastname" className="form-control" type="text"  id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">Street Address</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="address" className="form-control" type="text" value={this.state.address} id="example-text-input" />
+          <input onChange={this.handleInputChange} name="address" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">City</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="city" className="form-control" type="text" value={this.state.city} id="example-text-input" />
+          <input onChange={this.handleInputChange} name="city" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">State</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="state" className="form-control" type="text" value={this.state.state} id="example-text-input" />
+          <input onChange={this.handleInputChange} name="state" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-email-input" className="col-xs-2 col-form-label">Email</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="email" className="form-control" type="email" value={this.state.email} id="example-email-input" />
+          <input onChange={this.handleInputChange} name="email" className="form-control" type="email" id="example-email-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-tel-input" className="col-xs-2 col-form-label">Telephone</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} name="telephone" className="form-control" type="tel" value={this.state.telephone} id="example-tel-input" />
+          <input onChange={this.handleInputChange} name="telephone" className="form-control" type="tel" id="example-tel-input" />
         </div>
       </div>
       </form>
@@ -70,11 +70,11 @@ var AccountForm = React.createClass({
 });
 
 var AccountInfoContainer = React.createClass({
-  // getInitialState: function(){
-  //   return {
-  //     user: new User()
-  //   };
-  // },
+  getInitialState: function(){
+    return {
+      user: new User()
+    };
+  },
   // saveInfo: function (userData){
   //   var user = this.state.user;
   //
@@ -89,7 +89,7 @@ var AccountInfoContainer = React.createClass({
       <TemplateContainer>
         <h1>Account Information</h1>
           <h2>Welcome {localStorage.getItem('username')}</h2>
-          <AccountForm user={this.state.user} saveInfo={this.saveInfo}/>
+          <AccountForm user={this.state.user}/>
             <button type="">My Information is correct</button>
       </TemplateContainer>
     )
