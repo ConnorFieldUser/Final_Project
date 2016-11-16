@@ -63,6 +63,7 @@ class ListItem(models.Model):
     def __str__(self):
         return "{}: {}".format(self.list, self.item)
 
+
 # class ContactCard(models.Model):
 #     first_name = models.CharField(max_length=20, null=True, blank=True)
 #     last_name = models.CharField(max_length=20, null=True, blank=True)

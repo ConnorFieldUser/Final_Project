@@ -29,11 +29,6 @@ class UserCreateAPIView(CreateAPIView):
     serializer_class = UserSerializer
 
 
-# class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
-#     queryset = Account.objects.all()
-#     serializer_class = AccountSerializer
-
-
 class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
     # queryset = Account.objects.all()
     serializer_class = AccountSerializer
