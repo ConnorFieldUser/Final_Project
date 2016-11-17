@@ -4,16 +4,17 @@ var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContaine
 var HomeContainer = React.createClass({
   render: function(){
     return(
-      <div className="container">
-        <div className="row">
+      // <div className="container">
           <TemplateContainer>
+          <div className="row">
           <div className="col-md-12">
             <div className="mainImg"></div>
             <h1>Info about our program here!</h1>
           </div>
-          </TemplateContainer>
         </div>
-      </div>
+          </TemplateContainer>
+        // </div>
+      // </div>
     )
   }
 });

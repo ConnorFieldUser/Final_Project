@@ -140,16 +140,17 @@ var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContaine
 var HomeContainer = React.createClass({displayName: "HomeContainer",
   render: function(){
     return(
-      React.createElement("div", {className: "container"}, 
-        React.createElement("div", {className: "row"}, 
+      // <div className="container">
           React.createElement(TemplateContainer, null, 
+          React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-md-12"}, 
             React.createElement("div", {className: "mainImg"}), 
             React.createElement("h1", null, "Info about our program here!")
           )
-          )
         )
-      )
+          )
+        // </div>
+      // </div>
     )
   }
 });
