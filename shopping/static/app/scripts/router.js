@@ -15,7 +15,6 @@ var AppRouter = Backbone.Router.extend({
     'home/': 'home',
     'account/': 'accountInfo',
     'items/' : 'items',
-
   },
   initialize: function(){
       $.ajaxSetup({

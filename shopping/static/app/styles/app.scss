@@ -16,6 +16,53 @@ img {
   max-width: 100%;
 }
 
+// .navbar {
+//   background-color: #383175;
+// }
 .nav-link {
   position: inline-block;
+}
+
+.mainImg {
+  background-image: url('http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg');
+  height:300px;
+  background-size: 100%;
+}
+.logoutBtn {
+  padding: 15px;
+}
+
+.footer {
+  text-align: center;
+  background-color: #383175;
+  color: white;
+  margin-top: 50px;
+  // margin-left: -70px;
+  margin-right: 0px;
+  // width: 1280px;
+  height: 200px;
+  opacity: 0.9;
+  font-family: 'Domine', serif;
+  .glyphicon {
+    margin-right:10px;
+  }
+  h2 {
+    margin-bottom: 40px;
+  }
+  .info{
+    margin-right: 40px;
+  }
+  i {
+    background-color: #459EA7;
+    padding:10px;
+    font-size: 20px;
+    border-radius: 50%;
+    margin-right: 10px;
+    margin-top: 20px;
+    // margin-bottom: 50px;
+  }
+  i.fa-facebook {
+    padding-left: 13px;
+    padding-right:13px;
+  }
 }

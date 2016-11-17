@@ -43,7 +43,7 @@ var TemplateContainer = React.createClass({
                   <a onClick={this.navCart} className="nav-link" href="#">Cart</a>
                 </li>
                 <li className="nav-item">
-                <button onClick={this.handleLogout}>Logout</button>
+                <button className="logoutBtn" onClick={this.handleLogout}>Logout</button>
                 </li>
               </ul>
             </nav>
@@ -54,13 +54,16 @@ var TemplateContainer = React.createClass({
         {this.props.children}
 
 
-        <div className="row footer">
-          <div className="col-md-12">
+        <div className="row">
+          <div className="col-md-12 footer">
             <h2>Contact Information</h2>
-            <span>Name</span>
-            <span>Address</span>
-            <span>Email</span>
-            <span>Phone</span>
+            <span className="glyphicon glyphicon-home" aria-hidden="true"></span><span className="info">123 Main St Greenville, SC</span>
+            <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span><span className="info">assistiveshopper@gmail.com</span>
+            <span className="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><span className="info">(888)123-4567</span>
+            <div>
+              <i className="fa fa-facebook" aria-hidden="true"></i>
+              <i className="fa fa-twitter" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
       </div>

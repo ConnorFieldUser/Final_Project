@@ -8,15 +8,7 @@ var OrderItem = React.createClass({
   }
 });
 
-var OrderItemCollection = React.createClass({
-  render: function(){
-    return (
-
-    )
-  }
-});
 
 module.exports = {
   OrderItem: OrderItem,
-  OrderItemCollection: OrderItemCollection
 };

@@ -14,17 +14,16 @@ var User = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
-
   }
 }, {
   signup: function(username, password, callback){
       var user = new User({username: username, password: password});
       console.log('saved')
+
       user.save().then(function(data){
         console.log('userdata', data);
         user.set('token', data.token);
-        console.log(user);
-        // user.auth();
+        user.auth();
 
       callback(user);
       localStorage.setItem('user', JSON.stringify(user.toJSON()));
@@ -49,7 +48,7 @@ var User = Backbone.Model.extend({
 
 var Account = Backbone.Model.extend({
   idAttribute: 'id',
-  urlRoot: 'api/account/profile',
+  urlRoot: 'api/account/profile'
 
 });
 

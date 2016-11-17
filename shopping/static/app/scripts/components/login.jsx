@@ -5,6 +5,7 @@ var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContaine
 
 var SignUpForm = React.createClass({
   getInitialState: function(){
+    localStorage.clear();
     return{
       username: '',
       password: ''
@@ -82,7 +83,7 @@ var SignInForm = React.createClass({
           <form onSubmit={this.handleSignIn} id="login">
             <div className="form-group">
               <label htmlFor="email-login">Email address</label>
-              <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="email" id="email-login" type="email" placeholder="email" />
+              <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="email-login" type="username" placeholder="email" />
             </div>
 
             <div className="form-group">

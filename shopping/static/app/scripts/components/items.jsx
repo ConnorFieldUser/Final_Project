@@ -10,13 +10,13 @@ var FoodItem = React.createClass({
       return (
         <li key={food.id}>
           {food.get('name')}::{food.get('price')}
-          <button className="btn btn-danger">Add to Cart</button>
+          <button className="btn btn-danger addCart">Add to Cart</button>
         </li>
       );
     });
     // console.log(foodList);
     return (
-      <div className="col-md-4">
+      <div className="col-md-12">
         <h2>Grocery Items</h2>
         <ul>
           {foodList}
