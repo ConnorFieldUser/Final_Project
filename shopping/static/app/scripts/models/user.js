@@ -4,7 +4,7 @@ var Backbone = require('backbone');
 var django = require('../djangoUtils');
 
 var User = Backbone.Model.extend({
-  urlRoot: 'api/user/create/',
+  urlRoot: 'create_user/',
   auth: function(){
     var self = this;
     $.ajaxSetup({
@@ -45,6 +45,13 @@ var User = Backbone.Model.extend({
     }
 });
 
+var Account = Backbone.Model.extend({
+  idAttribute: 'id',
+  urlRoot: 'api/account/profile',
+
+});
+
 module.exports = {
-  User: User
+  User: User,
+  Account: Account
 };
