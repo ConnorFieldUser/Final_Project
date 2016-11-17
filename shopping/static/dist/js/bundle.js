@@ -422,7 +422,7 @@ var React = require('react');
 var django = require('../djangoUtils');
 
 var User = Backbone.Model.extend({
-  urlRoot: 'create_user/',
+  urlRoot: 'api/user/create',
   auth: function(){
     var self = this;
     $.ajaxSetup({
