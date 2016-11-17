@@ -29,6 +29,12 @@ var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var orderCollection = new OrderItemCollection();
+    var self = this;
+    foodCollection.fetch().then(function(response){
+      console.log(response);
+      self.setState({foodCollection: foodCollection});
+      // console.log(foodCollection)
+    });
     return {
       foodCollection: foodCollection,
       orderCollection: orderCollection
@@ -42,12 +48,8 @@ var FoodItemContainer = React.createClass({
   render: function(){
     // console.log(foodCollection)
     var self = this;
+    var foodCollection = this.state.foodCollection;
     // var foodCollection = new FoodItemCollection();
-    foodCollection.fetch().then(function(response){
-      // console.log(response);
-      self.setState({foodCollection: foodCollection});
-      // console.log(foodCollection)
-    });
     return (
       <div className="container">
         <div className="row well">

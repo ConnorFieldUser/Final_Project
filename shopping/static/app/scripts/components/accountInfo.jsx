@@ -90,9 +90,9 @@ var AccountInfoContainer = React.createClass({
   componentWillMount: function(){
     this.getAccountInfo();
   },
-  componentWillReceiveProps: function(){
-    this.getAccountInfo();
-  },
+  // componentWillReceiveProps: function(){
+  //   this.getAccountInfo();
+  // },
   getAccountInfo: function(){
     var account = this.state.account;
     var self = this;
@@ -106,14 +106,14 @@ var AccountInfoContainer = React.createClass({
     var account = this.state.account;
 
     account.set(userData);
-    // account.save();            //HOW TO FIX MAXIMUM CALL STACK ERROR???
+    account.save();            //HOW TO FIX MAXIMUM CALL STACK ERROR???
     console.log(account);
 
     //
-    account.save().then(() => {
-        console.log("info saved");
+    // account.save().then(() => {
+        // console.log("info saved");
         // Backbone.history.navigate('items/', {trigger:true})
-    });
+    // });
   },
   render: function(){
     return (
