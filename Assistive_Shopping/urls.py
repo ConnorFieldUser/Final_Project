@@ -19,7 +19,6 @@ from rest_framework.authtoken import views
 
 
 from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView
-# AccountDetailUpdateAPIView,
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
