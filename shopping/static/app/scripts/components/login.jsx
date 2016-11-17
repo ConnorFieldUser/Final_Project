@@ -32,7 +32,7 @@ var SignUpForm = React.createClass({
 
           <div className="form-group">
             <label htmlFor="email">Email address</label>
-            <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="email" id="email" type="email" placeholder="email" />
+            <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="username" type="username" placeholder="email" />
           </div>
 
           <div className="form-group">
@@ -106,7 +106,7 @@ var LoginSignUpContainer = React.createClass({
     // console.log(userData);
     if(userData){
       user.set(JSON.parse(userData));
-      user.auth();
+      // user.auth();
     }
     //
     return {
@@ -123,7 +123,7 @@ var LoginSignUpContainer = React.createClass({
     var self = this;
     // var user = this.state;
     // console.log(user);
-    console.log(User);
+    console.log(userData);
     User.signup(userData.username, userData.password, function(user){
       self.setState({user: user});
       Backbone.history.navigate('account/', {trigger:true});

@@ -23,7 +23,8 @@ var User = Backbone.Model.extend({
       user.save().then(function(data){
         console.log('userdata', data);
         user.set('token', data.token);
-        user.auth();
+        console.log(user);
+        // user.auth();
 
       callback(user);
       localStorage.setItem('user', JSON.stringify(user.toJSON()));

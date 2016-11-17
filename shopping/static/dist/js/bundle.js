@@ -240,7 +240,7 @@ var SignUpForm = React.createClass({displayName: "SignUpForm",
 
           React.createElement("div", {className: "form-group"}, 
             React.createElement("label", {htmlFor: "email"}, "Email address"), 
-            React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "email", id: "email", type: "email", placeholder: "email"})
+            React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "username", id: "username", type: "username", placeholder: "email"})
           ), 
 
           React.createElement("div", {className: "form-group"}, 
@@ -314,7 +314,7 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
     // console.log(userData);
     if(userData){
       user.set(JSON.parse(userData));
-      user.auth();
+      // user.auth();
     }
     //
     return {
@@ -331,7 +331,7 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
     var self = this;
     // var user = this.state;
     // console.log(user);
-    console.log(User);
+    console.log(userData);
     User.signup(userData.username, userData.password, function(user){
       self.setState({user: user});
       Backbone.history.navigate('account/', {trigger:true});
@@ -550,7 +550,8 @@ var User = Backbone.Model.extend({
       user.save().then(function(data){
         console.log('userdata', data);
         user.set('token', data.token);
-        user.auth();
+        console.log(user);
+        // user.auth();
 
       callback(user);
       localStorage.setItem('user', JSON.stringify(user.toJSON()));
