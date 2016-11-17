@@ -380,8 +380,7 @@ var TemplateContainer = React.createClass({displayName: "TemplateContainer",
                 React.createElement("button", {onClick: this.handleLogout}, "Logout")
                 )
               )
-            ), 
-            React.createElement("button", {onClick: this.handleLogout}, "Logout")
+            )
         ), 
 
 
