@@ -11,7 +11,6 @@ var AccountForm = React.createClass({
       account: this.props.account
     }
   },
-
   handleInputChange: function(e){
     var account = this.state.account;
 
@@ -90,9 +89,9 @@ var AccountInfoContainer = React.createClass({
   componentWillMount: function(){
     this.getAccountInfo();
   },
-  // componentWillReceiveProps: function(){
-  //   this.getAccountInfo();
-  // },
+  componentWillReceiveProps: function(){
+    this.getAccountInfo();
+  },
   getAccountInfo: function(){
     var account = this.state.account;
     var self = this;

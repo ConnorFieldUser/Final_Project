@@ -18,7 +18,6 @@ var Order = Backbone.Model.extend({
   defaults: {
     foodItems: new FoodItemCollection()
   },
-
   urlRoot: ''
 });
 

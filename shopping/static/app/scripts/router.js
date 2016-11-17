@@ -7,10 +7,12 @@ var django = require('./djangoUtils');
 var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContainer;
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
 var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
+var HomeContainer = require('./components/home.jsx').HomeContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
+    'home/': 'home',
     'account/': 'accountInfo',
     'items/' : 'items',
 
@@ -25,6 +27,12 @@ var AppRouter = Backbone.Router.extend({
   index: function(){
     ReactDOM.render(
       React.createElement(LoginSignUpContainer),
+      document.getElementById('app')
+    )
+  },
+  home: function(){
+    ReactDOM.render(
+      React.createElement(HomeContainer),
       document.getElementById('app')
     )
   },

@@ -3,6 +3,22 @@ var Backbone = require('backbone');
 
 
 var TemplateContainer = React.createClass({
+  navHome: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('home/', {trigger:true});
+  },
+  navItems: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('items/', {trigger:true});
+  },
+  navAccountInfo: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('account/', {trigger:true});
+  },
+  navCart: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('cart/', {trigger:true});
+  },
   handleLogout: function(e){
     e.preventDefault();
     localStorage.clear();
@@ -15,16 +31,16 @@ var TemplateContainer = React.createClass({
             <nav className="navbar navbar-light bg-faded">
               <ul className="nav navbar-nav">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+                  <a onClick={this.navHome} className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Features</a>
+                  <a onClick={this.navAccountInfo} className="nav-link" href="#">Account Information</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Pricing</a>
+                  <a onClick={this.navItems} className="nav-link" href="#">Grocery Items</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">About</a>
+                  <a onClick={this.navCart} className="nav-link" href="#">Cart</a>
                 </li>
                 <li className="nav-item">
                 <button onClick={this.handleLogout}>Logout</button>

@@ -1,6 +1,7 @@
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var OrderItemCollection = require('../models/items.js').OrderItemCollection;
+var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 var FoodItem = React.createClass({
   // var self = this;
@@ -52,10 +53,12 @@ var FoodItemContainer = React.createClass({
     // var foodCollection = new FoodItemCollection();
     return (
       <div className="container">
+        <TemplateContainer>
         <div className="row well">
           <h1>List of Items</h1>
             <FoodItem foodCollection={this.state.foodCollection}/>
         </div>
+        </TemplateContainer>
       </div>
     )
   }

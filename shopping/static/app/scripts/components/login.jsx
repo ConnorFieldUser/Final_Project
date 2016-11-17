@@ -135,14 +135,13 @@ var LoginSignUpContainer = React.createClass({
     console.log(User);
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
-      Backbone.history.navigate('account/', {trigger:true});
+      Backbone.history.navigate('home/', {trigger:true});
       // console.log(user)
     });
   },
   render: function(){
     return (
       <div className="container">
-        <TemplateContainer>
           <div className="row">
             <div className="col-md-12">
               <h1>Assistive Shopping {this.state.user.get('token') ? 'Logged in' : ''}</h1>
@@ -150,7 +149,6 @@ var LoginSignUpContainer = React.createClass({
                 <SignInForm signIn={this.signIn} />
             </div>
           </div>
-        </TemplateContainer>
       </div>
     );
   }
