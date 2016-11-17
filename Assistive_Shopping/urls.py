@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView # CartItemListCreateAPI
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/user/create/$', UserCreateAPIView.as_view(), name="user_create_api_view"),
     url(r'^api/account/profile/$', AccountDetailUpdateAPIView.as_view(), name="account_detail_update_api_view"),
     url(r'^api/carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view"),
-    # url(r'^api/cartitems/$', CartItemListCreateAPI.as_view(), name="cartitem_list_api_view"),
+    url(r'^api/cartitems/$', CartItemListCreateAPIView.as_view(), name="cartitem_list_api_view"),
+    url(r'^api/cartitem/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),
     url(r'^api/items/$', ItemListCreateAPIView.as_view(), name="item_list_create_api_view")
 ]

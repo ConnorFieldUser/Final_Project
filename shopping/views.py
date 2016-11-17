@@ -4,9 +4,9 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
 from django.views.generic.edit import CreateView
 
-from shopping.models import Account, Cart, Item
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView
-from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer
+from shopping.models import Account, Cart, Item, CartItem
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
+from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer, CartItemSerializer
 
 from rest_framework.permissions import IsAuthenticated
 
@@ -47,6 +47,16 @@ class CartListCreateAPIView(ListCreateAPIView):
 
     def get_queryset(self):
         return Cart.objects.filter(user=self.request.user)
+
+
+class CartItemListCreateAPIView(ListCreateAPIView):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
+
+
+class CartItemDetailDestroyView(RetrieveDestroyAPIView):
+    queryset = CartItem.objects.all()
+    serializer_class = CartItemSerializer
 
 
 class ItemListCreateAPIView(ListCreateAPIView):
