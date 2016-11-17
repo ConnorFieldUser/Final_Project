@@ -6,7 +6,7 @@ var django = require('./djangoUtils');
 
 var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContainer;
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
-var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
+// var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -33,13 +33,13 @@ var AppRouter = Backbone.Router.extend({
       React.createElement(AccountInfoContainer),
       document.getElementById('app')
     )
-  },
-  items: function(){
-    ReactDOM.render(
-      React.createElement(FoodItemContainer),
-      document.getElementById('app')
-    )
   }
+  // items: function(){
+  //   ReactDOM.render(
+  //     React.createElement(FoodItemContainer),
+  //     document.getElementById('app')
+  //   )
+  // }
 });
 
 var router = new AppRouter();
