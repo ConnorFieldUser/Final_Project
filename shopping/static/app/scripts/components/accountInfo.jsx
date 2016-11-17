@@ -6,41 +6,49 @@ var Account = require('../models/user.js').Account;
 
 
 var AccountForm = React.createClass({
+  getInitialState: function() {
+    return {
+      account: this.props.account
+    }
+  },
+
   handleInputChange: function(e){
-    var accountInfoField = e. target;
+    var account = this.state.account;
 
-    var newState = {};
-    newState[accountInfoField.name] = accountInfoField.value;
-    this.props.account.set(accountInfoField.name, accountInfoField.value);
-    this.setState(newState);
+    // var accountInfoField = e. target;
 
+    // var newState = {};
+    // newState[accountInfoField.name] = accountInfoField.value;
+    account.set(e.target.name, e.target.value);
+    console.log(account.attributes);
+    this.setState({account: account});
   },
   handleSubmit: function(e){
     e.preventDefault();
     this.props.saveInfo(this.state);
   },
   render: function(){
-    var account = this.props.account;
-    console.log('account', account.get('city'));
+    var account = this.state.account;
+    // console.log('account', account.get('city'));
     return (
 
     <form onSubmit={this.handleSubmit}>
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('first_name')} name="firstname" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('first_name')} name="first_name" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">LastName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('last_name')} name="lastname" className="form-control" type="text"  id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('last_name')} name="last_name" className="form-control" type="text"  id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">Street Address</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('adress')} name="address" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('adress')} name="adress" className="form-control" type="text" id="example-text-input" />
         </div>
       </div>
       <div className="form-group row">
@@ -64,10 +72,10 @@ var AccountForm = React.createClass({
       <div className="form-group row">
         <label htmlFor="example-tel-input" className="col-xs-2 col-form-label">Telephone</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('phone_number')}name="telephone" className="form-control" type="tel" id="example-tel-input" />
+          <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="example-tel-input" />
         </div>
       </div>
-      <button type="submit">My Information is correct</button>
+      <button type="submit" className="btn btn-danger">My Information is correct</button>
       </form>
     )
   }
@@ -96,12 +104,15 @@ var AccountInfoContainer = React.createClass({
   },
   saveInfo: function (userData){
     var account = this.state.account;
-    // console.log(userData);
+
     account.set(userData);
+    // account.save();            //HOW TO FIX MAXIMUM CALL STACK ERROR???
+    console.log(account);
+
     //
     account.save().then(() => {
         console.log("info saved");
-        Backbone.history.navigate('items/', {trigger:true})
+        // Backbone.history.navigate('items/', {trigger:true})
     });
   },
   render: function(){

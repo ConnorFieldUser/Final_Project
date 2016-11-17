@@ -1,5 +1,6 @@
 var $ = require('jquery');
 var Backbone = require('backbone');
+var React = require('react');
 
 var django = require('../djangoUtils');
 

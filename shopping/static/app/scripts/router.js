@@ -40,7 +40,6 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     )
   }
-
 });
 
 var router = new AppRouter();

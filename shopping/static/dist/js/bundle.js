@@ -8,41 +8,49 @@ var Account = require('../models/user.js').Account;
 
 
 var AccountForm = React.createClass({displayName: "AccountForm",
+  getInitialState: function() {
+    return {
+      account: this.props.account
+    }
+  },
+
   handleInputChange: function(e){
-    var accountInfoField = e. target;
+    var account = this.state.account;
 
-    var newState = {};
-    newState[accountInfoField.name] = accountInfoField.value;
-    this.props.account.set(accountInfoField.name, accountInfoField.value);
-    this.setState(newState);
+    // var accountInfoField = e. target;
 
+    // var newState = {};
+    // newState[accountInfoField.name] = accountInfoField.value;
+    account.set(e.target.name, e.target.value);
+    console.log(account.attributes);
+    this.setState({account: account});
   },
   handleSubmit: function(e){
     e.preventDefault();
     this.props.saveInfo(this.state);
   },
   render: function(){
-    var account = this.props.account;
-    console.log('account', account.get('city'));
+    var account = this.state.account;
+    // console.log('account', account.get('city'));
     return (
 
     React.createElement("form", {onSubmit: this.handleSubmit}, 
     React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "FirstName"), 
         React.createElement("div", {className: "col-xs-10"}, 
-          React.createElement("input", {onChange: this.handleInputChange, value: account.get('first_name'), name: "firstname", className: "form-control", type: "text", id: "example-text-input"})
+          React.createElement("input", {onChange: this.handleInputChange, value: account.get('first_name'), name: "first_name", className: "form-control", type: "text", id: "example-text-input"})
         )
       ), 
       React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "LastName"), 
         React.createElement("div", {className: "col-xs-10"}, 
-          React.createElement("input", {onChange: this.handleInputChange, value: account.get('last_name'), name: "lastname", className: "form-control", type: "text", id: "example-text-input"})
+          React.createElement("input", {onChange: this.handleInputChange, value: account.get('last_name'), name: "last_name", className: "form-control", type: "text", id: "example-text-input"})
         )
       ), 
       React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "Street Address"), 
         React.createElement("div", {className: "col-xs-10"}, 
-          React.createElement("input", {onChange: this.handleInputChange, value: account.get('adress'), name: "address", className: "form-control", type: "text", id: "example-text-input"})
+          React.createElement("input", {onChange: this.handleInputChange, value: account.get('adress'), name: "adress", className: "form-control", type: "text", id: "example-text-input"})
         )
       ), 
       React.createElement("div", {className: "form-group row"}, 
@@ -66,10 +74,10 @@ var AccountForm = React.createClass({displayName: "AccountForm",
       React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-tel-input", className: "col-xs-2 col-form-label"}, "Telephone"), 
         React.createElement("div", {className: "col-xs-10"}, 
-          React.createElement("input", {onChange: this.handleInputChange, value: account.get('phone_number'), name: "telephone", className: "form-control", type: "tel", id: "example-tel-input"})
+          React.createElement("input", {onChange: this.handleInputChange, value: account.get('phone_number'), name: "phone_number", className: "form-control", type: "tel", id: "example-tel-input"})
         )
       ), 
-      React.createElement("button", {type: "submit"}, "My Information is correct")
+      React.createElement("button", {type: "submit", className: "btn btn-danger"}, "My Information is correct")
       )
     )
   }
@@ -98,12 +106,15 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   },
   saveInfo: function (userData){
     var account = this.state.account;
-    // console.log(userData);
+
     account.set(userData);
+    // account.save();            //HOW TO FIX MAXIMUM CALL STACK ERROR???
+    console.log(account);
+
     //
     account.save().then(() => {
         console.log("info saved");
-        Backbone.history.navigate('items/', {trigger:true})
+        // Backbone.history.navigate('items/', {trigger:true})
     });
   },
   render: function(){
@@ -126,15 +137,61 @@ module.exports = {
 "use strict";
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
+var OrderItemCollection = require('../models/items.js').OrderItemCollection;
+
+var FoodItem = React.createClass({displayName: "FoodItem",
+  // var self = this;
+  render: function(){
+    var foodList = this.props.foodCollection.map(function(food){
+      return (
+        React.createElement("li", {key: food.id}, 
+          food.get('name'), "::", food.get('price'), 
+          React.createElement("button", {className: "btn btn-danger"}, "Add to Cart")
+        )
+      );
+    });
+    // console.log(foodList);
+    return (
+      React.createElement("div", {className: "col-md-4"}, 
+        React.createElement("h2", null, "Grocery Items"), 
+        React.createElement("ul", null, 
+          foodList
+        )
+      )
+    )
+  }
+});
 
 var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
-  render: function(){
+  getInitialState: function(){
     var foodCollection = new FoodItemCollection();
+    var orderCollection = new OrderItemCollection();
+    return {
+      foodCollection: foodCollection,
+      orderCollection: orderCollection
+    }
+  },
+  // addToOrder: function(item){
+  //   var orderCollection = this.state.orderCollection;
+  //   orderCollection.save()
+  //
+  // },
+  render: function(){
+    // console.log(foodCollection)
+    var self = this;
+    // var foodCollection = new FoodItemCollection();
     foodCollection.fetch().then(function(response){
-      console.log(response);
-    })
+      // console.log(response);
+      self.setState({foodCollection: foodCollection});
+      // console.log(foodCollection)
+    });
     return (
-      React.createElement("h1", null, "Hello")
+      React.createElement("div", {className: "container"}, 
+        React.createElement("div", {className: "row well"}, 
+          React.createElement("h1", null, "List of Items"), 
+            React.createElement(FoodItem, {foodCollection: this.state.foodCollection})
+        )
+      )
     )
   }
 });
@@ -428,19 +485,19 @@ module.exports = {
 },{"backbone":10,"react":169}],7:[function(require,module,exports){
 "use strict";
 var Backbone = require('backbone');
+var React = require('react');
 
 var FoodItem = Backbone.Model.extend({
   defaults: {
     name: '',
-    quantity: '',
     price: ''
   },
 });
 
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
-  url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  // url: 'http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_GetGroceries?APIKEY=3f46c23cb1&ItemId=12345'
+  url: '/api/items/'
+  // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
 
 var Order = Backbone.Model.extend({
@@ -451,7 +508,7 @@ var Order = Backbone.Model.extend({
   urlRoot: ''
 });
 
-var OrderCollection = Backbone.Collection.extend({
+var OrderItemCollection = Backbone.Collection.extend({
   model: Order,
   url: ''
 });
@@ -461,13 +518,14 @@ module.exports = {
   FoodItem: FoodItem,
   FoodItemCollection: FoodItemCollection,
   Order: Order,
-  OrderCollection: OrderCollection
+  OrderItemCollection: OrderItemCollection
 };
 
-},{"backbone":10}],8:[function(require,module,exports){
+},{"backbone":10,"react":169}],8:[function(require,module,exports){
 "use strict";
 var $ = require('jquery');
 var Backbone = require('backbone');
+var React = require('react');
 
 var django = require('../djangoUtils');
 
@@ -524,7 +582,7 @@ module.exports = {
   Account: Account
 };
 
-},{"../djangoUtils":4,"backbone":10,"jquery":38}],9:[function(require,module,exports){
+},{"../djangoUtils":4,"backbone":10,"jquery":38,"react":169}],9:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -568,7 +626,6 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     )
   }
-
 });
 
 var router = new AppRouter();

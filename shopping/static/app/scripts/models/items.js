@@ -1,17 +1,17 @@
 var Backbone = require('backbone');
+var React = require('react');
 
 var FoodItem = Backbone.Model.extend({
   defaults: {
     name: '',
-    quantity: '',
     price: ''
   },
 });
 
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
-  url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  // url: 'http://www.SupermarketAPI.com/api.asmx/COMMERCIAL_GetGroceries?APIKEY=3f46c23cb1&ItemId=12345'
+  url: '/api/items/'
+  // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
 
 var Order = Backbone.Model.extend({
@@ -22,7 +22,7 @@ var Order = Backbone.Model.extend({
   urlRoot: ''
 });
 
-var OrderCollection = Backbone.Collection.extend({
+var OrderItemCollection = Backbone.Collection.extend({
   model: Order,
   url: ''
 });
@@ -32,5 +32,5 @@ module.exports = {
   FoodItem: FoodItem,
   FoodItemCollection: FoodItemCollection,
   Order: Order,
-  OrderCollection: OrderCollection
+  OrderItemCollection: OrderItemCollection
 };
