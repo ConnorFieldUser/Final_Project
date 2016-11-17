@@ -52,14 +52,14 @@ var FoodItemContainer = React.createClass({
     var foodCollection = this.state.foodCollection;
     // var foodCollection = new FoodItemCollection();
     return (
-      <div className="container">
+      // <div className="container">
         <TemplateContainer>
         <div className="row well">
           <h1>List of Items</h1>
             <FoodItem foodCollection={this.state.foodCollection}/>
         </div>
         </TemplateContainer>
-      </div>
+      // </div>
     )
   }
 });
