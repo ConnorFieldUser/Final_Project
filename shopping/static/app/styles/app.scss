@@ -12,6 +12,17 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 
+html {
+  body{
+  font-family: 'Domine', serif;
+  }
+}
+
+.btn {
+  background-color: #459EA7;
+  border-color: #459EA7;
+}
+
 img {
   max-width: 100%;
 }
