@@ -40,14 +40,6 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
         Token.objects.create(user=instance)
 
 
-class Cart(models.Model):
-    user = models.ForeignKey('auth.User')
-    created_time = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return "{} {}".format(self.user, self.id)
-
-
 class Item(models.Model):
     name = models.CharField(max_length=25)
     price = models.FloatField()
@@ -56,9 +48,20 @@ class Item(models.Model):
         return "{}, ${}0".format(self.name, self.price)
 
 
+class Cart(models.Model):
+    user = models.ForeignKey('auth.User')
+    created_time = models.DateTimeField(auto_now_add=True)
+    items = models.ManyToManyField(Item, through='CartItem')
+    # related name
+
+    def __str__(self):
+        return "{} {}".format(self.user, self.id)
+
+
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart)
     item = models.ForeignKey(Item)
+    quantity = models.PositiveIntegerField(default=0)
 
     def __str__(self):
         return "{}: {}".format(self.cart, self.item)
