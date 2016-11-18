@@ -6,6 +6,8 @@ from django.views.generic.edit import CreateView
 
 from shopping.models import Account, Cart, Item, CartItem
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
+from rest_framework.views import APIView
+from rest_framework.response import Response
 from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer, CartItemSerializer
 
 from rest_framework.permissions import IsAuthenticated
@@ -75,14 +77,36 @@ def get_response():
 
 
 # view for api call
-class ApiTestView(TemplateView):
-    template_name = 'index.html'
+class ApiTestView(APIView):
+    template_name = 'test.html'
+
+    import os
+    api_key = os.environ.get('api_key')
+    print(api_key)
 
     def get(self, request):
-        r = requests.get('http://api.example.com/books?author=edwards&year=2009')
-        books = r.json()
-        books_list = {'books': books['results']}
-        return render(request, 'books.html', books_list)
+        r = requests.get('http://swapi.co/api/starships/9/')
+        ships = r.json()
+        ships_list = {'ships': ships['name']}
+        print(ships_list)
+        return Response(ships_list)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        r = requests.get('http://swapi.co/api/starships/9/')
+        ships = r.json()
+        context['ship_list'] = ships
+        context['testing'] = self.request.user
+        return context
+
+    # def get_context_data(self):
+    #     context = self.request
+
+# def get_response():
+#     r = requests.get("http://swapi.co/api/starships/9/")
+#     ships = r.json()
+#     results_list = ships['length']
+#     print(results_list)
 
     # def get(self, request):
     #     new_list = get_response()
