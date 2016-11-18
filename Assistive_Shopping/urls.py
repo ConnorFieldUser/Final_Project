@@ -31,5 +31,5 @@ urlpatterns = [
     url(r'^api/cartitems/$', CartItemListCreateAPIView.as_view(), name="cartitem_list_api_view"),
     url(r'^api/cartitem/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),
     url(r'^api/items/$', ItemListCreateAPIView.as_view(), name="item_list_create_api_view"),
-    url(r'^api/test/$', ApiTestView.as_view(), name="item")
+    url(r'^api/test/$', ApiTestView.as_view(), name="item_view")
 ]

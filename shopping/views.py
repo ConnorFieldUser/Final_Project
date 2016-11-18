@@ -10,7 +10,8 @@ from shopping.serializers import UserSerializer, AccountSerializer, CartSerializ
 
 from rest_framework.permissions import IsAuthenticated
 
-# from external_requests import get_response
+import requests
+
 
 # Create your views here.
 
@@ -43,11 +44,11 @@ class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
 
 
 class CartListCreateAPIView(ListCreateAPIView):
-    # queryset = List.objects.all()
+    queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-    def get_queryset(self):
-        return Cart.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return Cart.objects.filter(user=self.request.user)
 
 
 class CartItemListCreateAPIView(ListCreateAPIView):
@@ -66,8 +67,31 @@ class ItemListCreateAPIView(ListCreateAPIView):
     serializer_class = ItemSerializer
 
 
+def get_response():
+    r = requests.get("http://swapi.co/api/starships/9/")
+    ships = r.json()
+    results_list = ships['name']
+    return results_list
+
+
 # view for api call
 class ApiTestView(TemplateView):
+    template_name = 'index.html'
+
     def get(self, request):
-        results_list = get_response('2009', 'edwards')
-        return render(request, 'books.html', results_list)
+        r = requests.get('http://api.example.com/books?author=edwards&year=2009')
+        books = r.json()
+        books_list = {'books': books['results']}
+        return render(request, 'books.html', books_list)
+
+    # def get(self, request):
+    #     new_list = get_response()
+    #     return render(request, 'index.html', new_list)
+
+    # def get(self, request):
+    #     new = get_response('1990', 'death star')
+    #     return render(request, 'index.html', results_list)
+
+    # def get(self, request):
+    #     results_list = get_response('1990', 'death star')
+    #     return render(request, 'index.html', results_list)

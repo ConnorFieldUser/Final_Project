@@ -24,22 +24,40 @@ class AccountSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class CartSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Cart
-        fields = '__all__'
-
-
 class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         fields = '__all__'
 
 
+class CartSerializer(serializers.ModelSerializer):
+    items = ItemSerializer(many=True)
+
+    class Meta:
+        model = Cart
+        fields = '__all__'
+
+    def create(self, validated_data):
+        items_data = validated_data.pop('items')
+        cart = Cart.objects.create(**validated_data)
+        for item_data in items_data:
+            item = Item.objects.get(name=item_data["name"])
+            cart_item = CartItem(cart=cart, item=item, quantity=1)
+            cart_item.save()
+        return cart
+
+
 class CartItemSerializer(serializers.ModelSerializer):
+
+    cart_id = serializers.ReadOnlyField(source='cart.id')
+    cart_user = serializers.ReadOnlyField(source='cart.user')
+    item_id = serializers.ReadOnlyField(source='item.id')
+    item_name = serializers.ReadOnlyField(source='item.name')
+    item_price = serializers.ReadOnlyField(source='item.price')
+
     class Meta:
         model = CartItem
-        fields = '__all__'
+        fields = ('cart_id', 'cart_user', 'item_id', 'item_name', 'item_price')
 
 
 # class (notemodelserializer)
