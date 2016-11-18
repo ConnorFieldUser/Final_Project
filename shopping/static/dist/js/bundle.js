@@ -164,22 +164,60 @@ module.exports = {
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var OrderItemCollection = require('../models/items.js').OrderItemCollection;
+var OrderModel = require('../models/items.js').Order;
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
+var $ = require('jquery');
 
-var FoodItem = React.createClass({displayName: "FoodItem",
-  // var self = this;
+
+var Order = React.createClass({displayName: "Order",
   render: function(){
-    var foodList = this.props.foodCollection.map(function(food){
+    var order = this.props.orderCollection.map(function(orderItem){
       return (
-        React.createElement("li", {key: food.id}, 
-          food.get('name'), "::", food.get('price'), 
-          React.createElement("button", {className: "btn btn-danger addCart"}, "Add to Cart")
+        React.createElement("li", {key: orderItem.id}, 
+          orderItem.get('title'), " :: ", orderItem.get('price'), 
+          React.createElement("button", {className: "btn btn-danger", onClick: function(){self.props.removeItem(orderItem)}}, "Remove")
         )
       );
     });
-    // console.log(foodList);
+
     return (
-      React.createElement("div", {className: "col-md-12"}, 
+      React.createElement("div", {className: "col-md-4"}, 
+        React.createElement("h2", {className: "orderHeading"}, "Cart:"), 
+        React.createElement("ul", null, 
+          order
+        ), 
+        React.createElement("div", {className: "row"}, 
+          React.createElement("button", {className: "btn btn-warning"}, "Place Order")
+        )
+      )
+    )
+  }
+});
+
+
+var FoodItem = React.createClass({displayName: "FoodItem",
+  render: function(){
+    var self = this;
+    var foodCollection = this.props.foodCollection;
+    console.log('foodCollection', foodCollection);
+    // var products = foodCollection['ArrayOfProduct'];
+    // console.log('products', products);
+
+    // var foodItems = products['Product'];
+    // console.log('foodItems', foodItems);
+    // var products = products.Product;
+    // ['ArrayOfProduct']['Product'];
+
+    var foodList = this.props.foodCollection.map(function(item){
+      return (
+        React.createElement("li", {key: item.ItemID}, 
+          item.Itemname, "::", item.ItemDescription, 
+          React.createElement("button", {onClick: function(){self.props.addToOrder(item)}, className: "btn btn-danger addCart"}, "Add to Cart")
+        )
+      );
+    });
+    return (
+      React.createElement("div", {className: "col-md-8"}, 
         React.createElement("h2", null, "Grocery Items"), 
         React.createElement("ul", null, 
           foodList
@@ -193,39 +231,54 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var orderCollection = new OrderItemCollection();
-    var self = this;
-    foodCollection.fetch().then(function(response){
-      console.log(response);
-      self.setState({foodCollection: foodCollection});
-      // console.log(foodCollection)
-    });
+      // console.log(response);
+      // products.map(function(product){
+      //   console.log(product);
+      // });
+      // var arrayData = data.find('Product')
+      // console.log(arrayData);
+      // var data = response.find('Product');
+
     return {
       foodCollection: foodCollection,
       orderCollection: orderCollection
     }
   },
-  // addToOrder: function(item){
-  //   var orderCollection = this.state.orderCollection;
-  //   orderCollection.save()
-  //
-  // },
+  componentWillMount: function(){
+    this.fetchItems();
+  },
+  fetchItems: function(){
+    var foodCollection=this.state.foodCollection;
+    var self = this;
+    foodCollection.fetch().then(function(response){
+      var products = response['ArrayOfProduct']['Product'];
+      self.setState({foodCollection: products});
+    });
+  },
+  addToOrder: function(item){
+    var orderCollection = this.state.orderCollection;
+    var orderItem = item;
+    // console.log(orderCollection);
+    // orderCollection.save()
+
+  },
   render: function(){
-    // console.log(foodCollection)
     var self = this;
     var foodCollection = this.state.foodCollection;
-    // var foodCollection = new FoodItemCollection();
+    // console.log('food', foodCollection);
+
     return (
-      // <div className="container">
         React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
           React.createElement("h1", null, "List of Items"), 
-            React.createElement(FoodItem, {foodCollection: this.state.foodCollection})
+            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder}), 
+            React.createElement(Order, {orderCollection: this.state.orderCollection})
         )
         )
-      // </div>
     )
   }
 });
+
 
 
 
@@ -233,7 +286,7 @@ module.exports = {
   FoodItemContainer: FoodItemContainer
 };
 
-},{"../layout/headerTemplate.jsx":7,"../models/items.js":8,"react":170}],4:[function(require,module,exports){
+},{"../layout/headerTemplate.jsx":7,"../models/items.js":8,"jquery":39,"react":170}],4:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var User= require('../models/user.js').User;
@@ -545,7 +598,7 @@ var FoodItem = Backbone.Model.extend({
 
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
-  url: '/api/items/'
+  url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
 
@@ -558,7 +611,7 @@ var Order = Backbone.Model.extend({
 
 var OrderItemCollection = Backbone.Collection.extend({
   model: Order,
-  url: ''
+  url: '/api/cartitems/'
 });
 
 

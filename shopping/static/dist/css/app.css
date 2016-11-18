@@ -5821,8 +5821,8 @@ html body {
 img {
   max-width: 100%; }
 
-.nav-link {
-  position: inline-block; }
+a.nav-link {
+  color: #383175; }
 
 .mainImg {
   background-image: url("http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg");
