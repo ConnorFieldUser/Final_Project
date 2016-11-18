@@ -1,4 +1,4 @@
-# from django.shortcuts import render
+from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView
@@ -10,6 +10,7 @@ from shopping.serializers import UserSerializer, AccountSerializer, CartSerializ
 
 from rest_framework.permissions import IsAuthenticated
 
+# from external_requests import get_response
 
 # Create your views here.
 
@@ -63,3 +64,10 @@ class ItemListCreateAPIView(ListCreateAPIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
+
+
+# view for api call
+class ApiTestView(TemplateView):
+    def get(self, request):
+        results_list = get_response('2009', 'edwards')
+        return render(request, 'books.html', results_list)
