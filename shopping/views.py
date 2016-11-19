@@ -17,6 +17,9 @@ from xmljson import parker as bf
 from json import dumps
 from xml.etree.ElementTree import fromstring
 
+import os
+api_key = os.environ.get('api_key')
+
 # Create your views here.
 
 
@@ -82,25 +85,22 @@ def get_response():
 class ApiTestView(APIView):
     template_name = 'test.html'
 
-    import os
-    api_key = os.environ.get('api_key')
-
     def get(self, request):
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley").format(api_key)
-        xml_result = requests.get(r).text
+        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
+        xml_result = r.text
         xml_to_json = dumps(bf.data(fromstring(xml_result)))
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        ships_list = {'ships': json_data['name']}
-        print(ships_list)
-        return Response(ships_list)
+        # ships_list = {'ships': json_data['name']}
+        # print(ships_list)
+        return Response(json_data)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley").format(api_key)
+        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
         xml_result = requests.get(r).text
         xml_to_json = dumps(bf.data(fromstring(xml_result)))
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        context['ship_list'] = json_data
+        # context['ship_list'] = json_data
         context['testing'] = self.request.user
         return context
 
