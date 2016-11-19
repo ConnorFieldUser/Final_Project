@@ -3,6 +3,8 @@
 var Backbone = require('backbone');
 var React = require('react');
 var $ = require('jquery');
+var django = require('../djangoUtils');
+
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 // var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
@@ -92,6 +94,14 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   },
   componentWillMount: function(){
     this.getAccountInfo();
+    // var token = localStorage.getItem('token');
+    // // var self = this;
+    // $.ajaxSetup({
+    //   beforeSend: function(xhr, settings){
+    //     xhr.setRequestHeader("Authorization", 'Token ' + token);
+    //     django.setCsrfToken.call(this, xhr, settings);
+    //   }
+    // });
   },
   componentWillReceiveProps: function(){
     this.getAccountInfo();
@@ -108,6 +118,7 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     });
   },
   saveInfo: function (userData){
+
     // console.log('userData', userData);
     var myObj = userData.account.toJSON();
     // console.log('obj', myObj);
@@ -115,10 +126,11 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     // account.unset('id');
     // delete account.id;
 
-    account.set(myObj);
-    account.set({'id': null});
-    console.log('id', account.id);
-    console.log('account', account);
+    // account.set(myObj);
+    // account.set({'id': null});
+    // console.log('id', account.id);
+    // console.log('account', account);
+
     account.save();
 
     // account.save().then(() => {
@@ -142,7 +154,7 @@ module.exports = {
   AccountInfoContainer: AccountInfoContainer
 };
 
-},{"../layout/headerTemplate.jsx":8,"../models/user.js":10,"backbone":12,"jquery":40,"react":171}],2:[function(require,module,exports){
+},{"../djangoUtils":6,"../layout/headerTemplate.jsx":8,"../models/user.js":10,"backbone":12,"jquery":40,"react":171}],2:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
@@ -257,7 +269,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     console.log('item',item);
     console.log('cart',cart);
 
-    var cartData = ({items: item, user: localStorage.getItem('user')})
+    var cartData = {items: [item], user: 2}
 //
     // var orderItem = item;
     cart.save(cartData);
@@ -682,10 +694,10 @@ var FoodItemCollection = Backbone.Collection.extend({
 });
 
 var Cart = Backbone.Model.extend({
-  defaults: {
-    'item': '',
-    'quantity': 1
-  },
+  // defaults: {
+  //   'item': '',
+  //   'quantity': 1
+  // },
   urlRoot: 'api/carts/'
   // defaults: {
     // foodItems: new FoodItemCollection()
@@ -771,6 +783,7 @@ var Account = Backbone.Model.extend({
   },
 
   initialize: function(){
+    window.account = this;
     var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
@@ -779,6 +792,7 @@ var Account = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+
   },
 });
 

@@ -17,10 +17,10 @@ var FoodItemCollection = Backbone.Collection.extend({
 });
 
 var Cart = Backbone.Model.extend({
-  defaults: {
-    'item': '',
-    'quantity': 1
-  },
+  // defaults: {
+  //   'item': '',
+  //   'quantity': 1
+  // },
   urlRoot: 'api/carts/'
   // defaults: {
     // foodItems: new FoodItemCollection()

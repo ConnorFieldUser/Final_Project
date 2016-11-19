@@ -1,6 +1,8 @@
 var Backbone = require('backbone');
 var React = require('react');
 var $ = require('jquery');
+var django = require('../djangoUtils');
+
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 // var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
@@ -90,6 +92,14 @@ var AccountInfoContainer = React.createClass({
   },
   componentWillMount: function(){
     this.getAccountInfo();
+    // var token = localStorage.getItem('token');
+    // // var self = this;
+    // $.ajaxSetup({
+    //   beforeSend: function(xhr, settings){
+    //     xhr.setRequestHeader("Authorization", 'Token ' + token);
+    //     django.setCsrfToken.call(this, xhr, settings);
+    //   }
+    // });
   },
   componentWillReceiveProps: function(){
     this.getAccountInfo();
@@ -106,6 +116,7 @@ var AccountInfoContainer = React.createClass({
     });
   },
   saveInfo: function (userData){
+
     // console.log('userData', userData);
     var myObj = userData.account.toJSON();
     // console.log('obj', myObj);
@@ -113,10 +124,11 @@ var AccountInfoContainer = React.createClass({
     // account.unset('id');
     // delete account.id;
 
-    account.set(myObj);
-    account.set({'id': null});
-    console.log('id', account.id);
-    console.log('account', account);
+    // account.set(myObj);
+    // account.set({'id': null});
+    // console.log('id', account.id);
+    // console.log('account', account);
+
     account.save();
 
     // account.save().then(() => {

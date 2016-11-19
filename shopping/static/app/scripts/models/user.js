@@ -56,6 +56,7 @@ var Account = Backbone.Model.extend({
   },
 
   initialize: function(){
+    window.account = this;
     var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
@@ -64,6 +65,7 @@ var Account = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+
   },
 });
 
