@@ -1,5 +1,6 @@
 var Backbone = require('backbone');
 var React = require('react');
+var $ = require('jquery');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 // var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
@@ -19,7 +20,8 @@ var AccountForm = React.createClass({
     // var newState = {};
     // newState[accountInfoField.name] = accountInfoField.value;
     account.set(e.target.name, e.target.value);
-    console.log(account.attributes);
+    // var data = account.toJSON();
+    // console.log('data', data);
     this.setState({account: account});
   },
   handleSubmit: function(e){
@@ -98,17 +100,25 @@ var AccountInfoContainer = React.createClass({
 
     var formData = account.fetch().then(function(data){
       // console.log(data.first_name);
+      localStorage.setItem('USERNAME', data.first_name);
+      console.log(localStorage.getItem('USERNAME'));
       self.setState({account:account})
     });
   },
   saveInfo: function (userData){
+    // console.log('userData', userData);
+    var myObj = userData.account.toJSON();
+    // console.log('obj', myObj);
     var account = this.state.account;
+    // account.unset('id');
+    // delete account.id;
 
-    account.set(userData);
-    account.save();            //HOW TO FIX MAXIMUM CALL STACK ERROR???
-    console.log(account);
+    account.set(myObj);
+    account.set({'id': null});
+    console.log('id', account.id);
+    console.log('account', account);
+    account.save();
 
-    //
     // account.save().then(() => {
         // console.log("info saved");
         // Backbone.history.navigate('items/', {trigger:true})
@@ -118,7 +128,7 @@ var AccountInfoContainer = React.createClass({
     return (
       <TemplateContainer>
         <h1>Account Information</h1>
-          <h2>Welcome {localStorage.getItem('username')}</h2>
+          <h2>Welcome, {localStorage.getItem('USERNAME')} !</h2>
           <AccountForm account={this.state.account} saveInfo={this.saveInfo}/>
       </TemplateContainer>
     )

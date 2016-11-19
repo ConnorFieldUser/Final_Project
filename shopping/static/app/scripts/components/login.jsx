@@ -63,14 +63,6 @@ var SignInForm = React.createClass({
   handlePasswordInput: function(e){
     this.setState({password: e.target.value})
   },
-  // handleSignIn: function(e){
-  //   e.preventDefault();
-  //   var username= this.state.username;
-  //   var password= this.state.password;
-  //   // console.log("You submitted!")
-  //   this.props.signIn(username, password);
-  //   this.setState({username: '', password: ''});
-  // },
   handleSignIn: function(e){
     e.preventDefault();
     this.props.signIn(this.state);

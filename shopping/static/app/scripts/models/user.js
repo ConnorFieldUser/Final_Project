@@ -7,10 +7,11 @@ var django = require('../djangoUtils');
 var User = Backbone.Model.extend({
   urlRoot: 'api/user/create/',
   auth: function(){
+    var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
       beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + self.get('token'));
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
@@ -21,12 +22,14 @@ var User = Backbone.Model.extend({
       console.log('saved')
 
       user.save().then(function(data){
-        console.log('userdata', data);
         user.set('token', data.token);
+        localStorage.setItem('token', data.token);
         user.auth();
 
-      callback(user);
-      localStorage.setItem('user', JSON.stringify(user.toJSON()));
+        localStorage.setItem('user', JSON.stringify(user.toJSON()));
+
+        callback(user);
+
     });
   },
   signin: function(username, password, callback){
@@ -35,22 +38,36 @@ var User = Backbone.Model.extend({
         console.log('userdata', result);
         var user = new User({username: username});
         user.set('token', result.token);
+        localStorage.setItem('token', result.token);
         user.auth();
 
         localStorage.setItem('user', JSON.stringify(user.toJSON()));
 
-
         callback(user);
-        console.log("YOU HAVE NOW LOGGED IN");
+        // console.log("YOU HAVE NOW LOGGED IN");
       });
     }
 });
 
 var Account = Backbone.Model.extend({
   idAttribute: 'id',
-  urlRoot: 'api/account/profile'
+  urlRoot: function(){
+    return 'api/account/profile/'
+  },
 
+  initialize: function(){
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  },
 });
+
+var AccountCollection = Backbone.Collection.ex
 
 module.exports = {
   User: User,

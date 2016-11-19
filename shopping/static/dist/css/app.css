@@ -5814,6 +5814,9 @@ button.close {
 html body {
   font-family: 'Domine', serif; }
 
+h1, h2 {
+  text-align: center; }
+
 .btn {
   background-color: #459EA7;
   border-color: #459EA7; }
