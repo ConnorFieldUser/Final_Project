@@ -4,7 +4,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView
 
-from shopping.models import Account
 
 from shopping.models import Account, Cart, Item, CartItem
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
@@ -92,7 +91,7 @@ def get_response():
 
 # view for api call
 class ApiTestView(APIView):
-    template_name = 'test.html'
+    # template_name = 'test.html'
 
     def get(self, request):
         r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
@@ -103,15 +102,15 @@ class ApiTestView(APIView):
         # print(ships_list)
         return Response(json_data)
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
-        xml_result = requests.get(r).text
-        xml_to_json = dumps(bf.data(fromstring(xml_result)))
-        json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        context['ship_list'] = json_data
-        # context['testing'] = self.request.user
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
+    #     xml_result = requests.get(r).text
+    #     xml_to_json = dumps(bf.data(fromstring(xml_result)))
+    #     json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
+    #     context = json_data
+    #     # context['testing'] = self.request.user
+    #     return context
 
 
 class DriverView(DetailView):
