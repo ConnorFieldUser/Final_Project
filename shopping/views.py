@@ -1,8 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView
+
+from shopping.models import Account
 
 from shopping.models import Account, Cart, Item, CartItem
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
@@ -54,6 +56,13 @@ class CartListCreateAPIView(ListCreateAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
+    def get_queryset(self):
+        return Cart.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+        return super().perform_create(serializer)
+
     # def get_queryset(self):
     #     return Cart.objects.filter(user=self.request.user)
 
@@ -100,27 +109,10 @@ class ApiTestView(APIView):
         xml_result = requests.get(r).text
         xml_to_json = dumps(bf.data(fromstring(xml_result)))
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        # context['ship_list'] = json_data
-        context['testing'] = self.request.user
+        context['ship_list'] = json_data
+        # context['testing'] = self.request.user
         return context
 
-    # def get_context_data(self):
-    #     context = self.request
 
-# def get_response():
-#     r = requests.get("http://swapi.co/api/starships/9/")
-#     ships = r.json()
-#     results_list = ships['length']
-#     print(results_list)
-
-    # def get(self, request):
-    #     new_list = get_response()
-    #     return render(request, 'index.html', new_list)
-
-    # def get(self, request):
-    #     new = get_response('1990', 'death star')
-    #     return render(request, 'index.html', results_list)
-
-    # def get(self, request):
-    #     results_list = get_response('1990', 'death star')
-    #     return render(request, 'index.html', results_list)
+class DriverView(DetailView):
+    model = Account
