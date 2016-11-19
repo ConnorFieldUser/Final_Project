@@ -35,7 +35,7 @@ class CartSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Cart
-        fields = '__all__'
+        fields = ('items',)
 
     def create(self, validated_data):
         items_data = validated_data.pop('items')
