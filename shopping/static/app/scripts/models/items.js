@@ -1,5 +1,7 @@
 var Backbone = require('backbone');
 var React = require('react');
+var django = require('../djangoUtils');
+var $ = require('jquery');
 
 
 var FoodItem = Backbone.Model.extend({
@@ -7,6 +9,17 @@ var FoodItem = Backbone.Model.extend({
     name: '',
     price: ''
   },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
 });
 
 var FoodItemCollection = Backbone.Collection.extend({
@@ -17,18 +30,35 @@ var FoodItemCollection = Backbone.Collection.extend({
 });
 
 var Cart = Backbone.Model.extend({
-  // defaults: {
-  //   'item': '',
-  //   'quantity': 1
-  // },
-  urlRoot: 'api/carts/'
+  urlRoot: 'api/carts/',
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
   // defaults: {
     // foodItems: new FoodItemCollection()
   // },
 });
 
 var CartItemModel = Backbone.Model.extend({
-
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
 });
 
 var CartItemCollection = Backbone.Collection.extend({

@@ -125,19 +125,19 @@ var LoginSignUpContainer = React.createClass({
   },
   signIn: function(userData){
     var self= this;
-    console.log(User);
+    // console.log('userdata', userData);
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
-      Backbone.history.navigate('home/', {trigger:true});
-      // console.log(user)
+      Backbone.history.navigate('account/', {trigger:true});
+      // console.log('USER', user)
     });
   },
   render: function(){
     return (
       <div className="container">
-          <div className="row">
-            <div className="col-md-12">
-              <h1>Assistive Shopping {this.state.user.get('token') ? 'Logged in' : ''}</h1>
+          <div className="row loginContainer">
+            <div className="col-md-12 well mainLogin">
+              <h1>Assistive Shopper {this.state.user.get('token') ? 'Logged in' : ''}</h1>
                 <SignUpForm signUp={this.signUp} />
                 <SignInForm signIn={this.signIn} />
             </div>

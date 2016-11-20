@@ -5812,44 +5812,57 @@ button.close {
   box-sizing: border-box; }
 
 html body {
-  font-family: 'Domine', serif; }
+  height: 100%;
+  background-image: url("https://www.photocase.com/photos/1663924-healthy-eating-life-eating-food-photograph-style-food-photocase-stock-photo-large.jpeg");
+  background-size: 100%; }
 
-h1, h2 {
-  text-align: center; }
+h1 {
+  text-align: center;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
+  font-size: 50px; }
 
 .btn {
-  background-color: #459EA7;
-  border-color: #459EA7; }
+  background-color: #1E2C38;
+  border-color: #1E2C38;
+  margin-top: 30px; }
 
 img {
   max-width: 100%; }
 
 a.nav-link {
-  color: #383175; }
-
-.mainImg {
-  background-image: url("http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg");
-  height: 300px;
-  background-size: 100%; }
+  color: #383175;
+  font-family: 'Oswald', sans-serif;
+  font-size: 20px;
+  font-weight: 300; }
 
 .logoutBtn {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 300;
   padding: 15px; }
 
+.userWelcome {
+  margin-left: 320px;
+  margin-right: 10px; }
+
 .footer {
+  font-family: 'Old Standard TT', serif;
   text-align: center;
-  background-color: #383175;
+  background-color: #1E2C38;
   color: white;
   margin-top: 50px;
   margin-right: 0px;
   height: 200px;
-  opacity: 0.9;
-  font-family: 'Domine', serif; }
+  opacity: 0.9; }
   .footer .glyphicon {
     margin-right: 10px; }
+  .footer h1 {
+    font-weight: bold; }
   .footer h2 {
     margin-bottom: 40px; }
   .footer .info {
-    margin-right: 40px; }
+    margin-right: 40px;
+    font-size: 20px; }
   .footer i {
     background-color: #459EA7;
     padding: 10px;
@@ -5860,5 +5873,54 @@ a.nav-link {
   .footer i.fa-facebook {
     padding-left: 13px;
     padding-right: 13px; }
+
+.mainImage {
+  background-image: url("http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg");
+  height: 350px;
+  background-size: 100%;
+  background-repeat: no-repeat; }
+
+.homeText h3, .homeText h5 {
+  text-align: center; }
+
+.form-group {
+  height: 50px; }
+
+.accountForm {
+  background-color: white;
+  opacity: 0.9;
+  padding: 50px; }
+  .accountForm label {
+    font-size: 20px; }
+
+.accountHeader {
+  color: white; }
+
+.map {
+  height: 100%; }
+
+li.foodListItem {
+  list-style: none;
+  height: 100px;
+  border: 1px solid black;
+  margin: 10px; }
+  li.foodListItem .name {
+    font-size: 15px;
+    font-weight: bold; }
+
+.loginContainer {
+  margin-top: 100px; }
+
+.mainLogin {
+  opacity: 0.9; }
+
+label {
+  font-family: 'Old Standard TT', serif; }
+
+h2 {
+  font-family: 'Old Standard TT', serif; }
+
+input.form-control {
+  font-family: 'Old Standard TT', serif; }
 
 /*# sourceMappingURL=app.css.map */

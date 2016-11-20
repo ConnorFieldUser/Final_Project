@@ -37,7 +37,7 @@ var AccountForm = React.createClass({displayName: "AccountForm",
     // console.log('account', account.get('city'));
     return (
 
-    React.createElement("form", {onSubmit: this.handleSubmit}, 
+    React.createElement("form", {onSubmit: this.handleSubmit, className: "accountForm"}, 
     React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "FirstName"), 
         React.createElement("div", {className: "col-xs-10"}, 
@@ -80,6 +80,7 @@ var AccountForm = React.createClass({displayName: "AccountForm",
           React.createElement("input", {onChange: this.handleInputChange, value: account.get('phone_number'), name: "phone_number", className: "form-control", type: "tel", id: "example-tel-input"})
         )
       ), 
+      React.createElement("input", {onChange: this.handlePicture, type: "file"}), 
       React.createElement("button", {type: "submit", className: "btn btn-danger"}, "My Information is correct")
       )
     )
@@ -111,7 +112,7 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     var self = this;
 
     var formData = account.fetch().then(function(data){
-      // console.log(data.first_name);
+      localStorage.setItem('id', data.id);
       localStorage.setItem('USERNAME', data.first_name);
       console.log(localStorage.getItem('USERNAME'));
       self.setState({account:account})
@@ -141,8 +142,7 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   render: function(){
     return (
       React.createElement(TemplateContainer, null, 
-        React.createElement("h1", null, "Account Information"), 
-          React.createElement("h2", null, "Welcome, ", localStorage.getItem('USERNAME'), " !"), 
+        React.createElement("h1", {className: "accountHeader"}, "Account Information"), 
           React.createElement(AccountForm, {account: this.state.account, saveInfo: this.saveInfo})
       )
     )
@@ -164,12 +164,16 @@ var HomeContainer = React.createClass({displayName: "HomeContainer",
     return(
       // <div className="container">
           React.createElement(TemplateContainer, null, 
-          React.createElement("div", {className: "row"}, 
-          React.createElement("div", {className: "col-md-12"}, 
-            React.createElement("div", {className: "mainImg"}), 
-            React.createElement("h1", null, "Info about our program here!")
-          )
-        )
+            React.createElement("div", {className: "row"}, 
+              React.createElement("div", {className: "col-md-12 well"}, 
+                React.createElement("div", {className: "mainImage"}), 
+                React.createElement("div", {className: "homeText"}, 
+                  React.createElement("h1", null, "Welcome to Assistive Shopper! "), 
+                  React.createElement("h3", null, "Grocery shopping made easy."), 
+                  React.createElement("h5", null, "We provide online food selection for a range of supermarkets and a home grocery delivery service. ")
+                )
+              )
+            )
           )
         // </div>
       // </div>
@@ -186,9 +190,42 @@ module.exports = {
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
-var OrderContainer = require('./order.jsx').OrderContainer;
+// var OrderContainer = require('./order.jsx').OrderContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
+
+var Order = React.createClass({displayName: "Order",
+  // componentWillReceiveProps: function(nextProps){
+  //   var cart = nextProps.cart[0]['items'];
+  //   // console.log(nextProps.cart.items);
+  //   this.setState({cart: cart});
+  //   // console.log('CART', cart);
+  //   // var cart = this.props.cart['items'];
+  // },
+  render: function(cart){
+    var cart = this.props.cart;
+    // console.log('RENDER', cart);
+    // console.log(cart);
+    // var order = this.props.cart.items.map(function(item){
+    //   return (
+    //     <li key={item.id}>
+    //       {item.get('name')}::{item.get('price')}
+    //     </li>
+    //   );
+    // });
+
+    return (
+      React.createElement("div", {className: "col-md-4"}, 
+        React.createElement("h2", {className: "orderHeading"}, "Cart:"), 
+        React.createElement("ul", null
+        ), 
+        React.createElement("div", null, 
+          React.createElement("button", {className: "btn btn-warning"}, "Place Order")
+        )
+      )
+    )
+  }
+});
 
 
 var FoodItem = React.createClass({displayName: "FoodItem",
@@ -206,10 +243,13 @@ var FoodItem = React.createClass({displayName: "FoodItem",
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
-          React.createElement("li", {key: item.id}, 
-            item.name, "::", item.price, 
-            React.createElement("button", {onClick: function(){self.props.addToOrder(item)}, className: "btn btn-danger addCart"}, "Add to Cart")
-          )
+          React.createElement("li", {key: item.id, className: "foodListItem col-md-4"}, 
+            React.createElement("span", {className: "name"}, item.name, " "), 
+            React.createElement("span", {className: "price"}, "$ ", item.price, " "), 
+            React.createElement("div", null, 
+              React.createElement("button", {onClick: function(){self.props.addToOrder(item)}, className: "btn btn-danger addCart"}, "Add to Cart")
+            )
+        )
         );
       // return (
       //   <li key={item.ItemID}>
@@ -220,11 +260,11 @@ var FoodItem = React.createClass({displayName: "FoodItem",
       // );
     });
     return (
-      React.createElement("div", {className: "col-md-8"}, 
+      React.createElement("div", {className: "col-md-8 foodContainer"}, 
         React.createElement("h2", null, "Grocery Items"), 
-        React.createElement("ul", null, 
-          foodList
-        )
+          React.createElement("ul", null, 
+            foodList
+          )
       )
     )
   }
@@ -242,26 +282,30 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   },
   componentWillMount: function(){
     this.fetchItems();
-    // this.fetchOrder();
+    this.fetchOrder();
   },
-  // fetchOrder: function(){
-  //   var self = this;
-  //   var cart = this.state.cart;
-  //   cart.fetch().then(function(response){
-  //     // console.log(response)
-  //     var cart = response[0]['items'];
-  //     // console.log('CART', cart)
-  //     self.setState({cart: cart});
-  //   });
-  // },
+  componentWillReceiveProps: function(){
+    this.fetchItems();
+    this.fetchOrder();
+  },
   fetchItems: function(){
     var foodCollection=this.state.foodCollection;
     var self = this;
     foodCollection.fetch().then(function(response){
-      console.log('response', response);
+      // console.log('response', response);
       // var products = response['ArrayOfProduct']['Product'];
       // self.setState({foodCollection: products});
       self.setState({foodCollection: response})
+    });
+  },
+  fetchOrder: function(){
+    var self = this;
+    var cart = this.state.cart;
+    cart.fetch().then(function(response){
+      console.log('response', response[0]['items'])
+      // var cart = response[0]['items'];
+      // console.log('CART', cart)
+      self.setState({cart: response});
     });
   },
   addToOrder: function(item){
@@ -270,37 +314,36 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     console.log('cart',cart);
 
     var cartData = {items: [item], user: 2}
-//
+
     // var orderItem = item;
-    cart.save(cartData);
+    cart.save({cartData});
     // cart.save(item);
 
 
 
     // this.setState({cart: cart});
-    // console.log(orderCollection);
   },
-  submit: function(){
-
-  },
+  // submit: function(){
+  //
+  // },
   render: function(){
     var self = this;
     var foodCollection = this.state.foodCollection;
-    // var cart = this.state.cart;
+    var cart = this.state.cart;
 
     return (
-        React.createElement(TemplateContainer, null, 
+      React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
           React.createElement("h1", null, "List of Items"), 
-            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder})
-      )
+            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder}), 
+            React.createElement(Order, {cart: this.state.cart})
         )
+      )
     )
   }
 });
 
 
-// <OrderContainer />
 
 
 
@@ -309,7 +352,7 @@ module.exports = {
   FoodItemContainer: FoodItemContainer
 };
 
-},{"../layout/headerTemplate.jsx":8,"../models/items.js":9,"./order.jsx":5,"jquery":40,"react":171}],4:[function(require,module,exports){
+},{"../layout/headerTemplate.jsx":8,"../models/items.js":9,"jquery":40,"react":171}],4:[function(require,module,exports){
 "use strict";
 var React = require('react');
 var User= require('../models/user.js').User;
@@ -438,19 +481,19 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
   },
   signIn: function(userData){
     var self= this;
-    console.log(User);
+    // console.log('userdata', userData);
     User.signin(userData.username, userData.password, function(user){
       self.setState({user: user});
-      Backbone.history.navigate('home/', {trigger:true});
-      // console.log(user)
+      Backbone.history.navigate('account/', {trigger:true});
+      // console.log('USER', user)
     });
   },
   render: function(){
     return (
       React.createElement("div", {className: "container"}, 
-          React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "col-md-12"}, 
-              React.createElement("h1", null, "Assistive Shopping ", this.state.user.get('token') ? 'Logged in' : ''), 
+          React.createElement("div", {className: "row loginContainer"}, 
+            React.createElement("div", {className: "col-md-12 well mainLogin"}, 
+              React.createElement("h1", null, "Assistive Shopper ", this.state.user.get('token') ? 'Logged in' : ''), 
                 React.createElement(SignUpForm, {signUp: this.signUp}), 
                 React.createElement(SignInForm, {signIn: this.signIn})
             )
@@ -467,78 +510,29 @@ module.exports = {
 },{"../layout/headerTemplate.jsx":8,"../models/user.js":10,"backbone":12,"react":171}],5:[function(require,module,exports){
 "use strict";
 var React = require('react');
-var models = require('../models/items.js');
-var OrderItemCollection = require('../models/user.js').OrderItemCollection;
+var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
-var Order = React.createClass({displayName: "Order",
-  componentWillReceiveProps: function(nextProps){
-    var cart = nextProps.cart;
-    // console.log(nextProps.cart.items);
-    this.setState({cart: cart});
-    console.log('CART', cart);
-    // var cart = this.props.cart['items'];
-  },
+
+
+var MapContainer = React.createClass({displayName: "MapContainer",
   render: function(){
-    var cart = this.props.cart;
-    console.log('RENDER', cart);
-    // console.log(cart);
-    // var order = this.props.cart.items.map(function(item){
-    //   return (
-    //     <li key={item.id}>
-    //       {item.get('name')}
-    //     </li>
-    //   );
-    // });
-
     return (
-      React.createElement("div", {className: "col-md-4"}, 
-        React.createElement("h2", {className: "orderHeading"}, "Cart:"), 
-        React.createElement("ul", null
-        ), 
-        React.createElement("div", {className: "row"}, 
-          React.createElement("button", {className: "btn btn-warning"}, "Place Order")
+        React.createElement(TemplateContainer, null, 
+          React.createElement("div", {className: "row"}, 
+            React.createElement("div", {className: "col-md-12"}, 
+              React.createElement("h1", null, "The Map!")
+            )
+          )
         )
-      )
     )
   }
 });
 
-var OrderContainer = React.createClass({displayName: "OrderContainer",
-  getInitialState: function(){
-    var cart = new models.Cart();
-    return {
-      cart: cart
-    }
-  },
-  componentWillMount: function(){
-    this.getOrder();
-  },
-  getOrder: function(){
-    var self = this;
-    var cart = this.state.cart;
-    cart.fetch().then(function(response){
-      // console.log(response)
-      var cart = response[0];
-      // console.log('CART', cart)
-      self.setState({cart: cart});
-    });
-  },
-  render: function(){
-    var cart = this.state.cart;
-    return (
-          React.createElement("div", {className: "col-md-4"}, 
-            React.createElement(Order, {cart: this.state.cart})
-          )
-    )
-  }
-})
-
-
 module.exports = {
-  OrderContainer: OrderContainer,
-};
+  MapContainer: MapContainer
+}
 
-},{"../models/items.js":9,"../models/user.js":10,"react":171}],6:[function(require,module,exports){
+},{"../layout/headerTemplate.jsx":8,"react":171}],6:[function(require,module,exports){
 "use strict";
 /**
  * Django Utilities for managing CSRF token and ajax setup
@@ -617,6 +611,10 @@ var TemplateContainer = React.createClass({displayName: "TemplateContainer",
     e.preventDefault();
     Backbone.history.navigate('cart/', {trigger:true});
   },
+  navMap: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('map/', {trigger:true});
+  },
   handleLogout: function(e){
     e.preventDefault();
     localStorage.clear();
@@ -624,9 +622,10 @@ var TemplateContainer = React.createClass({displayName: "TemplateContainer",
   },
   render: function(){
     return (
+      React.createElement("div", null, 
       React.createElement("div", {className: "container"}, 
         React.createElement("div", {className: "row"}, 
-            React.createElement("nav", {className: "navbar navbar-light bg-faded"}, 
+            React.createElement("nav", {className: "navbar navbar-light bg-faded well"}, 
               React.createElement("ul", {className: "nav navbar-nav"}, 
                 React.createElement("li", {className: "nav-item active"}, 
                   React.createElement("a", {onClick: this.navHome, className: "nav-link", href: "#"}, "Home", React.createElement("span", {className: "sr-only"}, "(current)"))
@@ -635,33 +634,39 @@ var TemplateContainer = React.createClass({displayName: "TemplateContainer",
                   React.createElement("a", {onClick: this.navAccountInfo, className: "nav-link", href: "#"}, "Account Information")
                 ), 
                 React.createElement("li", {className: "nav-item"}, 
+                  React.createElement("a", {onClick: this.navMap, className: "nav-link", href: "#"}, "Map")
+                ), 
+                React.createElement("li", {className: "nav-item"}, 
                   React.createElement("a", {onClick: this.navItems, className: "nav-link", href: "#"}, "Grocery Items")
                 ), 
                 React.createElement("li", {className: "nav-item"}, 
                   React.createElement("a", {onClick: this.navCart, className: "nav-link", href: "#"}, "Cart")
-                ), 
-                React.createElement("li", {className: "nav-item"}, 
-                React.createElement("button", {className: "logoutBtn", onClick: this.handleLogout}, "Logout")
                 )
+              ), 
+              React.createElement("div", null, 
+              React.createElement("span", {className: "userWelcome"}, "Welcome, ", localStorage.getItem('USERNAME'), "!"), 
+              React.createElement("button", {className: "logoutBtn", onClick: this.handleLogout}, "Logout")
               )
             )
         ), 
 
 
 
-        this.props.children, 
+        this.props.children
+
+      ), 
 
 
         React.createElement("div", {className: "row"}, 
           React.createElement("div", {className: "col-md-12 footer"}, 
             React.createElement("h2", null, "Contact Information"), 
-            React.createElement("span", {className: "glyphicon glyphicon-home", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "123 Main St Greenville, SC"), 
-            React.createElement("span", {className: "glyphicon glyphicon-envelope", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "assistiveshopper@gmail.com"), 
-            React.createElement("span", {className: "glyphicon glyphicon-phone-alt", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "(888)123-4567"), 
-            React.createElement("div", null, 
-              React.createElement("i", {className: "fa fa-facebook", "aria-hidden": "true"}), 
-              React.createElement("i", {className: "fa fa-twitter", "aria-hidden": "true"})
-            )
+              React.createElement("span", {className: "glyphicon glyphicon-home", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "123 Main St Greenville, SC"), 
+              React.createElement("span", {className: "glyphicon glyphicon-envelope", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "assistiveshopper@gmail.com"), 
+              React.createElement("span", {className: "glyphicon glyphicon-phone-alt", "aria-hidden": "true"}), React.createElement("span", {className: "info"}, "(888)123-4567"), 
+              React.createElement("div", null, 
+                React.createElement("i", {className: "fa fa-facebook", "aria-hidden": "true"}), 
+                React.createElement("i", {className: "fa fa-twitter", "aria-hidden": "true"})
+              )
           )
         )
       )
@@ -677,6 +682,8 @@ module.exports = {
 "use strict";
 var Backbone = require('backbone');
 var React = require('react');
+var django = require('../djangoUtils');
+var $ = require('jquery');
 
 
 var FoodItem = Backbone.Model.extend({
@@ -684,6 +691,17 @@ var FoodItem = Backbone.Model.extend({
     name: '',
     price: ''
   },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
 });
 
 var FoodItemCollection = Backbone.Collection.extend({
@@ -694,18 +712,35 @@ var FoodItemCollection = Backbone.Collection.extend({
 });
 
 var Cart = Backbone.Model.extend({
-  // defaults: {
-  //   'item': '',
-  //   'quantity': 1
-  // },
-  urlRoot: 'api/carts/'
+  urlRoot: 'api/carts/',
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
   // defaults: {
     // foodItems: new FoodItemCollection()
   // },
 });
 
 var CartItemModel = Backbone.Model.extend({
-
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
 });
 
 var CartItemCollection = Backbone.Collection.extend({
@@ -723,7 +758,7 @@ module.exports = {
   CartItemCollection: CartItemCollection
 };
 
-},{"backbone":12,"react":171}],10:[function(require,module,exports){
+},{"../djangoUtils":6,"backbone":12,"jquery":40,"react":171}],10:[function(require,module,exports){
 "use strict";
 var $ = require('jquery');
 var Backbone = require('backbone');
@@ -734,11 +769,11 @@ var django = require('../djangoUtils');
 var User = Backbone.Model.extend({
   urlRoot: 'api/user/create/',
   auth: function(){
-    var token = localStorage.getItem('token');
+    // var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
       beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        xhr.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
@@ -750,6 +785,7 @@ var User = Backbone.Model.extend({
 
       user.save().then(function(data){
         user.set('token', data.token);
+        console.log('ID', user.id);         //Want to user.set('id', data.id) and then save to local storage.  But have to fix sign up issue first.
         localStorage.setItem('token', data.token);
         user.auth();
 
@@ -762,7 +798,7 @@ var User = Backbone.Model.extend({
   signin: function(username, password, callback){
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
-        console.log('userdata', result);
+        console.log('result', result);
         var user = new User({username: username});
         user.set('token', result.token);
         localStorage.setItem('token', result.token);
@@ -815,12 +851,14 @@ var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContaine
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
 var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
 var HomeContainer = require('./components/home.jsx').HomeContainer;
+var MapContainer = require('./components/map.jsx').MapContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'home/': 'home',
     'account/': 'accountInfo',
+    'map/': 'map',
     'items/' : 'items',
   },
   initialize: function(){
@@ -848,6 +886,12 @@ var AppRouter = Backbone.Router.extend({
       document.getElementById('app')
     )
   },
+  map: function(){
+    ReactDOM.render(
+      React.createElement(MapContainer),
+      document.getElementById('app')
+    )
+  },
   items: function(){
     ReactDOM.render(
       React.createElement(FoodItemContainer),
@@ -860,7 +904,7 @@ var router = new AppRouter();
 
 module.exports = router;
 
-},{"./components/accountInfo.jsx":1,"./components/home.jsx":2,"./components/items.jsx":3,"./components/login.jsx":4,"./djangoUtils":6,"backbone":12,"jquery":40,"react":171,"react-dom":42}],12:[function(require,module,exports){
+},{"./components/accountInfo.jsx":1,"./components/home.jsx":2,"./components/items.jsx":3,"./components/login.jsx":4,"./components/map.jsx":5,"./djangoUtils":6,"backbone":12,"jquery":40,"react":171,"react-dom":42}],12:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.3.3
 

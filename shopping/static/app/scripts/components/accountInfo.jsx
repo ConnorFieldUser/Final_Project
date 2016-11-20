@@ -35,7 +35,7 @@ var AccountForm = React.createClass({
     // console.log('account', account.get('city'));
     return (
 
-    <form onSubmit={this.handleSubmit}>
+    <form onSubmit={this.handleSubmit} className="accountForm">
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
@@ -78,6 +78,7 @@ var AccountForm = React.createClass({
           <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="example-tel-input" />
         </div>
       </div>
+      <input onChange={this.handlePicture} type="file" />
       <button type="submit" className="btn btn-danger">My Information is correct</button>
       </form>
     )
@@ -109,7 +110,7 @@ var AccountInfoContainer = React.createClass({
     var self = this;
 
     var formData = account.fetch().then(function(data){
-      // console.log(data.first_name);
+      localStorage.setItem('id', data.id);
       localStorage.setItem('USERNAME', data.first_name);
       console.log(localStorage.getItem('USERNAME'));
       self.setState({account:account})
@@ -139,8 +140,7 @@ var AccountInfoContainer = React.createClass({
   render: function(){
     return (
       <TemplateContainer>
-        <h1>Account Information</h1>
-          <h2>Welcome, {localStorage.getItem('USERNAME')} !</h2>
+        <h1 className="accountHeader">Account Information</h1>
           <AccountForm account={this.state.account} saveInfo={this.saveInfo}/>
       </TemplateContainer>
     )

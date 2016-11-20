@@ -19,6 +19,10 @@ var TemplateContainer = React.createClass({
     e.preventDefault();
     Backbone.history.navigate('cart/', {trigger:true});
   },
+  navMap: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('map/', {trigger:true});
+  },
   handleLogout: function(e){
     e.preventDefault();
     localStorage.clear();
@@ -26,9 +30,10 @@ var TemplateContainer = React.createClass({
   },
   render: function(){
     return (
+      <div>
       <div className="container">
         <div className="row">
-            <nav className="navbar navbar-light bg-faded">
+            <nav className="navbar navbar-light bg-faded well">
               <ul className="nav navbar-nav">
                 <li className="nav-item active">
                   <a onClick={this.navHome} className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>
@@ -37,15 +42,19 @@ var TemplateContainer = React.createClass({
                   <a onClick={this.navAccountInfo} className="nav-link" href="#">Account Information</a>
                 </li>
                 <li className="nav-item">
+                  <a onClick={this.navMap} className="nav-link" href="#">Map</a>
+                </li>
+                <li className="nav-item">
                   <a onClick={this.navItems} className="nav-link" href="#">Grocery Items</a>
                 </li>
                 <li className="nav-item">
                   <a onClick={this.navCart} className="nav-link" href="#">Cart</a>
                 </li>
-                <li className="nav-item">
-                <button className="logoutBtn" onClick={this.handleLogout}>Logout</button>
-                </li>
               </ul>
+              <div>
+              <span className="userWelcome">Welcome, {localStorage.getItem('USERNAME')}!</span>
+              <button className="logoutBtn" onClick={this.handleLogout}>Logout</button>
+              </div>
             </nav>
         </div>
 
@@ -53,17 +62,19 @@ var TemplateContainer = React.createClass({
 
         {this.props.children}
 
+      </div>
+
 
         <div className="row">
           <div className="col-md-12 footer">
             <h2>Contact Information</h2>
-            <span className="glyphicon glyphicon-home" aria-hidden="true"></span><span className="info">123 Main St Greenville, SC</span>
-            <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span><span className="info">assistiveshopper@gmail.com</span>
-            <span className="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><span className="info">(888)123-4567</span>
-            <div>
-              <i className="fa fa-facebook" aria-hidden="true"></i>
-              <i className="fa fa-twitter" aria-hidden="true"></i>
-            </div>
+              <span className="glyphicon glyphicon-home" aria-hidden="true"></span><span className="info">123 Main St Greenville, SC</span>
+              <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span><span className="info">assistiveshopper@gmail.com</span>
+              <span className="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><span className="info">(888)123-4567</span>
+              <div>
+                <i className="fa fa-facebook" aria-hidden="true"></i>
+                <i className="fa fa-twitter" aria-hidden="true"></i>
+              </div>
           </div>
         </div>
       </div>

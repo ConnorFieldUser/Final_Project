@@ -8,12 +8,14 @@ var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContaine
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
 var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
 var HomeContainer = require('./components/home.jsx').HomeContainer;
+var MapContainer = require('./components/map.jsx').MapContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
     '': 'index',
     'home/': 'home',
     'account/': 'accountInfo',
+    'map/': 'map',
     'items/' : 'items',
   },
   initialize: function(){
@@ -38,6 +40,12 @@ var AppRouter = Backbone.Router.extend({
   accountInfo: function(){
     ReactDOM.render(
       React.createElement(AccountInfoContainer),
+      document.getElementById('app')
+    )
+  },
+  map: function(){
+    ReactDOM.render(
+      React.createElement(MapContainer),
       document.getElementById('app')
     )
   },
