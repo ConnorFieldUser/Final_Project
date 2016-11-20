@@ -34,11 +34,11 @@ class Account(models.Model):
 
     @property
     def is_customer(self):
-        return self.access_level == 'c'
+        return self.user_type == 'c'
 
     @property
     def is_driver(self):
-        return self.access_level == 'd'
+        return self.user_type == 'd'
 
 
 @receiver(post_save, sender='auth.User')
@@ -46,7 +46,7 @@ def create_user_profile(**kwargs):
     created = kwargs.get('created')
     instance = kwargs.get('instance')
     if created:
-        Account.objects.create(user=instance)
+        Account.objects.create(user=instance, user_type='c')
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)
