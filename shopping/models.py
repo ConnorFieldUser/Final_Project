@@ -10,6 +10,12 @@ from rest_framework.authtoken.models import Token
 # Create your models here.
 
 
+USER_TYPE = [
+    ('c', 'Customer'),
+    ('', 'Driver'),
+]
+
+
 class Account(models.Model):
 
     user = models.OneToOneField('auth.User')
@@ -17,13 +23,22 @@ class Account(models.Model):
     first_name = models.CharField(max_length=20, null=True, blank=True)
     last_name = models.CharField(max_length=20, null=True, blank=True)
     phone_number = models.IntegerField(null=True, blank=True)
-    adress = models.TextField(null=True, blank=True)
+    adress = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=25, null=True, blank=True)
     state = models.CharField(max_length=25, null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
+    user_type = models.CharField(max_length=1, choices=USER_TYPE)
 
     def __str__(self):
         return str(self.user)
+
+    @property
+    def is_customer(self):
+        return self.access_level == 'c'
+
+    @property
+    def is_driver(self):
+        return self.access_level == 'd'
 
 
 @receiver(post_save, sender='auth.User')

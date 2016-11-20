@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, ApiTestView, DriverView
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, ApiTestView, AccountListView, AccountDetailView, AccountUpdateView, DriverView
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url('^', include('django.contrib.auth.urls')),
@@ -32,5 +32,8 @@ urlpatterns = [
     url(r'^api/cartitem/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),
     url(r'^api/items/$', ItemListCreateAPIView.as_view(), name="item_list_create_api_view"),
     url(r'^api/test/$', ApiTestView.as_view(), name="item_view"),
-    url(r'^driver/(?P<pk>\d+)/$', DriverView.as_view(), name="driver_view")
+    url(r'^accounts/$', AccountListView.as_view(), name="driver_view"),
+    url(r'^account/(?P<pk>\d+)/$', AccountDetailView.as_view(), name="account_detail_view"),
+    url(r'^account/(?P<pk>\d+)/update/$', AccountUpdateView.as_view(), name="account_update_view"),
+    url(r'^driver/$(?P<pk>\d+)/$', DriverView.as_view(), name="driver_view")
 ]

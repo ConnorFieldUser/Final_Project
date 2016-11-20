@@ -5,8 +5,35 @@
     <title>Driver View</title>
   </head>
   <body>
-<h2>Welcome to the driver view</h2>
-{{ request.user }}
+    {{ request.user }}
 
+<h2>This page belongs to:</h2>
+  <h3>{{ account.first_name }}
+      {{ account.last_name }}
+  </h3>
+
+<br>
+<br>
+
+<h3>Contact info
+</h3>
+Phone: &nbsp;{{ account.phone_number }}
+<p>
+Home address: &nbsp;{{ account.adress }}
+</p>
+<p>
+City: &nbsp;{{ account.city }}, {{ account.state }}
+</p>
+<p>
+Email adress:&nbsp; {{ account.email }}
+</p>
+<br><br><br>
+
+<h1>MAP HERE:</h1>
   </body>
+
+
+
+
+  <a href="{% url 'account_update_view' account.id %}"><h6>Update Account Info</h6></a>
 </html>

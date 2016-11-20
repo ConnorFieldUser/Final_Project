@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.views.generic import TemplateView, DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic.edit import CreateView, UpdateView
 
 
 from shopping.models import Account, Cart, Item, CartItem
@@ -55,8 +55,8 @@ class CartListCreateAPIView(ListCreateAPIView):
     queryset = Cart.objects.all()
     serializer_class = CartSerializer
 
-    def get_queryset(self):
-        return Cart.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return Cart.objects.filter(user=self.request.user)
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -113,5 +113,19 @@ class ApiTestView(APIView):
     #     return context
 
 
-class DriverView(DetailView):
+class AccountListView(ListView):
     model = Account
+
+
+class AccountDetailView(DetailView):
+    model = Account
+
+
+class AccountUpdateView(UpdateView):
+    model = Account
+    fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email')
+    success_url = "/"
+
+
+class DriverView(TemplateView):
+    template_name = "driver.html"
