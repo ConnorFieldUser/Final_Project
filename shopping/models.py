@@ -12,7 +12,7 @@ from rest_framework.authtoken.models import Token
 
 USER_TYPE = [
     ('c', 'Customer'),
-    ('', 'Driver'),
+    ('d', 'Driver'),
 ]
 
 
