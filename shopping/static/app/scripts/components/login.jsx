@@ -147,6 +147,8 @@ var LoginSignUpContainer = React.createClass({
   }
 });
 
+// <a href="{% url 'user_create_view' %}">Interested in Becoming a Driver?</a>
+
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
 };

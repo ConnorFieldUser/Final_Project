@@ -134,7 +134,7 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     // account.set(myObj);
     account.set({'id': null});
     console.log('id', account.id);
-    // console.log('account', account);
+    console.log('account', account);
 
     account.save();
 
@@ -235,14 +235,7 @@ var FoodItem = React.createClass({displayName: "FoodItem",
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
-    // console.log('foodCollection', foodCollection);
     // var products = foodCollection['ArrayOfProduct'];
-    // console.log('products', products);
-
-    // var foodItems = products['Product'];
-    // console.log('foodItems', foodItems);
-    // var products = products.Product;
-    // ['ArrayOfProduct']['Product'];
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
@@ -255,11 +248,14 @@ var FoodItem = React.createClass({displayName: "FoodItem",
         )
         );
       // return (
-      //   <li key={item.ItemID}>
+      //   <li className="foodListItem col-md-4" key={item.ItemID}>
       //     <img src={item.ItemImage} />
-      //     {item.Itemname}::{item.ItemDescription}
-      //     <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
-      //   </li>
+      //     <span className="name">{item.Itemname}</span>
+      //     <span className="price">{item.ItemDescription}</span>
+      //     <div>
+      //       <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
+      //     </div>
+      // </li>
       // );
     });
     return (
@@ -285,32 +281,32 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   },
   componentWillMount: function(){
     this.fetchItems();
-    this.fetchOrder();
+    // this.fetchOrder();
   },
   componentWillReceiveProps: function(){
     this.fetchItems();
-    this.fetchOrder();
+    // this.fetchOrder();
   },
   fetchItems: function(){
     var foodCollection=this.state.foodCollection;
     var self = this;
     foodCollection.fetch().then(function(response){
-      // console.log('response', response);
-      // var products = response['ArrayOfProduct']['Product'];
+      // var products = response['Product'];
+      // console.log('response', products);
       // self.setState({foodCollection: products});
       self.setState({foodCollection: response})
     });
   },
-  fetchOrder: function(){
-    var self = this;
-    var cart = this.state.cart;
-    cart.fetch().then(function(response){
-      // console.log('response', response[0]['items'])
-      // var cart = response[0]['items'];
-      // console.log('RESPONSE', response)
-      self.setState({cart: response});
-    });
-  },
+  // fetchOrder: function(){
+  //   var self = this;
+  //   var cart = this.state.cart;
+  //   cart.fetch().then(function(response){
+  //     // console.log('response', response[0]['items'])
+  //     // var cart = response[0]['items'];
+  //     // console.log('RESPONSE', response)
+  //     self.setState({cart: response});
+  //   });
+  // },
   addToOrder: function(item){
     var cart = this.state.cart;
     // console.log('item',item);
@@ -503,6 +499,8 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
     );
   }
 });
+
+// <a href="{% url 'user_create_view' %}">Interested in Becoming a Driver?</a>
 
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
@@ -767,37 +765,44 @@ var django = require('../djangoUtils');
 var User = Backbone.Model.extend({
   urlRoot: 'api/user/create/',
   auth: function(){
-    // var token = localStorage.getItem('token');
+    var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
       beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
+        xhr.setRequestHeader("Authorization", 'Token ' + self.get('token'));
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
   }
 }, {
   signup: function(username, password, callback){
-      var user = new User({username: username, password: password});
+      var user = new User({username: username, password:password});
       console.log('saved')
-
+      var self = this;
       user.save().then(function(data){
+        /*
+        console.log('data', data);
         user.set('token', data.token);
-        console.log('ID', user.id);         //Want to user.set('id', data.id) and then save to local storage.  But have to fix sign up issue first.
+        console.log('token', data.token);         //Want to user.set('id', data.id) and then save to local storage.  But have to fix sign up issue first.
         localStorage.setItem('token', data.token);
         user.auth();
 
         localStorage.setItem('user', JSON.stringify(user.toJSON()));
-
-        callback(user);
+        */
+        self.signin(username, password, callback, user);
+        //callback(user);
 
     });
   },
-  signin: function(username, password, callback){
+  signin: function(username, password, callback, createdUser){
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
         console.log('result', result);
-        var user = new User({username: username});
+        if (createdUser) {
+          var user = createdUser;
+        } else {
+          var user = new User({username: username});
+        }
         user.set('token', result.token);
         localStorage.setItem('token', result.token);
         user.auth();

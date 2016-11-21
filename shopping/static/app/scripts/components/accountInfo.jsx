@@ -132,7 +132,7 @@ var AccountInfoContainer = React.createClass({
     // account.set(myObj);
     account.set({'id': null});
     console.log('id', account.id);
-    // console.log('account', account);
+    console.log('account', account);
 
     account.save();
 

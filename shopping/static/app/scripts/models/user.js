@@ -7,37 +7,44 @@ var django = require('../djangoUtils');
 var User = Backbone.Model.extend({
   urlRoot: 'api/user/create/',
   auth: function(){
-    // var token = localStorage.getItem('token');
+    var token = localStorage.getItem('token');
     var self = this;
     $.ajaxSetup({
       beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
+        xhr.setRequestHeader("Authorization", 'Token ' + self.get('token'));
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
   }
 }, {
   signup: function(username, password, callback){
-      var user = new User({username: username, password: password});
+      var user = new User({username: username, password:password});
       console.log('saved')
-
+      var self = this;
       user.save().then(function(data){
+        /*
+        console.log('data', data);
         user.set('token', data.token);
-        console.log('ID', user.id);         //Want to user.set('id', data.id) and then save to local storage.  But have to fix sign up issue first.
+        console.log('token', data.token);         //Want to user.set('id', data.id) and then save to local storage.  But have to fix sign up issue first.
         localStorage.setItem('token', data.token);
         user.auth();
 
         localStorage.setItem('user', JSON.stringify(user.toJSON()));
-
-        callback(user);
+        */
+        self.signin(username, password, callback, user);
+        //callback(user);
 
     });
   },
-  signin: function(username, password, callback){
+  signin: function(username, password, callback, createdUser){
       var loginUrl = 'api/obtain_token/';
       $.post(loginUrl, {username: username, password: password}).then(function(result){
         console.log('result', result);
-        var user = new User({username: username});
+        if (createdUser) {
+          var user = createdUser;
+        } else {
+          var user = new User({username: username});
+        }
         user.set('token', result.token);
         localStorage.setItem('token', result.token);
         user.auth();

@@ -42,14 +42,7 @@ var FoodItem = React.createClass({
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
-    // console.log('foodCollection', foodCollection);
     // var products = foodCollection['ArrayOfProduct'];
-    // console.log('products', products);
-
-    // var foodItems = products['Product'];
-    // console.log('foodItems', foodItems);
-    // var products = products.Product;
-    // ['ArrayOfProduct']['Product'];
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
@@ -62,11 +55,14 @@ var FoodItem = React.createClass({
         </li>
         );
       // return (
-      //   <li key={item.ItemID}>
+      //   <li className="foodListItem col-md-4" key={item.ItemID}>
       //     <img src={item.ItemImage} />
-      //     {item.Itemname}::{item.ItemDescription}
-      //     <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
-      //   </li>
+      //     <span className="name">{item.Itemname}</span>
+      //     <span className="price">{item.ItemDescription}</span>
+      //     <div>
+      //       <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
+      //     </div>
+      // </li>
       // );
     });
     return (
@@ -92,32 +88,32 @@ var FoodItemContainer = React.createClass({
   },
   componentWillMount: function(){
     this.fetchItems();
-    this.fetchOrder();
+    // this.fetchOrder();
   },
   componentWillReceiveProps: function(){
     this.fetchItems();
-    this.fetchOrder();
+    // this.fetchOrder();
   },
   fetchItems: function(){
     var foodCollection=this.state.foodCollection;
     var self = this;
     foodCollection.fetch().then(function(response){
-      // console.log('response', response);
-      // var products = response['ArrayOfProduct']['Product'];
+      // var products = response['Product'];
+      // console.log('response', products);
       // self.setState({foodCollection: products});
       self.setState({foodCollection: response})
     });
   },
-  fetchOrder: function(){
-    var self = this;
-    var cart = this.state.cart;
-    cart.fetch().then(function(response){
-      // console.log('response', response[0]['items'])
-      // var cart = response[0]['items'];
-      // console.log('RESPONSE', response)
-      self.setState({cart: response});
-    });
-  },
+  // fetchOrder: function(){
+  //   var self = this;
+  //   var cart = this.state.cart;
+  //   cart.fetch().then(function(response){
+  //     // console.log('response', response[0]['items'])
+  //     // var cart = response[0]['items'];
+  //     // console.log('RESPONSE', response)
+  //     self.setState({cart: response});
+  //   });
+  // },
   addToOrder: function(item){
     var cart = this.state.cart;
     // console.log('item',item);
