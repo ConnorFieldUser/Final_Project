@@ -5,14 +5,20 @@
     <title>Driver View</title>
   </head>
   <body>
-    {{ request.user }}
 
+    <p>
+      {{ request.user }}
+  </p>
+
+<a href="{% url 'account_list_view' %}">back</a>
 <h2>This page belongs to:</h2>
   <h3>{{ account.first_name }}
       {{ account.last_name }}
       {{ account.user_type }}
   </h3>
-
+<p>
+  Username: {{ account.user }}
+</p>
 <br>
 <br>
 
@@ -28,13 +34,13 @@ City: &nbsp;{{ account.city }}, {{ account.state }}
 <p>
 Email adress:&nbsp; {{ account.email }}
 </p>
-<br><br><br>
+<br><br>
 
 <h1>MAP HERE:</h1>
   </body>
 
+{% if object.user.id == request.user.id %}
+  <a href="{% url 'account_update_view' %}"><h6>Update Account Info</h6></a>
+{% endif %}
 
-
-
-  <a href="{% url 'account_update_view' account.id %}"><h6>Update Account Info</h6></a>
 </html>

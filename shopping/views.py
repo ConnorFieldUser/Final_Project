@@ -18,6 +18,8 @@ from xmljson import parker as bf
 from json import dumps
 from xml.etree.ElementTree import fromstring
 
+from django.urls import reverse_lazy
+
 import os
 api_key = os.environ.get('api_key')
 
@@ -31,7 +33,7 @@ class IndexView(TemplateView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = "/"
+    success_url = reverse_lazy("account_list_view")
 
 
 class UserCreateAPIView(CreateAPIView):
@@ -124,8 +126,25 @@ class AccountDetailView(DetailView):
 class AccountUpdateView(UpdateView):
     model = Account
     fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email')
-    success_url = "/"
+    success_url = reverse_lazy("account_list_view")
+
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        return Account.objects.get(user=self.request.user)
+
+    def get_queryset(self):
+        return Account.objects.filter(user=self.request.user)
 
 
 class DriverView(TemplateView):
     template_name = "driver.html"
+
+
+# class DriverView(FormView):
+#     form_class = EmailForm
+#     success_url = reverse_lazy("account_list_view")
+#
+#     def form_valid(self, form):
+#         form.send_email()
+#         return super().form_valid(form)
