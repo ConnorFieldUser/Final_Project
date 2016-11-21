@@ -32,6 +32,18 @@ var FoodItemCollection = Backbone.Collection.extend({
 
 var Cart = Backbone.Model.extend({
   urlRoot: 'api/carts/',
+  defaults: {
+    items: new CartItemCollection()
+  },
+  save: function(key, val, options){
+    this.unset('items');
+
+    return Backbone.Model.prototype.save.apply(this, arguments);
+  },
+  parse: function(data){
+    data.items = new CartItemCollection({}data.items);
+    return data;
+  },
   initialize: function(){
     window.account = this;
     var token = localStorage.getItem('token');

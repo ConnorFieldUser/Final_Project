@@ -82,7 +82,7 @@ var AccountForm = React.createClass({
           <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="example-tel-input" />
         </div>
       </div>
-      <input onChange={this.handlePicture} type="file" />
+      <input onChange={this.handlePicture} encType="multipart/form-data" type="file" />
       <button type="submit" className="btn btn-danger">My Information is correct</button>
       </form>
     )
@@ -131,9 +131,6 @@ var AccountInfoContainer = React.createClass({
     // console.log(myObj);
 
 
-
-    //   myObj['id'] = null;
-    //   console.log(myObj);
     //
     // $.ajax({
     //   url: 'api/account/profile/',

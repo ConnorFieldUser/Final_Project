@@ -1,19 +1,21 @@
 var React = require('react');
 var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
-// var OrderContainer = require('./order.jsx').OrderContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
+
+
+
 
 var Order = React.createClass({
   componentWillReceiveProps: function(nextProps){
     var cart = nextProps.cart;
-  //   // console.log(nextProps.cart.items);
-  //   this.setState({cart: cart});
+    // console.log(nextProps.cart.items);
+    // this.setState({cart: cart});
     // console.log('CART', cart);
-  //   // var cart = this.props.cart['items'];
+    // var cart = this.props.cart['items'];
   },
-  render: function(cart){
+  render: function(){
     var cart = this.props.cart;
     // console.log('RENDER', cart);
     // var order = this.props.cart.items.map(function(item){
@@ -36,6 +38,8 @@ var Order = React.createClass({
     )
   }
 });
+
+
 
 
 var FoodItem = React.createClass({
@@ -76,6 +80,9 @@ var FoodItem = React.createClass({
   }
 });
 
+
+
+
 var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
@@ -88,12 +95,12 @@ var FoodItemContainer = React.createClass({
   },
   componentWillMount: function(){
     this.fetchItems();
-    // this.fetchOrder();
+    this.fetchOrder();
   },
-  componentWillReceiveProps: function(){
-    this.fetchItems();
-    // this.fetchOrder();
-  },
+  // componentWillReceiveProps: function(){
+  //   this.fetchItems();
+  //   // this.fetchOrder();
+  // },
   fetchItems: function(){
     var foodCollection=this.state.foodCollection;
     var self = this;
@@ -104,26 +111,25 @@ var FoodItemContainer = React.createClass({
       self.setState({foodCollection: response})
     });
   },
-  // fetchOrder: function(){
-  //   var self = this;
-  //   var cart = this.state.cart;
-  //   cart.fetch().then(function(response){
-  //     // console.log('response', response[0]['items'])
-  //     // var cart = response[0]['items'];
-  //     // console.log('RESPONSE', response)
-  //     self.setState({cart: response});
-  //   });
-  // },
+  fetchOrder: function(){
+    var self = this;
+    var cart = this.state.cart;
+    cart.fetch().then(function(response){
+      // console.log('response', response[0]['items'])
+      // var cart = response[0]['items'];
+      // console.log('RESPONSE', response)
+      self.setState({cart: cart});
+    });
+  },
   addToOrder: function(item){
     var cart = this.state.cart;
     // console.log('item',item);
     console.log('cart',cart);
+    // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
     cart.save(item);
-
-
 
     // this.setState({cart: cart});
   },
@@ -146,8 +152,6 @@ var FoodItemContainer = React.createClass({
     )
   }
 });
-
-
 
 
 

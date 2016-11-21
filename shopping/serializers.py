@@ -62,7 +62,7 @@ class CartSerializer(serializers.ModelSerializer):
 class CartItemSerializer(serializers.ModelSerializer):
 
     cart_id = serializers.ReadOnlyField(source='cart.id')
-    cart_user = serializers.ReadOnlyField(source='cart.user')
+    cart_user = serializers.StringRelatedField(source='cart.user')
     item_id = serializers.ReadOnlyField(source='item.id')
     item_name = serializers.ReadOnlyField(source='item.name')
     item_price = serializers.ReadOnlyField(source='item.price')
