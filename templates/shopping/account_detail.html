@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-
+{% if request.user.account.is_driver %}
     <p>
       {{ request.user }}
   </p>
@@ -43,6 +43,8 @@ Email adress:&nbsp; {{ account.email }}
   <p>
     <a href="{% url 'account_update_view' %}"><h6>Update Account Info</h6></a>
   </p>
+{% endif %}
+
 {% endif %}
 
 {% endblock %}

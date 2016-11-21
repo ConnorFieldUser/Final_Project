@@ -4,14 +4,33 @@
   <head>
     <meta charset="utf-8">
     <title>Driver view</title>
+    <link href="https://fonts.googleapis.com/css?family=Lora|Old+Standard+TT|Open+Sans|Oswald" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+  <style media="screen">
+  </style>
+
+
   </head>
   <body>
 
-    <h4>Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></h4>
 
 
-    {% block content %}
-    {% endblock %}
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <ul class="nav navbar-nav">
+
+        <li><h4>Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></h4></li>
+
+      </ul>
+      </div>
+    </nav>
+
+<div class="container">
+  {% block content %}
+  {% endblock %}
+</div>
+
 
   </body>
 </html>
