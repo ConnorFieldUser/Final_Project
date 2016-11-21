@@ -5,6 +5,7 @@ var $ = require('jquery');
 
 
 var FoodItem = Backbone.Model.extend({
+  // urlRoot: 'api/items/',
   defaults: {
     name: '',
     price: ''

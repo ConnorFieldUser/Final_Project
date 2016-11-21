@@ -119,9 +119,9 @@ var FoodItemContainer = React.createClass({
     // console.log('item',item);
     console.log('cart',cart);
 
-    var cartData = {items: [item], user: 2}
-    console.log('cartData', cartData);
-    cart.save(cartData);
+    // var cartData = {items: [item], user: 2}
+    // console.log('cartData', cartData);
+    cart.save(item);
 
 
 

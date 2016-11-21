@@ -140,6 +140,7 @@ var LoginSignUpContainer = React.createClass({
               <h1>Assistive Shopper {this.state.user.get('token') ? 'Logged in' : ''}</h1>
                 <SignUpForm signUp={this.signUp} />
                 <SignInForm signIn={this.signIn} />
+                <a href="create_user/">Interested in Becoming a Driver?</a>
             </div>
           </div>
       </div>
@@ -147,7 +148,6 @@ var LoginSignUpContainer = React.createClass({
   }
 });
 
-// <a href="{% url 'user_create_view' %}">Interested in Becoming a Driver?</a>
 
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer

@@ -128,13 +128,32 @@ var AccountInfoContainer = React.createClass({
     var account = this.state.account;
     // account.unset('id');
     // delete account.id;
+    // console.log(myObj);
 
-    // account.set(myObj);
-    account.set({'id': null});
-    console.log('id', account.id);
-    console.log('account', account);
 
+
+    //   myObj['id'] = null;
+    //   console.log(myObj);
+    //
+    // $.ajax({
+    //   url: 'api/account/profile/',
+    //   type: 'PUT',
+    //   data: myObj,
+    //   success: function(data){
+    //     console.log(data)
+    //   }
+    // });
+
+    // $.put('api/account/profile/', myObj, function(result){
+    //   console.log(result)
+    // });
+
+
+    // console.log(account);
+    // console.log('id', account.id);
+    // console.log('account', account);
     account.save();
+    // account.save({url: account.urlRoot});
 
     // account.save().then(() => {
         // console.log("info saved");

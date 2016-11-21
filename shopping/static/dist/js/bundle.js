@@ -130,13 +130,32 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     var account = this.state.account;
     // account.unset('id');
     // delete account.id;
+    // console.log(myObj);
 
-    // account.set(myObj);
-    account.set({'id': null});
-    console.log('id', account.id);
-    console.log('account', account);
 
+
+    //   myObj['id'] = null;
+    //   console.log(myObj);
+    //
+    // $.ajax({
+    //   url: 'api/account/profile/',
+    //   type: 'PUT',
+    //   data: myObj,
+    //   success: function(data){
+    //     console.log(data)
+    //   }
+    // });
+
+    // $.put('api/account/profile/', myObj, function(result){
+    //   console.log(result)
+    // });
+
+
+    // console.log(account);
+    // console.log('id', account.id);
+    // console.log('account', account);
     account.save();
+    // account.save({url: account.urlRoot});
 
     // account.save().then(() => {
         // console.log("info saved");
@@ -312,9 +331,9 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     // console.log('item',item);
     console.log('cart',cart);
 
-    var cartData = {items: [item], user: 2}
-    console.log('cartData', cartData);
-    cart.save(cartData);
+    // var cartData = {items: [item], user: 2}
+    // console.log('cartData', cartData);
+    cart.save(item);
 
 
 
@@ -492,7 +511,8 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
             React.createElement("div", {className: "col-md-12 well mainLogin"}, 
               React.createElement("h1", null, "Assistive Shopper ", this.state.user.get('token') ? 'Logged in' : ''), 
                 React.createElement(SignUpForm, {signUp: this.signUp}), 
-                React.createElement(SignInForm, {signIn: this.signIn})
+                React.createElement(SignInForm, {signIn: this.signIn}), 
+                React.createElement("a", {href: "create_user/"}, "Interested in Becoming a Driver?")
             )
           )
       )
@@ -500,7 +520,6 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
   }
 });
 
-// <a href="{% url 'user_create_view' %}">Interested in Becoming a Driver?</a>
 
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
@@ -686,6 +705,7 @@ var $ = require('jquery');
 
 
 var FoodItem = Backbone.Model.extend({
+  // urlRoot: 'api/items/',
   defaults: {
     name: '',
     price: ''
@@ -817,7 +837,7 @@ var User = Backbone.Model.extend({
 
 var Account = Backbone.Model.extend({
   idAttribute: 'id',
-  urlRoot: function(){
+  url: function(){
     return 'api/account/profile/'
   },
 
@@ -835,7 +855,7 @@ var Account = Backbone.Model.extend({
   },
 });
 
-var AccountCollection = Backbone.Collection.ex
+// var AccountCollection = Backbone.Collection.ex
 
 module.exports = {
   User: User,

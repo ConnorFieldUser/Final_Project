@@ -59,7 +59,7 @@ var User = Backbone.Model.extend({
 
 var Account = Backbone.Model.extend({
   idAttribute: 'id',
-  urlRoot: function(){
+  url: function(){
     return 'api/account/profile/'
   },
 
@@ -77,7 +77,7 @@ var Account = Backbone.Model.extend({
   },
 });
 
-var AccountCollection = Backbone.Collection.ex
+// var AccountCollection = Backbone.Collection.ex
 
 module.exports = {
   User: User,
