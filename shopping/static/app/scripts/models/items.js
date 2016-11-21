@@ -42,9 +42,6 @@ var Cart = Backbone.Model.extend({
       }
     });
   }
-  // defaults: {
-    // foodItems: new FoodItemCollection()
-  // },
 });
 
 var CartItemModel = Backbone.Model.extend({

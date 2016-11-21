@@ -10,13 +10,12 @@ var Order = React.createClass({
     var cart = nextProps.cart;
   //   // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
-    console.log('CART', cart);
+    // console.log('CART', cart);
   //   // var cart = this.props.cart['items'];
   },
   render: function(cart){
     var cart = this.props.cart;
     // console.log('RENDER', cart);
-    // console.log(cart);
     // var order = this.props.cart.items.map(function(item){
     //   return (
     //     <li key={item.id}>
@@ -113,7 +112,7 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      console.log('response', response[0]['items'])
+      // console.log('response', response[0]['items'])
       // var cart = response[0]['items'];
       // console.log('RESPONSE', response)
       self.setState({cart: response});
@@ -121,14 +120,12 @@ var FoodItemContainer = React.createClass({
   },
   addToOrder: function(item){
     var cart = this.state.cart;
-    console.log('item',item);
+    // console.log('item',item);
     console.log('cart',cart);
 
     var cartData = {items: [item], user: 2}
-
-    // var orderItem = item;
-    cart.save({cartData});
-    // cart.save(item);
+    console.log('cartData', cartData);
+    cart.save(cartData);
 
 
 

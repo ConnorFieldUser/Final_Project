@@ -1,6 +1,6 @@
-// var React = require('react');
-// var models = require('../models/items.js');
-// var OrderItemCollection = require('../models/user.js').OrderItemCollection;
+var React = require('react');
+var models = require('../models/items.js');
+var OrderItemCollection = require('../models/user.js').OrderItemCollection;
 //
 // var Order = React.createClass({
 //   componentWillReceiveProps: function(nextProps){
@@ -69,3 +69,4 @@
 // module.exports = {
 //   OrderContainer: OrderContainer,
 // };
+//
