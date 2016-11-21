@@ -38,6 +38,6 @@ urlpatterns = [
     url(r'^api/test/$', ApiTestView.as_view(), name="item_view"),
     url(r'^accounts/$', AccountListView.as_view(), name="account_list_view"),
     url(r'^accounts/(?P<pk>\d+)/$', AccountDetailView.as_view(), name="account_detail_view"),
-    url(r'^account/update/$', AccountUpdateView.as_view(), name="account_update_view"),
+    url(r'^accounts/update/$', AccountUpdateView.as_view(), name="account_update_view"),
     url(r'^driver/$', DriverView.as_view(), name="driver_view")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
