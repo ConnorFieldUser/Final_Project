@@ -130,16 +130,15 @@ class AccountDetailView(DetailView):
 
 class AccountUpdateView(UpdateView):
     model = Account
-    fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email')
-    success_url = reverse_lazy("account_list_view")
+    fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email', 'image')
+
+    def get_success_url(self):
+        return reverse_lazy("account_detail_view", args=(self.object.id,))
 
     permission_classes = (IsAuthenticated, )
 
     def get_object(self):
         return Account.objects.get(user=self.request.user)
-
-    def get_queryset(self):
-        return Account.objects.filter(user=self.request.user)
 
 
 class DriverView(TemplateView):

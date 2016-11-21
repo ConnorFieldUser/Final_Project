@@ -28,7 +28,7 @@ class Account(models.Model):
     state = models.CharField(max_length=25, null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
     user_type = models.CharField(max_length=1, choices=USER_TYPE)
-    picture = models.FileField()
+    image = models.FileField()
 
     def __str__(self):
         return str(self.user)
@@ -40,6 +40,12 @@ class Account(models.Model):
     @property
     def is_driver(self):
         return self.user_type == 'd'
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return "http://static.srcdn.com/slir/w1000-h500-q90-c1000:500/wp-content/uploads/landscape-1456483171-pokemon2.jpg"
 
 
 @receiver(post_save, sender='auth.User')

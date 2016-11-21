@@ -10,7 +10,15 @@
       {{ request.user }}
   </p>
 
+  <div class=>
+  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}"/>
+</div>
+
+
 <a href="{% url 'account_list_view' %}">back</a>
+
+{{ account.image }}
+
 <h2>This page belongs to:</h2>
   <h3>{{ account.first_name }}
       {{ account.last_name }}
