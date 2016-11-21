@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Driver View</title>
-  </head>
-  <body>
+{% extends 'base.html' %}
+{% block content %}
 
     <p>
       {{ request.user }}
@@ -17,12 +12,9 @@
 
 <a href="{% url 'account_list_view' %}">back</a>
 
-{{ account.image }}
-
 <h2>This page belongs to:</h2>
   <h3>{{ account.first_name }}
       {{ account.last_name }}
-      {{ account.user_type }}
   </h3>
 <p>
   Username: {{ account.user }}
@@ -48,7 +40,9 @@ Email adress:&nbsp; {{ account.email }}
   </body>
 
 {% if object.user.id == request.user.id %}
-  <a href="{% url 'account_update_view' %}"><h6>Update Account Info</h6></a>
+  <p>
+    <a href="{% url 'account_update_view' %}"><h6>Update Account Info</h6></a>
+  </p>
 {% endif %}
 
-</html>
+{% endblock %}
