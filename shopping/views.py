@@ -20,6 +20,9 @@ from xml.etree.ElementTree import fromstring
 
 from django.urls import reverse_lazy
 
+from io import StringIO
+import json
+
 import os
 api_key = os.environ.get('api_key')
 
@@ -102,7 +105,9 @@ class ApiTestView(APIView):
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
         # ships_list = {'ships': json_data['name']}
         # print(ships_list)
-        return Response(json_data)
+        print(type(json_data))
+        io = StringIO(json_data)
+        return Response(json.load(io))
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)

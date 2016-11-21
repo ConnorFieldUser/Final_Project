@@ -28,6 +28,7 @@ class Account(models.Model):
     state = models.CharField(max_length=25, null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
     user_type = models.CharField(max_length=1, choices=USER_TYPE)
+    picture = models.FileField()
 
     def __str__(self):
         return str(self.user)
