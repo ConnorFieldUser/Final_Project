@@ -30,12 +30,16 @@ var AccountForm = React.createClass({
     e.preventDefault();
     this.props.saveInfo(this.state);
   },
+  handlePicture: function(e){
+     var attachedFile = e.target.files[0];
+     this.setState({profilePic: attachedFile});
+   },
   render: function(){
     var account = this.state.account;
     // console.log('account', account.get('city'));
     return (
 
-    <form onSubmit={this.handleSubmit} className="accountForm">
+    <form onSubmit={this.handleSubmit} className="accountForm well">
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
@@ -126,8 +130,8 @@ var AccountInfoContainer = React.createClass({
     // delete account.id;
 
     // account.set(myObj);
-    // account.set({'id': null});
-    // console.log('id', account.id);
+    account.set({'id': null});
+    console.log('id', account.id);
     // console.log('account', account);
 
     account.save();

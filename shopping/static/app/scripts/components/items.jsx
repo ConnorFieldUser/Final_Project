@@ -6,13 +6,13 @@ var models = require('../models/items.js');
 var $ = require('jquery');
 
 var Order = React.createClass({
-  // componentWillReceiveProps: function(nextProps){
-  //   var cart = nextProps.cart[0]['items'];
+  componentWillReceiveProps: function(nextProps){
+    var cart = nextProps.cart;
   //   // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
-  //   // console.log('CART', cart);
+    console.log('CART', cart);
   //   // var cart = this.props.cart['items'];
-  // },
+  },
   render: function(cart){
     var cart = this.props.cart;
     // console.log('RENDER', cart);
@@ -115,7 +115,7 @@ var FoodItemContainer = React.createClass({
     cart.fetch().then(function(response){
       console.log('response', response[0]['items'])
       // var cart = response[0]['items'];
-      // console.log('CART', cart)
+      // console.log('RESPONSE', response)
       self.setState({cart: response});
     });
   },

@@ -10,9 +10,9 @@ var HomeContainer = React.createClass({
               <div className="col-md-12 well">
                 <div className="mainImage"></div>
                 <div className="homeText">
-                  <h1>Welcome to Assistive Shopper! </h1>
+                  <h1>Welcome to Assistive Shopper!</h1>
                   <h3>Grocery shopping made easy.</h3>
-                  <h5>We provide online food selection for a range of supermarkets and a home grocery delivery service. </h5>
+                  <h5>We provide online food selection for a range of supermarkets and a home grocery delivery service.</h5>
                 </div>
               </div>
             </div>

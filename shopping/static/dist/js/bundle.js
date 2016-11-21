@@ -32,12 +32,16 @@ var AccountForm = React.createClass({displayName: "AccountForm",
     e.preventDefault();
     this.props.saveInfo(this.state);
   },
+  handlePicture: function(e){
+     var attachedFile = e.target.files[0];
+     this.setState({profilePic: attachedFile});
+   },
   render: function(){
     var account = this.state.account;
     // console.log('account', account.get('city'));
     return (
 
-    React.createElement("form", {onSubmit: this.handleSubmit, className: "accountForm"}, 
+    React.createElement("form", {onSubmit: this.handleSubmit, className: "accountForm well"}, 
     React.createElement("div", {className: "form-group row"}, 
         React.createElement("label", {htmlFor: "example-text-input", className: "col-xs-2 col-form-label"}, "FirstName"), 
         React.createElement("div", {className: "col-xs-10"}, 
@@ -128,8 +132,8 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
     // delete account.id;
 
     // account.set(myObj);
-    // account.set({'id': null});
-    // console.log('id', account.id);
+    account.set({'id': null});
+    console.log('id', account.id);
     // console.log('account', account);
 
     account.save();
@@ -168,9 +172,9 @@ var HomeContainer = React.createClass({displayName: "HomeContainer",
               React.createElement("div", {className: "col-md-12 well"}, 
                 React.createElement("div", {className: "mainImage"}), 
                 React.createElement("div", {className: "homeText"}, 
-                  React.createElement("h1", null, "Welcome to Assistive Shopper! "), 
+                  React.createElement("h1", null, "Welcome to Assistive Shopper!"), 
                   React.createElement("h3", null, "Grocery shopping made easy."), 
-                  React.createElement("h5", null, "We provide online food selection for a range of supermarkets and a home grocery delivery service. ")
+                  React.createElement("h5", null, "We provide online food selection for a range of supermarkets and a home grocery delivery service.")
                 )
               )
             )
@@ -195,13 +199,13 @@ var models = require('../models/items.js');
 var $ = require('jquery');
 
 var Order = React.createClass({displayName: "Order",
-  // componentWillReceiveProps: function(nextProps){
-  //   var cart = nextProps.cart[0]['items'];
+  componentWillReceiveProps: function(nextProps){
+    var cart = nextProps.cart;
   //   // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
-  //   // console.log('CART', cart);
+    console.log('CART', cart);
   //   // var cart = this.props.cart['items'];
-  // },
+  },
   render: function(cart){
     var cart = this.props.cart;
     // console.log('RENDER', cart);
@@ -304,7 +308,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     cart.fetch().then(function(response){
       console.log('response', response[0]['items'])
       // var cart = response[0]['items'];
-      // console.log('CART', cart)
+      // console.log('RESPONSE', response)
       self.setState({cart: response});
     });
   },
