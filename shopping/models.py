@@ -45,7 +45,7 @@ class Account(models.Model):
     def image_url(self):
         if self.image:
             return self.image.url
-        return "http://static.srcdn.com/slir/w1000-h500-q90-c1000:500/wp-content/uploads/landscape-1456483171-pokemon2.jpg"
+        return "http://www.finecooking.com/images/no_image_ld.jpg"
 
 
 @receiver(post_save, sender='auth.User')

@@ -1,1 +1,1 @@
-console.error("ReactifyError: /Users/carolineverticchio/Documents/code/Final_Project/shopping/static/app/scripts/models/items.js: Parse Error: Line 44: Unexpected identifier while parsing file: /Users/carolineverticchio/Documents/code/Final_Project/shopping/static/app/scripts/models/items.js");
+console.error("ReactifyError: /Users/ConQuest/Final_Project/shopping/static/app/scripts/models/items.js: Parse Error: Line 44: Unexpected identifier while parsing file: /Users/ConQuest/Final_Project/shopping/static/app/scripts/models/items.js");
