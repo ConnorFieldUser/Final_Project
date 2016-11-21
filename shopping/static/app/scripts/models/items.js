@@ -30,33 +30,6 @@ var FoodItemCollection = Backbone.Collection.extend({
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
 
-var Cart = Backbone.Model.extend({
-  urlRoot: 'api/carts/',
-  defaults: {
-    items: new CartItemCollection()
-  },
-  save: function(key, val, options){
-    this.unset('items');
-
-    return Backbone.Model.prototype.save.apply(this, arguments);
-  },
-  parse: function(data){
-    data.items = new CartItemCollection({}data.items);
-    return data;
-  },
-  initialize: function(){
-    window.account = this;
-    var token = localStorage.getItem('token');
-    var self = this;
-    $.ajaxSetup({
-      beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + token);
-        django.setCsrfToken.call(this, xhr, settings);
-      }
-    });
-  }
-});
-
 var CartItemModel = Backbone.Model.extend({
   initialize: function(){
     window.account = this;
@@ -74,6 +47,36 @@ var CartItemModel = Backbone.Model.extend({
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
   url: 'api/cartitems/'
+});
+
+var Cart = Backbone.Model.extend({
+  urlRoot: 'api/carts/',
+  defaults: {
+    items: new CartItemCollection()
+  },
+  save: function(key, val, options){
+    this.unset('items');
+
+    return Backbone.Model.prototype.save.apply(this, arguments);
+  },
+  getItems: function(){
+    var items = new CartItemCollection();
+    var self = this;
+    return items.fetch().then(function(){
+      self.set('items', items)
+    });
+  },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
 });
 
 

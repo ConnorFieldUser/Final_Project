@@ -105,7 +105,7 @@ class ApiTestView(APIView):
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
         # ships_list = {'ships': json_data['name']}
         # print(ships_list)
-        print(type(json_data))
+        print(json_data)
         io = StringIO(json_data)
         return Response(json.load(io))
 

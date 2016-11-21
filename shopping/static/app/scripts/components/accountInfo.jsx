@@ -32,14 +32,15 @@ var AccountForm = React.createClass({
   },
   handlePicture: function(e){
      var attachedFile = e.target.files[0];
-     this.setState({profilePic: attachedFile});
+     console.log(attachedFile);
+     this.setState({image: attachedFile});
    },
   render: function(){
     var account = this.state.account;
     // console.log('account', account.get('city'));
     return (
 
-    <form onSubmit={this.handleSubmit} className="accountForm well">
+    <form onSubmit={this.handleSubmit} className="accountForm well" encType="multipart/form-data" data-ajax='false'>
     <div className="form-group row">
         <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
@@ -82,7 +83,7 @@ var AccountForm = React.createClass({
           <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="example-tel-input" />
         </div>
       </div>
-      <input onChange={this.handlePicture} encType="multipart/form-data" type="file" />
+      <input onChange={this.handlePicture} type="file" name="image"/>
       <button type="submit" className="btn btn-danger">My Information is correct</button>
       </form>
     )
@@ -124,8 +125,10 @@ var AccountInfoContainer = React.createClass({
 
     // console.log('userData', userData);
     var myObj = userData.account.toJSON();
-    // console.log('obj', myObj);
+    console.log('JOEL', userData.image);
     var account = this.state.account;
+    account.set({"image": userData.image})
+    console.log(account);
     // account.unset('id');
     // delete account.id;
     // console.log(myObj);
