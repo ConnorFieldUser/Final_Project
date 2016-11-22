@@ -52,8 +52,8 @@ class AccountDetailUpdateAPIView(RetrieveUpdateAPIView):
     def get_object(self):
         return Account.objects.get(user=self.request.user)
 
-    def get_queryset(self):
-        return Account.objects.filter(user=self.request.user)
+    # def get_queryset(self):
+    #     return Account.objects.filter(user=self.request.user)
 
 
 class CartListCreateAPIView(ListCreateAPIView):
@@ -145,7 +145,22 @@ class DriverView(TemplateView):
     template_name = "driver.html"
 
 
-# class DriverView(FormView):
+class CartUpdateView(UpdateView):
+
+    model = Cart
+    fields = ('pending', 'complete')
+
+    def get_success_url(self):
+        return reverse_lazy("cart_detail_view", args=(self.object.id,))
+
+    permission_classes = (IsAuthenticated, )
+
+
+class CartDetailView(DetailView):
+    model = Cart
+
+
+# class EmailView(FormView):
 #     form_class = EmailForm
 #     success_url = reverse_lazy("account_list_view")
 #

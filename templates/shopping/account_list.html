@@ -2,6 +2,7 @@
 {% block content %}
 
 
+
     {% if request.user.account.is_driver %}
 
     <p>
@@ -10,7 +11,7 @@
 
     <h2> Customer List </h2>
     <p>
-      This is a list of our all of our customers
+      This is a list of of our customers [with pending orders].
     </p>
 {% for account in object_list %}
 {% if account.is_customer %}
@@ -19,8 +20,26 @@
 </p>
 {% endif %}
 {% endfor %}
-{% endif %}
 
-  </body>
+{% else %}
+
+
+<p>
+  Browse popular drivers:
+</p>
+
+<h2> Driver List </h2>
+<p>
+  This is a list of our drivers
+</p>
+{% for account in object_list %}
+{% if account.is_driver %}
+<p>
+<a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
+</p>
+
+{% endif %}
+{% endfor %}
+{% endif %}
 
 {% endblock %}

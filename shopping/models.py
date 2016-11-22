@@ -74,7 +74,8 @@ class Cart(models.Model):
     user = models.ForeignKey('auth.User')
     created_time = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Item, through='CartItem')
-    # related name
+    complete = models.BooleanField(default=True)
+    pending = models.BooleanField(default=True)
 
     def __str__(self):
         return "{} {}".format(self.user, self.id)

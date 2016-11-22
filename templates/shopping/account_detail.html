@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-  {% if account.is_customer or account.user.id == request.user.id %}
+  {% if account.is_customer and request.user.account.is_driver or account.user.id == request.user.id or request.user.account.is_customer and account.is_driver %}
 
   <div class=>
   <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}"/>
@@ -36,13 +35,13 @@ Email adress:&nbsp; {{ account.email }}
 <br><br>
 
 <h1>MAP HERE:</h1>
-  </body>
 
 {% if object.user.id == request.user.id %}
   <p>
     <a href="{% url 'account_update_view' %}"><h6>Update Account Info</h6></a>
   </p>
 {% endif %}
+
 
 {% endif %}
 
