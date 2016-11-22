@@ -160,6 +160,15 @@ class CartDetailView(DetailView):
     model = Cart
 
 
+class CartLatestDetailViewAPIView(RetrieveUpdateAPIView):
+
+    serializer_class = CartSerializer
+    permission_classes = (IsAuthenticated, )
+
+    def get_object(self):
+        return Cart.objects.filter(user=self.request.user).latest('created_time')
+
+
 # class EmailView(FormView):
 #     form_class = EmailForm
 #     success_url = reverse_lazy("account_list_view")
