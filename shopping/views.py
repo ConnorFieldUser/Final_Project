@@ -148,7 +148,7 @@ class DriverView(TemplateView):
 class CartUpdateView(UpdateView):
 
     model = Cart
-    fields = ('pending', 'complete')
+    fields = ('complete',)
 
     def get_success_url(self):
         return reverse_lazy("cart_detail_view", args=(self.object.id,))

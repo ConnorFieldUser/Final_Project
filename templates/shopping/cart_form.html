@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+    <h2>Update cart</h2>
+{{ self }}
+<h6><a href="{% url 'cart_detail_view' object.id %}">back</a></h6>
+
+      <form class="" action="" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}
+      <input type="submit" name="" value="Update">
+
+      </form>
+
+
+{% endblock %}
