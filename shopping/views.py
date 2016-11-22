@@ -155,6 +155,9 @@ class CartUpdateView(UpdateView):
 
     permission_classes = (IsAuthenticated, )
 
+    def get_object(self):
+        return Cart.objects.filter(user=self.request.user).latest('created_time')
+
 
 class CartDetailView(DetailView):
     model = Cart
