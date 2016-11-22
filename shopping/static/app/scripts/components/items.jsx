@@ -15,21 +15,22 @@ var Order = React.createClass({
   //    console.log('CART', cart);
   //    // var cart = this.props.cart['items'];
   // },
-  render: function(cart){
+  render: function(){
     var cart = this.props.cart.attributes;
-    // console.log('RENDER', cart)
-    // var order = this.props.cart.items.map(function(item){
-    //   return (
-    //     <li key={item.id}>
-    //       {item.get('name')}::{item.get('price')}
-    //     </li>
-    //   );
-    // });
+    console.log('RENDER', cart)
+    var order = this.props.cart.get('items').map(function(item){
+      return (
+        <li key={item.id}>
+          {item.get('name')}::{item.get('price')}
+        </li>
+      );
+    });
 
     return (
       <div className="col-md-4">
         <h2 className="orderHeading">Cart:</h2>
         <ul>
+          {order}
         </ul>
         <div>
           <button className="btn btn-warning">Place Order</button>
@@ -40,7 +41,6 @@ var Order = React.createClass({
 });
 
 
-        // {order}
 
     // var RandomPrice= React.createClass({
     //   var price: function(){
@@ -55,6 +55,9 @@ var Order = React.createClass({
     // });
 
 var FoodItem = React.createClass({
+  randomPrice: function(){
+    Math.floor(Math.random() * 10) + 1;
+  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
@@ -100,6 +103,7 @@ var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
+    // var latestCart = new CartItemLatest();
 
     return {
       foodCollection: foodCollection,
@@ -128,16 +132,19 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      cart.getItemsX().then(function(result){
-        // console.log('items', result);
+      console.log(cart);
+      // cart.getItemsX().then(function(result){
+      //   console.log('items', cart);
         self.setState({cart: cart});
-      })
+      // })
       // console.log('response', cart)
       // var cart = response[0]['items'];
       // console.log('RESPONSE', response)
     });
   },
   addToOrder: function(item){
+
+    // var myObj = item.cart.toJSON();
     var cart = this.state.cart;
     // console.log('item',item);
     console.log('cart',cart);
@@ -145,17 +152,16 @@ var FoodItemContainer = React.createClass({
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    cart.save(item);
+    cart.get('items').add(item);
+    cart.save();
 
     // this.setState({cart: cart});
   },
-  // submit: function(){
-  //
-  // },
   render: function(){
     var self = this;
     var foodCollection = this.state.foodCollection;
     // var cart = this.state.cart;
+    // console.log('CART', cart);
 
     return (
       <TemplateContainer>

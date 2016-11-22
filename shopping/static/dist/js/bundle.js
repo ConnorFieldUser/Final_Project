@@ -237,21 +237,22 @@ var Order = React.createClass({displayName: "Order",
   //    console.log('CART', cart);
   //    // var cart = this.props.cart['items'];
   // },
-  render: function(cart){
+  render: function(){
     var cart = this.props.cart.attributes;
-    // console.log('RENDER', cart)
-    // var order = this.props.cart.items.map(function(item){
-    //   return (
-    //     <li key={item.id}>
-    //       {item.get('name')}::{item.get('price')}
-    //     </li>
-    //   );
-    // });
+    console.log('RENDER', cart)
+    var order = this.props.cart.get('items').map(function(item){
+      return (
+        React.createElement("li", {key: item.id}, 
+          item.get('name'), "::", item.get('price')
+        )
+      );
+    });
 
     return (
       React.createElement("div", {className: "col-md-4"}, 
         React.createElement("h2", {className: "orderHeading"}, "Cart:"), 
-        React.createElement("ul", null
+        React.createElement("ul", null, 
+          order
         ), 
         React.createElement("div", null, 
           React.createElement("button", {className: "btn btn-warning"}, "Place Order")
@@ -262,7 +263,6 @@ var Order = React.createClass({displayName: "Order",
 });
 
 
-        // {order}
 
     // var RandomPrice= React.createClass({
     //   var price: function(){
@@ -277,6 +277,9 @@ var Order = React.createClass({displayName: "Order",
     // });
 
 var FoodItem = React.createClass({displayName: "FoodItem",
+  randomPrice: function(){
+    Math.floor(Math.random() * 10) + 1;
+  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
@@ -322,6 +325,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
+    // var latestCart = new CartItemLatest();
 
     return {
       foodCollection: foodCollection,
@@ -350,16 +354,19 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      cart.getItemsX().then(function(result){
-        // console.log('items', result);
+      console.log(cart);
+      // cart.getItemsX().then(function(result){
+      //   console.log('items', cart);
         self.setState({cart: cart});
-      })
+      // })
       // console.log('response', cart)
       // var cart = response[0]['items'];
       // console.log('RESPONSE', response)
     });
   },
   addToOrder: function(item){
+
+    // var myObj = item.cart.toJSON();
     var cart = this.state.cart;
     // console.log('item',item);
     console.log('cart',cart);
@@ -367,17 +374,16 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    cart.save(item);
+    cart.get('items').add(item);
+    cart.save();
 
     // this.setState({cart: cart});
   },
-  // submit: function(){
-  //
-  // },
   render: function(){
     var self = this;
     var foodCollection = this.state.foodCollection;
     // var cart = this.state.cart;
+    // console.log('CART', cart);
 
     return (
       React.createElement(TemplateContainer, null, 
@@ -779,29 +785,40 @@ var CartItemCollection = Backbone.Collection.extend({
   url: 'api/cartitems/'
 });
 
+
+
 var Cart = Backbone.Model.extend({
-  urlRoot: 'api/carts/',
+  idAttribute: 'id',
+  url: function(){
+    return 'api/carts/latest/'
+  },
+  // url: function(){
+  //   return 'api/carts/la'
+  // },
   defaults: {
     items: new CartItemCollection()
   },
   save: function(key, val, options){
-    this.unset('items');
-
+    // this.unset('items');
+    this.set('items', this.get('items').toJSON());
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
-  getItemsX: function() {
-    var items = new CartItemCollection();
-    var self = this;
-    return items.fetch();
-
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
   },
-  getItems: function(){
-    var items = new CartItemCollection();
-    var self = this;
-    return items.fetch().then(function(){
-      self.set('items', items)
-    });
-  },
+  // getItemsX: function() {
+  //   var items = new CartItemLatest();
+  //   var self = this;
+  //   return items.fetch();
+  // },
+  // getItems: function(){
+  //   var items = new CartItemCollection();
+  //   var self = this;
+  //   return items.fetch().then(function(){
+  //     self.set('items', items)
+  //   });
+  // },
   initialize: function(){
     window.account = this;
     var token = localStorage.getItem('token');

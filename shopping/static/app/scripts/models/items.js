@@ -49,29 +49,40 @@ var CartItemCollection = Backbone.Collection.extend({
   url: 'api/cartitems/'
 });
 
+
+
 var Cart = Backbone.Model.extend({
-  urlRoot: 'api/carts/',
+  idAttribute: 'id',
+  url: function(){
+    return 'api/carts/latest/'
+  },
+  // url: function(){
+  //   return 'api/carts/la'
+  // },
   defaults: {
     items: new CartItemCollection()
   },
   save: function(key, val, options){
-    this.unset('items');
-
+    // this.unset('items');
+    this.set('items', this.get('items').toJSON());
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
-  getItemsX: function() {
-    var items = new CartItemCollection();
-    var self = this;
-    return items.fetch();
-
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
   },
-  getItems: function(){
-    var items = new CartItemCollection();
-    var self = this;
-    return items.fetch().then(function(){
-      self.set('items', items)
-    });
-  },
+  // getItemsX: function() {
+  //   var items = new CartItemLatest();
+  //   var self = this;
+  //   return items.fetch();
+  // },
+  // getItems: function(){
+  //   var items = new CartItemCollection();
+  //   var self = this;
+  //   return items.fetch().then(function(){
+  //     self.set('items', items)
+  //   });
+  // },
   initialize: function(){
     window.account = this;
     var token = localStorage.getItem('token');
