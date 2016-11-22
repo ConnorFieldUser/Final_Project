@@ -59,6 +59,12 @@ var Cart = Backbone.Model.extend({
 
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
+  getItemsX: function() {
+    var items = new CartItemCollection();
+    var self = this;
+    return items.fetch();
+
+  },
   getItems: function(){
     var items = new CartItemCollection();
     var self = this;

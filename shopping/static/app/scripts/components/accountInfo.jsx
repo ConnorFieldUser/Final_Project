@@ -6,6 +6,7 @@ var django = require('../djangoUtils');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 // var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
+var File = require('../models/user.js').File;
 
 
 var AccountForm = React.createClass({
@@ -31,9 +32,17 @@ var AccountForm = React.createClass({
     this.props.saveInfo(this.state);
   },
   handlePicture: function(e){
-     var attachedFile = e.target.files[0];
-     console.log(attachedFile);
-     this.setState({image: attachedFile});
+    console.log('file', e.target.files[0])
+    var file = this.props.file;
+    var picture = e.target.files[0];
+    //  var attachedFile = e.target.files[0];
+    //  console.log(attachedFile);
+    // //  this.setState({image: attachedFile});
+     file.set('name', picture.name);
+     file.set('data', picture);
+     file.save().done(function(){
+       console.log(file);
+     });
    },
   render: function(){
     var account = this.state.account;
@@ -93,7 +102,8 @@ var AccountForm = React.createClass({
 var AccountInfoContainer = React.createClass({
   getInitialState: function(){
     return {
-      account: new Account()
+      account: new Account(),
+      file: new File()
     };
   },
   componentWillMount: function(){
@@ -164,7 +174,7 @@ var AccountInfoContainer = React.createClass({
     return (
       <TemplateContainer>
         <h1 className="accountHeader">Account Information</h1>
-          <AccountForm account={this.state.account} saveInfo={this.saveInfo}/>
+          <AccountForm account={this.state.account} saveInfo={this.saveInfo} file={this.state.file}/>
       </TemplateContainer>
     )
   }

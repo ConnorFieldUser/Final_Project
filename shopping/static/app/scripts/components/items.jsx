@@ -8,16 +8,16 @@ var $ = require('jquery');
 
 
 var Order = React.createClass({
-  componentWillReceiveProps: function(nextProps){
-    var cart = nextProps.cart['attributes'][0];
-  //   // console.log(nextProps.cart.items);
-    this.setState({cart: cart});
-     console.log('CART', cart);
-  //   // var cart = this.props.cart['items'];
-  },
+  // componentWillReceiveProps: function(nextProps){
+  //   var cart = nextProps.cart['attributes'][0];
+  //    // console.log(nextProps.cart.items);
+  //   this.setState({cart: cart});
+  //    console.log('CART', cart);
+  //    // var cart = this.props.cart['items'];
+  // },
   render: function(cart){
-    var cart = this.props.cart;
-    // console.log('RENDER', cart);
+    var cart = this.props.cart.attributes;
+    console.log('RENDER', cart)
     // var order = this.props.cart.items.map(function(item){
     //   return (
     //     <li key={item.id}>
@@ -41,6 +41,18 @@ var Order = React.createClass({
 
 
         // {order}
+
+    // var RandomPrice= React.createClass({
+    //   var price: function(){
+    //     function getRandomInt(2, 10.5) {
+    //       return Math.floor(Math.random() * (10.5-2)) + min;
+    //     }
+    //   },
+    //   render: function(){
+    //     <div className="randomPrice">{price}</div>
+    //   }
+    //
+    // });
 
 var FoodItem = React.createClass({
   render: function(){
@@ -80,6 +92,7 @@ var FoodItem = React.createClass({
   }
 });
 
+// <RandomPrice />
 
 
 
@@ -115,7 +128,8 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      cart.getItems().then(function(){
+      cart.getItemsX().then(function(result){
+        console.log('items', result);
         self.setState({cart: cart});
       })
       console.log('response', cart)
@@ -141,7 +155,7 @@ var FoodItemContainer = React.createClass({
   render: function(){
     var self = this;
     var foodCollection = this.state.foodCollection;
-    var cart = this.state.cart;
+    // var cart = this.state.cart;
 
     return (
       <TemplateContainer>

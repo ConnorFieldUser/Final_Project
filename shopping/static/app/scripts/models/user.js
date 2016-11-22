@@ -77,9 +77,43 @@ var Account = Backbone.Model.extend({
   },
 });
 
+
+var File = Backbone.Model.extend({
+  defaults: {
+    name: 'default.jpg'
+  },
+  urlRoot: function(){
+    var url = 'api/account/profile/'
+    return url + encodeURIComponent(this.get('name'));
+  },
+  save: function(attributes, options){
+    options = options || {};
+    attributes = attributes || {};
+
+    this.set(attributes);
+
+    var image= this.get('data');
+
+    // if(!image){
+    //   throw: 'Hey! You need to attach a file';
+    // }
+
+    options.data= image;
+    options.beforeSend = function(request) {
+      request.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
+      request.setRequestHeader("Content-Type", image.type);
+    };
+    options.processData = false;
+    options.contentType = false;
+
+    return Backbone.Model.prototype.save.call(this, attributes, options);
+  },
+});
+
 // var AccountCollection = Backbone.Collection.ex
 
 module.exports = {
   User: User,
-  Account: Account
+  Account: Account,
+  File: File
 };
