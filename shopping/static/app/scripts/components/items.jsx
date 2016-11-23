@@ -93,13 +93,13 @@ var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
-    var newcart = new models.NewCart();
+    // var newcart = new models.NewCart();
     // var latestCart = new CartItemLatest();
 
     return {
       foodCollection: foodCollection,
       cart: cart,
-      newcart: newcart
+      // newcart: newcart
     }
   },
   componentWillMount: function(){
@@ -111,12 +111,10 @@ var FoodItemContainer = React.createClass({
   //   // this.fetchOrder();
   // },
   fetchItems: function(){
-    var foodCollection=this.state.foodCollection;
     var self = this;
+    var foodCollection=this.state.foodCollection;
     foodCollection.fetch().then(function(response){
-      // var products = response['Product'];
-      // console.log('response', products);
-      // self.setState({foodCollection: products});
+
       self.setState({foodCollection: response})
     });
   },
@@ -124,35 +122,30 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      // console.log('cart', cart);
       // cart.getItemsX().then(function(result){
       //   console.log('items', cart);
         self.setState({cart: cart});
-      // })
-      // console.log('response', cart)
-      // var cart = response[0]['items'];
-      // console.log('RESPONSE', response)
     });
   },
   addToOrder: function(item){
 
     // var myObj = item.cart.toJSON();
-    var newcart = this.state.newcart;
+    var cart = this.state.cart;
     // console.log('item',item);
-    console.log('cart',newcart);
+    // console.log('cart',newcart);
     // console.log('ITEM', item);
     // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
 
-    var food = newcart.get('cart_items').add(item);
+    var food = cart.get('cart_items');
     console.log('item', item);
     console.log('food', food);
 
     // var user = cart.get('user');
 
-    newcart.save();
+    // cart.create();
     console.log('saved');
 
     // {url:'api/carts/latest/add_item/'}
@@ -170,9 +163,6 @@ var FoodItemContainer = React.createClass({
   },
   render: function(){
     var self = this;
-    var foodCollection = this.state.foodCollection;
-    // var cart = this.state.cart;
-    // console.log('CART', cart);
 
     return (
       <TemplateContainer>

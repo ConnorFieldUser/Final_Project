@@ -50,44 +50,13 @@ var CartItemModel = Backbone.Model.extend({
 
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
-  url: 'api/cartitems/'
+  url: 'api/carts/latest/add_item/'
 });
 
 var Cart = Backbone.Model.extend({
   idAttribute: 'id',
   url: function(){
     return 'api/carts/latest'
-  },
-  defaults: {
-    cart_items: new CartItemCollection()
-  },
-  // save: function(key, val, options){
-  //   this.set('items', this.get('items').toJSON());
-  //   this.set('user', localStorage.getItem('id'));
-  //   return Backbone.Model.prototype.save.apply(this, arguments);
-  // },
-  parse: function(data){
-    data.items = new CartItemCollection(data.items);
-    return data;
-  },
-  initialize: function(){
-    window.account = this;
-    var token = localStorage.getItem('token');
-    var self = this;
-    $.ajaxSetup({
-      beforeSend: function(xhr, settings){
-        xhr.setRequestHeader("Authorization", 'Token ' + token);
-        django.setCsrfToken.call(this, xhr, settings);
-      }
-    });
-  }
-});
-
-
-var NewCart = Backbone.Model.extend({
-  idAttribute: 'id',
-  url: function(){
-    return 'api/carts/latest/add_item/'
   },
   defaults: {
     cart_items: new CartItemCollection()
@@ -101,18 +70,6 @@ var NewCart = Backbone.Model.extend({
     data.items = new CartItemCollection(data.items);
     return data;
   },
-  // getItemsX: function() {
-  //   var items = new CartItemLatest();
-  //   var self = this;
-  //   return items.fetch();
-  // },
-  // getItems: function(){
-  //   var items = new CartItemCollection();
-  //   var self = this;
-  //   return items.fetch().then(function(){
-  //     self.set('items', items)
-  //   });
-  // },
   initialize: function(){
     window.account = this;
     var token = localStorage.getItem('token');
@@ -127,6 +84,49 @@ var NewCart = Backbone.Model.extend({
 });
 
 
+// var NewCart = Backbone.Model.extend({
+//   idAttribute: 'id',
+//   url: function(){
+//     return 'api/carts/latest/add_item/'
+//   },
+//   defaults: {
+//     cart_items: new CartItemCollection()
+//   },
+//   save: function(key, val, options){
+//     this.set('cart_items', this.get('cart_items').toJSON());
+//     // this.set('user', localStorage.getItem('id'));
+//     return Backbone.Model.prototype.save.apply(this, arguments);
+//   },
+//   parse: function(data){
+//     data.items = new CartItemCollection(data.items);
+//     return data;
+//   },
+//   // getItemsX: function() {
+//   //   var items = new CartItemLatest();
+//   //   var self = this;
+//   //   return items.fetch();
+//   // },
+//   // getItems: function(){
+//   //   var items = new CartItemCollection();
+//   //   var self = this;
+//   //   return items.fetch().then(function(){
+//   //     self.set('items', items)
+//   //   });
+//   // },
+//   initialize: function(){
+//     window.account = this;
+//     var token = localStorage.getItem('token');
+//     var self = this;
+//     $.ajaxSetup({
+//       beforeSend: function(xhr, settings){
+//         xhr.setRequestHeader("Authorization", 'Token ' + token);
+//         django.setCsrfToken.call(this, xhr, settings);
+//       }
+//     });
+//   }
+// });
+
+
 
 module.exports = {
   FoodItem: FoodItem,
@@ -134,5 +134,5 @@ module.exports = {
   Cart: Cart,
   CartItemModel: CartItemModel,
   CartItemCollection: CartItemCollection,
-  NewCart: NewCart
+  // NewCart: NewCart
 };
