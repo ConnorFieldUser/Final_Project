@@ -18,7 +18,6 @@ var HomeContainer = React.createClass({
             </div>
           </TemplateContainer>
         // </div>
-      // </div>
     )
   }
 });

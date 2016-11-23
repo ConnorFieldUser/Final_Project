@@ -6,7 +6,6 @@ var $ = require('jquery');
 var django = require('../djangoUtils');
 
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
-// var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
 var File = require('../models/user.js').File;
 
@@ -34,21 +33,14 @@ var AccountForm = React.createClass({displayName: "AccountForm",
     this.props.saveInfo(this.state);
   },
   handlePicture: function(e){
-    console.log('file', e.target.files[0])
-    var file = this.props.file;
+    // var file = this.props.file;
     var picture = e.target.files[0];
-    //  var attachedFile = e.target.files[0];
-    //  console.log(attachedFile);
-    // //  this.setState({image: attachedFile});
-     file.set('name', picture.name);
-     file.set('data', picture);
-     file.save().done(function(){
-       console.log(file);
-     });
+    this.state.account.set('image', picture);
+    this.setState({account: this.state.account});
+
    },
   render: function(){
     var account = this.state.account;
-    // console.log('account', account.get('city'));
     return (
 
     React.createElement("form", {onSubmit: this.handleSubmit, className: "accountForm well", encType: "multipart/form-data", "data-ajax": "false"}, 
@@ -105,7 +97,6 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   getInitialState: function(){
     return {
       account: new Account(),
-      file: new File()
     };
   },
   componentWillMount: function(){
@@ -135,42 +126,11 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   },
   saveInfo: function (userData){
 
-    // console.log('userData', userData);
-    var myObj = userData.account.toJSON();
-    console.log('JOEL', userData.image);
     var account = this.state.account;
-    account.set({"image": userData.image})
-    console.log(account);
-    // account.unset('id');
-    // delete account.id;
-    // console.log(myObj);
+    // account.set({"image": userData.image})
+    console.log(account.get('image'));
+    account.save(null, {emulateHTTP: true});
 
-
-    //
-    // $.ajax({
-    //   url: 'api/account/profile/',
-    //   type: 'PUT',
-    //   data: myObj,
-    //   success: function(data){
-    //     console.log(data)
-    //   }
-    // });
-
-    // $.put('api/account/profile/', myObj, function(result){
-    //   console.log(result)
-    // });
-
-
-    // console.log(account);
-    // console.log('id', account.id);
-    // console.log('account', account);
-    account.save();
-    // account.save({url: account.urlRoot});
-
-    // account.save().then(() => {
-        // console.log("info saved");
-        // Backbone.history.navigate('items/', {trigger:true})
-    // });
   },
   render: function(){
     return (
@@ -209,7 +169,6 @@ var HomeContainer = React.createClass({displayName: "HomeContainer",
             )
           )
         // </div>
-      // </div>
     )
   }
 });
@@ -239,7 +198,7 @@ var Order = React.createClass({displayName: "Order",
   // },
   render: function(){
     var cart = this.props.cart.attributes;
-    console.log('RENDER', cart)
+    // console.log('RENDER', cart)
     var order = this.props.cart.get('items').map(function(item){
       return (
         React.createElement("li", {key: item.id}, 
@@ -262,24 +221,7 @@ var Order = React.createClass({displayName: "Order",
   }
 });
 
-
-
-    // var RandomPrice= React.createClass({
-    //   var price: function(){
-    //     function getRandomInt(2, 10.5) {
-    //       return Math.floor(Math.random() * (10.5-2)) + min;
-    //     }
-    //   },
-    //   render: function(){
-    //     <div className="randomPrice">{price}</div>
-    //   }
-    //
-    // });
-
 var FoodItem = React.createClass({displayName: "FoodItem",
-  randomPrice: function(){
-    Math.floor(Math.random() * 10) + 1;
-  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
@@ -295,6 +237,11 @@ var FoodItem = React.createClass({displayName: "FoodItem",
             )
         )
         );
+
+        // <button onClick={self.randomPrice}>Click</button>
+        // <div className="randomPrice">{self.randomPrice}</div>
+
+
       // return (
       //   <li className="foodListItem col-md-4" key={item.ItemID}>
       //     <img src={item.ItemImage} />
@@ -318,7 +265,6 @@ var FoodItem = React.createClass({displayName: "FoodItem",
 });
 
 // <RandomPrice />
-
 
 
 var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
@@ -370,12 +316,25 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     var cart = this.state.cart;
     // console.log('item',item);
     console.log('cart',cart);
+    console.log('ITEM', item);
     // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    cart.get('items').add(item);
-    cart.save();
+    var item = cart.get('items').add(item);
+    var user = cart.get('user');
+    cart.save({url: 'api/carts/latest/add_item/'});
+      // cart.save(null, {emulateHTTP: true});
+    // cart.save(null, {'patch': true});
+    // PATCH {"items": [item], "user": 2}
+    // $.ajax({
+    //   url: 'api/carts/latest/',
+    //   type: 'PUT',
+    //   data: {"user": user, "items": [cart.get('items')]},
+    //   success: function(result){
+    //     console.log('DONE')
+    //   }
+    // });
 
     // this.setState({cart: cart});
   },
@@ -756,6 +715,10 @@ var FoodItem = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+  },
+  randomPrice: function(){
+    var price = Math.floor(Math.random() * 16) + 5;
+    console.log('PRICE', price);
   }
 });
 
@@ -792,15 +755,13 @@ var Cart = Backbone.Model.extend({
   url: function(){
     return 'api/carts/latest/'
   },
-  // url: function(){
-  //   return 'api/carts/la'
-  // },
   defaults: {
     items: new CartItemCollection()
   },
   save: function(key, val, options){
     // this.unset('items');
     this.set('items', this.get('items').toJSON());
+    this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
   parse: function(data){
@@ -947,6 +908,7 @@ var File = Backbone.Model.extend({
     options.data= image;
     options.beforeSend = function(request) {
       request.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
+      django.setCsrfToken.call(this, xhr, settings);
       request.setRequestHeader("Content-Type", image.type);
     };
     options.processData = false;

@@ -4,7 +4,6 @@ var $ = require('jquery');
 var django = require('../djangoUtils');
 
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
-// var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
 var File = require('../models/user.js').File;
 
@@ -32,21 +31,14 @@ var AccountForm = React.createClass({
     this.props.saveInfo(this.state);
   },
   handlePicture: function(e){
-    console.log('file', e.target.files[0])
-    var file = this.props.file;
+    // var file = this.props.file;
     var picture = e.target.files[0];
-    //  var attachedFile = e.target.files[0];
-    //  console.log(attachedFile);
-    // //  this.setState({image: attachedFile});
-     file.set('name', picture.name);
-     file.set('data', picture);
-     file.save().done(function(){
-       console.log(file);
-     });
+    this.state.account.set('image', picture);
+    this.setState({account: this.state.account});
+
    },
   render: function(){
     var account = this.state.account;
-    // console.log('account', account.get('city'));
     return (
 
     <form onSubmit={this.handleSubmit} className="accountForm well" encType="multipart/form-data" data-ajax='false'>
@@ -103,7 +95,6 @@ var AccountInfoContainer = React.createClass({
   getInitialState: function(){
     return {
       account: new Account(),
-      file: new File()
     };
   },
   componentWillMount: function(){
@@ -133,42 +124,11 @@ var AccountInfoContainer = React.createClass({
   },
   saveInfo: function (userData){
 
-    // console.log('userData', userData);
-    var myObj = userData.account.toJSON();
-    console.log('JOEL', userData.image);
     var account = this.state.account;
-    account.set({"image": userData.image})
-    console.log(account);
-    // account.unset('id');
-    // delete account.id;
-    // console.log(myObj);
+    // account.set({"image": userData.image})
+    console.log(account.get('image'));
+    account.save(null, {emulateHTTP: true});
 
-
-    //
-    // $.ajax({
-    //   url: 'api/account/profile/',
-    //   type: 'PUT',
-    //   data: myObj,
-    //   success: function(data){
-    //     console.log(data)
-    //   }
-    // });
-
-    // $.put('api/account/profile/', myObj, function(result){
-    //   console.log(result)
-    // });
-
-
-    // console.log(account);
-    // console.log('id', account.id);
-    // console.log('account', account);
-    account.save();
-    // account.save({url: account.urlRoot});
-
-    // account.save().then(() => {
-        // console.log("info saved");
-        // Backbone.history.navigate('items/', {trigger:true})
-    // });
   },
   render: function(){
     return (

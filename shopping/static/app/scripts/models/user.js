@@ -101,6 +101,7 @@ var File = Backbone.Model.extend({
     options.data= image;
     options.beforeSend = function(request) {
       request.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
+      django.setCsrfToken.call(this, xhr, settings);
       request.setRequestHeader("Content-Type", image.type);
     };
     options.processData = false;

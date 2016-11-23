@@ -20,6 +20,10 @@ var FoodItem = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+  },
+  randomPrice: function(){
+    var price = Math.floor(Math.random() * 16) + 5;
+    console.log('PRICE', price);
   }
 });
 
@@ -56,15 +60,13 @@ var Cart = Backbone.Model.extend({
   url: function(){
     return 'api/carts/latest/'
   },
-  // url: function(){
-  //   return 'api/carts/la'
-  // },
   defaults: {
     items: new CartItemCollection()
   },
   save: function(key, val, options){
     // this.unset('items');
     this.set('items', this.get('items').toJSON());
+    this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
   parse: function(data){

@@ -17,7 +17,7 @@ var Order = React.createClass({
   // },
   render: function(){
     var cart = this.props.cart.attributes;
-    console.log('RENDER', cart)
+    // console.log('RENDER', cart)
     var order = this.props.cart.get('items').map(function(item){
       return (
         <li key={item.id}>
@@ -40,24 +40,7 @@ var Order = React.createClass({
   }
 });
 
-
-
-    // var RandomPrice= React.createClass({
-    //   var price: function(){
-    //     function getRandomInt(2, 10.5) {
-    //       return Math.floor(Math.random() * (10.5-2)) + min;
-    //     }
-    //   },
-    //   render: function(){
-    //     <div className="randomPrice">{price}</div>
-    //   }
-    //
-    // });
-
 var FoodItem = React.createClass({
-  randomPrice: function(){
-    Math.floor(Math.random() * 10) + 1;
-  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
@@ -73,6 +56,11 @@ var FoodItem = React.createClass({
             </div>
         </li>
         );
+
+        // <button onClick={self.randomPrice}>Click</button>
+        // <div className="randomPrice">{self.randomPrice}</div>
+
+
       // return (
       //   <li className="foodListItem col-md-4" key={item.ItemID}>
       //     <img src={item.ItemImage} />
@@ -96,7 +84,6 @@ var FoodItem = React.createClass({
 });
 
 // <RandomPrice />
-
 
 
 var FoodItemContainer = React.createClass({
@@ -148,12 +135,25 @@ var FoodItemContainer = React.createClass({
     var cart = this.state.cart;
     // console.log('item',item);
     console.log('cart',cart);
+    console.log('ITEM', item);
     // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    cart.get('items').add(item);
-    cart.save();
+    var item = cart.get('items').add(item);
+    var user = cart.get('user');
+    cart.save({url: 'api/carts/latest/add_item/'});
+      // cart.save(null, {emulateHTTP: true});
+    // cart.save(null, {'patch': true});
+    // PATCH {"items": [item], "user": 2}
+    // $.ajax({
+    //   url: 'api/carts/latest/',
+    //   type: 'PUT',
+    //   data: {"user": user, "items": [cart.get('items')]},
+    //   success: function(result){
+    //     console.log('DONE')
+    //   }
+    // });
 
     // this.setState({cart: cart});
   },
