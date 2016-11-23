@@ -69,5 +69,4 @@ class CartSerializer(serializers.ModelSerializer):
         return cart
 
 
-
 # class (notemodelserializer)

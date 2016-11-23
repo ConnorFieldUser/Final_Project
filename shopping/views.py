@@ -185,7 +185,7 @@ class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
 
 class CartLatestAPIView(APIView):
 
-    # serializer_class = CartSerializer
+    serializer_class = CartSerializer
 
     def post(self, request, format=None):
         # cart = Cart.objects.get(user=request.POST['user']).latest('created_time')
@@ -202,10 +202,26 @@ class CartLatestAPIView(APIView):
         # new_items = cart.items.add(request.POST.get["item"])
         # new_list = cart.items.add(request.POST.get("text"))
         # return Response(new_items)
-        return Response()
+        # io = StringIO(i1)
+        # return Response("what now")
+        # return Response(json.load(io))
+        # return Response(serializer.data)
+        # return self.retrieve(request, *args, **kwargs)
+        # return self.update(request, *args, **kwargs)
+        # queryset = self.get_queryset()
+        # serializer = CartSerializer(i1)
+        # return Response(serializer.data)
+        # snippet = i1
+        # serializer = CartSerializer(snippet)
+        # return Response(serializer.data)
+        # io = StringIO(i1)
+        # return Response(json.load(io))
+        # serializer = CartSerializer(i1)
+        # return Response(request.POST)
+        return Response(request.data)
 
 
-# class EmailView(FormView):
+# class E = mailView(FormView):
 #     form_class = EmailForm
 #     success_url = reverse_lazy("account_list_view")
 #
