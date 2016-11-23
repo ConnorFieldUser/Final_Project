@@ -7,8 +7,10 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    item__name: '',
-    quantity: ''
+    name: '',
+    quantity: 1,
+    id: '',
+    price: ''
   },
   initialize: function(){
     window.account = this;
@@ -27,12 +29,20 @@ var FoodItem = Backbone.Model.extend({
   }
 });
 
+
+
+
+
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   url: 'api/items/'
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
+
+
+
+
 
 var CartItemModel = Backbone.Model.extend({
   initialize: function(){
@@ -48,21 +58,27 @@ var CartItemModel = Backbone.Model.extend({
   }
 });
 
+
+
+
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
   url: 'api/carts/latest/add_item/'
 });
 
+
+
+
 var Cart = Backbone.Model.extend({
   idAttribute: 'id',
   url: function(){
-    return 'api/carts/latest'
+    return 'api/carts/latest/'
   },
   defaults: {
-    cart_items: new CartItemCollection()
+    items: new CartItemCollection(),
   },
   save: function(key, val, options){
-    this.set('cart_items', this.get('cart_items').toJSON());
+    this.set('items', this.get('items').toJSON());
     // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
@@ -82,6 +98,7 @@ var Cart = Backbone.Model.extend({
     });
   }
 });
+
 
 
 // var NewCart = Backbone.Model.extend({

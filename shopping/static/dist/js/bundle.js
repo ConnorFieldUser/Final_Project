@@ -201,7 +201,7 @@ var Order = React.createClass({displayName: "Order",
     // console.log('RENDER', cart)
     // console.log('CART', cart.cart_items);
 
-    var order = this.props.cart.get('cart_items').map(function(item){
+    var order = this.props.cart.get('items').map(function(item){
       return (
         React.createElement("li", {key: item.id}, 
           item.item__name, "::", item.quantity
@@ -313,22 +313,26 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     // var myObj = item.cart.toJSON();
     var cart = this.state.cart;
     // console.log('item',item);
-    // console.log('cart',newcart);
     // console.log('ITEM', item);
-    // console.log('item', item);
-
-    // var cartData = {items: [item], user: 2}
+    console.log('price', item.price)
+    console.log('name', item.name)
+    console.log('id', item.id)
+    // var cartData = {item_name : item.name, quantity : 1, item : item.id, id : ''}
     // console.log('cartData', cartData);
 
-    var food = cart.get('cart_items');
-    console.log('item', item);
-    console.log('food', food);
+
+    // cart.get('items').add({item_name : item.name, quantity : 1, item : item.id, id : ''});
+    cart.get('items').add(item);              //HAVE TO FIGURE OUT WHY THIS ISN"T ADDING TO COLLECTION
+    console.log('newCart', cart);
+    // var food = cart.get('cart_items').add(cartData);
+    // console.log('item', item);
+    // console.log('food', food);
 
     // var user = cart.get('user');
 
-    // cart.create();
-    console.log('saved');
-
+    // cart.save(now);
+    // console.log('saved');
+//
     // {url:'api/carts/latest/add_item/'}
       // cart.save(null, {emulateHTTP: true});
     // $.ajax({
@@ -703,8 +707,10 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    item__name: '',
-    quantity: ''
+    name: '',
+    quantity: 1,
+    id: '',
+    price: ''
   },
   initialize: function(){
     window.account = this;
@@ -723,12 +729,20 @@ var FoodItem = Backbone.Model.extend({
   }
 });
 
+
+
+
+
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   url: 'api/items/'
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
 });
+
+
+
+
 
 var CartItemModel = Backbone.Model.extend({
   initialize: function(){
@@ -744,21 +758,27 @@ var CartItemModel = Backbone.Model.extend({
   }
 });
 
+
+
+
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
   url: 'api/carts/latest/add_item/'
 });
 
+
+
+
 var Cart = Backbone.Model.extend({
   idAttribute: 'id',
   url: function(){
-    return 'api/carts/latest'
+    return 'api/carts/latest/'
   },
   defaults: {
-    cart_items: new CartItemCollection()
+    items: new CartItemCollection(),
   },
   save: function(key, val, options){
-    this.set('cart_items', this.get('cart_items').toJSON());
+    this.set('items', this.get('items').toJSON());
     // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
@@ -778,6 +798,7 @@ var Cart = Backbone.Model.extend({
     });
   }
 });
+
 
 
 // var NewCart = Backbone.Model.extend({
