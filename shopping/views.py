@@ -3,22 +3,25 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
+from django.http import HttpResponseRedirect
+from django.core.exceptions import ObjectDoesNotExist
+from django.urls import reverse_lazy
 
 
 from shopping.models import Account, Cart, Item, CartItem
+
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer, CartItemSerializer
-
 from rest_framework.permissions import IsAuthenticated
+
 
 import requests
 from xmljson import parker as bf
 from json import dumps
 from xml.etree.ElementTree import fromstring
 
-from django.urls import reverse_lazy
 
 from io import StringIO
 import json
@@ -98,8 +101,13 @@ def get_response():
 class ApiTestView(APIView):
     # template_name = 'test.html'
 
-    def get(self, request):
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName=Parsley".format(api_key))
+    # def post(self, request):
+    #     search_text = request.POST.get("search_text")
+    #     return search_text
+
+    def post(self, request):
+        search_text = request.POST.get("search_text")
+        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
         xml_result = r.text
         xml_to_json = dumps(bf.data(fromstring(xml_result)))
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
@@ -163,13 +171,38 @@ class CartDetailView(DetailView):
     model = Cart
 
 
-class CartLatestDetailViewAPIView(RetrieveUpdateAPIView):
+class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
 
     serializer_class = CartSerializer
     permission_classes = (IsAuthenticated, )
 
+    def perform_update(self, serializer):
+        pass
+
     def get_object(self):
         return Cart.objects.filter(user=self.request.user).latest('created_time')
+
+
+class CartLatestAPIView(APIView):
+
+    # serializer_class = CartSerializer
+
+    def post(self, request, format=None):
+        # cart = Cart.objects.get(user=request.POST['user']).latest('created_time')
+        cart = Cart.objects.filter(user=request.user).latest('created_time')
+        item = request.data["id"]
+        quantity = request.data["quantity"]
+        print(item)
+        print(cart)
+        i1 = CartItem(cart=cart, item_id=item,
+                      quantity=quantity)
+        # i1 = CartItem()
+        i1.save()
+        # usernames = [user.username for user in User.objects.all()]
+        # new_items = cart.items.add(request.POST.get["item"])
+        # new_list = cart.items.add(request.POST.get("text"))
+        # return Response(new_items)
+        return Response()
 
 
 # class EmailView(FormView):

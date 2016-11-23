@@ -30,12 +30,22 @@ class ItemSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class CartItemSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = CartItem
+        fields = '__all__'
+
+
 class CartSerializer(serializers.ModelSerializer):
-    items = ItemSerializer(many=True)
+    cart_items = serializers.SerializerMethodField()
+
+    def get_cart_items(self, obj):
+        return obj.cartitem_set.all().values('id', 'item__name', 'item', 'quantity')
 
     class Meta:
         model = Cart
-        fields = ('items', 'user')
+        fields = ('id', 'cart_items')
 
     def update(self, instance, validated_data):
         print(validated_data)
@@ -58,18 +68,6 @@ class CartSerializer(serializers.ModelSerializer):
             cart_item.save()
         return cart
 
-
-class CartItemSerializer(serializers.ModelSerializer):
-
-    cart_id = serializers.ReadOnlyField(source='cart.id')
-    cart_user = serializers.StringRelatedField(source='cart.user')
-    item_id = serializers.ReadOnlyField(source='item.id')
-    item_name = serializers.ReadOnlyField(source='item.name')
-    item_price = serializers.ReadOnlyField(source='item.price')
-
-    class Meta:
-        model = CartItem
-        fields = ('cart_id', 'cart_user', 'item_id', 'item_name', 'item_price')
 
 
 # class (notemodelserializer)
