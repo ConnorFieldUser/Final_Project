@@ -7,8 +7,8 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    name: '',
-    price: ''
+    item__name: '',
+    quantity: ''
   },
   initialize: function(){
     window.account = this;
@@ -53,20 +53,48 @@ var CartItemCollection = Backbone.Collection.extend({
   url: 'api/cartitems/'
 });
 
-
-
 var Cart = Backbone.Model.extend({
   idAttribute: 'id',
   url: function(){
-    return 'api/carts/latest/'
+    return 'api/carts/latest'
   },
   defaults: {
-    items: new CartItemCollection()
+    cart_items: new CartItemCollection()
+  },
+  // save: function(key, val, options){
+  //   this.set('items', this.get('items').toJSON());
+  //   this.set('user', localStorage.getItem('id'));
+  //   return Backbone.Model.prototype.save.apply(this, arguments);
+  // },
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
+  },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
+});
+
+
+var NewCart = Backbone.Model.extend({
+  idAttribute: 'id',
+  url: function(){
+    return 'api/carts/latest/add_item/'
+  },
+  defaults: {
+    cart_items: new CartItemCollection()
   },
   save: function(key, val, options){
-    // this.unset('items');
-    this.set('items', this.get('items').toJSON());
-    this.set('user', localStorage.getItem('id'));
+    this.set('cart_items', this.get('cart_items').toJSON());
+    // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
   parse: function(data){
@@ -105,5 +133,6 @@ module.exports = {
   FoodItemCollection: FoodItemCollection,
   Cart: Cart,
   CartItemModel: CartItemModel,
-  CartItemCollection: CartItemCollection
+  CartItemCollection: CartItemCollection,
+  NewCart: NewCart
 };

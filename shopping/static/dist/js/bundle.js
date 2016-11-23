@@ -6,6 +6,7 @@ var $ = require('jquery');
 var django = require('../djangoUtils');
 
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
+// var User = require('../models/user.js').User;
 var Account = require('../models/user.js').Account;
 var File = require('../models/user.js').File;
 
@@ -33,14 +34,21 @@ var AccountForm = React.createClass({displayName: "AccountForm",
     this.props.saveInfo(this.state);
   },
   handlePicture: function(e){
-    // var file = this.props.file;
+    console.log('file', e.target.files[0])
+    var file = this.props.file;
     var picture = e.target.files[0];
-    this.state.account.set('image', picture);
-    this.setState({account: this.state.account});
-
+    //  var attachedFile = e.target.files[0];
+    //  console.log(attachedFile);
+    // //  this.setState({image: attachedFile});
+     file.set('name', picture.name);
+     file.set('data', picture);
+     file.save().done(function(){
+       console.log(file);
+     });
    },
   render: function(){
     var account = this.state.account;
+    // console.log('account', account.get('city'));
     return (
 
     React.createElement("form", {onSubmit: this.handleSubmit, className: "accountForm well", encType: "multipart/form-data", "data-ajax": "false"}, 
@@ -97,6 +105,7 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   getInitialState: function(){
     return {
       account: new Account(),
+      file: new File()
     };
   },
   componentWillMount: function(){
@@ -126,11 +135,42 @@ var AccountInfoContainer = React.createClass({displayName: "AccountInfoContainer
   },
   saveInfo: function (userData){
 
+    // console.log('userData', userData);
+    var myObj = userData.account.toJSON();
+    console.log('JOEL', userData.image);
     var account = this.state.account;
-    // account.set({"image": userData.image})
-    console.log(account.get('image'));
-    account.save(null, {emulateHTTP: true});
+    account.set({"image": userData.image})
+    console.log(account);
+    // account.unset('id');
+    // delete account.id;
+    // console.log(myObj);
 
+
+    //
+    // $.ajax({
+    //   url: 'api/account/profile/',
+    //   type: 'PUT',
+    //   data: myObj,
+    //   success: function(data){
+    //     console.log(data)
+    //   }
+    // });
+
+    // $.put('api/account/profile/', myObj, function(result){
+    //   console.log(result)
+    // });
+
+
+    // console.log(account);
+    // console.log('id', account.id);
+    // console.log('account', account);
+    account.save();
+    // account.save({url: account.urlRoot});
+
+    // account.save().then(() => {
+        // console.log("info saved");
+        // Backbone.history.navigate('items/', {trigger:true})
+    // });
   },
   render: function(){
     return (
@@ -169,6 +209,7 @@ var HomeContainer = React.createClass({displayName: "HomeContainer",
             )
           )
         // </div>
+      // </div>
     )
   }
 });
@@ -190,7 +231,7 @@ var $ = require('jquery');
 
 var Order = React.createClass({displayName: "Order",
   // componentWillReceiveProps: function(nextProps){
-  //   var cart = nextProps.cart['attributes'][0];
+    // var cart = nextProps.cart['attributes'][0];
   //    // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
   //    console.log('CART', cart);
@@ -199,10 +240,12 @@ var Order = React.createClass({displayName: "Order",
   render: function(){
     var cart = this.props.cart.attributes;
     // console.log('RENDER', cart)
-    var order = this.props.cart.get('items').map(function(item){
+    // console.log('CART', cart.cart_items);
+
+    var order = this.props.cart.get('cart_items').map(function(item){
       return (
         React.createElement("li", {key: item.id}, 
-          item.get('name'), "::", item.get('price')
+          item.item__name, "::", item.quantity
         )
       );
     });
@@ -220,6 +263,7 @@ var Order = React.createClass({displayName: "Order",
     )
   }
 });
+
 
 var FoodItem = React.createClass({displayName: "FoodItem",
   render: function(){
@@ -271,11 +315,13 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
+    var newcart = new models.NewCart();
     // var latestCart = new CartItemLatest();
 
     return {
       foodCollection: foodCollection,
-      cart: cart
+      cart: cart,
+      newcart: newcart
     }
   },
   componentWillMount: function(){
@@ -300,7 +346,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      console.log(cart);
+      // console.log('cart', cart);
       // cart.getItemsX().then(function(result){
       //   console.log('items', cart);
         self.setState({cart: cart});
@@ -313,20 +359,26 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
   addToOrder: function(item){
 
     // var myObj = item.cart.toJSON();
-    var cart = this.state.cart;
+    var newcart = this.state.newcart;
     // console.log('item',item);
-    console.log('cart',cart);
-    console.log('ITEM', item);
+    console.log('cart',newcart);
+    // console.log('ITEM', item);
     // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    var item = cart.get('items').add(item);
-    var user = cart.get('user');
-    cart.save({url: 'api/carts/latest/add_item/'});
+
+    var food = newcart.get('cart_items').add(item);
+    console.log('item', item);
+    console.log('food', food);
+
+    // var user = cart.get('user');
+
+    newcart.save();
+    console.log('saved');
+
+    // {url:'api/carts/latest/add_item/'}
       // cart.save(null, {emulateHTTP: true});
-    // cart.save(null, {'patch': true});
-    // PATCH {"items": [item], "user": 2}
     // $.ajax({
     //   url: 'api/carts/latest/',
     //   type: 'PUT',
@@ -702,8 +754,8 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    name: '',
-    price: ''
+    item__name: '',
+    quantity: ''
   },
   initialize: function(){
     window.account = this;
@@ -748,20 +800,48 @@ var CartItemCollection = Backbone.Collection.extend({
   url: 'api/cartitems/'
 });
 
-
-
 var Cart = Backbone.Model.extend({
   idAttribute: 'id',
   url: function(){
-    return 'api/carts/latest/'
+    return 'api/carts/latest'
   },
   defaults: {
-    items: new CartItemCollection()
+    cart_items: new CartItemCollection()
+  },
+  // save: function(key, val, options){
+  //   this.set('items', this.get('items').toJSON());
+  //   this.set('user', localStorage.getItem('id'));
+  //   return Backbone.Model.prototype.save.apply(this, arguments);
+  // },
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
+  },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  }
+});
+
+
+var NewCart = Backbone.Model.extend({
+  idAttribute: 'id',
+  url: function(){
+    return 'api/carts/latest/add_item/'
+  },
+  defaults: {
+    cart_items: new CartItemCollection()
   },
   save: function(key, val, options){
-    // this.unset('items');
-    this.set('items', this.get('items').toJSON());
-    this.set('user', localStorage.getItem('id'));
+    this.set('cart_items', this.get('cart_items').toJSON());
+    // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
   parse: function(data){
@@ -800,7 +880,8 @@ module.exports = {
   FoodItemCollection: FoodItemCollection,
   Cart: Cart,
   CartItemModel: CartItemModel,
-  CartItemCollection: CartItemCollection
+  CartItemCollection: CartItemCollection,
+  NewCart: NewCart
 };
 
 },{"../djangoUtils":6,"backbone":12,"jquery":40,"react":171}],10:[function(require,module,exports){
@@ -908,7 +989,6 @@ var File = Backbone.Model.extend({
     options.data= image;
     options.beforeSend = function(request) {
       request.setRequestHeader("Authorization", 'Token ' + localStorage.getItem('token'));
-      django.setCsrfToken.call(this, xhr, settings);
       request.setRequestHeader("Content-Type", image.type);
     };
     options.processData = false;

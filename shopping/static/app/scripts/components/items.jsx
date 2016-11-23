@@ -9,7 +9,7 @@ var $ = require('jquery');
 
 var Order = React.createClass({
   // componentWillReceiveProps: function(nextProps){
-  //   var cart = nextProps.cart['attributes'][0];
+    // var cart = nextProps.cart['attributes'][0];
   //    // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
   //    console.log('CART', cart);
@@ -18,10 +18,12 @@ var Order = React.createClass({
   render: function(){
     var cart = this.props.cart.attributes;
     // console.log('RENDER', cart)
-    var order = this.props.cart.get('items').map(function(item){
+    // console.log('CART', cart.cart_items);
+
+    var order = this.props.cart.get('cart_items').map(function(item){
       return (
         <li key={item.id}>
-          {item.get('name')}::{item.get('price')}
+          {item.item__name}::{item.quantity}
         </li>
       );
     });
@@ -39,6 +41,7 @@ var Order = React.createClass({
     )
   }
 });
+
 
 var FoodItem = React.createClass({
   render: function(){
@@ -90,11 +93,13 @@ var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
+    var newcart = new models.NewCart();
     // var latestCart = new CartItemLatest();
 
     return {
       foodCollection: foodCollection,
-      cart: cart
+      cart: cart,
+      newcart: newcart
     }
   },
   componentWillMount: function(){
@@ -119,7 +124,7 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      console.log(cart);
+      // console.log('cart', cart);
       // cart.getItemsX().then(function(result){
       //   console.log('items', cart);
         self.setState({cart: cart});
@@ -132,20 +137,26 @@ var FoodItemContainer = React.createClass({
   addToOrder: function(item){
 
     // var myObj = item.cart.toJSON();
-    var cart = this.state.cart;
+    var newcart = this.state.newcart;
     // console.log('item',item);
-    console.log('cart',cart);
-    console.log('ITEM', item);
+    console.log('cart',newcart);
+    // console.log('ITEM', item);
     // console.log('item', item);
 
     // var cartData = {items: [item], user: 2}
     // console.log('cartData', cartData);
-    var item = cart.get('items').add(item);
-    var user = cart.get('user');
-    cart.save({url: 'api/carts/latest/add_item/'});
+
+    var food = newcart.get('cart_items').add(item);
+    console.log('item', item);
+    console.log('food', food);
+
+    // var user = cart.get('user');
+
+    newcart.save();
+    console.log('saved');
+
+    // {url:'api/carts/latest/add_item/'}
       // cart.save(null, {emulateHTTP: true});
-    // cart.save(null, {'patch': true});
-    // PATCH {"items": [item], "user": 2}
     // $.ajax({
     //   url: 'api/carts/latest/',
     //   type: 'PUT',
