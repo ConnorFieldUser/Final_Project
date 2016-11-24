@@ -198,10 +198,10 @@ var Order = React.createClass({displayName: "Order",
   // },
   render: function(){
     var cart = this.props.cart.attributes;
-    // console.log('RENDER', cart)
+    console.log('RENDER', cart)
     // console.log('CART', cart.cart_items);
 
-    var order = this.props.cart.get('items').map(function(item){
+    var order = this.props.cart.get('cart_items').map(function(item){
       return (
         React.createElement("li", {key: item.id}, 
           item.item__name, "::", item.quantity
@@ -312,7 +312,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
 
     // var myObj = item.cart.toJSON();
     var cart = this.state.cart;
-    // console.log('item',item);
+    console.log('item',item);
     // console.log('ITEM', item);
     console.log('price', item.price)
     console.log('name', item.name)
@@ -322,7 +322,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
 
 
     // cart.get('items').add({item_name : item.name, quantity : 1, item : item.id, id : ''});
-    cart.get('items').add(item);              //HAVE TO FIGURE OUT WHY THIS ISN"T ADDING TO COLLECTION
+    cart.get('cart_items').push(item);
     console.log('newCart', cart);
     // var food = cart.get('cart_items').add(cartData);
     // console.log('item', item);
@@ -330,7 +330,8 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
 
     // var user = cart.get('user');
 
-    // cart.save(now);
+    cart.save();
+
     // console.log('saved');
 //
     // {url:'api/carts/latest/add_item/'}
@@ -775,10 +776,10 @@ var Cart = Backbone.Model.extend({
     return 'api/carts/latest/'
   },
   defaults: {
-    items: new CartItemCollection(),
+    cart_items: new CartItemCollection()
   },
   save: function(key, val, options){
-    this.set('items', this.get('items').toJSON());
+    this.set('cart_items', this.get('cart_items').toJSON());
     // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },

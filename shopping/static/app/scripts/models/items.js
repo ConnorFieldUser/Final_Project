@@ -75,10 +75,10 @@ var Cart = Backbone.Model.extend({
     return 'api/carts/latest/'
   },
   defaults: {
-    items: new CartItemCollection(),
+    cart_items: new CartItemCollection()
   },
   save: function(key, val, options){
-    this.set('items', this.get('items').toJSON());
+    this.set('cart_items', this.get('cart_items').toJSON());
     // this.set('user', localStorage.getItem('id'));
     return Backbone.Model.prototype.save.apply(this, arguments);
   },
