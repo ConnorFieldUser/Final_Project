@@ -20,10 +20,6 @@ var FoodItem = Backbone.Model.extend({
       }
     });
   },
-  randomPrice: function(){
-    var price = Math.floor(Math.random() * 16) + 5;
-    console.log('PRICE', price);
-  }
 });
 
 
@@ -33,8 +29,12 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/items/'
+  url: 'api/items/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
+  randomPrice: function(){
+    var price = Math.floor(Math.random() * 16.50) + 5.25;
+    console.log('PRICE', price);
+  }
 });
 
 

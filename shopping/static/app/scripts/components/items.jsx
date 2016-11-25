@@ -1,5 +1,4 @@
 var React = require('react');
-var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
@@ -48,14 +47,20 @@ var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
     var item;
+    var price = this.props.foodCollection.randomPrice();
     return {
       quantity: quantity,
-      item: item
+      item: item,
+      price: price
     }
   },
   handleQuantity:function(e){
     var quantity = e.target.value;
     this.setState({quantity: quantity});
+  },
+  handlePrice: function(){
+    console.log('price', this.state.price)
+    // this.setState({price: food.price})
   },
   render: function(){
     var self = this;
@@ -70,14 +75,15 @@ var FoodItem = React.createClass({
             <span className="name">{food.name} </span>
             <span className="quantity">{food.quantity} </span>
             <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
+            <strong>Price: $ {food.price}</strong>
             <div>
-              <button onClick={function(){self.props.addToOrder(food, self.state.quantity)}} className="btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(food, self.state.quantity, price)}} className="btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
 
-        // <button onClick={self.randomPrice}>Click</button>
         // <div className="randomPrice">{self.randomPrice}</div>
+        // <button onClick={self.handleClick}>Click</button>
 
 
       // return (
@@ -107,7 +113,7 @@ var FoodItem = React.createClass({
 
 var FoodItemContainer = React.createClass({
   getInitialState: function(){
-    var foodCollection = new FoodItemCollection();
+    var foodCollection = new models.FoodItemCollection();
     var cart = new models.Cart();
     var orderCollection = new models.CartItemCollection()
 
@@ -149,6 +155,7 @@ var FoodItemContainer = React.createClass({
   addToOrder: function(food, quantity, item){
 
     // var myObj = item.cart.toJSON();
+    // console.log('price', price)
     var item = food.id;
     var cart = this.state.cart;
     console.log(cart);
@@ -156,8 +163,9 @@ var FoodItemContainer = React.createClass({
     delete food.id;
     // console.log('food_item_id', food_item_id);
     // console.log('id', item.id);
-    orderCollection.create({item__name:food.name, quantity:quantity, item: item});
-    console.log('orderCollection', orderCollection);
+    // orderCollection.create({item__name:food.name, quantity:quantity, item: item});
+    // console.log('orderCollection', orderCollection);
+
     // this.setState({orderCollection: orderCollection});
     // var cartData = {item_name : item.name, quantity : 1, item : item.id, id : ''}
     // console.log('cartData', cartData);
