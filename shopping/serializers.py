@@ -47,26 +47,26 @@ class CartSerializer(serializers.ModelSerializer):
         model = Cart
         fields = ('id', 'cart_items')
 
-    def update(self, instance, validated_data):
-        print(validated_data)
-        # instance.items = validated_data.get('items', instance.items)
-        items_data = validated_data.pop('items')
-        cart = Cart.objects.create(**validated_data)
-        for item_data in items_data:
-            item = Item.objects.get(name=item_data["name"])
-            cart_item = CartItem(cart=cart, item=item, quantity=1)
-            cart_item.save()
-        # instance.save()
-        return instance
-
-    def create(self, validated_data):
-        items_data = validated_data.pop('items')
-        cart = Cart.objects.create(**validated_data)
-        for item_data in items_data:
-            item = Item.objects.get(name=item_data["name"])
-            cart_item = CartItem(cart=cart, item=item, quantity=1)
-            cart_item.save()
-        return cart
+    # def update(self, instance, validated_data):
+    #     print(validated_data)
+    #     # instance.items = validated_data.get('items', instance.items)
+    #     items_data = validated_data.pop('items')
+    #     cart = Cart.objects.create(**validated_data)
+    #     for item_data in items_data:
+    #         item = Item.objects.get(name=item_data["name"])
+    #         cart_item = CartItem(cart=cart, item=item, quantity=1)
+    #         cart_item.save()
+    #     # instance.save()
+    #     return instance
+    #
+    # def create(self, validated_data):
+    #     items_data = validated_data.pop('items')
+    #     cart = Cart.objects.create(**validated_data)
+    #     for item_data in items_data:
+    #         item = Item.objects.get(name=item_data["name"])
+    #         cart_item = CartItem(cart=cart, item=item, quantity=1)
+    #         cart_item.save()
+    #     return cart
 
 
 # class (notemodelserializer)

@@ -183,7 +183,7 @@ class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
         return Cart.objects.filter(user=self.request.user).latest('created_time')
 
 
-class CartLatestAPIView(APIView):
+class CartLatestAddItemAPIView(APIView):
 
     serializer_class = CartSerializer
 
@@ -194,8 +194,7 @@ class CartLatestAPIView(APIView):
         quantity = request.data["quantity"]
         print(item)
         print(cart)
-        i1 = CartItem(cart=cart, item_id=item,
-                      quantity=quantity)
+        i1 = CartItem(cart=cart, item_id=item, quantity=quantity)
         # i1 = CartItem()
         i1.save()
         # usernames = [user.username for user in User.objects.all()]
@@ -221,7 +220,26 @@ class CartLatestAPIView(APIView):
         return Response(request.data)
 
 
-# class E = mailView(FormView):
+class CartLatestRemoveItemAPIView(APIView):
+
+    serializer_class = CartSerializer
+
+    def post(self, request, format=None):
+        # cart = Cart.objects.filter(user=request.user).latest('created_time')
+        print('test')
+        # print(request.data)
+        cart_item = request.data["id"]
+        # print(cart_item)
+        # cart_item = request.data
+        print(cart_item)
+        # print(cart)
+        i1 = CartItem(id=cart_item)
+        i1.delete()
+        # return Response(request.data)
+        return Response("Deleted")
+
+
+# class EmailView(FormView):
 #     form_class = EmailForm
 #     success_url = reverse_lazy("account_list_view")
 #
