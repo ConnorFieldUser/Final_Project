@@ -8,16 +8,10 @@ require('react-bootstrap');
 
 
 var Order = React.createClass({
-  // componentWillReceiveProps: function(nextProps){
-  //   var cart = nextProps.cart['attributes']['cart_items'];
-  // //    // console.log(nextProps.cart.items);
-  //   this.setState({cart: cart});
-  // //    console.log('CART', cart);
-  // //    // var cart = this.props.cart['items'];
-  // },
   render: function(cart){
+    var orderCollection = this.props.orderCollection;
+    console.log(orderCollection);
     var cart = this.props.cart.attributes;
-    // console.log('RENDER', cart)
 
     var order = this.props.cart.get('cart_items').map(function(item){
       return (
@@ -33,6 +27,7 @@ var Order = React.createClass({
         <ul>
           {order}
         </ul>
+        <strong>Total: ${this.props.orderCollection.total()}</strong>
         <div>
           <button className="btn btn-warning">Place Order</button>
         </div>
@@ -46,11 +41,9 @@ var Order = React.createClass({
 var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
-    var item;
     var price = this.props.foodCollection.randomPrice();
     return {
       quantity: quantity,
-      item: item,
       price: price
     }
   },
@@ -58,33 +51,23 @@ var FoodItem = React.createClass({
     var quantity = e.target.value;
     this.setState({quantity: quantity});
   },
-  handlePrice: function(){
-    console.log('price', this.state.price)
-    // this.setState({price: food.price})
-  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
-    var quantity = this.state.quantity;
-    // var products = foodCollection['ArrayOfProduct'];
-    // console.log('foodCollection', foodCollection[0]);
+    var quantity = parseInt(this.state.quantity);
 
-    var foodList = this.props.foodCollection.map(function(food){
+    var foodList = this.props.foodCollection.map(function(item){
         return (
-          <li key={food.id} className="foodListItem col-md-4">
-            <span className="name">{food.name} </span>
-            <span className="quantity">{food.quantity} </span>
+          <li key={item.id} className="foodListItem col-md-4">
+            <span className="name">{item.name} </span>
+            <span className="quantity">{item.quantity} </span>
             <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
-            <strong>Price: $ {food.price}</strong>
+            <strong>Price: $ {item.price}</strong>
             <div>
-              <button onClick={function(){self.props.addToOrder(food, self.state.quantity, price)}} className="btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, item.price)}} className="btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
-
-        // <div className="randomPrice">{self.randomPrice}</div>
-        // <button onClick={self.handleClick}>Click</button>
-
 
       // return (
       //   <li className="foodListItem col-md-4" key={item.ItemID}>
@@ -108,8 +91,6 @@ var FoodItem = React.createClass({
   }
 });
 
-// <RandomPrice />
-
 
 var FoodItemContainer = React.createClass({
   getInitialState: function(){
@@ -127,10 +108,6 @@ var FoodItemContainer = React.createClass({
     this.fetchItems();
     this.fetchOrder();
   },
-  // componentWillReceiveProps: function(){
-  //   this.fetchItems();
-  //   // this.fetchOrder();
-  // },
   fetchItems: function(){
     var self = this;
     var foodCollection=this.state.foodCollection;
@@ -143,8 +120,7 @@ var FoodItemContainer = React.createClass({
     var self = this;
     var cart = this.state.cart;
     cart.fetch().then(function(response){
-      // cart.getItemsX().then(function(result){
-      //   console.log('items', cart);
+      console.log('response', response)
         self.setState({cart: cart});
     });
   },
@@ -152,49 +128,20 @@ var FoodItemContainer = React.createClass({
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
-  addToOrder: function(food, quantity, item){
-
-    // var myObj = item.cart.toJSON();
-    // console.log('price', price)
-    var item = food.id;
+  addToOrder: function(item, quantity){
+    var price = item.price;
     var cart = this.state.cart;
-    console.log(cart);
     var orderCollection = this.state.orderCollection;
-    delete food.id;
-    // console.log('food_item_id', food_item_id);
-    // console.log('id', item.id);
-    // orderCollection.create({item__name:food.name, quantity:quantity, item: item});
-    // console.log('orderCollection', orderCollection);
 
-    // this.setState({orderCollection: orderCollection});
-    // var cartData = {item_name : item.name, quantity : 1, item : item.id, id : ''}
-    // console.log('cartData', cartData);
 
-    // cart.get('items').add({item_name : item.name, quantity : 1, item : item.id, id : ''});
-    // cart.get('cart_items').push(item);
-    // console.log('newCart', cart);
-    // cart.get('cart_items').add(item);
-    // console.log('item', item);
-    // console.log('food', food);
-
-    // var user = cart.get('user');
-
-    // cart.save();
-
-    // console.log('saved');
-//
-    // {url:'api/carts/latest/add_item/'}
-      // cart.save(null, {emulateHTTP: true});
-    // $.ajax({
-    //   url: 'api/carts/latest/',
-    //   type: 'PUT',
-    //   data: {"user": user, "items": [cart.get('items')]},
-    //   success: function(result){
-    //     console.log('DONE')
-    //   }
-    // });
-
-    // this.setState({cart: cart});
+    $.ajax({
+      url: 'api/carts/latest/add_item/',
+      type: 'POST',
+      data: ({name:item.name, price:item.price, quantity:quantity, id:item.id}),
+      success: function(result){
+        console.log('DONE')
+      }
+    });
   },
   render: function(){
     var self = this;
@@ -204,7 +151,10 @@ var FoodItemContainer = React.createClass({
         <div className="row well">
           <h1>List of Items</h1>
             <FoodItem foodCollection={this.state.foodCollection} addToOrder={this.addToOrder}/>
-            <Order cart={this.state.cart}/>
+            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
+        </div>
+        <div className="row well">
+          <button onClick={this.handleClick}>View Previous Cart</button>
         </div>
       </TemplateContainer>
     )

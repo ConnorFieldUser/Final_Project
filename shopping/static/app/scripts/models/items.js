@@ -32,9 +32,8 @@ var FoodItemCollection = Backbone.Collection.extend({
   url: 'api/items/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
   randomPrice: function(){
-    var price = Math.floor(Math.random() * 16.50) + 5.25;
-    console.log('PRICE', price);
-  }
+    Math.floor(Math.random() * 16.50) + 5.25;
+  },
 });
 
 
@@ -60,7 +59,12 @@ var CartItemModel = Backbone.Model.extend({
 
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
-  url: 'api/carts/latest/add_item/'
+  url: 'api/carts/latest/add_item/',
+  total: function(){
+    return this.reduce(function(sum, model){
+      return sum + parseFloat(model.get('price'));
+    }, 0);
+  }
 });
 
 
@@ -94,10 +98,38 @@ var Cart = Backbone.Model.extend({
   parse: function(data){
     data.items = new CartItemCollection(data.items);
     return data;
-  }
+  },
 });
 
 
+var NewEmptyCart = Backbone.Model.extend({
+  idAttribute: 'id',
+  url: 'api/carts/',
+  defaults: {
+    cart_items: new CartItemCollection()
+  },
+  initialize: function(){
+    window.account = this;
+    var token = localStorage.getItem('token');
+    var self = this;
+    $.ajaxSetup({
+      beforeSend: function(xhr, settings){
+        xhr.setRequestHeader("Authorization", 'Token ' + token);
+        django.setCsrfToken.call(this, xhr, settings);
+      }
+    });
+  },
+  save: function(key, val, options){
+    // console.log('toJSON', this.get('cart_items'));
+    this.set('items', this.get('items').toJSON());
+    // this.set('user', localStorage.getItem('id'));
+    return Backbone.Model.prototype.save.apply(this, arguments);
+  },
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
+  },
+});
 
 // var NewCart = Backbone.Model.extend({
 //   idAttribute: 'id',
@@ -149,5 +181,5 @@ module.exports = {
   Cart: Cart,
   CartItemModel: CartItemModel,
   CartItemCollection: CartItemCollection,
-  // NewCart: NewCart
+  NewEmptyCart: NewEmptyCart
 };
