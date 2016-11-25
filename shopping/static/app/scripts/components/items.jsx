@@ -18,7 +18,7 @@ var Order = React.createClass({
   // },
   render: function(cart){
     var cart = this.props.cart.attributes;
-    console.log('RENDER', cart)
+    // console.log('RENDER', cart)
 
     var order = this.props.cart.get('cart_items').map(function(item){
       return (
@@ -47,8 +47,10 @@ var Order = React.createClass({
 var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
+    var item;
     return {
       quantity: quantity,
+      item: item
     }
   },
   handleQuantity:function(e){
@@ -60,16 +62,16 @@ var FoodItem = React.createClass({
     var foodCollection = this.props.foodCollection;
     var quantity = this.state.quantity;
     // var products = foodCollection['ArrayOfProduct'];
-    console.log('foodCollection', foodCollection[0]);
+    // console.log('foodCollection', foodCollection[0]);
 
-    var foodList = this.props.foodCollection.map(function(item){
+    var foodList = this.props.foodCollection.map(function(food){
         return (
-          <li key={item.id} className="foodListItem col-md-4">
-            <span className="name">{item.name} </span>
-            <span className="quantity">{item.quantity} </span>
+          <li key={food.id} className="foodListItem col-md-4">
+            <span className="name">{food.name} </span>
+            <span className="quantity">{food.quantity} </span>
             <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
             <div>
-              <button onClick={function(){self.props.addToOrder(item, self.state.quantity)}} className="btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(food, self.state.quantity)}} className="btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
@@ -144,17 +146,19 @@ var FoodItemContainer = React.createClass({
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
-  addToOrder: function(item, quantity){
+  addToOrder: function(food, quantity, item){
 
     // var myObj = item.cart.toJSON();
-    // var cart = this.state.cart;
+    var item = food.id;
+    var cart = this.state.cart;
+    console.log(cart);
     var orderCollection = this.state.orderCollection;
-    // console.log('cart', cartItems);
-    console.log('quantity', quantity);
-    console.log('item',item);
-    orderCollection.create({item:item, quantity:quantity});
+    delete food.id;
+    // console.log('food_item_id', food_item_id);
+    // console.log('id', item.id);
+    orderCollection.create({item__name:food.name, quantity:quantity, item: item});
     console.log('orderCollection', orderCollection);
-    this.setState({orderCollection: orderCollection});
+    // this.setState({orderCollection: orderCollection});
     // var cartData = {item_name : item.name, quantity : 1, item : item.id, id : ''}
     // console.log('cartData', cartData);
 
