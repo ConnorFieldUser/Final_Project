@@ -3,22 +3,22 @@ var FoodItemCollection = require('../models/items.js').FoodItemCollection;
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
+require('react-bootstrap');
 
 
 
 
 var Order = React.createClass({
   // componentWillReceiveProps: function(nextProps){
-    // var cart = nextProps.cart['attributes'][0];
-  //    // console.log(nextProps.cart.items);
+  //   var cart = nextProps.cart['attributes']['cart_items'];
+  // //    // console.log(nextProps.cart.items);
   //   this.setState({cart: cart});
-  //    console.log('CART', cart);
-  //    // var cart = this.props.cart['items'];
+  // //    console.log('CART', cart);
+  // //    // var cart = this.props.cart['items'];
   // },
-  render: function(){
+  render: function(cart){
     var cart = this.props.cart.attributes;
     console.log('RENDER', cart)
-    // console.log('CART', cart.cart_items);
 
     var order = this.props.cart.get('cart_items').map(function(item){
       return (
@@ -43,19 +43,33 @@ var Order = React.createClass({
 });
 
 
+
 var FoodItem = React.createClass({
+  getInitialState: function(){
+    var quantity;
+    return {
+      quantity: quantity,
+    }
+  },
+  handleQuantity:function(e){
+    var quantity = e.target.value;
+    this.setState({quantity: quantity});
+  },
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
+    var quantity = this.state.quantity;
     // var products = foodCollection['ArrayOfProduct'];
+    console.log('foodCollection', foodCollection[0]);
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
           <li key={item.id} className="foodListItem col-md-4">
             <span className="name">{item.name} </span>
-            <span className="price">$ {item.price} </span>
+            <span className="quantity">{item.quantity} </span>
+            <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
             <div>
-              <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(item, self.state.quantity)}} className="btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
@@ -93,13 +107,12 @@ var FoodItemContainer = React.createClass({
   getInitialState: function(){
     var foodCollection = new FoodItemCollection();
     var cart = new models.Cart();
-    // var newcart = new models.NewCart();
-    // var latestCart = new CartItemLatest();
+    var orderCollection = new models.CartItemCollection()
 
     return {
       foodCollection: foodCollection,
       cart: cart,
-      // newcart: newcart
+      orderCollection
     }
   },
   componentWillMount: function(){
@@ -127,29 +140,34 @@ var FoodItemContainer = React.createClass({
         self.setState({cart: cart});
     });
   },
-  addToOrder: function(item){
+  handleQuantity: function(quantity){
+    var quantity  = e.target.value;
+    console.log('quantity', quantity);
+  },
+  addToOrder: function(item, quantity){
 
     // var myObj = item.cart.toJSON();
-    var cart = this.state.cart;
+    // var cart = this.state.cart;
+    var orderCollection = this.state.orderCollection;
+    // console.log('cart', cartItems);
+    console.log('quantity', quantity);
     console.log('item',item);
-    // console.log('ITEM', item);
-    console.log('price', item.price)
-    console.log('name', item.name)
-    console.log('id', item.id)
+    orderCollection.create({item:item, quantity:quantity});
+    console.log('orderCollection', orderCollection);
+    this.setState({orderCollection: orderCollection});
     // var cartData = {item_name : item.name, quantity : 1, item : item.id, id : ''}
     // console.log('cartData', cartData);
 
-
     // cart.get('items').add({item_name : item.name, quantity : 1, item : item.id, id : ''});
-    cart.get('cart_items').push(item);
-    console.log('newCart', cart);
-    // var food = cart.get('cart_items').add(cartData);
+    // cart.get('cart_items').push(item);
+    // console.log('newCart', cart);
+    // cart.get('cart_items').add(item);
     // console.log('item', item);
     // console.log('food', food);
 
     // var user = cart.get('user');
 
-    cart.save();
+    // cart.save();
 
     // console.log('saved');
 //

@@ -7,10 +7,7 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    name: '',
-    quantity: 1,
-    id: '',
-    price: ''
+    quantity: 1
   },
   initialize: function(){
     window.account = this;
@@ -77,15 +74,6 @@ var Cart = Backbone.Model.extend({
   defaults: {
     cart_items: new CartItemCollection()
   },
-  save: function(key, val, options){
-    this.set('cart_items', this.get('cart_items').toJSON());
-    // this.set('user', localStorage.getItem('id'));
-    return Backbone.Model.prototype.save.apply(this, arguments);
-  },
-  parse: function(data){
-    data.items = new CartItemCollection(data.items);
-    return data;
-  },
   initialize: function(){
     window.account = this;
     var token = localStorage.getItem('token');
@@ -96,6 +84,16 @@ var Cart = Backbone.Model.extend({
         django.setCsrfToken.call(this, xhr, settings);
       }
     });
+  },
+  save: function(key, val, options){
+    // console.log('toJSON', this.get('cart_items'));
+    this.set('items', this.get('items').toJSON());
+    // this.set('user', localStorage.getItem('id'));
+    return Backbone.Model.prototype.save.apply(this, arguments);
+  },
+  parse: function(data){
+    data.items = new CartItemCollection(data.items);
+    return data;
   }
 });
 
