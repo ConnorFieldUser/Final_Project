@@ -1,0 +1,105 @@
+var React = require('react');
+var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
+var models = require('../models/items.js');
+var $ = require('jquery');
+require('react-bootstrap');
+
+
+var Order = React.createClass({
+  handleDelete: function(e){
+    e.preventDefault();
+    item.remove();
+  },
+  render: function(cart){
+    var orderCollection = this.props.orderCollection;
+    console.log(orderCollection);
+    var cart = this.props.cart.attributes;
+    var self = this;
+
+    var order = this.props.cart.get('cart_items').map(function(item){
+      return (
+        <div className="cartItem row well" key={item.id}>
+          <span className="col-md-4">{item.item__name}</span>
+          <span className="col-md-4">{item.quantity}</span>
+          <span className="col-md-4">Price</span>
+          <button className="btn btn-success deleteBtn" onClick={self.handleDelete} type="submit">Delete</button>
+        </div>
+      );
+    });
+
+    return (
+      <div>
+      <div className="cartHeadings row well">
+          <span className="col-md-4">Item</span>
+          <span className="col-md-4">Quantity</span>
+          <span className="col-md-4">Price</span>
+      </div>
+      <div className="containsItem">
+        {order}
+      </div>
+      <strong className="total">Total: ${this.props.orderCollection.total()}</strong>
+      <div>
+        <button className="placeOrderBtn btn btn-warning">Place Order</button>
+      </div>
+    </div>
+    )
+  }
+});
+
+var CartContainer = React.createClass({
+  getInitialState: function(){
+    var cart = new models.Cart();
+    var orderCollection = new models.CartItemCollection()
+
+    return {
+      cart: cart,
+      orderCollection
+    }
+  },
+  componentWillMount: function(){
+    this.fetchOrder();
+  },
+  fetchOrder: function(){
+    var self = this;
+    var cart = this.state.cart;
+    cart.fetch().then(function(response){
+      console.log('response', response)
+        self.setState({cart: cart});
+    });
+  },
+  handleQuantity: function(quantity){
+    var quantity  = e.target.value;
+    console.log('quantity', quantity);
+  },
+  // addToOrder: function(item, quantity){
+  //   var price = item.price;
+  //   var cart = this.state.cart;
+  //   var orderCollection = this.state.orderCollection;
+  //
+  //
+  //   $.ajax({
+  //     url: 'api/carts/latest/add_item/',
+  //     type: 'POST',
+  //     data: ({name:item.name, price:item.price, quantity:quantity, id:item.id}),
+  //     success: function(result){
+  //       console.log('DONE')
+  //     }
+  //   });
+  // },
+  render: function(){
+    var self = this;
+
+    return (
+      <TemplateContainer>
+        <div className="row well">
+          <h1>Cart</h1>
+            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
+        </div>
+      </TemplateContainer>
+    )
+  }
+});
+
+module.exports = {
+  CartContainer: CartContainer
+}

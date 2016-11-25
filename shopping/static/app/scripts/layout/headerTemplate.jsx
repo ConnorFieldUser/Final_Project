@@ -53,7 +53,7 @@ var TemplateContainer = React.createClass({
               </ul>
               <div>
               <span className="userWelcome">Welcome, {localStorage.getItem('USERNAME')}!</span>
-              <button className="logoutBtn" onClick={this.handleLogout}>Logout</button>
+              <button className="btn btn-success logoutBtn" onClick={this.handleLogout}>Logout</button>
               </div>
             </nav>
         </div>

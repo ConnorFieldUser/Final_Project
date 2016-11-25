@@ -1,40 +1,41 @@
 var React = require('react');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var models = require('../models/items.js');
+var CartContainer = require('../components/cart.jsx').CartContainer;
 var $ = require('jquery');
 require('react-bootstrap');
 
 
 
 
-var Order = React.createClass({
-  render: function(cart){
-    var orderCollection = this.props.orderCollection;
-    console.log(orderCollection);
-    var cart = this.props.cart.attributes;
-
-    var order = this.props.cart.get('cart_items').map(function(item){
-      return (
-        <li key={item.id}>
-          {item.item__name}::{item.quantity}
-        </li>
-      );
-    });
-
-    return (
-      <div className="col-md-4">
-        <h2 className="orderHeading">Cart:</h2>
-        <ul>
-          {order}
-        </ul>
-        <strong>Total: ${this.props.orderCollection.total()}</strong>
-        <div>
-          <button className="btn btn-warning">Place Order</button>
-        </div>
-      </div>
-    )
-  }
-});
+// var Order = React.createClass({
+//   render: function(cart){
+//     var orderCollection = this.props.orderCollection;
+//     console.log(orderCollection);
+//     var cart = this.props.cart.attributes;
+//
+//     var order = this.props.cart.get('cart_items').map(function(item){
+//       return (
+//         <li key={item.id}>
+//           {item.item__name}::{item.quantity}
+//         </li>
+//       );
+//     });
+//
+//     return (
+//       <div className="col-md-4">
+//         <h2 className="orderHeading">Cart:</h2>
+//         <ul>
+//           {order}
+//         </ul>
+//         <strong>Total: ${this.props.orderCollection.total()}</strong>
+//         <div>
+//           <button className="btn btn-warning">Place Order</button>
+//         </div>
+//       </div>
+//     )
+//   }
+// });
 
 
 
@@ -58,13 +59,13 @@ var FoodItem = React.createClass({
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
-          <li key={item.id} className="foodListItem col-md-4">
+          <li key={item.id} className="foodListItem col-md-3">
             <span className="name">{item.name} </span>
             <span className="quantity">{item.quantity} </span>
             <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
-            <strong>Price: $ {item.price}</strong>
+            <span className="price">Price: $ {item.price}</span>
             <div>
-              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, item.price)}} className="btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, item.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
@@ -81,8 +82,7 @@ var FoodItem = React.createClass({
       // );
     });
     return (
-      <div className="col-md-8 foodContainer">
-        <h2>Grocery Items</h2>
+      <div className="col-md-12 foodContainer">
           <ul>
             {foodList}
           </ul>
@@ -106,7 +106,6 @@ var FoodItemContainer = React.createClass({
   },
   componentWillMount: function(){
     this.fetchItems();
-    this.fetchOrder();
   },
   fetchItems: function(){
     var self = this;
@@ -116,14 +115,14 @@ var FoodItemContainer = React.createClass({
       self.setState({foodCollection: response})
     });
   },
-  fetchOrder: function(){
-    var self = this;
-    var cart = this.state.cart;
-    cart.fetch().then(function(response){
-      console.log('response', response)
-        self.setState({cart: cart});
-    });
-  },
+  // fetchOrder: function(){
+  //   var self = this;
+  //   var cart = this.state.cart;
+  //   cart.fetch().then(function(response){
+  //     console.log('response', response)
+  //       self.setState({cart: cart});
+  //   });
+  // },
   handleQuantity: function(quantity){
     var quantity  = e.target.value;
     console.log('quantity', quantity);
@@ -149,12 +148,16 @@ var FoodItemContainer = React.createClass({
     return (
       <TemplateContainer>
         <div className="row well">
-          <h1>List of Items</h1>
+          <h1>Grocery Items</h1>
+            <form className="navbar-form" role="search">
+                <div className="input-group add-on">
+                  <input className="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" />
+                  <div className="input-group-btn">
+                    <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+                  </div>
+                </div>
+              </form>
             <FoodItem foodCollection={this.state.foodCollection} addToOrder={this.addToOrder}/>
-            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
-        </div>
-        <div className="row well">
-          <button onClick={this.handleClick}>View Previous Cart</button>
         </div>
       </TemplateContainer>
     )
@@ -162,6 +165,7 @@ var FoodItemContainer = React.createClass({
 });
 
 
+// <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
 
 
 module.exports = {

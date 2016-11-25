@@ -37,28 +37,27 @@ h1{
 }
 
 .btn {
-  background-color: #1E2C38;
-  border-color: #1E2C38;
+  font-family: 'Oswald';
+  font-size: 20px;
+//   background-color: #1E2C38;
+//   border-color: #1E2C38;
 }
 
 img {
   max-width: 100%;
 }
-.randomPrice {
-  height: 100px;
-}
 
 
-//############      NAV BAR STYLING   ############################################################//
+//############      HEADER/NAV BAR STYLING   ############################################################//
 
 
 
-// .navbar {
+.navbar {
 //   // background-color: white;
-//   // opacity: 0.9;
+  opacity: 0.9;
 //   // margin-bottom: 0px;
 //   // height:70px;
-// }
+}
 a.nav-link{
   color: #202D38;
   font-family: 'Oswald', sans-serif;
@@ -68,12 +67,15 @@ a.nav-link{
 
 .logoutBtn {
   font-family: 'Oswald', sans-serif;
-  font-weight: 300;
+  // font-weight: 300;
+  font-size: 14px;
   padding: 15px;
+  background: #5E86A9;
+  border: 1px solid #5E86A9;
 }
 
 .userWelcome {
-  margin-left: 320px;
+  margin-left: 400px;
   margin-right: 10px;
 }
 
@@ -108,7 +110,7 @@ a.nav-link{
     font-size: 20px;
   }
   i {
-    background-color: #459EA7;
+    background-color: #5E86A9;
     padding:10px;
     font-size: 20px;
     border-radius: 50%;
@@ -121,6 +123,15 @@ a.nav-link{
     padding-right:13px;
   }
 }
+
+//############      LOGIN PAGE STYLING   ############################################################//
+
+.signUpBtn,
+.signInBtn {
+  background-color: #5E86A9;
+  border: #5E86A9;
+}
+
 
 
 //############      HOME PAGE STYLING   ############################################################//
@@ -147,7 +158,7 @@ a.nav-link{
 }
 .accountForm {
   background-color: white;
-  opacity: 0.9;
+  // opacity: 0.9;
   padding: 50px;
   label {
     font-size: 20px;
@@ -174,12 +185,71 @@ li.foodListItem {
   list-style: none;
   height: 150px;
   border: 1px solid black;
-  margin: 10px;
+  margin:5px;
   .name {
-    font-size: 15px;
+    font-size: 20px;
+    font-family: "Old Standard TT";
     font-weight: bold;
   }
+  .price {
+    font-family: "Old Standard TT";
+  }
+  #quantity {
+    width: 80px;
+  }
 }
+
+.navbar-form {
+  text-align: center;
+}
+.add-on .input-group-btn > .btn {
+  height: 34px;
+  border-left-width:0;left:-2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+.addToCartBtn {
+  background: #5E86A9;
+  border: 1px solid #5E86A9;
+}
+
+
+
+//############      CART PAGE STYLING   ############################################################//
+.cartHeadings span {
+  font-family: 'Old Standard TT', sans-serif;
+  font-size: 30px;
+  color: #727C77;
+}
+
+.cartItem.well{
+font-size: 20px;
+font-family: 'Old Standard TT', sans-serif;
+height: 70px;
+}
+
+.containsItem {
+  padding-bottom: 35px;
+}
+
+.deleteBtn {
+  float: right;
+  position: relative;
+  top: -35px;
+  font-family: 'Oswald';
+  background: #5E86A9;
+  border: 1px solid #5E86A9;
+}
+
+.total {
+  font-size: 15px;
+}
+// .placeOrderBtn {
+//   position: relative;
+//   top: 10px;
+//   left: 900px;
+// }
 
 
 //############      LOGIN PAGE STYLING   ############################################################//

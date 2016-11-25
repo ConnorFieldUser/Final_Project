@@ -41,7 +41,7 @@ var SignUpForm = React.createClass({
             <input onChange={this.handlePasswordInput} value={this.state.password} className="form-control" name="password" id="password" type="password" placeholder="Password Please" />
           </div>
 
-          <input className="btn btn-primary" type="submit" value="Sign Me Up!" />
+          <input className="signUpBtn btn btn-primary" type="submit" value="Sign Me Up!" />
         </form>
       </div>
     )
@@ -83,7 +83,7 @@ var SignInForm = React.createClass({
               <input onChange={this.handlePasswordInput} value={this.state.password} className="form-control" name="password" id="password-login" type="password" placeholder="Password Please" />
             </div>
 
-            <input className="btn btn-primary" type="submit" value="Beam Me Up!" />
+            <input className="signInBtn btn btn-primary" type="submit" value="Beam Me Up!" />
           </form>
         </div>
     )

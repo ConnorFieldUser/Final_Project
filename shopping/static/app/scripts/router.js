@@ -9,6 +9,7 @@ var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoCo
 var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
 var HomeContainer = require('./components/home.jsx').HomeContainer;
 var MapContainer = require('./components/map.jsx').MapContainer;
+var CartContainer = require('./components/cart.jsx').CartContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -17,6 +18,7 @@ var AppRouter = Backbone.Router.extend({
     'account/': 'accountInfo',
     'map/': 'map',
     'items/' : 'items',
+    'cart/' : 'cart',
   },
   initialize: function(){
       $.ajaxSetup({
@@ -52,6 +54,12 @@ var AppRouter = Backbone.Router.extend({
   items: function(){
     ReactDOM.render(
       React.createElement(FoodItemContainer),
+      document.getElementById('app')
+    )
+  },
+  cart: function(){
+    ReactDOM.render(
+      React.createElement(CartContainer),
       document.getElementById('app')
     )
   }

@@ -43,49 +43,54 @@ var AccountForm = React.createClass({
 
     <form onSubmit={this.handleSubmit} className="accountForm well" encType="multipart/form-data" data-ajax='false'>
     <div className="form-group row">
-        <label htmlFor="example-text-input" className="col-xs-2 col-form-label">FirstName</label>
+        <label htmlFor="firstName" className="col-xs-2 col-form-label">FirstName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('first_name')} name="first_name" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('first_name')} name="first_name" className="form-control" type="text" id="firstName" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-text-input" className="col-xs-2 col-form-label">LastName</label>
+        <label htmlFor="lastName" className="col-xs-2 col-form-label">LastName</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('last_name')} name="last_name" className="form-control" type="text"  id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('last_name')} name="last_name" className="form-control" type="text"  id="lastName" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-text-input" className="col-xs-2 col-form-label">Street Address</label>
+        <label htmlFor="address" className="col-xs-2 col-form-label">Street Address</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('adress')} name="adress" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('adress')} name="adress" className="form-control" type="text" id="address" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-text-input" className="col-xs-2 col-form-label">City</label>
+        <label htmlFor="city" className="col-xs-2 col-form-label">City</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('city')} name="city" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('city')} name="city" className="form-control" type="text" id="city" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-text-input" className="col-xs-2 col-form-label">State</label>
+        <label htmlFor="state" className="col-xs-2 col-form-label">State</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('state')} name="state" className="form-control" type="text" id="example-text-input" />
+          <input onChange={this.handleInputChange} value={account.get('state')} name="state" className="form-control" type="text" id="state" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-email-input" className="col-xs-2 col-form-label">Email</label>
+        <label htmlFor="email" className="col-xs-2 col-form-label">Email</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('email')} name="email" className="form-control" type="email" id="example-email-input" />
+          <input onChange={this.handleInputChange} value={account.get('email')} name="email" className="form-control" type="email" id="email" />
         </div>
       </div>
       <div className="form-group row">
-        <label htmlFor="example-tel-input" className="col-xs-2 col-form-label">Telephone</label>
+        <label htmlFor="telephone" className="col-xs-2 col-form-label">Telephone</label>
         <div className="col-xs-10">
-          <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="example-tel-input" />
+          <input onChange={this.handleInputChange} value={account.get('phone_number')}name="phone_number" className="form-control" type="tel" id="telephone" />
         </div>
       </div>
-      <input onChange={this.handlePicture} type="file" name="image"/>
-      <button type="submit" className="btn btn-danger">My Information is correct</button>
+      <div className="form-group row">
+        <label htmlFor="image" className="col-xs-2 col-form-label">Profile Picture</label>
+        <div className="col-xs-10">
+          <input onChange={this.handlePicture} type="file" name="image" id="image"/>
+        </div>
+      </div>
+      <button type="submit" className="btn btn-success">My Information is correct</button>
       </form>
     )
   }
