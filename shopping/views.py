@@ -258,3 +258,17 @@ class EmailTemplateView(TemplateView):
         context = super().get_context_data()
         context["form"] = SignUpForm()
         return context
+
+
+class TestAPIView(APIView):
+
+    def post(self, request):
+        search_text = request.POST.get("search_text")
+        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
+        xml_result = r.text
+        xml_to_json = dumps(bf.data(fromstring(xml_result)))
+        json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
+        io = StringIO(json_data)
+        end = json.load(io)
+        return Response(end)
+        # return Response(json.load(io))
