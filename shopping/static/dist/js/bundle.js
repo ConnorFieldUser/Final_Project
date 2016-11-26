@@ -356,13 +356,24 @@ require('react-bootstrap');
 var FoodItem = React.createClass({displayName: "FoodItem",
   getInitialState: function(){
     var quantity;
+    var search;
     return {
       quantity: quantity,
+      search: search
     }
   },
   handleQuantity:function(e){
     var quantity = e.target.value;
     this.setState({quantity: quantity});
+  },
+  handleInput: function(e){
+    this.setState({search: e.target.value})
+  },
+  handleSubmit: function(e){
+    e.preventDefault();
+    var search = this.state.search;
+
+    this.props.submitForm(search);
   },
   render: function(){
     var self = this;
@@ -371,31 +382,39 @@ var FoodItem = React.createClass({displayName: "FoodItem",
     // console.log('price', foodCollection.randomPrice());
 
     var foodList = this.props.foodCollection.map(function(item){
-        return (
-          React.createElement("li", {key: item.id, className: "foodListItem col-md-3"}, 
-            React.createElement("span", {className: "name"}, item.name, " "), 
-            React.createElement("span", {className: "quantity"}, item.quantity, " "), 
-            React.createElement("input", {onChange: self.handleQuantity, type: "text", id: "quantity", className: "form-control", placeholder: "Quantity"}), 
-            React.createElement("span", {className: "price"}, "Price: $ ", self.props.randomPrice()), 
-            React.createElement("div", null, 
-              React.createElement("button", {onClick: function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}, className: "addToCartBtn btn btn-danger addCart"}, "Add to Cart")
-            )
-        )
-        );
+        // return (
+        //   <li key={item.id} className="foodListItem col-md-3">
+        //     <span className="name">{item.name} </span>
+        //     <span className="quantity">{item.quantity} </span>
+        //     <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
+        //     <span className="price">Price: $ {self.props.randomPrice()}</span>
+        //     <div>
+        //       <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
+        //     </div>
+        // </li>
+        // );
 
-      // return (
-      //   <li className="foodListItem col-md-4" key={item.ItemID}>
-      //     <img src={item.ItemImage} />
-      //     <span className="name">{item.Itemname}</span>
-      //     <span className="price">{item.ItemDescription}</span>
-      //     <div>
-      //       <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
-      //     </div>
-      // </li>
-      // );
+      return (
+        React.createElement("li", {className: "foodListItem col-md-4", key: item.ItemID}, 
+          React.createElement("img", {src: item.ItemImage}), 
+          React.createElement("span", {className: "name"}, item.Itemname), 
+          React.createElement("span", {className: "price"}, item.ItemDescription), 
+          React.createElement("div", null, 
+            React.createElement("button", {onClick: function(){self.props.addToOrder(item)}, className: "btn btn-danger addCart"}, "Add to Cart")
+          )
+      )
+      );
     });
     return (
       React.createElement("div", {className: "col-md-12 foodContainer"}, 
+        React.createElement("form", {onSubmit: this.handleSubmit, className: "navbar-form", role: "search"}, 
+            React.createElement("div", {className: "input-group add-on"}, 
+              React.createElement("input", {onChange: this.handleInput, className: "form-control", placeholder: "Search", name: "srch-term", id: "srch-term", type: "text", value: this.state.search}), 
+              React.createElement("div", {className: "input-group-btn"}, 
+                React.createElement("button", {className: "btn btn-default", type: "submit"}, React.createElement("i", {className: "glyphicon glyphicon-search"}))
+              )
+            )
+          ), 
           React.createElement("ul", null, 
             foodList
           )
@@ -414,7 +433,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     return {
       foodCollection: foodCollection,
       cart: cart,
-      orderCollection
+      orderCollection,
     }
   },
   componentWillMount: function(){
@@ -428,15 +447,11 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
       self.setState({foodCollection: response})
     });
   },
-  // fetchOrder: function(){
-  //   var self = this;
-  //   var cart = this.state.cart;
-  //   cart.fetch().then(function(response){
-  //     console.log('response', response)
-  //       self.setState({cart: cart});
-  //   });
-  // },
-  handleQuantity: function(quantity){
+  submitForm: function(search){
+    this.state.foodCollection.set({search});
+    this.state.foodCollection.submitForm(search)
+  },
+  handleQuantity: function(e, quantity){
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
@@ -466,23 +481,13 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
       React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
           React.createElement("h1", null, "Grocery Items"), 
-            React.createElement("form", {className: "navbar-form", role: "search"}, 
-                React.createElement("div", {className: "input-group add-on"}, 
-                  React.createElement("input", {className: "form-control", placeholder: "Search", name: "srch-term", id: "srch-term", type: "text"}), 
-                  React.createElement("div", {className: "input-group-btn"}, 
-                    React.createElement("button", {className: "btn btn-default", type: "submit"}, React.createElement("i", {className: "glyphicon glyphicon-search"}))
-                  )
-                )
-              ), 
-            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder, randomPrice: this.randomPrice})
+            React.createElement(FoodItem, {submitForm: this.submitForm, foodCollection: this.state.foodCollection, addToOrder: this.addToOrder, randomPrice: this.randomPrice})
         )
       )
     )
   }
 });
 
-
-// <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
 
 
 module.exports = {
@@ -843,7 +848,7 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    quantity: 1
+    search: ''
   },
   initialize: function(){
     window.account = this;
@@ -865,8 +870,19 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/items/',
+  url: 'api/supermarket/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
+  submitForm: function(search){
+    $.ajax({
+      url: 'api/supermarket/',
+      type: 'POST',
+      data: (search),
+      success: function(result){
+        console.log(search);
+        // result.fetch()
+      }
+    })
+  }
 });
 
 

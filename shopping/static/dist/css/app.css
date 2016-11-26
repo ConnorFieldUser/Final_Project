@@ -5935,6 +5935,9 @@ li.foodListItem {
   background: #5E86A9;
   border: 1px solid #5E86A9; }
 
+.glyphicon {
+  top: -2px; }
+
 .cartHeadings span {
   font-family: 'Old Standard TT', sans-serif;
   font-size: 30px;

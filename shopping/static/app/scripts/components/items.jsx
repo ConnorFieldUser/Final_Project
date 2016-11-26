@@ -41,13 +41,24 @@ require('react-bootstrap');
 var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
+    var search;
     return {
       quantity: quantity,
+      search: search
     }
   },
   handleQuantity:function(e){
     var quantity = e.target.value;
     this.setState({quantity: quantity});
+  },
+  handleInput: function(e){
+    this.setState({search: e.target.value})
+  },
+  handleSubmit: function(e){
+    e.preventDefault();
+    var search = this.state.search;
+
+    this.props.submitForm(search);
   },
   render: function(){
     var self = this;
@@ -56,31 +67,39 @@ var FoodItem = React.createClass({
     // console.log('price', foodCollection.randomPrice());
 
     var foodList = this.props.foodCollection.map(function(item){
-        return (
-          <li key={item.id} className="foodListItem col-md-3">
-            <span className="name">{item.name} </span>
-            <span className="quantity">{item.quantity} </span>
-            <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
-            <span className="price">Price: $ {self.props.randomPrice()}</span>
-            <div>
-              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
-            </div>
-        </li>
-        );
+        // return (
+        //   <li key={item.id} className="foodListItem col-md-3">
+        //     <span className="name">{item.name} </span>
+        //     <span className="quantity">{item.quantity} </span>
+        //     <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
+        //     <span className="price">Price: $ {self.props.randomPrice()}</span>
+        //     <div>
+        //       <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
+        //     </div>
+        // </li>
+        // );
 
-      // return (
-      //   <li className="foodListItem col-md-4" key={item.ItemID}>
-      //     <img src={item.ItemImage} />
-      //     <span className="name">{item.Itemname}</span>
-      //     <span className="price">{item.ItemDescription}</span>
-      //     <div>
-      //       <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
-      //     </div>
-      // </li>
-      // );
+      return (
+        <li className="foodListItem col-md-4" key={item.ItemID}>
+          <img src={item.ItemImage} />
+          <span className="name">{item.Itemname}</span>
+          <span className="price">{item.ItemDescription}</span>
+          <div>
+            <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
+          </div>
+      </li>
+      );
     });
     return (
       <div className="col-md-12 foodContainer">
+        <form onSubmit={this.handleSubmit} className="navbar-form" role="search">
+            <div className="input-group add-on">
+              <input onChange={this.handleInput} className="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" value={this.state.search}/>
+              <div className="input-group-btn">
+                <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
+              </div>
+            </div>
+          </form>
           <ul>
             {foodList}
           </ul>
@@ -99,7 +118,7 @@ var FoodItemContainer = React.createClass({
     return {
       foodCollection: foodCollection,
       cart: cart,
-      orderCollection
+      orderCollection,
     }
   },
   componentWillMount: function(){
@@ -113,15 +132,11 @@ var FoodItemContainer = React.createClass({
       self.setState({foodCollection: response})
     });
   },
-  // fetchOrder: function(){
-  //   var self = this;
-  //   var cart = this.state.cart;
-  //   cart.fetch().then(function(response){
-  //     console.log('response', response)
-  //       self.setState({cart: cart});
-  //   });
-  // },
-  handleQuantity: function(quantity){
+  submitForm: function(search){
+    this.state.foodCollection.set({search});
+    this.state.foodCollection.submitForm(search)
+  },
+  handleQuantity: function(e, quantity){
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
@@ -151,23 +166,13 @@ var FoodItemContainer = React.createClass({
       <TemplateContainer>
         <div className="row well">
           <h1>Grocery Items</h1>
-            <form className="navbar-form" role="search">
-                <div className="input-group add-on">
-                  <input className="form-control" placeholder="Search" name="srch-term" id="srch-term" type="text" />
-                  <div className="input-group-btn">
-                    <button className="btn btn-default" type="submit"><i className="glyphicon glyphicon-search"></i></button>
-                  </div>
-                </div>
-              </form>
-            <FoodItem foodCollection={this.state.foodCollection} addToOrder={this.addToOrder} randomPrice={this.randomPrice}/>
+            <FoodItem submitForm={this.submitForm} foodCollection={this.state.foodCollection} addToOrder={this.addToOrder} randomPrice={this.randomPrice}/>
         </div>
       </TemplateContainer>
     )
   }
 });
 
-
-// <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
 
 
 module.exports = {

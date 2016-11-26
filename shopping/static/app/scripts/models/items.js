@@ -7,7 +7,7 @@ var $ = require('jquery');
 var FoodItem = Backbone.Model.extend({
   // urlRoot: 'api/items/',
   defaults: {
-    quantity: 1
+    search: ''
   },
   initialize: function(){
     window.account = this;
@@ -29,8 +29,19 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/items/',
+  url: 'api/supermarket/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
+  submitForm: function(search){
+    $.ajax({
+      url: 'api/supermarket/',
+      type: 'POST',
+      data: (search),
+      success: function(result){
+        console.log(search);
+        // result.fetch()
+      }
+    })
+  }
 });
 
 
