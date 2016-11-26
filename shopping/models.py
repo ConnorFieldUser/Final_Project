@@ -64,6 +64,15 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Item(models.Model):
     name = models.CharField(max_length=25)
+    category = models.CharField(max_length=45)
+    description = models.CharField(max_length=100)
+    image = models.FileField(null=True, blank=True)
+
+    @property
+    def image_url(self):
+        if self.image:
+            return self.image.url
+        return "http://www.finecooking.com/images/no_image_ld.jpg"
 
     def __str__(self):
         return "{}".format(self.name)
