@@ -2,9 +2,10 @@ var Backbone = require('backbone');
 var React = require('react');
 var django = require('../djangoUtils');
 var $ = require('jquery');
-
+var _ = require('underscore');
 
 var FoodItem = Backbone.Model.extend({
+  idAttribute: 'id',
   // urlRoot: 'api/items/',
   defaults: {
     search: ''
@@ -31,16 +32,32 @@ var FoodItemCollection = Backbone.Collection.extend({
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   url: 'api/supermarket/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  submitForm: function(search){
-    $.ajax({
-      url: 'api/supermarket/',
-      type: 'POST',
-      data: (search),
-      success: function(result){
-        console.log(search);
-        // result.fetch()
-      }
-    })
+  // submitForm: function(search){
+  //   $.ajax({
+  //     url: 'api/supermarket/',
+  //     type: 'POST',
+  //     data: (search),
+  //     success: function(result){
+  //       console.log(search);
+  //       result.fetch()
+  //     }
+  //   })
+  // }
+  fetch: function(options) {
+    options = _.extend({parse: true}, options);
+    var success = options.success;
+    var collection = this;
+    options.success = function(resp) {
+      var method = options.reset ? 'reset' : 'set';
+      collection[method](resp, options);
+      if (success) success.call(options.context, collection, resp, options);
+      collection.trigger('sync', collection, resp, options);
+    };
+    // wrapError(this, options);
+    return this.sync('create', this, options);
+  },
+  parse: function(data){
+    return data.Product;
   }
 });
 

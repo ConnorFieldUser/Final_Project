@@ -5824,7 +5824,8 @@ h1 {
 
 .btn {
   font-family: 'Oswald';
-  font-size: 20px; }
+  font-size: 20px;
+  font-family: 'Oswald', sans-serif; }
 
 img {
   max-width: 100%; }
@@ -5843,10 +5844,11 @@ a.nav-link {
   font-size: 14px;
   padding: 15px;
   background: #5E86A9;
-  border: 1px solid #5E86A9; }
+  border: 1px solid #5E86A9;
+  text-transform: uppercase; }
 
 .userWelcome {
-  margin-left: 400px;
+  margin-left: 350px;
   margin-right: 10px; }
 
 .footer {
@@ -5889,8 +5891,35 @@ a.nav-link {
   background-size: 100%;
   background-repeat: no-repeat; }
 
-.homeText h3, .homeText h5 {
-  text-align: center; }
+.homeText h3, .homeText h4, .homeText h3 {
+  text-align: center;
+  font-family: 'Old Standard TT', sans-serif; }
+.homeText h3 {
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif; }
+.homeText .navMap {
+  float: right;
+  margin-right: 10px;
+  background-color: #5E86A9;
+  border: #5E86A9; }
+.homeText .description {
+  width: 350px;
+  margin-left: 390px;
+  opacity: 0.9;
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 5px; }
+  .homeText .description h4 {
+    line-height: 1.5; }
+.homeText .appDirections {
+  padding: 40px;
+  border-radius: 5px;
+  width: 800px;
+  margin-left: 150px;
+  line-height: 1.5; }
+
+.itemBackground {
+  opacity: 0.9; }
 
 .form-group {
   height: 50px; }
@@ -5904,8 +5933,23 @@ a.nav-link {
 .accountHeader {
   color: white; }
 
+.accountBtn {
+  position: relative;
+  float: right;
+  bottom: 25px;
+  background-color: #5E86A9;
+  border: #5E86A9; }
+
+.glyphicon-chevron-right {
+  font-size: 18px; }
+
 .map {
   height: 100%; }
+
+.navItemsBtn {
+  float: right;
+  background-color: #5E86A9;
+  border: #5E86A9; }
 
 li.foodListItem {
   list-style: none;
@@ -5914,10 +5958,10 @@ li.foodListItem {
   margin: 5px; }
   li.foodListItem .name {
     font-size: 20px;
-    font-family: "Old Standard TT";
+    font-family: 'Old Standard TT', sans-serif;
     font-weight: bold; }
   li.foodListItem .price {
-    font-family: "Old Standard TT"; }
+    font-family: 'Old Standard TT', sans-serif; }
   li.foodListItem #quantity {
     width: 80px; }
 
@@ -5937,6 +5981,11 @@ li.foodListItem {
 
 .glyphicon {
   top: -2px; }
+
+.navCartBtn {
+  float: right;
+  background-color: #5E86A9;
+  border: #5E86A9; }
 
 .cartHeadings span {
   font-family: 'Old Standard TT', sans-serif;
@@ -5961,6 +6010,9 @@ li.foodListItem {
 
 .total {
   font-size: 15px; }
+
+.placeOrderBtn {
+  float: right; }
 
 .loginContainer {
   margin-top: 100px; }

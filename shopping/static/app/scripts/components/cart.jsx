@@ -1,4 +1,5 @@
 var React = require('react');
+var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
@@ -6,6 +7,10 @@ require('react-bootstrap');
 
 
 var Order = React.createClass({
+  handleClick: function(e){
+    e.preventDefault();
+    Backbone.history.navigate('#items/', {trigger:true});
+  },
   render: function(cart){
     var orderCollection = this.props.orderCollection;
     var cart = this.props.cart.attributes;
@@ -35,6 +40,7 @@ var Order = React.createClass({
       <strong className="total">Total: ${this.props.orderCollection.total()}</strong>
       <div>
         <button className="placeOrderBtn btn btn-warning">Place Order</button>
+        <div><button className="btn btn-success" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
       </div>
     </div>
     )
@@ -85,7 +91,7 @@ var Order = React.createClass({
         data: (item),
         success: function(result){
           console.log('DONE')
-          // cart.setState({cart: cart});
+          cart.setState({cart: cart});
         }
       });
     // }

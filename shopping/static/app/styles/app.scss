@@ -39,6 +39,7 @@ h1{
 .btn {
   font-family: 'Oswald';
   font-size: 20px;
+  font-family: 'Oswald', sans-serif;
 //   background-color: #1E2C38;
 //   border-color: #1E2C38;
 }
@@ -72,10 +73,11 @@ a.nav-link{
   padding: 15px;
   background: #5E86A9;
   border: 1px solid #5E86A9;
+  text-transform: uppercase;
 }
 
 .userWelcome {
-  margin-left: 400px;
+  margin-left: 350px;
   margin-right: 10px;
 }
 
@@ -144,10 +146,53 @@ a.nav-link{
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.homeText{
-  h3, h5 {
+.homeText {
+  h3, h4, h3 {
     text-align: center;
+    font-family: 'Old Standard TT', sans-serif;
   }
+  h3 {
+    font-weight: bold;
+    font-family: 'Oswald', sans-serif;
+  }
+  .navMap {
+    float: right;
+    margin-right: 10px;
+    background-color: #5E86A9;
+    border: #5E86A9;
+  }
+  .description {
+    width: 350px;
+    margin-left: 390px;
+    // background-color: #28313A;
+    // color: white;
+    opacity: 0.9;
+    margin-top: 40px;
+    padding: 30px;
+    border-radius: 5px;
+    // h3 {
+    //   line-height: 1.5;
+    // }
+    h4 {
+      line-height: 1.5;
+    }
+  }
+  .appDirections {
+    // background-color: #28313A;
+    // color: white;
+    // opacity: 0.9;
+    padding: 40px;
+    border-radius: 5px;
+    width:800px;
+    margin-left:150px;
+    line-height: 1.5;
+  }
+}
+
+.itemBackground {
+  // background-color: #28313A;
+  // background-color: white;
+  opacity: 0.9;
 }
 
 
@@ -167,6 +212,16 @@ a.nav-link{
 .accountHeader {
   color: white;
 }
+.accountBtn {
+  position: relative;
+  float: right;
+  bottom: 25px;
+  background-color: #5E86A9;
+  border: #5E86A9;
+}
+.glyphicon-chevron-right {
+  font-size: 18px;
+}
 
 
 
@@ -175,6 +230,11 @@ a.nav-link{
 
 .map {
   height: 100%;
+}
+.navItemsBtn {
+  float: right;
+  background-color: #5E86A9;
+  border: #5E86A9;
 }
 
 
@@ -188,11 +248,11 @@ li.foodListItem {
   margin:5px;
   .name {
     font-size: 20px;
-    font-family: "Old Standard TT";
+    font-family: 'Old Standard TT', sans-serif;
     font-weight: bold;
   }
   .price {
-    font-family: "Old Standard TT";
+    font-family: 'Old Standard TT', sans-serif;
   }
   #quantity {
     width: 80px;
@@ -218,6 +278,11 @@ li.foodListItem {
   top: -2px;
 }
 
+.navCartBtn {
+  float: right;
+  background-color: #5E86A9;
+  border: #5E86A9;
+}
 
 
 //############      CART PAGE STYLING   ############################################################//
@@ -249,11 +314,12 @@ height: 70px;
 .total {
   font-size: 15px;
 }
-// .placeOrderBtn {
+.placeOrderBtn {
+  float: right;
 //   position: relative;
 //   top: 10px;
 //   left: 900px;
-// }
+}
 
 
 //############      LOGIN PAGE STYLING   ############################################################//
@@ -269,9 +335,7 @@ label {
 }
 h2 {
   font-family: 'Old Standard TT', serif;
-
 }
 input.form-control {
   font-family: 'Old Standard TT', serif;
-
 }

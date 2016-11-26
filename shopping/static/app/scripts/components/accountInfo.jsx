@@ -37,6 +37,10 @@ var AccountForm = React.createClass({
     this.setState({account: this.state.account});
 
    },
+  handleNav: function(e){
+     e.preventDefault();
+     Backbone.history.navigate('#home/', {trigger:true});
+   },
   render: function(){
     var account = this.state.account;
     return (
@@ -73,6 +77,12 @@ var AccountForm = React.createClass({
         </div>
       </div>
       <div className="form-group row">
+        <label htmlFor="zipcode" className="col-xs-2 col-form-label">Zipcode</label>
+        <div className="col-xs-10">
+          <input onChange={this.handleInputChange} value={account.get('zipcode')} name="zipcode" className="form-control" type="text" id="zipcode" />
+        </div>
+      </div>
+      <div className="form-group row">
         <label htmlFor="email" className="col-xs-2 col-form-label">Email</label>
         <div className="col-xs-10">
           <input onChange={this.handleInputChange} value={account.get('email')} name="email" className="form-control" type="email" id="email" />
@@ -90,7 +100,7 @@ var AccountForm = React.createClass({
           <input onChange={this.handlePicture} type="file" name="image" id="image"/>
         </div>
       </div>
-      <button type="submit" className="btn btn-success">My Information is correct</button>
+      <button onClick={this.handleNav} type="submit" className="btn btn-success accountBtn">My Information is correct <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
       </form>
     )
   }

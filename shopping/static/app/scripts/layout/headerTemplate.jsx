@@ -36,10 +36,10 @@ var TemplateContainer = React.createClass({
             <nav className="navbar navbar-light bg-faded well">
               <ul className="nav navbar-nav">
                 <li className="nav-item active">
-                  <a onClick={this.navHome} className="nav-link" href="#">Home<span className="sr-only">(current)</span></a>
+                  <a onClick={this.navAccountInfo} className="nav-link" href="#">Account Information<span className="sr-only">(current)</span></a>
                 </li>
                 <li className="nav-item">
-                  <a onClick={this.navAccountInfo} className="nav-link" href="#">Account Information</a>
+                  <a onClick={this.navHome}className="nav-link" href="#">Welcome</a>
                 </li>
                 <li className="nav-item">
                   <a onClick={this.navMap} className="nav-link" href="#">Map</a>
