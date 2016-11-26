@@ -226,10 +226,10 @@ var Order = React.createClass({displayName: "Order",
     var cart = this.state.cart.get('cart_items');
     console.log('cart', cart);
     // console.log('ITEM', item.id);
-
+    // var item = item.toJSON();
     // console.log('item', cart.indexOf(item));
-    var id = item.id;
-    console.log('ID', id);
+    // JSON.parse(item);
+    console.log('ID', item);
     // var index = cart.indexOf(item);
     // if (index != -1) {
       // delete (item.id);
@@ -238,7 +238,7 @@ var Order = React.createClass({displayName: "Order",
       $.ajax({
         url: 'api/carts/latest/remove_item/',
         type: 'POST',
-        data: (id),
+        data: (item),
         success: function(result){
           console.log('DONE')
           // cart.setState({cart: cart});
