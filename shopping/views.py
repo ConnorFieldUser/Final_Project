@@ -111,6 +111,7 @@ class SupermarketAPIView(APIView):
     def post(self, request):
         search_text = request.POST.get("search_text")
         r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
+        print(search_text)
         xml_result = r.text
         xml_to_json = dumps(bf.data(fromstring(xml_result)))
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
