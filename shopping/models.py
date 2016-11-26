@@ -64,10 +64,9 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 class Item(models.Model):
     name = models.CharField(max_length=25)
-    price = models.FloatField()
 
     def __str__(self):
-        return "{}, ${}0".format(self.name, self.price)
+        return "{}".format(self.name)
 
 
 class Cart(models.Model):

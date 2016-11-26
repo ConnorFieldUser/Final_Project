@@ -98,7 +98,7 @@ def get_response():
 
 
 # view for api call
-class ApiTestView(APIView):
+class SupermarketAPIView(APIView):
     # template_name = 'test.html'
 
     # def post(self, request):
