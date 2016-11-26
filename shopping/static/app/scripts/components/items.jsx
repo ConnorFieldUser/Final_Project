@@ -38,7 +38,6 @@ require('react-bootstrap');
 // });
 
 
-
 var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
@@ -142,11 +141,12 @@ var FoodItemContainer = React.createClass({
     });
   },
   randomPrice: function(min, max){
-    return ((Math.random() * 10.50) + 2.00).toFixed(2);
+    var price = ((Math.random() * 10.50) + 2.00).toFixed(2);
+    return price
+    console.log('price');
   },
   render: function(){
     var self = this;
-
     return (
       <TemplateContainer>
         <div className="row well">

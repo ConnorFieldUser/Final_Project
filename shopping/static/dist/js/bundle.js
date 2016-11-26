@@ -162,13 +162,8 @@ require('react-bootstrap');
 
 
 var Order = React.createClass({displayName: "Order",
-  handleDelete: function(e){
-    e.preventDefault();
-    console.log(item)
-  },
   render: function(cart){
     var orderCollection = this.props.orderCollection;
-    console.log(orderCollection);
     var cart = this.props.cart.attributes;
     var self = this;
 
@@ -178,10 +173,10 @@ var Order = React.createClass({displayName: "Order",
           React.createElement("span", {className: "col-md-4"}, item.item__name), 
           React.createElement("span", {className: "col-md-4"}, item.quantity), 
           React.createElement("span", {className: "col-md-4"}, "Price"), 
-          React.createElement("button", {className: "btn btn-success deleteBtn", onClick: self.handleDelete, type: "submit"}, "Delete")
+          React.createElement("button", {onClick: function(){self.props.deleteItem(item)}, className: "btn btn-success deleteBtn", type: "submit"}, "Delete")
         )
       );
-    });
+  });
 
     return (
       React.createElement("div", null, 
@@ -202,8 +197,8 @@ var Order = React.createClass({displayName: "Order",
   }
 });
 
-var CartContainer = React.createClass({displayName: "CartContainer",
-  getInitialState: function(){
+  var CartContainer = React.createClass({displayName: "CartContainer",
+    getInitialState: function(){
     var cart = new models.Cart();
     var orderCollection = new models.CartItemCollection()
 
@@ -227,6 +222,32 @@ var CartContainer = React.createClass({displayName: "CartContainer",
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
+  deleteItem: function(item){
+    var cart = this.state.cart.get('cart_items');
+    console.log('cart', cart);
+    // console.log('ITEM', item.id);
+
+    // console.log('item', cart.indexOf(item));
+    var id = item.id;
+    console.log('ID', id);
+    // var index = cart.indexOf(item);
+    // if (index != -1) {
+      // delete (item.id);
+      // console.log('ID', item.id);
+      // cart.splice(index, 1);
+      $.ajax({
+        url: 'api/carts/latest/remove_item/',
+        type: 'POST',
+        data: (id),
+        success: function(result){
+          console.log('DONE')
+          // cart.setState({cart: cart});
+        }
+      });
+    // }
+    // return false;
+  },
+
   // addToOrder: function(item, quantity){
   //   var price = item.price;
   //   var cart = this.state.cart;
@@ -249,7 +270,7 @@ var CartContainer = React.createClass({displayName: "CartContainer",
       React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
           React.createElement("h1", null, "Cart"), 
-            React.createElement(Order, {cart: this.state.cart, orderCollection: this.state.orderCollection})
+            React.createElement(Order, {cart: this.state.cart, orderCollection: this.state.orderCollection, deleteItem: this.deleteItem})
         )
       )
     )
@@ -330,7 +351,6 @@ require('react-bootstrap');
 //     )
 //   }
 // });
-
 
 
 var FoodItem = React.createClass({displayName: "FoodItem",
@@ -436,11 +456,12 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     });
   },
   randomPrice: function(min, max){
-    return ((Math.random() * 10.50) + 2.00).toFixed(2);
+    var price = ((Math.random() * 10.50) + 2.00).toFixed(2);
+    return price
+    console.log('price');
   },
   render: function(){
     var self = this;
-
     return (
       React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
@@ -631,23 +652,38 @@ var React = require('react');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 
-
-var MapContainer = React.createClass({displayName: "MapContainer",
+var Map = React.createClass({displayName: "Map",
+//   fetchPlaces: function(mapProps, map){
+//     const {google} = this.props;
+//     const service = new google.maps.places.PlacesService(map);
+//   },
+//   onMarkerClick: function(props, marker, e){
+//     e.preventDefault();
+//
+//   },
   render: function(){
     return (
-        React.createElement(TemplateContainer, null, 
-          React.createElement("div", {className: "row"}, 
-            React.createElement("div", {className: "col-md-12"}, 
-              React.createElement("h1", null, "The Map!")
-            )
-          )
-        )
+      React.createElement(TemplateContainer, null, 
+        React.createElement("h1", null, "Locations")
+      )
+//       <Map google ={this.props.google}
+//         style={{width: '100%', height: '100%', position: 'relative'}}
+//         className={'map'}
+//         zoom={14}>
+//         <Marker onClick={this.onMarkerClick}
+//           name={"McAbee"}
+//           position={{lat: 34.84802340 , lng: -82.39543630}} />
+//           <Marker onClick={this.onMarkerClick}
+//             name={"Pleasantburg"}
+//             position={{lat: 34.8362131 , lng: -82.3666505}} />
+//       </Map>
     )
   }
 });
 
+
 module.exports = {
-  MapContainer: MapContainer
+  Map: Map
 }
 
 },{"../layout/headerTemplate.jsx":9,"react":421}],7:[function(require,module,exports){
@@ -1116,7 +1152,7 @@ var LoginSignUpContainer = require('./components/login.jsx').LoginSignUpContaine
 var AccountInfoContainer = require('./components/accountInfo.jsx').AccountInfoContainer;
 var FoodItemContainer = require('./components/items.jsx').FoodItemContainer;
 var HomeContainer = require('./components/home.jsx').HomeContainer;
-var MapContainer = require('./components/map.jsx').MapContainer;
+var Map = require('./components/map.jsx').Map;
 var CartContainer = require('./components/cart.jsx').CartContainer;
 
 var AppRouter = Backbone.Router.extend({
@@ -1155,7 +1191,7 @@ var AppRouter = Backbone.Router.extend({
   },
   map: function(){
     ReactDOM.render(
-      React.createElement(MapContainer),
+      React.createElement(Map),
       document.getElementById('app')
     )
   },

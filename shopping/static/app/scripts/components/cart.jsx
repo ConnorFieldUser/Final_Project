@@ -6,13 +6,8 @@ require('react-bootstrap');
 
 
 var Order = React.createClass({
-  handleDelete: function(e){
-    e.preventDefault();
-    console.log(item)
-  },
   render: function(cart){
     var orderCollection = this.props.orderCollection;
-    console.log(orderCollection);
     var cart = this.props.cart.attributes;
     var self = this;
 
@@ -22,10 +17,10 @@ var Order = React.createClass({
           <span className="col-md-4">{item.item__name}</span>
           <span className="col-md-4">{item.quantity}</span>
           <span className="col-md-4">Price</span>
-          <button className="btn btn-success deleteBtn" onClick={self.handleDelete} type="submit">Delete</button>
+          <button onClick={function(){self.props.deleteItem(item)}} className="btn btn-success deleteBtn" type="submit">Delete</button>
         </div>
       );
-    });
+  });
 
     return (
       <div>
@@ -46,8 +41,8 @@ var Order = React.createClass({
   }
 });
 
-var CartContainer = React.createClass({
-  getInitialState: function(){
+  var CartContainer = React.createClass({
+    getInitialState: function(){
     var cart = new models.Cart();
     var orderCollection = new models.CartItemCollection()
 
@@ -71,6 +66,32 @@ var CartContainer = React.createClass({
     var quantity  = e.target.value;
     console.log('quantity', quantity);
   },
+  deleteItem: function(item){
+    var cart = this.state.cart.get('cart_items');
+    console.log('cart', cart);
+    // console.log('ITEM', item.id);
+
+    // console.log('item', cart.indexOf(item));
+    var id = item.id;
+    console.log('ID', id);
+    // var index = cart.indexOf(item);
+    // if (index != -1) {
+      // delete (item.id);
+      // console.log('ID', item.id);
+      // cart.splice(index, 1);
+      $.ajax({
+        url: 'api/carts/latest/remove_item/',
+        type: 'POST',
+        data: (id),
+        success: function(result){
+          console.log('DONE')
+          // cart.setState({cart: cart});
+        }
+      });
+    // }
+    // return false;
+  },
+
   // addToOrder: function(item, quantity){
   //   var price = item.price;
   //   var cart = this.state.cart;
@@ -93,7 +114,7 @@ var CartContainer = React.createClass({
       <TemplateContainer>
         <div className="row well">
           <h1>Cart</h1>
-            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection}/>
+            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection} deleteItem={this.deleteItem}/>
         </div>
       </TemplateContainer>
     )
