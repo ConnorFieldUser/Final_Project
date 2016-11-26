@@ -90,11 +90,11 @@ class ItemListCreateAPIView(ListCreateAPIView):
     serializer_class = ItemSerializer
 
 
-def get_response():
-    r = requests.get("http://swapi.co/api/starships/9/")
-    ships = r.json()
-    results_list = ships['name']
-    return results_list
+# def get_response():
+#     r = requests.get("http://swapi.co/api/starships/9/")
+#     ships = r.json()
+#     results_list = ships['name']
+#     return results_list
 
 
 # view for api call
