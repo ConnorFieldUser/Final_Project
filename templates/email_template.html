@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<form class="" action="{% url 'send_email_view' %}" method="post">
+<form class="" action="{% url 'email_view' %}" method="post">
   {% csrf_token %}
 
 {{ form.as_p }}
