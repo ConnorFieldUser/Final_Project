@@ -42,10 +42,8 @@ require('react-bootstrap');
 var FoodItem = React.createClass({
   getInitialState: function(){
     var quantity;
-    var price = this.props.foodCollection.randomPrice();
     return {
       quantity: quantity,
-      price: price
     }
   },
   handleQuantity:function(e){
@@ -56,6 +54,7 @@ var FoodItem = React.createClass({
     var self = this;
     var foodCollection = this.props.foodCollection;
     var quantity = parseInt(this.state.quantity);
+    // console.log('price', foodCollection.randomPrice());
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
@@ -63,9 +62,9 @@ var FoodItem = React.createClass({
             <span className="name">{item.name} </span>
             <span className="quantity">{item.quantity} </span>
             <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
-            <span className="price">Price: $ {item.price}</span>
+            <span className="price">Price: $ {self.props.randomPrice()}</span>
             <div>
-              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, item.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
+              <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
             </div>
         </li>
         );
@@ -142,6 +141,9 @@ var FoodItemContainer = React.createClass({
       }
     });
   },
+  randomPrice: function(min, max){
+    return ((Math.random() * 10.50) + 2.00).toFixed(2);
+  },
   render: function(){
     var self = this;
 
@@ -157,7 +159,7 @@ var FoodItemContainer = React.createClass({
                   </div>
                 </div>
               </form>
-            <FoodItem foodCollection={this.state.foodCollection} addToOrder={this.addToOrder}/>
+            <FoodItem foodCollection={this.state.foodCollection} addToOrder={this.addToOrder} randomPrice={this.randomPrice}/>
         </div>
       </TemplateContainer>
     )

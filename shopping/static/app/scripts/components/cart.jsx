@@ -8,7 +8,7 @@ require('react-bootstrap');
 var Order = React.createClass({
   handleDelete: function(e){
     e.preventDefault();
-    item.remove();
+    console.log(item)
   },
   render: function(cart){
     var orderCollection = this.props.orderCollection;

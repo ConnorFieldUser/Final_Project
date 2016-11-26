@@ -164,7 +164,7 @@ require('react-bootstrap');
 var Order = React.createClass({displayName: "Order",
   handleDelete: function(e){
     e.preventDefault();
-    item.remove();
+    console.log(item)
   },
   render: function(cart){
     var orderCollection = this.props.orderCollection;
@@ -336,10 +336,8 @@ require('react-bootstrap');
 var FoodItem = React.createClass({displayName: "FoodItem",
   getInitialState: function(){
     var quantity;
-    var price = this.props.foodCollection.randomPrice();
     return {
       quantity: quantity,
-      price: price
     }
   },
   handleQuantity:function(e){
@@ -350,6 +348,7 @@ var FoodItem = React.createClass({displayName: "FoodItem",
     var self = this;
     var foodCollection = this.props.foodCollection;
     var quantity = parseInt(this.state.quantity);
+    // console.log('price', foodCollection.randomPrice());
 
     var foodList = this.props.foodCollection.map(function(item){
         return (
@@ -357,9 +356,9 @@ var FoodItem = React.createClass({displayName: "FoodItem",
             React.createElement("span", {className: "name"}, item.name, " "), 
             React.createElement("span", {className: "quantity"}, item.quantity, " "), 
             React.createElement("input", {onChange: self.handleQuantity, type: "text", id: "quantity", className: "form-control", placeholder: "Quantity"}), 
-            React.createElement("span", {className: "price"}, "Price: $ ", item.price), 
+            React.createElement("span", {className: "price"}, "Price: $ ", self.props.randomPrice()), 
             React.createElement("div", null, 
-              React.createElement("button", {onClick: function(){self.props.addToOrder(item, self.state.quantity, item.price)}, className: "addToCartBtn btn btn-danger addCart"}, "Add to Cart")
+              React.createElement("button", {onClick: function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}, className: "addToCartBtn btn btn-danger addCart"}, "Add to Cart")
             )
         )
         );
@@ -436,6 +435,9 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
       }
     });
   },
+  randomPrice: function(min, max){
+    return ((Math.random() * 10.50) + 2.00).toFixed(2);
+  },
   render: function(){
     var self = this;
 
@@ -451,7 +453,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
                   )
                 )
               ), 
-            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder})
+            React.createElement(FoodItem, {foodCollection: this.state.foodCollection, addToOrder: this.addToOrder, randomPrice: this.randomPrice})
         )
       )
     )
@@ -829,9 +831,6 @@ var FoodItemCollection = Backbone.Collection.extend({
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   url: 'api/items/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  randomPrice: function(){
-    Math.floor(Math.random() * 16.50) + 5.25;
-  },
 });
 
 

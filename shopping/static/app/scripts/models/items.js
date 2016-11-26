@@ -31,9 +31,6 @@ var FoodItemCollection = Backbone.Collection.extend({
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
   url: 'api/items/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  randomPrice: function(){
-    Math.floor(Math.random() * 16.50) + 5.25;
-  },
 });
 
 
