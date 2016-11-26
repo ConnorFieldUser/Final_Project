@@ -271,5 +271,13 @@ class TestAPIView(APIView):
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
         io = StringIO(json_data)
         end = json.load(io)
+        for e in end["Product"]:
+            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            print(e["Itemname"])
+            print(e["ItemCategory"])
+            print(e["ItemDescription"])
+            print(e["ItemImage"])
+            Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"])
+            print('created')
         return Response(end)
         # return Response(json.load(io))
