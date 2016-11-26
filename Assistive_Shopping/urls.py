@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestAddItemAPIView, CartLatestRemoveItemAPIView
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestAddItemAPIView, CartLatestRemoveItemAPIView, EmailView
 
 from django.conf import settings
 from django.conf.urls.static import static
@@ -45,4 +45,5 @@ urlpatterns = [
     url(r'^driver/$', DriverView.as_view(), name="driver_view"),
     url(r'^carts/update$', CartUpdateView.as_view(), name="cart_update_view"),
     url(r'^carts/(?P<pk>\d+)/$', CartDetailView.as_view(), name="cart_detail_view"),
+    url(r'^send_email/$', EmailView.as_view(), name="email_view")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

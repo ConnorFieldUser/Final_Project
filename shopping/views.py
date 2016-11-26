@@ -7,6 +7,9 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 
+from django.views.generic.edit import FormView
+
+from shopping.forms import SignUpForm
 
 from shopping.models import Account, Cart, Item, CartItem
 
@@ -239,10 +242,19 @@ class CartLatestRemoveItemAPIView(APIView):
         return Response("Deleted")
 
 
-# class EmailView(FormView):
-#     form_class = EmailForm
-#     success_url = reverse_lazy("account_list_view")
-#
-#     def form_valid(self, form):
-#         form.send_email()
-#         return super().form_valid(form)
+class EmailView(FormView):
+    form_class = SignUpForm
+    success_url = reverse_lazy("account_list_view")
+
+    def form_valid(self, form):
+        form.send_email()
+        return super().form_valid(form)
+
+
+class EmailTemplateView(TemplateView):
+    template_name = 'email_template.html'
+
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["form"] = SignUpForm()
+        return context

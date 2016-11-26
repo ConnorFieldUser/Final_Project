@@ -6,8 +6,13 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from rest_framework.authtoken.models import Token
 
+import random
 
 # Create your models here.
+
+
+def random_price():
+    return random.randint(3, 10)
 
 
 USER_TYPE = [
@@ -26,6 +31,7 @@ class Account(models.Model):
     adress = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=25, null=True, blank=True)
     state = models.CharField(max_length=25, null=True, blank=True)
+    zipcode = models.IntegerField()
     email = models.EmailField(max_length=50, null=True, blank=True)
     user_type = models.CharField(max_length=1, choices=USER_TYPE)
     image = models.FileField(null=True, blank=True)
@@ -67,6 +73,7 @@ class Item(models.Model):
     category = models.CharField(max_length=45)
     description = models.CharField(max_length=100)
     image = models.FileField(null=True, blank=True)
+    price = models.IntegerField(default=random_price)
 
     @property
     def image_url(self):
