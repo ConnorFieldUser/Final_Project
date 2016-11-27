@@ -1,1 +1,0 @@
-console.error("Error: Cannot find module 'google-maps-react' from '/Users/ConQuest/Final_Project/shopping/static/app/scripts/components'");

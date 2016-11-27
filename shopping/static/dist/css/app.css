@@ -5848,28 +5848,35 @@ a.nav-link {
   background-size: 100%;
   background-repeat: no-repeat; }
 
-.homeText h1 {
-  font-family: 'Old Standard TT'; }
-.homeText h3, .homeText h4, .homeText h3 {
+h1 {
+  font-family: 'Old Standard TT';
+  font-weight: bold; }
+
+h3, h4, h3 {
   text-align: center;
   font-family: 'Old Standard TT', sans-serif; }
-.homeText h3 {
+
+h3 {
   font-weight: bold;
   font-family: 'Oswald', sans-serif; }
-.homeText .navMap {
+
+.navMap {
   float: right;
   margin-right: 10px;
   background-color: #5E86A9;
   border: #5E86A9; }
-.homeText .description {
+
+.description {
   opacity: 0.9;
-  margin-top: 40px;
   padding: 30px;
   border-radius: 5px; }
-  .homeText .description h4 {
-    line-height: 1.5; }
-.homeText .appDirections {
-  padding: 40px;
+  .description h4 {
+    line-height: 1.5;
+    padding-left: 100px;
+    padding-right: 100px; }
+
+.appDirections ul, .appDirections li {
+  list-style: none;
   border-radius: 5px;
   line-height: 1.5; }
 
@@ -5908,7 +5915,7 @@ a.nav-link {
 
 .foodListItem {
   list-style: none;
-  height: 250px;
+  height: 350px;
   border: 1px solid black; }
   .foodListItem .name {
     font-size: 15px;
@@ -5950,6 +5957,12 @@ img.itemImage {
 h2.searchDirections {
   text-align: center;
   font-size: 25px; }
+
+.itemDetailHeader {
+  color: white; }
+
+.itemDetailImg {
+  margin-left: 140px; }
 
 .cartHeadings span {
   font-family: 'Old Standard TT', sans-serif;

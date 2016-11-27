@@ -18,6 +18,7 @@ html {
   // font-family: 'Domine', serif;
   // background-image: 'https://www.photocase.com/photos/1238726-healthy-eating-life-eating-food-photograph-style-background-picture-photocase-stock-photo-large.jpeg',
   background-image: url('https://www.photocase.com/photos/1663924-healthy-eating-life-eating-food-photograph-style-food-photocase-stock-photo-large.jpeg');
+  // background-image: url('http://shushi168.com/data/out/222/37188142-textured-wallpaper.jpg');
   background-size: 100%;
   // background-repeat: no-repeat;
   }
@@ -151,9 +152,10 @@ a.nav-link{
   background-size: 100%;
   background-repeat: no-repeat;
 }
-.homeText {
+
   h1 {
     font-family: 'Old Standard TT';
+    font-weight: bold;
   }
   h3, h4, h3 {
     text-align: center;
@@ -175,7 +177,7 @@ a.nav-link{
     // background-color: #28313A;
     // color: white;
     opacity: 0.9;
-    margin-top: 40px;
+    // margin-top: 40px;
     padding: 30px;
     border-radius: 5px;
     // h3 {
@@ -183,19 +185,24 @@ a.nav-link{
     // }
     h4 {
       line-height: 1.5;
+      padding-left: 100px;
+      padding-right: 100px;
     }
   }
   .appDirections {
-    // background-color: #28313A;
-    // color: white;
-    // opacity: 0.9;
-    padding: 40px;
-    border-radius: 5px;
-    // width:800px;
-    // margin-left:150px;
-    line-height: 1.5;
+    ul, li{
+      list-style: none;
+      // background-color: #28313A;
+      // color: white;
+      // opacity: 0.9;
+      // padding: 40px;
+      border-radius: 5px;
+      // width:800px;
+      // margin-left:150px;
+      line-height: 1.5;
+    }
   }
-}
+
 
 .itemBackground {
   // background-color: #28313A;
@@ -251,7 +258,7 @@ a.nav-link{
 
 .foodListItem {
   list-style: none;
-  height: 250px;
+  height: 350px;
   border: 1px solid black;
   // margin:5px;
   .name {
@@ -304,6 +311,18 @@ h2.searchDirections {
   text-align: center;
   font-size:25px;
 }
+
+
+//############      DETAIL PAGE STYLING   ############################################################//
+
+.itemDetailHeader {
+  color: white;
+}
+.itemDetailImg {
+  margin-left: 140px;
+}
+
+
 
 
 //############      CART PAGE STYLING   ############################################################//
