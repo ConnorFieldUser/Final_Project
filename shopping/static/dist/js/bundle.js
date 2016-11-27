@@ -206,7 +206,7 @@ var Order = React.createClass({displayName: "Order",
       React.createElement("strong", {className: "total"}, "Total: $", this.props.orderCollection.total()), 
       React.createElement("div", null, 
         React.createElement("button", {className: "placeOrderBtn btn btn-warning"}, "Place Order"), 
-        React.createElement("div", null, React.createElement("button", {className: "btn btn-success", onClick: self.handleClick}, React.createElement("span", {className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true"}), "Back to Item Listing"))
+        React.createElement("div", null, React.createElement("button", {className: "btn btn-success backItemsBtn", onClick: self.handleClick}, React.createElement("span", {className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true"}), "Back to Item Listing"))
       )
     )
     )
@@ -239,6 +239,7 @@ var Order = React.createClass({displayName: "Order",
     console.log('quantity', quantity);
   },
   deleteItem: function(item){
+    var self = this;
     var cart = this.state.cart.get('cart_items');
     console.log('cart', cart);
     // console.log('ITEM', item.id);
@@ -257,7 +258,7 @@ var Order = React.createClass({displayName: "Order",
         data: (item),
         success: function(result){
           console.log('DONE')
-          cart.setState({cart: cart});
+          self.setState({cart: cart});
         }
       });
     // }
@@ -309,11 +310,11 @@ require('react-bootstrap');
 
 
 var DetailContainer = React.createClass({displayName: "DetailContainer",
-  // getInitialState: function(){
-  //   return {
-  //     var foodCollection: new models.FoodItemCollection(),
-  //   }
-  // },
+  getInitialState: function(){
+    return {
+      foodCollection: new models.FoodItemCollection(),
+    }
+  },
   // componentWillMount: function(){
   //   var foodCollection = this.state.foodCollection;
   //   foodCollection.fetch().then(() => {
@@ -325,9 +326,22 @@ var DetailContainer = React.createClass({displayName: "DetailContainer",
     Backbone.history.navigate('#items/', {trigger:true});
   },
   render: function(){
+    // var detail =  this.props.foodCollection.map(function(item){
+    //   return (
+    //     <div className="foodListItem col-md-4" key={item.cid}>
+    //       <div className="imageContainer">
+    //         <img className="itemImage" src={item.get('ItemImage')} />
+    //       </div>
+    //       <span className="name">{item.get('Itemname')}</span>
+    //       <span className="description">{item.get('Itemdescription')}</span>
+    //       <span className="price">Price: $</span>
+    //   </div>
+    //   );
+    // });
+
     return (
       React.createElement(TemplateContainer, null, 
-        React.createElement("h1", null, "DETAILS HERE"), 
+        React.createElement("h1", null, "Item Detail"), 
         React.createElement("button", {onClick: this.handleClick, className: "btn btn-success"}, React.createElement("span", {className: "glyphicon glyphicon-chevron-left", "aria-hidden": "true"}), "Back to Listing")
       )
     )
@@ -357,26 +371,29 @@ var HomeContainer = React.createClass({displayName: "HomeContainer",
       // <div className="container">
           React.createElement(TemplateContainer, null, 
             React.createElement("div", {className: "row"}, 
+
               React.createElement("div", {className: "col-md-12 well"}, 
-                React.createElement("div", {className: "mainImage"}), 
-                React.createElement("div", {className: "homeText"}, 
-                  React.createElement("h1", null, "Welcome to Assistive Shopper"), 
+                React.createElement("div", {className: "mainImage"})
+              ), 
 
-                  React.createElement("div", {className: "description"}, 
-                    React.createElement("h3", null, "Grocery shopping made easy."), 
-                    React.createElement("h4", null, "We provide online food selection for a range of Publix supermarkets and a home grocery delivery service in the Greenville, Anderson, and Asheville areas.")
-                  ), 
+              React.createElement("div", {className: "col-md-12 homeText well"}, 
+                React.createElement("h1", null, "Welcome to Assistive Shopper"), 
+                React.createElement("div", {className: "description"}, 
+                  React.createElement("h3", null, "Grocery shopping made easy."), 
+                  React.createElement("h4", null, "We provide online food selection for a range of Publix supermarkets and a home grocery delivery service in the Greenville, Anderson, and Asheville areas.")
+                )
+              ), 
 
-                  React.createElement("h3", null, "How to use this service: "), 
-
-                  React.createElement("h4", {className: "appDirections"}, "Please Verify/Provide your Account Information, if you have not done so." + ' ' +
+              React.createElement("div", {classname: "col-md-12 well"}, 
+              React.createElement("h3", null, "How to use this service: "), 
+                React.createElement("h4", {className: "appDirections"}, "Please Verify/Provide your Account Information, if you have not done so." + ' ' +
                   "Next, view store locations on the map and select a supermarket where you would like your grocery items delivered from." + ' ' +
                   "Search for grocery items in the search box.  Add item to the cart and view item details." + ' ' +
                   "Review your cart and submit! Once you have finished an email will be generated to you containing driver details, a reciept, and an ETA."), 
-                  React.createElement("h3", null, "Thank you for using our service !"), 
-                  React.createElement("button", {onClick: this.handleClick, className: "btn btn-success navMap"}, "Next: View the Map ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"}))
+                React.createElement("h3", null, "Thank you for using our service !"), 
+                React.createElement("button", {onClick: this.handleClick, className: "btn btn-success navMap"}, "Next: View the Map ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"}))
               )
-              )
+
             )
           )
         // </div>
@@ -415,9 +432,13 @@ var FoodItem = React.createClass({displayName: "FoodItem",
     var quantity = e.target.value;
     this.setState({quantity: quantity});
   },
-  handleDetail: function(e){
-    e.preventDefault();
-    Backbone.history.navigate('#detail/', {trigger: true});
+  handleDetail: function(item){
+    var itemD = item.attributes
+    console.log(itemD);
+
+
+    // $(itemD.ItemDescription).show();
+    // Backbone.history.navigate('#detail/', {trigger: true});
   },
   handleSearchInput: function(e){
     this.setState({search: e.target.value})
@@ -428,28 +449,30 @@ var FoodItem = React.createClass({displayName: "FoodItem",
 
     this.props.submitForm(search);
   },
+
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
-    // console.log('foodCollection', foodCollection);
     var quantity = parseInt(this.state.quantity);
-    // console.log('price', foodCollection.randomPrice());
-
     var foodList = this.props.foodCollection.map(function(item){
-    //   console.log(item);
-    //
+
       return (
-        React.createElement("li", {className: "foodListItem col-md-4", key: item.cid}, 
-          React.createElement("img", {src: item.get('ItemImage')}), 
+        React.createElement("div", {className: "foodListItem col-md-4", key: item.cid}, 
+          React.createElement("div", {className: "imageContainer"}, 
+            React.createElement("img", {className: "itemImage", src: item.get('ItemImage')})
+          ), 
           React.createElement("span", {className: "name"}, item.get('Itemname')), 
-          React.createElement("span", {className: "price"}, item.get('ItemDescription')), 
+          React.createElement("span", {id: "descrip"}, item.get('ItemDescription')), 
+          React.createElement("input", {onChange: self.handleQuantity, type: "text", id: "quantity", className: "form-control", placeholder: "Quantity"}), 
+          React.createElement("span", {className: "price"}, "Price: $ ", self.props.randomPrice()), 
           React.createElement("div", null, 
-            React.createElement("button", {onClick: self.handleDetail, className: "btn btn-danger viewDetail"}, "View Item Details"), 
-            React.createElement("button", {onClick: function(){self.props.addToOrder(item)}, className: "btn btn-danger addCart"}, "Add to Cart")
-          )
+            React.createElement("button", {onClick: function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}, className: "addToCartBtn btn btn-danger addCart"}, "Add to Cart"), 
+            React.createElement("button", {onClick: function(){$("#descrip").remove()}, className: "btn btn-danger viewDetail"}, "View Item Details")
+        )
       )
       );
     });
+
     return (
       React.createElement("div", {className: "col-md-12 foodContainer"}, 
         React.createElement("form", {onSubmit: this.handleSubmit, className: "navbar-form", role: "search"}, 
@@ -482,38 +505,14 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     }
   },
   submitForm: function(search){
+    console.log('search', search);
     var self = this;
     var foodCollection = this.state.foodCollection;
-    foodCollection.fetch({data: search, emulateHTTP: true}).then(function(){
+    foodCollection.fetch({data: {'search_text': search}, emulateJSON: true}).then(function(){
       self.setState({foodCollection: foodCollection});
       console.log('foodCollection', foodCollection);
     });
-
-
-
-    // $.ajax({
-    //   url: 'api/supermarket/',
-    //   type: 'POST',
-    //   data: (search),
-    //   success: function(result){
-    //     console.log('result', result);
-    //     self.setState({foodCollection: foodCollection});
-    //     console.log('foodCOLL', foodCollection)
-    //   }
-    // });
   },
-  // fetchItems: function(){
-  //   var self = this;
-  //   var foodCollection=this.state.foodCollection;
-  //   foodCollection.fetch().then(function(response){
-  //     console.log('FETCH', response);
-  //     self.setState({foodCollection: foodCollection})
-  //   });
-  // },
-  // submitForm: function(search){
-  //   this.state.foodCollection.set({search});
-  //   this.state.foodCollection.submitForm(search)
-  // },
   handleQuantity: function(e, quantity){
     var quantity  = e.target.value;
     console.log('quantity', quantity);
@@ -548,6 +547,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
       React.createElement(TemplateContainer, null, 
         React.createElement("div", {className: "row well"}, 
           React.createElement("h1", null, "Grocery Items"), 
+          React.createElement("h2", {className: "searchDirections"}, "Please search for grocery items:"), 
             React.createElement(FoodItem, {submitForm: this.submitForm, foodCollection: this.state.foodCollection, addToOrder: this.addToOrder, randomPrice: this.randomPrice}), 
             React.createElement("button", {onClick: this.handleForward, className: "btn btn-success navCartBtn"}, "Next: View Cart ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"}))
       )
@@ -597,8 +597,8 @@ var SignUpForm = React.createClass({displayName: "SignUpForm",
         React.createElement("form", {onSubmit: this.handleSignUp, id: "signup"}, 
 
           React.createElement("div", {className: "form-group"}, 
-            React.createElement("label", {htmlFor: "email"}, "Email address"), 
-            React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "username", id: "username", type: "username", placeholder: "email"})
+            React.createElement("label", {htmlFor: "username"}, "Username"), 
+            React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "username", id: "username", type: "username", placeholder: "Username"})
           ), 
 
           React.createElement("div", {className: "form-group"}, 
@@ -639,8 +639,8 @@ var SignInForm = React.createClass({displayName: "SignInForm",
           React.createElement("h2", null, "Please Login"), 
           React.createElement("form", {onSubmit: this.handleSignIn, id: "login"}, 
             React.createElement("div", {className: "form-group"}, 
-              React.createElement("label", {htmlFor: "email-login"}, "Email address"), 
-              React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "username", id: "email-login", type: "username", placeholder: "email"})
+              React.createElement("label", {htmlFor: "username-login"}, "Username"), 
+              React.createElement("input", {onChange: this.handleUsernameInput, value: this.state.username, className: "form-control", name: "username", id: "username-login", type: "username", placeholder: "Username"})
             ), 
 
             React.createElement("div", {className: "form-group"}, 
@@ -705,7 +705,7 @@ var LoginSignUpContainer = React.createClass({displayName: "LoginSignUpContainer
               React.createElement("h1", null, "Assistive Shopper ", this.state.user.get('token') ? 'Logged in' : ''), 
                 React.createElement(SignUpForm, {signUp: this.signUp}), 
                 React.createElement(SignInForm, {signIn: this.signIn}), 
-                React.createElement("a", {href: "create_user/"}, "Interested in Becoming a Driver?")
+                React.createElement("a", {className: "driverLink", href: "create_user/"}, "Interested in Becoming a Driver?")
             )
           )
       )
@@ -725,7 +725,10 @@ var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 require("react-dom/package.json"); // react-dom is a peer dependency
-require('google-maps-react');
+var GoogleMapLoader = require('google-maps-react').GoogleMapLoader;
+var Marker = require('google-maps-react').Marker;
+var GoogleMap = require('google-maps-react').GoogleMap;
+
 
 
 var MapContainer = React.createClass({displayName: "MapContainer",
@@ -733,45 +736,31 @@ var MapContainer = React.createClass({displayName: "MapContainer",
     e.preventDefault();
     Backbone.history.navigate('#items/', {trigger:true});
   },
+  handleMap: function(){
+    new google.maps.Map(), {
+      zoom: 16,
+      center: new google.maps.LatLng(-34.397, 150.644),
+      mapTypeId: 'roadmap'
+    }
+  },
   render: function(){
     return (
       React.createElement(TemplateContainer, null, 
         React.createElement("h1", null, "Locations"), 
-        React.createElement("button", {onClick: this.handleClick, className: "btn btn-success navItemsBtn"}, "Next: View Items ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"}))
-          
-      )
+        React.createElement("div", {id: "map"}, function(){self.handleMap()}), 
+        React.createElement("button", {onClick: this.handleClick, className: "btn btn-success navItemsBtn"}, "Next: View Items ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"})), 
+          React.createElement("script", {async: true, defer: true, 
+         src: "https://maps.googleapis.com/maps/api/js?key=AIzaSyDJEwAaweEQb7eNqNzQJ7LpZ7Eqsh8rLdg&callback=initMap"}
+         )
+    )
     )
   }
 });
 
-// React.createClass({
-//   fetchPlaces: function(mapProps, map) {
-//     const {google} = this.props;
-//     const service = new google.maps.places.PlacesService(map);
-//     // ...
-//   },
-//   render: function() {
-//     return (
-//       <Map google={this.props.google}
-//         onReady={this.fetchPlaces}
-//         visible={false}>
-//           <Listing places={this.state.places} />
-//       </Map>
-//     )
-//   }
-// });
-//
-// <Map google ={this.props.google}
-//     style={{width: '100%', height: '100%', position: 'relative'}}
-//     className={'map'}
-//     zoom={14}>
-//     <Marker onClick={this.onMarkerClick}
-//       name={"McAbee"}
-//       position={{lat: 34.84802340 , lng: -82.39543630}} />
-//       <Marker onClick={this.onMarkerClick}
-//         name={"Pleasantburg"}
-//         position={{lat: 34.8362131 , lng: -82.3666505}} />
-//   </Map>
+
+//STATIC MAP:
+// <img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCWDL-fy7OiIh4k8_aaIGusHC6EhehTRfo" id="map"></img>
+
 
 module.exports = {
   MapContainer: MapContainer
@@ -957,19 +946,8 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/supermarket/',
+  url: 'api/test/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  // submitForm: function(search){
-  //   $.ajax({
-  //     url: 'api/supermarket/',
-  //     type: 'POST',
-  //     data: (search),
-  //     success: function(result){
-  //       console.log(search);
-  //       result.fetch()
-  //     }
-  //   })
-  // }
   fetch: function(options) {
     options = _.extend({parse: true}, options);
     var success = options.success;
@@ -984,7 +962,8 @@ var FoodItemCollection = Backbone.Collection.extend({
     return this.sync('create', this, options);
   },
   parse: function(data){
-    return data.Product;
+    return data.Product
+    console.log('product', data.Product);
   }
 });
 

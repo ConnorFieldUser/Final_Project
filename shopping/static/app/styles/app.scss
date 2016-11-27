@@ -48,6 +48,10 @@ img {
   max-width: 100%;
 }
 
+#map {
+  height: 300px;;
+}
+
 
 //############      HEADER/NAV BAR STYLING   ############################################################//
 
@@ -79,6 +83,8 @@ a.nav-link{
 .userWelcome {
   margin-left: 350px;
   margin-right: 10px;
+  font-family:'Old Standard TT', sans-serif;
+  font-size: 16px;
 }
 
 
@@ -139,14 +145,16 @@ a.nav-link{
 //############      HOME PAGE STYLING   ############################################################//
 
 
-
 .mainImage {
   background-image: url('http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg');
-  height:350px;
+  height:333px;
   background-size: 100%;
   background-repeat: no-repeat;
 }
 .homeText {
+  h1 {
+    font-family: 'Old Standard TT';
+  }
   h3, h4, h3 {
     text-align: center;
     font-family: 'Old Standard TT', sans-serif;
@@ -162,8 +170,8 @@ a.nav-link{
     border: #5E86A9;
   }
   .description {
-    width: 350px;
-    margin-left: 390px;
+    // width: 800px;
+    // margin-left: 150px;
     // background-color: #28313A;
     // color: white;
     opacity: 0.9;
@@ -183,8 +191,8 @@ a.nav-link{
     // opacity: 0.9;
     padding: 40px;
     border-radius: 5px;
-    width:800px;
-    margin-left:150px;
+    // width:800px;
+    // margin-left:150px;
     line-height: 1.5;
   }
 }
@@ -241,13 +249,13 @@ a.nav-link{
 //############      ITEM LIST PAGE STYLING   ############################################################//
 
 
-li.foodListItem {
+.foodListItem {
   list-style: none;
-  height: 150px;
+  height: 250px;
   border: 1px solid black;
-  margin:5px;
+  // margin:5px;
   .name {
-    font-size: 20px;
+    font-size: 15px;
     font-family: 'Old Standard TT', sans-serif;
     font-weight: bold;
   }
@@ -284,6 +292,19 @@ li.foodListItem {
   border: #5E86A9;
 }
 
+img.itemImage {
+  max-width: 100%;
+}
+.imgContainer {
+  width: 50px;
+  height: 50px;
+}
+
+h2.searchDirections {
+  text-align: center;
+  font-size:25px;
+}
+
 
 //############      CART PAGE STYLING   ############################################################//
 .cartHeadings span {
@@ -307,6 +328,11 @@ height: 70px;
   position: relative;
   top: -35px;
   font-family: 'Oswald';
+  background: #5E86A9;
+  border: 1px solid #5E86A9;
+}
+
+.backItemsBtn {
   background: #5E86A9;
   border: 1px solid #5E86A9;
 }
@@ -338,4 +364,11 @@ h2 {
 }
 input.form-control {
   font-family: 'Old Standard TT', serif;
+}
+.driverLink {
+  color: #337ab7;
+  text-decoration: none;
+  font-family: 'Old Standard TT';
+  font-size: 16px;
+  margin: 10px;
 }

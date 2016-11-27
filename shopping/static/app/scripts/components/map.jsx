@@ -3,7 +3,10 @@ var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 require("react-dom/package.json"); // react-dom is a peer dependency
-require('google-maps-react');
+var GoogleMapLoader = require('google-maps-react').GoogleMapLoader;
+var Marker = require('google-maps-react').Marker;
+var GoogleMap = require('google-maps-react').GoogleMap;
+
 
 
 var MapContainer = React.createClass({
@@ -11,45 +14,31 @@ var MapContainer = React.createClass({
     e.preventDefault();
     Backbone.history.navigate('#items/', {trigger:true});
   },
+  handleMap: function(){
+    new google.maps.Map(), {
+      zoom: 16,
+      center: new google.maps.LatLng(-34.397, 150.644),
+      mapTypeId: 'roadmap'
+    }
+  },
   render: function(){
     return (
       <TemplateContainer>
         <h1>Locations</h1>
+        <div id="map">{function(){self.handleMap()}}</div>
         <button onClick={this.handleClick} className="btn btn-success navItemsBtn">Next: View Items <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-          
-      </TemplateContainer>
+          <script async defer
+         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJEwAaweEQb7eNqNzQJ7LpZ7Eqsh8rLdg&callback=initMap">
+         </script>
+    </TemplateContainer>
     )
   }
 });
 
-// React.createClass({
-//   fetchPlaces: function(mapProps, map) {
-//     const {google} = this.props;
-//     const service = new google.maps.places.PlacesService(map);
-//     // ...
-//   },
-//   render: function() {
-//     return (
-//       <Map google={this.props.google}
-//         onReady={this.fetchPlaces}
-//         visible={false}>
-//           <Listing places={this.state.places} />
-//       </Map>
-//     )
-//   }
-// });
-//
-// <Map google ={this.props.google}
-//     style={{width: '100%', height: '100%', position: 'relative'}}
-//     className={'map'}
-//     zoom={14}>
-//     <Marker onClick={this.onMarkerClick}
-//       name={"McAbee"}
-//       position={{lat: 34.84802340 , lng: -82.39543630}} />
-//       <Marker onClick={this.onMarkerClick}
-//         name={"Pleasantburg"}
-//         position={{lat: 34.8362131 , lng: -82.3666505}} />
-//   </Map>
+
+//STATIC MAP:
+// <img src="https://maps.googleapis.com/maps/api/staticmap?center=Brooklyn+Bridge,New+York,NY&zoom=13&size=600x300&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284&key=AIzaSyCWDL-fy7OiIh4k8_aaIGusHC6EhehTRfo" id="map"></img>
+
 
 module.exports = {
   MapContainer: MapContainer

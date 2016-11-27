@@ -5830,6 +5830,9 @@ h1 {
 img {
   max-width: 100%; }
 
+#map {
+  height: 300px; }
+
 .navbar {
   opacity: 0.9; }
 
@@ -5849,7 +5852,9 @@ a.nav-link {
 
 .userWelcome {
   margin-left: 350px;
-  margin-right: 10px; }
+  margin-right: 10px;
+  font-family: 'Old Standard TT', sans-serif;
+  font-size: 16px; }
 
 .footer {
   font-family: 'Old Standard TT', serif;
@@ -5887,10 +5892,12 @@ a.nav-link {
 
 .mainImage {
   background-image: url("http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg");
-  height: 350px;
+  height: 333px;
   background-size: 100%;
   background-repeat: no-repeat; }
 
+.homeText h1 {
+  font-family: 'Old Standard TT'; }
 .homeText h3, .homeText h4, .homeText h3 {
   text-align: center;
   font-family: 'Old Standard TT', sans-serif; }
@@ -5903,8 +5910,6 @@ a.nav-link {
   background-color: #5E86A9;
   border: #5E86A9; }
 .homeText .description {
-  width: 350px;
-  margin-left: 390px;
   opacity: 0.9;
   margin-top: 40px;
   padding: 30px;
@@ -5914,8 +5919,6 @@ a.nav-link {
 .homeText .appDirections {
   padding: 40px;
   border-radius: 5px;
-  width: 800px;
-  margin-left: 150px;
   line-height: 1.5; }
 
 .itemBackground {
@@ -5951,18 +5954,17 @@ a.nav-link {
   background-color: #5E86A9;
   border: #5E86A9; }
 
-li.foodListItem {
+.foodListItem {
   list-style: none;
-  height: 150px;
-  border: 1px solid black;
-  margin: 5px; }
-  li.foodListItem .name {
-    font-size: 20px;
+  height: 250px;
+  border: 1px solid black; }
+  .foodListItem .name {
+    font-size: 15px;
     font-family: 'Old Standard TT', sans-serif;
     font-weight: bold; }
-  li.foodListItem .price {
+  .foodListItem .price {
     font-family: 'Old Standard TT', sans-serif; }
-  li.foodListItem #quantity {
+  .foodListItem #quantity {
     width: 80px; }
 
 .navbar-form {
@@ -5987,6 +5989,17 @@ li.foodListItem {
   background-color: #5E86A9;
   border: #5E86A9; }
 
+img.itemImage {
+  max-width: 100%; }
+
+.imgContainer {
+  width: 50px;
+  height: 50px; }
+
+h2.searchDirections {
+  text-align: center;
+  font-size: 25px; }
+
 .cartHeadings span {
   font-family: 'Old Standard TT', sans-serif;
   font-size: 30px;
@@ -6005,6 +6018,10 @@ li.foodListItem {
   position: relative;
   top: -35px;
   font-family: 'Oswald';
+  background: #5E86A9;
+  border: 1px solid #5E86A9; }
+
+.backItemsBtn {
   background: #5E86A9;
   border: 1px solid #5E86A9; }
 
@@ -6028,5 +6045,12 @@ h2 {
 
 input.form-control {
   font-family: 'Old Standard TT', serif; }
+
+.driverLink {
+  color: #337ab7;
+  text-decoration: none;
+  font-family: 'Old Standard TT';
+  font-size: 16px;
+  margin: 10px; }
 
 /*# sourceMappingURL=app.css.map */

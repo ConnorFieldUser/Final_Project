@@ -40,7 +40,7 @@ var Order = React.createClass({
       <strong className="total">Total: ${this.props.orderCollection.total()}</strong>
       <div>
         <button className="placeOrderBtn btn btn-warning">Place Order</button>
-        <div><button className="btn btn-success" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
+        <div><button className="btn btn-success backItemsBtn" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
       </div>
     </div>
     )
@@ -73,6 +73,7 @@ var Order = React.createClass({
     console.log('quantity', quantity);
   },
   deleteItem: function(item){
+    var self = this;
     var cart = this.state.cart.get('cart_items');
     console.log('cart', cart);
     // console.log('ITEM', item.id);
@@ -91,7 +92,7 @@ var Order = React.createClass({
         data: (item),
         success: function(result){
           console.log('DONE')
-          cart.setState({cart: cart});
+          self.setState({cart: cart});
         }
       });
     // }

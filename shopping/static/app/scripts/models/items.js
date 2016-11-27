@@ -30,19 +30,8 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/supermarket/',
+  url: 'api/test/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
-  // submitForm: function(search){
-  //   $.ajax({
-  //     url: 'api/supermarket/',
-  //     type: 'POST',
-  //     data: (search),
-  //     success: function(result){
-  //       console.log(search);
-  //       result.fetch()
-  //     }
-  //   })
-  // }
   fetch: function(options) {
     options = _.extend({parse: true}, options);
     var success = options.success;
@@ -57,7 +46,8 @@ var FoodItemCollection = Backbone.Collection.extend({
     return this.sync('create', this, options);
   },
   parse: function(data){
-    return data.Product;
+    return data.Product
+    console.log('product', data.Product);
   }
 });
 

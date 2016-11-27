@@ -23,9 +23,13 @@ var FoodItem = React.createClass({
     var quantity = e.target.value;
     this.setState({quantity: quantity});
   },
-  handleDetail: function(e){
-    e.preventDefault();
-    Backbone.history.navigate('#detail/', {trigger: true});
+  handleDetail: function(item){
+    var itemD = item.attributes
+    console.log(itemD);
+
+
+    // $(itemD.ItemDescription).show();
+    // Backbone.history.navigate('#detail/', {trigger: true});
   },
   handleSearchInput: function(e){
     this.setState({search: e.target.value})
@@ -36,28 +40,30 @@ var FoodItem = React.createClass({
 
     this.props.submitForm(search);
   },
+
   render: function(){
     var self = this;
     var foodCollection = this.props.foodCollection;
-    // console.log('foodCollection', foodCollection);
     var quantity = parseInt(this.state.quantity);
-    // console.log('price', foodCollection.randomPrice());
-
     var foodList = this.props.foodCollection.map(function(item){
-    //   console.log(item);
-    //
+
       return (
-        <li className="foodListItem col-md-4" key={item.cid}>
-          <img src={item.get('ItemImage')} />
-          <span className="name">{item.get('Itemname')}</span>
-          <span className="price">{item.get('ItemDescription')}</span>
-          <div>
-            <button onClick={self.handleDetail} className="btn btn-danger viewDetail">View Item Details</button>
-            <button onClick={function(){self.props.addToOrder(item)}} className="btn btn-danger addCart">Add to Cart</button>
+        <div className="foodListItem col-md-4" key={item.cid}>
+          <div className="imageContainer">
+            <img className="itemImage" src={item.get('ItemImage')} />
           </div>
-      </li>
+          <span className="name">{item.get('Itemname')}</span>
+          <span id="descrip">{item.get('ItemDescription')}</span>
+          <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
+          <span className="price">Price: $ {self.props.randomPrice()}</span>
+          <div>
+            <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
+            <button onClick={function(){$("#descrip").remove()}} className="btn btn-danger viewDetail">View Item Details</button>
+        </div>
+      </div>
       );
     });
+
     return (
       <div className="col-md-12 foodContainer">
         <form onSubmit={this.handleSubmit} className="navbar-form" role="search">
@@ -90,38 +96,14 @@ var FoodItemContainer = React.createClass({
     }
   },
   submitForm: function(search){
+    console.log('search', search);
     var self = this;
     var foodCollection = this.state.foodCollection;
-    foodCollection.fetch({data: search, emulateHTTP: true}).then(function(){
+    foodCollection.fetch({data: {'search_text': search}, emulateJSON: true}).then(function(){
       self.setState({foodCollection: foodCollection});
       console.log('foodCollection', foodCollection);
     });
-
-
-
-    // $.ajax({
-    //   url: 'api/supermarket/',
-    //   type: 'POST',
-    //   data: (search),
-    //   success: function(result){
-    //     console.log('result', result);
-    //     self.setState({foodCollection: foodCollection});
-    //     console.log('foodCOLL', foodCollection)
-    //   }
-    // });
   },
-  // fetchItems: function(){
-  //   var self = this;
-  //   var foodCollection=this.state.foodCollection;
-  //   foodCollection.fetch().then(function(response){
-  //     console.log('FETCH', response);
-  //     self.setState({foodCollection: foodCollection})
-  //   });
-  // },
-  // submitForm: function(search){
-  //   this.state.foodCollection.set({search});
-  //   this.state.foodCollection.submitForm(search)
-  // },
   handleQuantity: function(e, quantity){
     var quantity  = e.target.value;
     console.log('quantity', quantity);
@@ -156,6 +138,7 @@ var FoodItemContainer = React.createClass({
       <TemplateContainer>
         <div className="row well">
           <h1>Grocery Items</h1>
+          <h2 className="searchDirections">Please search for grocery items:</h2>
             <FoodItem submitForm={this.submitForm} foodCollection={this.state.foodCollection} addToOrder={this.addToOrder} randomPrice={this.randomPrice}/>
             <button onClick={this.handleForward} className="btn btn-success navCartBtn">Next: View Cart <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
       </div>

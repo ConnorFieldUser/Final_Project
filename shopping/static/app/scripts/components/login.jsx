@@ -32,8 +32,8 @@ var SignUpForm = React.createClass({
         <form onSubmit={this.handleSignUp} id="signup">
 
           <div className="form-group">
-            <label htmlFor="email">Email address</label>
-            <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="username" type="username" placeholder="email" />
+            <label htmlFor="username">Username</label>
+            <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="username" type="username" placeholder="Username" />
           </div>
 
           <div className="form-group">
@@ -74,8 +74,8 @@ var SignInForm = React.createClass({
           <h2>Please Login</h2>
           <form onSubmit={this.handleSignIn} id="login">
             <div className="form-group">
-              <label htmlFor="email-login">Email address</label>
-              <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="email-login" type="username" placeholder="email" />
+              <label htmlFor="username-login">Username</label>
+              <input onChange={this.handleUsernameInput} value={this.state.username} className="form-control" name="username" id="username-login" type="username" placeholder="Username" />
             </div>
 
             <div className="form-group">
@@ -140,7 +140,7 @@ var LoginSignUpContainer = React.createClass({
               <h1>Assistive Shopper {this.state.user.get('token') ? 'Logged in' : ''}</h1>
                 <SignUpForm signUp={this.signUp} />
                 <SignInForm signIn={this.signIn} />
-                <a href="create_user/">Interested in Becoming a Driver?</a>
+                <a className="driverLink" href="create_user/">Interested in Becoming a Driver?</a>
             </div>
           </div>
       </div>

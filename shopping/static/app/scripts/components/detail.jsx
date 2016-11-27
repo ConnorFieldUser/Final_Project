@@ -8,11 +8,11 @@ require('react-bootstrap');
 
 
 var DetailContainer = React.createClass({
-  // getInitialState: function(){
-  //   return {
-  //     var foodCollection: new models.FoodItemCollection(),
-  //   }
-  // },
+  getInitialState: function(){
+    return {
+      foodCollection: new models.FoodItemCollection(),
+    }
+  },
   // componentWillMount: function(){
   //   var foodCollection = this.state.foodCollection;
   //   foodCollection.fetch().then(() => {
@@ -24,9 +24,22 @@ var DetailContainer = React.createClass({
     Backbone.history.navigate('#items/', {trigger:true});
   },
   render: function(){
+    // var detail =  this.props.foodCollection.map(function(item){
+    //   return (
+    //     <div className="foodListItem col-md-4" key={item.cid}>
+    //       <div className="imageContainer">
+    //         <img className="itemImage" src={item.get('ItemImage')} />
+    //       </div>
+    //       <span className="name">{item.get('Itemname')}</span>
+    //       <span className="description">{item.get('Itemdescription')}</span>
+    //       <span className="price">Price: $</span>
+    //   </div>
+    //   );
+    // });
+
     return (
       <TemplateContainer>
-        <h1>DETAILS HERE</h1>
+        <h1>Item Detail</h1>
         <button onClick={this.handleClick} className="btn btn-success"><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Listing</button>
       </TemplateContainer>
     )
