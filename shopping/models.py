@@ -69,9 +69,9 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 
 
 class Item(models.Model):
-    name = models.CharField(max_length=25)
+    name = models.CharField(max_length=50)
     category = models.CharField(max_length=45)
-    description = models.CharField(max_length=300)
+    description = models.CharField(max_length=300, null=True, blank=True)
     image = models.FileField(null=True, blank=True)
     price = models.IntegerField(default=random_price)
 
