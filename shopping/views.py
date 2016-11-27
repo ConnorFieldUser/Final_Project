@@ -13,7 +13,7 @@ from shopping.forms import SignUpForm
 
 from shopping.models import Account, Cart, Item, CartItem
 
-from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView
+from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView, RetrieveAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from shopping.serializers import UserSerializer, AccountSerializer, CartSerializer, ItemSerializer, CartItemSerializer
@@ -263,6 +263,10 @@ class EmailTemplateView(TemplateView):
 
 class TestAPIView(APIView):
 
+    queryset = Item.objects.all()
+    serializer_class = ItemSerializer
+    print(queryset)
+
     def post(self, request):
         search_text = request.POST.get("search_text")
         r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
@@ -273,11 +277,19 @@ class TestAPIView(APIView):
         end = json.load(io)
         for e in end["Product"]:
             print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            print(e["Itemname"])
-            print(e["ItemCategory"])
-            print(e["ItemDescription"])
-            print(e["ItemImage"])
+            # print(e["Itemname"])
+            # print(e["ItemCategory"])
+            # print(e["ItemDescription"])
+            # print(e["ItemImage"])
             Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"])
             print('created')
         return Response(end)
-        # return Response(json.load(io))
+
+
+class ItemDetailAPIView(RetrieveAPIView):
+    serializer_class = ItemSerializer
+    # permission_classes = (IsAuthenticated, )
+    queryset = Item.objects.all()
+
+    # def get_object(self):
+    #     return Item.objects.get(user=self.request.user)
