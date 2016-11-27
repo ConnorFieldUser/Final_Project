@@ -48,5 +48,5 @@ urlpatterns = [
     url(r'^carts/(?P<pk>\d+)/$', CartDetailView.as_view(), name="cart_detail_view"),
     url(r'^send_email/$', EmailView.as_view(), name="email_view"),
     url(r'^email/$', EmailTemplateView.as_view(), name="email_template_view"),
-    url(r'^items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view")
+    url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
