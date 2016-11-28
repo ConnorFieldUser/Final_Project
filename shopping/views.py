@@ -34,6 +34,8 @@ api_key = os.environ.get('api_key')
 
 # Create your views here.
 
+print("ASSISTIVE SHOPPING")
+
 
 class IndexView(TemplateView):
     template_name = 'index.html'
