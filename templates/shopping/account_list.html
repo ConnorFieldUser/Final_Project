@@ -15,9 +15,10 @@
     </p>
 {% for account in object_list %}
 {% if account.is_customer %}
-<p>
-  <a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
-</p>
+
+<h3>
+ <a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
+</h3>
 {% endif %}
 {% endfor %}
 
@@ -34,9 +35,9 @@
 </p>
 {% for account in object_list %}
 {% if account.is_driver %}
-<p>
+<h4>
 <a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
-</p>
+</h4>
 
 {% endif %}
 {% endfor %}

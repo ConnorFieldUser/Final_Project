@@ -7,11 +7,16 @@ from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 
+from django.shortcuts import get_object_or_404
+
+
 from django.views.generic.edit import FormView
+
 
 from shopping.forms import SignUpForm
 
 from shopping.models import Account, Cart, Item, CartItem
+from shopping.mixins import DriverAccessMixin
 
 from rest_framework.generics import ListCreateAPIView, CreateAPIView, RetrieveUpdateAPIView, RetrieveDestroyAPIView, RetrieveAPIView
 from rest_framework.views import APIView
@@ -159,7 +164,7 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy("account_list_view")
 
 
-class DriverView(TemplateView):
+class DriverView(DriverAccessMixin, TemplateView):
     template_name = "driver.html"
 
 
@@ -170,10 +175,13 @@ class AccountListView(ListView):
 class AccountDetailView(DetailView):
     model = Account
 
+    def get_context_data(self):
+        return Cart.objects.filter(user=self.request.user).latest('created_time')
+
 
 class AccountUpdateView(UpdateView):
     model = Account
-    fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email', 'image')
+    fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email', 'image', 'zipcode')
 
     def get_success_url(self):
         return reverse_lazy("account_detail_view", args=(self.object.id,))
