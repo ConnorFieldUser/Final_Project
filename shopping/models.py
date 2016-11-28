@@ -53,6 +53,13 @@ class Account(models.Model):
             return self.image.url
         return "http://www.finecooking.com/images/no_image_ld.jpg"
 
+    @property
+    def get_last_cart(self):
+        try:
+            return self.user.cart_set.all().order_by('-created_time')[0]
+        except IndexError:
+            pass
+
 
 @receiver(post_save, sender='auth.User')
 def create_user_profile(**kwargs):

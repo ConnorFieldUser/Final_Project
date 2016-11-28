@@ -3,12 +3,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
-from django.http import HttpResponseRedirect
+# from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
 
-from django.shortcuts import get_object_or_404
-
+# from django.shortcuts import get_object_or_404
 
 from django.views.generic.edit import FormView
 
@@ -174,9 +173,6 @@ class AccountListView(ListView):
 
 class AccountDetailView(DetailView):
     model = Account
-
-    def get_context_data(self):
-        return Cart.objects.filter(user=self.request.user).latest('created_time')
 
 
 class AccountUpdateView(UpdateView):

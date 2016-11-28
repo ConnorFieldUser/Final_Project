@@ -47,4 +47,10 @@ Email adress:&nbsp; {{ account.email }}
 
 {% endif %}
 
+{% for item in account.get_last_cart.items.all %}
+<ul>
+  {{item}}
+</ul>
+{% endfor %}
+
 {% endblock %}
