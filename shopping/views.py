@@ -265,7 +265,6 @@ class TestAPIView(APIView):
 
     queryset = Item.objects.all()
     serializer_class = ItemSerializer
-    print(queryset)
 
     def post(self, request):
         search_text = request.POST.get("search_text")
@@ -281,7 +280,7 @@ class TestAPIView(APIView):
             # print(e["ItemCategory"])
             # print(e["ItemDescription"])
             # print(e["ItemImage"])
-            Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"])
+            Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
             print('created')
         return Response(end)
 
@@ -293,3 +292,22 @@ class ItemDetailAPIView(RetrieveAPIView):
 
     # def get_object(self):
     #     return Item.objects.get(user=self.request.user)
+
+
+class CartLatestAddItemTESTREFIDAPIView(APIView):
+
+    serializer_class = CartSerializer
+
+    def post(self, request, format=None):
+        # cart = Cart.objects.get(user=request.POST['user']).latest('created_time')
+        cart = Cart.objects.filter(user=request.user).latest('created_time')
+        # item = request.data["id"]
+        quantity = request.data["quantity"]
+        item_for_use = Item.objects.get(ref_id=request.data["ItemID"])
+        # print(item)
+        item = item_for_use.id
+        print(cart)
+        i1 = CartItem(cart=cart, item_id=item, quantity=quantity)
+        i1.save()
+
+        return Response(request.data)

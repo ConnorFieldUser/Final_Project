@@ -2,11 +2,6 @@ var React = require('react');
 var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
-require("react-dom/package.json"); // react-dom is a peer dependency
-var GoogleMapLoader = require('google-maps-react').GoogleMapLoader;
-var Marker = require('google-maps-react').Marker;
-var GoogleMap = require('google-maps-react').GoogleMap;
-
 
 
 var MapContainer = React.createClass({

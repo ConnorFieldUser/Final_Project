@@ -73,6 +73,7 @@ class Item(models.Model):
     category = models.CharField(max_length=45)
     description = models.CharField(max_length=300, null=True, blank=True)
     image = models.FileField(null=True, blank=True)
+    ref_id = models.IntegerField()
     price = models.IntegerField(default=random_price)
 
     @property
