@@ -274,15 +274,27 @@ class TestAPIView(APIView):
         json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
         io = StringIO(json_data)
         end = json.load(io)
-        for e in end["Product"]:
-            print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            # print(e["Itemname"])
-            # print(e["ItemCategory"])
-            # print(e["ItemDescription"])
-            # print(e["ItemImage"])
-            Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
-            print('created')
-        return Response(end)
+        if end:
+            for e in end["Product"]:
+                # e["ItemID"]
+                try:
+                    item_does_exist = Item.objects.get(ref_id=e["ItemID"])
+                except ObjectDoesNotExist:
+                    item_does_exist = False
+                if not item_does_exist:
+                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    # print(e["Itemname"])
+                    # print(e["ItemCategory"])
+                    # print(e["ItemDescription"])
+                    # print(e["ItemImage"])
+                    Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
+                    print('<<<Created>>>')
+                else:
+                    print('<<<Already Stored>>>')
+                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            return Response(end)
+        else:
+            return Response("Nothing Found")
 
 
 class ItemDetailAPIView(RetrieveAPIView):
@@ -303,7 +315,7 @@ class CartLatestAddItemTESTREFIDAPIView(APIView):
         cart = Cart.objects.filter(user=request.user).latest('created_time')
         # item = request.data["id"]
         quantity = request.data["quantity"]
-        item_for_use = Item.objects.get(ref_id=request.data["ItemID"])
+        item_for_use = Item.objects.get(ref_id=request.data["ref_id"])
         # print(item)
         item = item_for_use.id
         print(cart)
