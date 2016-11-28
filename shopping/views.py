@@ -244,6 +244,11 @@ class EmailView(FormView):
     form_class = SignUpForm
     success_url = reverse_lazy("account_list_view")
 
+    def get_form_kwargs(self):
+        kwargs = super(EmailView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
     def form_valid(self, form):
         form.send_email()
         return super().form_valid(form)
@@ -254,7 +259,7 @@ class EmailTemplateView(TemplateView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        context["form"] = SignUpForm()
+        context["form"] = SignUpForm(user=self.request.user)
         return context
 
 
