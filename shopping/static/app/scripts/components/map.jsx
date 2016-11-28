@@ -1,7 +1,7 @@
 var React = require('react');
 var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
-
+var $ = require('jquery');
 
 require("react-dom/package.json"); // react-dom is a peer dependency
 

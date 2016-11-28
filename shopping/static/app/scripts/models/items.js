@@ -30,7 +30,7 @@ var FoodItem = Backbone.Model.extend({
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
-  url: 'api/test/',
+  url: 'api/supermarket/',
   // url: 'http://www.SupermarketAPI.com/api.asmx/SearchByProductName?APIKEY=3f46c23cb1&ItemName=Parsley'
   fetch: function(options) {
     options = _.extend({parse: true}, options);
@@ -74,7 +74,7 @@ var CartItemModel = Backbone.Model.extend({
 
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
-  url: 'api/test/add_item_by_ref_id/',
+  url: 'api/carts/latest/add_item',
   total: function(){
     return this.reduce(function(sum, model){
       return sum + parseFloat(model.get('price'));
