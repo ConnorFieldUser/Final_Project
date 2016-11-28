@@ -31,7 +31,7 @@ class Account(models.Model):
     adress = models.CharField(max_length=50, null=True, blank=True)
     city = models.CharField(max_length=25, null=True, blank=True)
     state = models.CharField(max_length=25, null=True, blank=True)
-    zipcode = models.IntegerField()
+    zipcode = models.IntegerField(null=True, blank=True)
     email = models.EmailField(max_length=50, null=True, blank=True)
     user_type = models.CharField(max_length=1, choices=USER_TYPE)
     image = models.FileField(null=True, blank=True)
