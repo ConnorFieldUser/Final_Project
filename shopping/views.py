@@ -95,33 +95,48 @@ class ItemListCreateAPIView(ListCreateAPIView):
     serializer_class = ItemSerializer
 
 
-# def get_response():
-#     r = requests.get("http://swapi.co/api/starships/9/")
-#     ships = r.json()
-#     results_list = ships['name']
-#     return results_list
-
-
 # view for api call
 class SupermarketAPIView(APIView):
+
+    def post(self, request):
+        search_text = request.POST.get("search_text")
+        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
+        xml_result = r.text
+        xml_to_json = dumps(bf.data(fromstring(xml_result)))
+        json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
+        io = StringIO(json_data)
+        end = json.load(io)
+        if end:
+            for e in end["Product"]:
+                try:
+                    item_does_exist = Item.objects.get(ref_id=e["ItemID"])
+                except ObjectDoesNotExist:
+                    item_does_exist = False
+                if not item_does_exist:
+                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                    Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
+                    print('<<<Created>>>')
+                else:
+                    print('<<<Already Stored>>>')
+                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            return Response(end)
+        else:
+            return Response("Nothing Found")
     # template_name = 'test.html'
 
     # def post(self, request):
     #     search_text = request.POST.get("search_text")
     #     return search_text
 
-    def post(self, request):
-        search_text = request.POST.get("search_text")
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
-        print(search_text)
-        xml_result = r.text
-        xml_to_json = dumps(bf.data(fromstring(xml_result)))
-        json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        # ships_list = {'ships': json_data['name']}
-        # print(ships_list)
-        # print(json_data)
-        io = StringIO(json_data)
-        return Response(json.load(io))
+    # def post(self, request):
+    #     search_text = request.POST.get("search_text")
+    #     r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
+    #     print(search_text)
+    #     xml_result = r.text
+    #     xml_to_json = dumps(bf.data(fromstring(xml_result)))
+    #     json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
+        # io = StringIO(json_data)
+        # return Response(json.load(io))
 
     # def get_context_data(self, **kwargs):
     #     context = super().get_context_data(**kwargs)
@@ -203,26 +218,6 @@ class CartLatestAddItemAPIView(APIView):
         i1 = CartItem(cart=cart, item_id=item, quantity=quantity)
         # i1 = CartItem()
         i1.save()
-        # usernames = [user.username for user in User.objects.all()]
-        # new_items = cart.items.add(request.POST.get["item"])
-        # new_list = cart.items.add(request.POST.get("text"))
-        # return Response(new_items)
-        # io = StringIO(i1)
-        # return Response("what now")
-        # return Response(json.load(io))
-        # return Response(serializer.data)
-        # return self.retrieve(request, *args, **kwargs)
-        # return self.update(request, *args, **kwargs)
-        # queryset = self.get_queryset()
-        # serializer = CartSerializer(i1)
-        # return Response(serializer.data)
-        # snippet = i1
-        # serializer = CartSerializer(snippet)
-        # return Response(serializer.data)
-        # io = StringIO(i1)
-        # return Response(json.load(io))
-        # serializer = CartSerializer(i1)
-        # return Response(request.POST)
         return Response(request.data)
 
 
@@ -263,40 +258,40 @@ class EmailTemplateView(TemplateView):
         return context
 
 
-class TestAPIView(APIView):
+# class TestAPIView(APIView):
+#
+#     queryset = Item.objects.all()
+#     serializer_class = ItemSerializer
 
-    queryset = Item.objects.all()
-    serializer_class = ItemSerializer
-
-    def post(self, request):
-        search_text = request.POST.get("search_text")
-        r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
-        xml_result = r.text
-        xml_to_json = dumps(bf.data(fromstring(xml_result)))
-        json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
-        io = StringIO(json_data)
-        end = json.load(io)
-        if end:
-            for e in end["Product"]:
-                # e["ItemID"]
-                try:
-                    item_does_exist = Item.objects.get(ref_id=e["ItemID"])
-                except ObjectDoesNotExist:
-                    item_does_exist = False
-                if not item_does_exist:
-                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    # print(e["Itemname"])
-                    # print(e["ItemCategory"])
-                    # print(e["ItemDescription"])
-                    # print(e["ItemImage"])
-                    Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
-                    print('<<<Created>>>')
-                else:
-                    print('<<<Already Stored>>>')
-                    print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-            return Response(end)
-        else:
-            return Response("Nothing Found")
+    # def post(self, request):
+    #     search_text = request.POST.get("search_text")
+    #     r = requests.get("http://www.supermarketapi.com/api.asmx/SearchByProductName?APIKEY={}&ItemName={}".format(api_key, search_text))
+    #     xml_result = r.text
+    #     xml_to_json = dumps(bf.data(fromstring(xml_result)))
+    #     json_data = xml_to_json.replace('{http://www.SupermarketAPI.com}', '')
+    #     io = StringIO(json_data)
+    #     end = json.load(io)
+    #     if end:
+    #         for e in end["Product"]:
+    #             # e["ItemID"]
+    #             try:
+    #                 item_does_exist = Item.objects.get(ref_id=e["ItemID"])
+    #             except ObjectDoesNotExist:
+    #                 item_does_exist = False
+    #             if not item_does_exist:
+    #                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    #                 # print(e["Itemname"])
+    #                 # print(e["ItemCategory"])
+    #                 # print(e["ItemDescription"])
+    #                 # print(e["ItemImage"])
+    #                 Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
+    #                 print('<<<Created>>>')
+    #             else:
+    #                 print('<<<Already Stored>>>')
+    #                 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+    #         return Response(end)
+    #     else:
+    #         return Response("Nothing Found")
 
 
 class ItemDetailAPIView(RetrieveAPIView):
@@ -308,7 +303,7 @@ class ItemDetailAPIView(RetrieveAPIView):
     #     return Item.objects.get(user=self.request.user)
 
 
-class CartLatestAddItemTESTREFIDAPIView(APIView):
+class CartLatestAddItemRefIdAPIView(APIView):
 
     serializer_class = CartSerializer
 

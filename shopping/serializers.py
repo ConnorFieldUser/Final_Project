@@ -41,7 +41,7 @@ class CartSerializer(serializers.ModelSerializer):
     cart_items = serializers.SerializerMethodField()
 
     def get_cart_items(self, obj):
-        return obj.cartitem_set.all().values('id', 'item__name', 'item', 'quantity')
+        return obj.cartitem_set.all().values('id', 'item__name', 'item', 'quantity', 'price')
 
     class Meta:
         model = Cart

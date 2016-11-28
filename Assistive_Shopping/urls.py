@@ -18,8 +18,8 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestAddItemAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, TestAPIView, ItemDetailAPIView, CartLatestAddItemTESTREFIDAPIView
-
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestAddItemAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemRefIdAPIView
+# TestAPIView,
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -34,12 +34,13 @@ urlpatterns = [
     url(r'^api/carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view"),
     url(r'^api/carts/latest/$', CartLatestDetailUpdateViewAPIView.as_view(), name="cart_latest_detail_update_api_view"),
     url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="cart_latest_add_item_api_view"),
+    url(r'^api/carts/latest/add_item/ref_id/$', CartLatestAddItemRefIdAPIView.as_view(), name="test_ref_id"),
     url(r'^api/carts/latest/remove_item/$', CartLatestRemoveItemAPIView.as_view(), name="cart_latest_remove_item_api_view"),
     url(r'^api/cartitems/$', CartItemListCreateAPIView.as_view(), name="cartitem_list_api_view"),
     url(r'^api/cartitems/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),
     url(r'^api/items/$', ItemListCreateAPIView.as_view(), name="item_list_create_api_view"),
     url(r'^api/supermarket/$', SupermarketAPIView.as_view(), name="supermarket_api_view"),
-    url(r'^api/test/$', TestAPIView.as_view(), name="test_api_view"),
+    # url(r'^api/test/$', TestAPIView.as_view(), name="test_api_view"),
     url(r'^accounts/$', AccountListView.as_view(), name="account_list_view"),
     url(r'^accounts/(?P<pk>\d+)/$', AccountDetailView.as_view(), name="account_detail_view"),
     url(r'^accounts/update/$', AccountUpdateView.as_view(), name="account_update_view"),
@@ -48,6 +49,5 @@ urlpatterns = [
     url(r'^carts/(?P<pk>\d+)/$', CartDetailView.as_view(), name="cart_detail_view"),
     url(r'^send_email/$', EmailView.as_view(), name="email_view"),
     url(r'^email/$', EmailTemplateView.as_view(), name="email_template_view"),
-    url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view"),
-    url(r'^api/test/add_item_by_ref_id/$', CartLatestAddItemTESTREFIDAPIView.as_view(), name="test_ref_id")
+    url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view")
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
