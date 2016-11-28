@@ -3,13 +3,20 @@ var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
 
+require("react-dom/package.json"); // react-dom is a peer dependency
+
+var google = require('react-google-maps');
+
+var GoogleMapLoader = google.GoogleMapLoader;
+var GoogleMap = google.GoogleMap;
+
+console.log('GoogleMap', GoogleMap)
+
 
 var MapLocation = React.createClass({
 render: function() {
-    var style = this.props.$hover ? greatPlaceStyleHover : greatPlaceStyle;
-
     return (
-       <div style={style}>
+       <div>
           {this.props.text}
        </div>
     );
@@ -28,15 +35,27 @@ var MapContainer = React.createClass({
       mapTypeId: 'roadmap'
     }
   },
+  getDefaultProps: function(){
+      return {
+        center: {
+          lat: 59.938043,
+          lng: 30.337157
+        }, // [59.938043, 30.337157],
+        zoom: 9,
+        greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+      };
+  },
   render: function(){
     return (
       <TemplateContainer>
         <h1>Locations</h1>
-          <GoogleMap
-          defaultCenter={this.props.center}
-          defaultZoom={this.props.zoom}>
-          <MapLocation lat={59.955413} lng={30.337844} text={'A'} />
-        </GoogleMap>
+        <GoogleMapLoader googleMapElement={
+            <GoogleMap
+              center={this.props.center}
+              zoom={this.props.zoom}>
+              <MapLocation lat={59.955413} lng={30.337844} text={'A'} />
+            </GoogleMap>
+        } />
         <button onClick={this.handleClick} className="btn btn-success navItemsBtn">Next: View Items <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
 
     </TemplateContainer>

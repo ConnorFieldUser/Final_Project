@@ -21,7 +21,7 @@ var Order = React.createClass({
         <div className="cartItem row well" key={item.id}>
           <span className="col-md-4">{item.item__name}</span>
           <span className="col-md-4">{item.quantity}</span>
-          <span className="col-md-4">Price</span>
+          <span className="col-md-4">{item.price}</span>
           <button onClick={function(){self.props.deleteItem(item)}} className="btn btn-success deleteBtn" type="submit">Delete</button>
         </div>
       );

@@ -162,7 +162,11 @@ module.exports = {
   AccountInfoContainer: AccountInfoContainer
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../djangoUtils":8,"../layout/headerTemplate.jsx":10,"../models/user.js":12,"backbone":24,"jquery":106,"react":422}],2:[function(require,module,exports){
+=======
+},{"../djangoUtils":8,"../layout/headerTemplate.jsx":10,"../models/user.js":12,"backbone":24,"jquery":107,"react":468}],2:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require('backbone');
@@ -187,7 +191,11 @@ var Order = React.createClass({displayName: "Order",
         React.createElement("div", {className: "cartItem row well", key: item.id}, 
           React.createElement("span", {className: "col-md-4"}, item.item__name), 
           React.createElement("span", {className: "col-md-4"}, item.quantity), 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
           React.createElement("span", {className: "col-md-4"}, "Price"), 
+=======
+          React.createElement("span", {className: "col-md-4"}, item.price), 
+>>>>>>> added glyphicon files, map tinkering
           React.createElement("button", {onClick: function(){self.props.deleteItem(item)}, className: "btn btn-success deleteBtn", type: "submit"}, "Delete")
         )
       );
@@ -298,7 +306,11 @@ module.exports = {
   CartContainer: CartContainer
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":106,"react":422,"react-bootstrap":258}],3:[function(require,module,exports){
+=======
+},{"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":107,"react":468,"react-bootstrap":259}],3:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require('backbone');
@@ -340,7 +352,11 @@ module.exports = {
   DetailContainer: DetailContainer
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":106,"react":422,"react-bootstrap":258}],4:[function(require,module,exports){
+=======
+},{"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":107,"react":468,"react-bootstrap":259}],4:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require ('backbone');
@@ -398,7 +414,11 @@ module.exports = {
   HomeContainer: HomeContainer
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../layout/headerTemplate.jsx":10,"backbone":24,"react":422}],5:[function(require,module,exports){
+=======
+},{"../layout/headerTemplate.jsx":10,"backbone":24,"react":468}],5:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require('backbone');
@@ -511,6 +531,7 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
     console.log('quantity', quantity);
   },
   addToOrder: function(item, quantity){
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
     var price = item.price;
     var cart = this.state.cart;
     var orderCollection = this.state.orderCollection;
@@ -520,6 +541,18 @@ var FoodItemContainer = React.createClass({displayName: "FoodItemContainer",
       url: 'api/carts/latest/add_item/',
       type: 'POST',
       data: ({name:item.name, price:item.price, quantity:quantity, id:item.id}),
+=======
+    // var price = item.price;
+    var item = item.attributes;
+    var cart = this.state.cart;
+    var orderCollection = this.state.orderCollection;
+    console.log('item', item)
+
+    $.ajax({
+      url: 'api/test/add_item_by_ref_id/',
+      type: 'POST',
+      data: ({name:item.Itemname, quantity:quantity, ref_id:item.ItemID}),
+>>>>>>> added glyphicon files, map tinkering
       success: function(result){
         console.log('DONE')
       }
@@ -554,7 +587,11 @@ module.exports = {
   FoodItemContainer: FoodItemContainer
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../components/cart.jsx":2,"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":106,"react":422,"react-bootstrap":258}],6:[function(require,module,exports){
+=======
+},{"../components/cart.jsx":2,"../layout/headerTemplate.jsx":10,"../models/items.js":11,"backbone":24,"jquery":107,"react":468,"react-bootstrap":259}],6:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var User= require('../models/user.js').User;
@@ -711,12 +748,17 @@ module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../layout/headerTemplate.jsx":10,"../models/user.js":12,"backbone":24,"react":422}],7:[function(require,module,exports){
+=======
+},{"../layout/headerTemplate.jsx":10,"../models/user.js":12,"backbone":24,"react":468}],7:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 
 
 var MapLocation = React.createClass({displayName: "MapLocation",
@@ -725,6 +767,23 @@ render: function() {
 
     return (
        React.createElement("div", {style: style}, 
+=======
+require("react-dom/package.json"); // react-dom is a peer dependency
+
+// var GoogleMapLoader = require('google-maps-react').GoogleMapLoader;
+// var Marker = require('google-maps-react').Marker;
+var google = require('react-google-maps');
+
+var GoogleMapLoader = google.GoogleMapLoader;
+var GoogleMap = google.GoogleMap;
+
+console.log('GoogleMap', GoogleMap)
+
+var MapLocation = React.createClass({displayName: "MapLocation",
+render: function() {
+    return (
+       React.createElement("div", null, 
+>>>>>>> added glyphicon files, map tinkering
           this.props.text
        )
     );
@@ -743,15 +802,38 @@ var MapContainer = React.createClass({displayName: "MapContainer",
       mapTypeId: 'roadmap'
     }
   },
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
+=======
+  getDefaultProps: function(){
+      return {
+        center: {
+          lat: 59.938043,
+          lng: 30.337157
+        }, // [59.938043, 30.337157],
+        zoom: 9,
+        greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
+      };
+  },
+>>>>>>> added glyphicon files, map tinkering
   render: function(){
     return (
       React.createElement(TemplateContainer, null, 
         React.createElement("h1", null, "Locations"), 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
           React.createElement(GoogleMap, {
           defaultCenter: this.props.center, 
           defaultZoom: this.props.zoom}, 
           React.createElement(MapLocation, {lat: 59.955413, lng: 30.337844, text: 'A'})
         ), 
+=======
+        React.createElement(GoogleMapLoader, {googleMapElement: 
+            React.createElement(GoogleMap, {
+              center: this.props.center, 
+              zoom: this.props.zoom}, 
+              React.createElement(MapLocation, {lat: 59.955413, lng: 30.337844, text: 'A'})
+            )
+        }), 
+>>>>>>> added glyphicon files, map tinkering
         React.createElement("button", {onClick: this.handleClick, className: "btn btn-success navItemsBtn"}, "Next: View Items ", React.createElement("span", {className: "glyphicon glyphicon-chevron-right", "aria-hidden": "true"}))
 
     )
@@ -768,7 +850,11 @@ module.exports = {
   MapContainer: MapContainer
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../layout/headerTemplate.jsx":10,"backbone":24,"react":422}],8:[function(require,module,exports){
+=======
+},{"../layout/headerTemplate.jsx":10,"backbone":24,"react":468,"react-dom/package.json":271,"react-google-maps":308}],8:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 /**
  * Django Utilities for managing CSRF token and ajax setup
@@ -811,7 +897,11 @@ module.exports = {
   setCsrfToken: setCsrfToken
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"jquery":106}],9:[function(require,module,exports){
+=======
+},{"jquery":107}],9:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 // console.log("Hello World!");
 var $ = require('jquery');
@@ -824,7 +914,11 @@ $(function(){
   Backbone.history.start();
 });
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./router":13,"backbone":24,"jquery":106}],10:[function(require,module,exports){
+=======
+},{"./router":13,"backbone":24,"jquery":107}],10:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var Backbone = require('backbone');
@@ -914,7 +1008,11 @@ module.exports = {
   TemplateContainer: TemplateContainer
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"backbone":24,"react":422}],11:[function(require,module,exports){
+=======
+},{"backbone":24,"react":468}],11:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var Backbone = require('backbone');
 var React = require('react');
@@ -1117,7 +1215,11 @@ module.exports = {
   NewEmptyCart: NewEmptyCart
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../djangoUtils":8,"backbone":24,"jquery":106,"react":422,"underscore":426}],12:[function(require,module,exports){
+=======
+},{"../djangoUtils":8,"backbone":24,"jquery":107,"react":468,"underscore":472}],12:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var $ = require('jquery');
 var Backbone = require('backbone');
@@ -1240,7 +1342,11 @@ module.exports = {
   File: File
 };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../djangoUtils":8,"backbone":24,"jquery":106,"react":422}],13:[function(require,module,exports){
+=======
+},{"../djangoUtils":8,"backbone":24,"jquery":107,"react":468}],13:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 var React = require('react');
 var ReactDOM = require('react-dom');
@@ -1321,6 +1427,7 @@ var router = new AppRouter();
 
 module.exports = router;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./components/accountInfo.jsx":1,"./components/cart.jsx":2,"./components/detail.jsx":3,"./components/home.jsx":4,"./components/items.jsx":5,"./components/login.jsx":6,"./components/map.jsx":7,"./djangoUtils":8,"backbone":24,"jquery":106,"react":422,"react-dom":269}],14:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
 },{"core-js/library/fn/object/assign":26}],15:[function(require,module,exports){
@@ -1330,6 +1437,17 @@ module.exports = { "default": require("core-js/library/fn/object/keys"), __esMod
 },{"core-js/library/fn/object/keys":28}],17:[function(require,module,exports){
 module.exports = { "default": require("core-js/library/fn/object/set-prototype-of"), __esModule: true };
 },{"core-js/library/fn/object/set-prototype-of":29}],18:[function(require,module,exports){
+=======
+},{"./components/accountInfo.jsx":1,"./components/cart.jsx":2,"./components/detail.jsx":3,"./components/home.jsx":4,"./components/items.jsx":5,"./components/login.jsx":6,"./components/map.jsx":7,"./djangoUtils":8,"backbone":24,"jquery":107,"react":468,"react-dom":270}],14:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/assign"), __esModule: true };
+},{"core-js/library/fn/object/assign":27}],15:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/create"), __esModule: true };
+},{"core-js/library/fn/object/create":28}],16:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/keys"), __esModule: true };
+},{"core-js/library/fn/object/keys":29}],17:[function(require,module,exports){
+module.exports = { "default": require("core-js/library/fn/object/set-prototype-of"), __esModule: true };
+},{"core-js/library/fn/object/set-prototype-of":30}],18:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 
 exports["default"] = function (instance, Constructor) {
@@ -3354,7 +3472,19 @@ exports.__esModule = true;
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"jquery":106,"underscore":426}],25:[function(require,module,exports){
+=======
+},{"jquery":107,"underscore":472}],25:[function(require,module,exports){
+var canUseDOM = !!(
+  typeof window !== 'undefined' &&
+  window.document &&
+  window.document.createElement
+);
+
+module.exports = canUseDOM;
+},{}],26:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /*!
   Copyright (c) 2016 Jed Watson.
   Licensed under the MIT License (MIT), see
@@ -3404,14 +3534,22 @@ exports.__esModule = true;
 	}
 }());
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],26:[function(require,module,exports){
 require('../../modules/es6.object.assign');
 module.exports = require('../../modules/$.core').Object.assign;
 },{"../../modules/$.core":33,"../../modules/es6.object.assign":46}],27:[function(require,module,exports){
+=======
+},{}],27:[function(require,module,exports){
+require('../../modules/es6.object.assign');
+module.exports = require('../../modules/$.core').Object.assign;
+},{"../../modules/$.core":34,"../../modules/es6.object.assign":47}],28:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var $ = require('../../modules/$');
 module.exports = function create(P, D){
   return $.create(P, D);
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../../modules/$":41}],28:[function(require,module,exports){
 require('../../modules/es6.object.keys');
 module.exports = require('../../modules/$.core').Object.keys;
@@ -3419,26 +3557,50 @@ module.exports = require('../../modules/$.core').Object.keys;
 require('../../modules/es6.object.set-prototype-of');
 module.exports = require('../../modules/$.core').Object.setPrototypeOf;
 },{"../../modules/$.core":33,"../../modules/es6.object.set-prototype-of":48}],30:[function(require,module,exports){
+=======
+},{"../../modules/$":42}],29:[function(require,module,exports){
+require('../../modules/es6.object.keys');
+module.exports = require('../../modules/$.core').Object.keys;
+},{"../../modules/$.core":34,"../../modules/es6.object.keys":48}],30:[function(require,module,exports){
+require('../../modules/es6.object.set-prototype-of');
+module.exports = require('../../modules/$.core').Object.setPrototypeOf;
+},{"../../modules/$.core":34,"../../modules/es6.object.set-prototype-of":49}],31:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 module.exports = function(it){
   if(typeof it != 'function')throw TypeError(it + ' is not a function!');
   return it;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],31:[function(require,module,exports){
+=======
+},{}],32:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('./$.is-object');
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.is-object":40}],32:[function(require,module,exports){
+=======
+},{"./$.is-object":41}],33:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var toString = {}.toString;
 
 module.exports = function(it){
   return toString.call(it).slice(8, -1);
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],33:[function(require,module,exports){
 var core = module.exports = {version: '1.2.6'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 },{}],34:[function(require,module,exports){
+=======
+},{}],34:[function(require,module,exports){
+var core = module.exports = {version: '1.2.6'};
+if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
+},{}],35:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // optional / simple context binding
 var aFunction = require('./$.a-function');
 module.exports = function(fn, that, length){
@@ -3459,13 +3621,21 @@ module.exports = function(fn, that, length){
     return fn.apply(that, arguments);
   };
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.a-function":30}],35:[function(require,module,exports){
+=======
+},{"./$.a-function":31}],36:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // 7.2.1 RequireObjectCoercible(argument)
 module.exports = function(it){
   if(it == undefined)throw TypeError("Can't call method on  " + it);
   return it;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],36:[function(require,module,exports){
+=======
+},{}],37:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var global    = require('./$.global')
   , core      = require('./$.core')
   , ctx       = require('./$.ctx')
@@ -3512,7 +3682,11 @@ $export.P = 8;  // proto
 $export.B = 16; // bind
 $export.W = 32; // wrap
 module.exports = $export;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.core":33,"./$.ctx":34,"./$.global":38}],37:[function(require,module,exports){
+=======
+},{"./$.core":34,"./$.ctx":35,"./$.global":39}],38:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 module.exports = function(exec){
   try {
     return !!exec();
@@ -3520,22 +3694,38 @@ module.exports = function(exec){
     return true;
   }
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],38:[function(require,module,exports){
+=======
+},{}],39:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
 var global = module.exports = typeof window != 'undefined' && window.Math == Math
   ? window : typeof self != 'undefined' && self.Math == Math ? self : Function('return this')();
 if(typeof __g == 'number')__g = global; // eslint-disable-line no-undef
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],39:[function(require,module,exports){
+=======
+},{}],40:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
 var cof = require('./$.cof');
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.cof":32}],40:[function(require,module,exports){
 module.exports = function(it){
   return typeof it === 'object' ? it !== null : typeof it === 'function';
 };
 },{}],41:[function(require,module,exports){
+=======
+},{"./$.cof":33}],41:[function(require,module,exports){
+module.exports = function(it){
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+},{}],42:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var $Object = Object;
 module.exports = {
   create:     $Object.create,
@@ -3549,7 +3739,11 @@ module.exports = {
   getSymbols: $Object.getOwnPropertySymbols,
   each:       [].forEach
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],42:[function(require,module,exports){
+=======
+},{}],43:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // 19.1.2.1 Object.assign(target, source, ...)
 var $        = require('./$')
   , toObject = require('./$.to-object')
@@ -3583,7 +3777,11 @@ module.exports = require('./$.fails')(function(){
   }
   return T;
 } : Object.assign;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$":41,"./$.fails":37,"./$.iobject":39,"./$.to-object":45}],43:[function(require,module,exports){
+=======
+},{"./$":42,"./$.fails":38,"./$.iobject":40,"./$.to-object":46}],44:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // most Object methods by ES6 should accept primitives
 var $export = require('./$.export')
   , core    = require('./$.core')
@@ -3594,7 +3792,11 @@ module.exports = function(KEY, exec){
   exp[KEY] = exec(fn);
   $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.core":33,"./$.export":36,"./$.fails":37}],44:[function(require,module,exports){
+=======
+},{"./$.core":34,"./$.export":37,"./$.fails":38}],45:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
 var getDesc  = require('./$').getDesc
@@ -3621,18 +3823,30 @@ module.exports = {
     }({}, false) : undefined),
   check: check
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$":41,"./$.an-object":31,"./$.ctx":34,"./$.is-object":40}],45:[function(require,module,exports){
+=======
+},{"./$":42,"./$.an-object":32,"./$.ctx":35,"./$.is-object":41}],46:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // 7.1.13 ToObject(argument)
 var defined = require('./$.defined');
 module.exports = function(it){
   return Object(defined(it));
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.defined":35}],46:[function(require,module,exports){
+=======
+},{"./$.defined":36}],47:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // 19.1.3.1 Object.assign(target, source)
 var $export = require('./$.export');
 
 $export($export.S + $export.F, 'Object', {assign: require('./$.object-assign')});
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.export":36,"./$.object-assign":42}],47:[function(require,module,exports){
+=======
+},{"./$.export":37,"./$.object-assign":43}],48:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // 19.1.2.14 Object.keys(O)
 var toObject = require('./$.to-object');
 
@@ -3641,11 +3855,19 @@ require('./$.object-sap')('keys', function($keys){
     return $keys(toObject(it));
   };
 });
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./$.object-sap":43,"./$.to-object":45}],48:[function(require,module,exports){
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = require('./$.export');
 $export($export.S, 'Object', {setPrototypeOf: require('./$.set-proto').set});
 },{"./$.export":36,"./$.set-proto":44}],49:[function(require,module,exports){
+=======
+},{"./$.object-sap":44,"./$.to-object":46}],49:[function(require,module,exports){
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = require('./$.export');
+$export($export.S, 'Object', {setPrototypeOf: require('./$.set-proto').set});
+},{"./$.export":37,"./$.set-proto":45}],50:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var babelHelpers = require('./util/babelHelpers.js');
@@ -3670,19 +3892,31 @@ function activeElement() {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ownerDocument":58,"./util/babelHelpers.js":71}],50:[function(require,module,exports){
+=======
+},{"./ownerDocument":59,"./util/babelHelpers.js":72}],51:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var hasClass = require('./hasClass');
 
 module.exports = function addClass(element, className) {
   if (element.classList) element.classList.add(className);else if (!hasClass(element)) element.className = element.className + ' ' + className;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./hasClass":51}],51:[function(require,module,exports){
+=======
+},{"./hasClass":52}],52:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 module.exports = function hasClass(element, className) {
   if (element.classList) return !!className && element.classList.contains(className);else return (' ' + element.className + ' ').indexOf(' ' + className + ' ') !== -1;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],52:[function(require,module,exports){
+=======
+},{}],53:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = {
@@ -3690,13 +3924,21 @@ module.exports = {
   removeClass: require('./removeClass'),
   hasClass: require('./hasClass')
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./addClass":50,"./hasClass":51,"./removeClass":53}],53:[function(require,module,exports){
+=======
+},{"./addClass":51,"./hasClass":52,"./removeClass":54}],54:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = function removeClass(element, className) {
   if (element.classList) element.classList.remove(className);else element.className = element.className.replace(new RegExp('(^|\\s)' + className + '(?:\\s|$)', 'g'), '$1').replace(/\s+/g, ' ').replace(/^\s*|\s*$/g, '');
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],54:[function(require,module,exports){
+=======
+},{}],55:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var contains = require('../query/contains'),
@@ -3713,14 +3955,22 @@ module.exports = function (selector, handler) {
     })) handler.call(this, e);
   };
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../query/contains":59,"../query/querySelectorAll":64}],55:[function(require,module,exports){
+=======
+},{"../query/contains":60,"../query/querySelectorAll":65}],56:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var on = require('./on'),
     off = require('./off'),
     filter = require('./filter');
 
 module.exports = { on: on, off: off, filter: filter };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./filter":54,"./off":56,"./on":57}],56:[function(require,module,exports){
+=======
+},{"./filter":55,"./off":57,"./on":58}],57:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var canUseDOM = require('../util/inDOM');
 var off = function off() {};
@@ -3738,7 +3988,11 @@ if (canUseDOM) {
 }
 
 module.exports = off;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/inDOM":76}],57:[function(require,module,exports){
+=======
+},{"../util/inDOM":77}],58:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var canUseDOM = require('../util/inDOM');
 var on = function on() {};
@@ -3755,7 +4009,11 @@ if (canUseDOM) {
 }
 
 module.exports = on;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/inDOM":76}],58:[function(require,module,exports){
+=======
+},{"../util/inDOM":77}],59:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 
 exports.__esModule = true;
@@ -3766,7 +4024,11 @@ function ownerDocument(node) {
 }
 
 module.exports = exports["default"];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],59:[function(require,module,exports){
+=======
+},{}],60:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var canUseDOM = require('../util/inDOM');
 
@@ -3787,13 +4049,21 @@ var contains = (function () {
 })();
 
 module.exports = contains;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/inDOM":76}],60:[function(require,module,exports){
+=======
+},{"../util/inDOM":77}],61:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = function getWindow(node) {
   return node === node.window ? node : node.nodeType === 9 ? node.defaultView || node.parentWindow : false;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],61:[function(require,module,exports){
+=======
+},{}],62:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var contains = require('./contains'),
     getWindow = require('./isWindow'),
@@ -3824,7 +4094,11 @@ module.exports = function offset(node) {
 
   return box;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../ownerDocument":58,"./contains":59,"./isWindow":60}],62:[function(require,module,exports){
+=======
+},{"../ownerDocument":59,"./contains":60,"./isWindow":61}],63:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -3856,7 +4130,11 @@ function offsetParent(node) {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../ownerDocument":58,"../style":68,"../util/babelHelpers.js":71}],63:[function(require,module,exports){
+=======
+},{"../ownerDocument":59,"../style":69,"../util/babelHelpers.js":72}],64:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -3914,7 +4192,11 @@ function position(node, offsetParent) {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../style":68,"../util/babelHelpers.js":71,"./offset":61,"./offsetParent":62,"./scrollLeft":65,"./scrollTop":66}],64:[function(require,module,exports){
+=======
+},{"../style":69,"../util/babelHelpers.js":72,"./offset":62,"./offsetParent":63,"./scrollLeft":66,"./scrollTop":67}],65:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 //     Zepto.js
 //     (c) 2010-2015 Thomas Fuchs
@@ -3942,7 +4224,11 @@ module.exports = function qsa(element, selector) {
 
   return toArray(element.querySelectorAll(selector));
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],65:[function(require,module,exports){
+=======
+},{}],66:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var getWindow = require('./isWindow');
 
@@ -3953,7 +4239,11 @@ module.exports = function scrollTop(node, val) {
 
   if (win) win.scrollTo(val, 'pageYOffset' in win ? win.pageYOffset : win.document.documentElement.scrollTop);else node.scrollLeft = val;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./isWindow":60}],66:[function(require,module,exports){
+=======
+},{"./isWindow":61}],67:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var getWindow = require('./isWindow');
 
@@ -3964,7 +4254,11 @@ module.exports = function scrollTop(node, val) {
 
   if (win) win.scrollTo('pageXOffset' in win ? win.pageXOffset : win.document.documentElement.scrollLeft, val);else node.scrollTop = val;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./isWindow":60}],67:[function(require,module,exports){
+=======
+},{"./isWindow":61}],68:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var babelHelpers = require('../util/babelHelpers.js');
@@ -4013,7 +4307,11 @@ module.exports = function _getComputedStyle(node) {
     }
   };
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/babelHelpers.js":71,"../util/camelizeStyle":73}],68:[function(require,module,exports){
+=======
+},{"../util/babelHelpers.js":72,"../util/camelizeStyle":74}],69:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var camelize = require('../util/camelizeStyle'),
@@ -4038,13 +4336,21 @@ module.exports = function style(node, property, value) {
 
   node.style.cssText += ';' + css;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/camelizeStyle":73,"../util/hyphenateStyle":75,"./getComputedStyle":67,"./removeStyle":69}],69:[function(require,module,exports){
+=======
+},{"../util/camelizeStyle":74,"../util/hyphenateStyle":76,"./getComputedStyle":68,"./removeStyle":70}],70:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = function removeStyle(node, key) {
   return 'removeProperty' in node.style ? node.style.removeProperty(key) : node.style.removeAttribute(key);
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],70:[function(require,module,exports){
+=======
+},{}],71:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 var canUseDOM = require('../util/inDOM');
 
@@ -4100,7 +4406,11 @@ function getTransitionProperties() {
 
   return { end: endEvent, prefix: prefix };
 }
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../util/inDOM":76}],71:[function(require,module,exports){
+=======
+},{"../util/inDOM":77}],72:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (root, factory) {
   if (typeof define === "function" && define.amd) {
     define(["exports"], factory);
@@ -4132,7 +4442,11 @@ function getTransitionProperties() {
     return target;
   };
 })
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],72:[function(require,module,exports){
+=======
+},{}],73:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 
 var rHyphen = /-(.)/g;
@@ -4142,7 +4456,11 @@ module.exports = function camelize(string) {
     return chr.toUpperCase();
   });
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],73:[function(require,module,exports){
+=======
+},{}],74:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -4156,7 +4474,11 @@ var msPattern = /^-ms-/;
 module.exports = function camelizeStyleName(string) {
   return camelize(string.replace(msPattern, 'ms-'));
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./camelize":72}],74:[function(require,module,exports){
+=======
+},{"./camelize":73}],75:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var rUpper = /([A-Z])/g;
@@ -4164,7 +4486,11 @@ var rUpper = /([A-Z])/g;
 module.exports = function hyphenate(string) {
   return string.replace(rUpper, '-$1').toLowerCase();
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],75:[function(require,module,exports){
+=======
+},{}],76:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -4179,10 +4505,17 @@ var msPattern = /^ms-/;
 module.exports = function hyphenateStyleName(string) {
   return hyphenate(string).replace(msPattern, "-ms-");
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./hyphenate":74}],76:[function(require,module,exports){
 'use strict';
 module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
 },{}],77:[function(require,module,exports){
+=======
+},{"./hyphenate":75}],77:[function(require,module,exports){
+'use strict';
+module.exports = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+},{}],78:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var canUseDOM = require('./inDOM');
@@ -4208,7 +4541,11 @@ module.exports = function (recalc) {
 
   return size;
 };
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./inDOM":76}],78:[function(require,module,exports){
+=======
+},{"./inDOM":77}],79:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4295,7 +4632,11 @@ var EventListener = {
 
 module.exports = EventListener;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./emptyFunction":85,"_process":177}],79:[function(require,module,exports){
+=======
+},{"./emptyFunction":86,"_process":178}],80:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4332,7 +4673,11 @@ var ExecutionEnvironment = {
 };
 
 module.exports = ExecutionEnvironment;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],80:[function(require,module,exports){
+=======
+},{}],81:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4365,7 +4710,11 @@ function camelize(string) {
 }
 
 module.exports = camelize;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],81:[function(require,module,exports){
+=======
+},{}],82:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4406,7 +4755,11 @@ function camelizeStyleName(string) {
 }
 
 module.exports = camelizeStyleName;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./camelize":80}],82:[function(require,module,exports){
+=======
+},{"./camelize":81}],83:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4462,7 +4815,11 @@ function containsNode(_x, _x2) {
 }
 
 module.exports = containsNode;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./isTextNode":95}],83:[function(require,module,exports){
+=======
+},{"./isTextNode":96}],84:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4548,7 +4905,11 @@ function createArrayFromMixed(obj) {
 }
 
 module.exports = createArrayFromMixed;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./toArray":103}],84:[function(require,module,exports){
+=======
+},{"./toArray":104}],85:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4635,7 +4996,11 @@ function createNodesFromMarkup(markup, handleScript) {
 
 module.exports = createNodesFromMarkup;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ExecutionEnvironment":79,"./createArrayFromMixed":83,"./getMarkupWrap":89,"./invariant":93,"_process":177}],85:[function(require,module,exports){
+=======
+},{"./ExecutionEnvironment":80,"./createArrayFromMixed":84,"./getMarkupWrap":90,"./invariant":94,"_process":178}],86:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4674,7 +5039,11 @@ emptyFunction.thatReturnsArgument = function (arg) {
 };
 
 module.exports = emptyFunction;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],86:[function(require,module,exports){
+=======
+},{}],87:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4697,7 +5066,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = emptyObject;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],87:[function(require,module,exports){
+=======
+},{"_process":178}],88:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4724,7 +5097,11 @@ function focusNode(node) {
 }
 
 module.exports = focusNode;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],88:[function(require,module,exports){
+=======
+},{}],89:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4760,7 +5137,11 @@ function getActiveElement() /*?DOMElement*/{
 }
 
 module.exports = getActiveElement;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],89:[function(require,module,exports){
+=======
+},{}],90:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -4858,7 +5239,11 @@ function getMarkupWrap(nodeName) {
 
 module.exports = getMarkupWrap;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ExecutionEnvironment":79,"./invariant":93,"_process":177}],90:[function(require,module,exports){
+=======
+},{"./ExecutionEnvironment":80,"./invariant":94,"_process":178}],91:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4897,7 +5282,11 @@ function getUnboundedScrollPosition(scrollable) {
 }
 
 module.exports = getUnboundedScrollPosition;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],91:[function(require,module,exports){
+=======
+},{}],92:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4931,7 +5320,11 @@ function hyphenate(string) {
 }
 
 module.exports = hyphenate;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],92:[function(require,module,exports){
+=======
+},{}],93:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -4971,7 +5364,11 @@ function hyphenateStyleName(string) {
 }
 
 module.exports = hyphenateStyleName;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./hyphenate":91}],93:[function(require,module,exports){
+=======
+},{"./hyphenate":92}],94:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -5024,7 +5421,11 @@ function invariant(condition, format, a, b, c, d, e, f) {
 
 module.exports = invariant;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],94:[function(require,module,exports){
+=======
+},{"_process":178}],95:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5048,7 +5449,11 @@ function isNode(object) {
 }
 
 module.exports = isNode;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],95:[function(require,module,exports){
+=======
+},{}],96:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5074,7 +5479,11 @@ function isTextNode(object) {
 }
 
 module.exports = isTextNode;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./isNode":94}],96:[function(require,module,exports){
+=======
+},{"./isNode":95}],97:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -5125,7 +5534,11 @@ var keyMirror = function (obj) {
 
 module.exports = keyMirror;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./invariant":93,"_process":177}],97:[function(require,module,exports){
+=======
+},{"./invariant":94,"_process":178}],98:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5161,7 +5574,11 @@ var keyOf = function (oneKeyObj) {
 };
 
 module.exports = keyOf;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],98:[function(require,module,exports){
+=======
+},{}],99:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5213,7 +5630,11 @@ function mapObject(object, callback, context) {
 }
 
 module.exports = mapObject;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],99:[function(require,module,exports){
+=======
+},{}],100:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5245,7 +5666,11 @@ function memoizeStringOnly(callback) {
 }
 
 module.exports = memoizeStringOnly;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],100:[function(require,module,exports){
+=======
+},{}],101:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5269,7 +5694,11 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = performance || {};
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ExecutionEnvironment":79}],101:[function(require,module,exports){
+=======
+},{"./ExecutionEnvironment":80}],102:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5304,7 +5733,11 @@ if (performance.now) {
 }
 
 module.exports = performanceNow;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./performance":100}],102:[function(require,module,exports){
+=======
+},{"./performance":101}],103:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -5355,7 +5788,11 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],103:[function(require,module,exports){
+=======
+},{}],104:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -5415,7 +5852,11 @@ function toArray(obj) {
 
 module.exports = toArray;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./invariant":93,"_process":177}],104:[function(require,module,exports){
+=======
+},{"./invariant":94,"_process":178}],105:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -5475,7 +5916,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = warning;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./emptyFunction":85,"_process":177}],105:[function(require,module,exports){
+=======
+},{"./emptyFunction":86,"_process":178}],106:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -5530,7 +5975,11 @@ var invariant = function(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],106:[function(require,module,exports){
+=======
+},{"_process":178}],107:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /*!
  * jQuery JavaScript Library v2.2.4
  * http://jquery.com/
@@ -15346,7 +15795,11 @@ if ( !noGlobal ) {
 return jQuery;
 }));
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],107:[function(require,module,exports){
+=======
+},{}],108:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // Source: http://jsfiddle.net/vWx8V/
 // http://stackoverflow.com/questions/5603195/full-list-of-javascript-keycodes
 
@@ -15494,7 +15947,11 @@ for (var alias in aliases) {
   codes[alias] = aliases[alias]
 }
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],108:[function(require,module,exports){
+=======
+},{}],109:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Gets the last element of `array`.
  *
@@ -15515,7 +15972,11 @@ function last(array) {
 
 module.exports = last;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],109:[function(require,module,exports){
+=======
+},{}],110:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseEach = require('../internal/baseEach'),
     createFind = require('../internal/createFind');
 
@@ -15573,7 +16034,11 @@ var find = createFind(baseEach);
 
 module.exports = find;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/baseEach":118,"../internal/createFind":142}],110:[function(require,module,exports){
+=======
+},{"../internal/baseEach":119,"../internal/createFind":143}],111:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /** Used as the `TypeError` message for "Functions" methods. */
 var FUNC_ERROR_TEXT = 'Expected a function';
 
@@ -15633,7 +16098,11 @@ function restParam(func, start) {
 
 module.exports = restParam;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],111:[function(require,module,exports){
+=======
+},{}],112:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (global){
 var cachePush = require('./cachePush'),
     getNative = require('./getNative');
@@ -15666,7 +16135,11 @@ SetCache.prototype.push = cachePush;
 module.exports = SetCache;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./cachePush":138,"./getNative":148}],112:[function(require,module,exports){
+=======
+},{"./cachePush":139,"./getNative":149}],113:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * A specialized version of `_.forEach` for arrays without support for callback
  * shorthands and `this` binding.
@@ -15690,7 +16163,11 @@ function arrayEach(array, iteratee) {
 
 module.exports = arrayEach;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],113:[function(require,module,exports){
+=======
+},{}],114:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * A specialized version of `_.map` for arrays without support for callback
  * shorthands and `this` binding.
@@ -15713,7 +16190,11 @@ function arrayMap(array, iteratee) {
 
 module.exports = arrayMap;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],114:[function(require,module,exports){
+=======
+},{}],115:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Appends the elements of `values` to `array`.
  *
@@ -15735,7 +16216,11 @@ function arrayPush(array, values) {
 
 module.exports = arrayPush;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],115:[function(require,module,exports){
+=======
+},{}],116:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * A specialized version of `_.some` for arrays without support for callback
  * shorthands and `this` binding.
@@ -15760,7 +16245,11 @@ function arraySome(array, predicate) {
 
 module.exports = arraySome;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],116:[function(require,module,exports){
+=======
+},{}],117:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseMatches = require('./baseMatches'),
     baseMatchesProperty = require('./baseMatchesProperty'),
     bindCallback = require('./bindCallback'),
@@ -15797,7 +16286,11 @@ function baseCallback(func, thisArg, argCount) {
 
 module.exports = baseCallback;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../utility/identity":175,"../utility/property":176,"./baseMatches":130,"./baseMatchesProperty":131,"./bindCallback":136}],117:[function(require,module,exports){
+=======
+},{"../utility/identity":176,"../utility/property":177,"./baseMatches":131,"./baseMatchesProperty":132,"./bindCallback":137}],118:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseIndexOf = require('./baseIndexOf'),
     cacheIndexOf = require('./cacheIndexOf'),
     createCache = require('./createCache');
@@ -15854,7 +16347,11 @@ function baseDifference(array, values) {
 
 module.exports = baseDifference;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseIndexOf":126,"./cacheIndexOf":137,"./createCache":141}],118:[function(require,module,exports){
+=======
+},{"./baseIndexOf":127,"./cacheIndexOf":138,"./createCache":142}],119:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseForOwn = require('./baseForOwn'),
     createBaseEach = require('./createBaseEach');
 
@@ -15871,7 +16368,11 @@ var baseEach = createBaseEach(baseForOwn);
 
 module.exports = baseEach;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseForOwn":124,"./createBaseEach":139}],119:[function(require,module,exports){
+=======
+},{"./baseForOwn":125,"./createBaseEach":140}],120:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * The base implementation of `_.find`, `_.findLast`, `_.findKey`, and `_.findLastKey`,
  * without support for callback shorthands and `this` binding, which iterates
@@ -15898,7 +16399,11 @@ function baseFind(collection, predicate, eachFunc, retKey) {
 
 module.exports = baseFind;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],120:[function(require,module,exports){
+=======
+},{}],121:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * The base implementation of `_.findIndex` and `_.findLastIndex` without
  * support for callback shorthands and `this` binding.
@@ -15923,7 +16428,11 @@ function baseFindIndex(array, predicate, fromRight) {
 
 module.exports = baseFindIndex;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],121:[function(require,module,exports){
+=======
+},{}],122:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var arrayPush = require('./arrayPush'),
     isArguments = require('../lang/isArguments'),
     isArray = require('../lang/isArray'),
@@ -15966,7 +16475,11 @@ function baseFlatten(array, isDeep, isStrict, result) {
 
 module.exports = baseFlatten;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArguments":162,"../lang/isArray":163,"./arrayPush":114,"./isArrayLike":150,"./isObjectLike":155}],122:[function(require,module,exports){
+=======
+},{"../lang/isArguments":163,"../lang/isArray":164,"./arrayPush":115,"./isArrayLike":151,"./isObjectLike":156}],123:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var createBaseFor = require('./createBaseFor');
 
 /**
@@ -15985,7 +16498,11 @@ var baseFor = createBaseFor();
 
 module.exports = baseFor;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./createBaseFor":140}],123:[function(require,module,exports){
+=======
+},{"./createBaseFor":141}],124:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseFor = require('./baseFor'),
     keysIn = require('../object/keysIn');
 
@@ -16004,7 +16521,11 @@ function baseForIn(object, iteratee) {
 
 module.exports = baseForIn;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../object/keysIn":170,"./baseFor":122}],124:[function(require,module,exports){
+=======
+},{"../object/keysIn":171,"./baseFor":123}],125:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseFor = require('./baseFor'),
     keys = require('../object/keys');
 
@@ -16023,7 +16544,11 @@ function baseForOwn(object, iteratee) {
 
 module.exports = baseForOwn;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../object/keys":169,"./baseFor":122}],125:[function(require,module,exports){
+=======
+},{"../object/keys":170,"./baseFor":123}],126:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var toObject = require('./toObject');
 
 /**
@@ -16055,7 +16580,11 @@ function baseGet(object, path, pathKey) {
 
 module.exports = baseGet;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./toObject":160}],126:[function(require,module,exports){
+=======
+},{"./toObject":161}],127:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var indexOfNaN = require('./indexOfNaN');
 
 /**
@@ -16084,7 +16613,11 @@ function baseIndexOf(array, value, fromIndex) {
 
 module.exports = baseIndexOf;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./indexOfNaN":149}],127:[function(require,module,exports){
+=======
+},{"./indexOfNaN":150}],128:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseIsEqualDeep = require('./baseIsEqualDeep'),
     isObject = require('../lang/isObject'),
     isObjectLike = require('./isObjectLike');
@@ -16114,7 +16647,11 @@ function baseIsEqual(value, other, customizer, isLoose, stackA, stackB) {
 
 module.exports = baseIsEqual;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isObject":166,"./baseIsEqualDeep":128,"./isObjectLike":155}],128:[function(require,module,exports){
+=======
+},{"../lang/isObject":167,"./baseIsEqualDeep":129,"./isObjectLike":156}],129:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var equalArrays = require('./equalArrays'),
     equalByTag = require('./equalByTag'),
     equalObjects = require('./equalObjects'),
@@ -16219,7 +16756,11 @@ function baseIsEqualDeep(object, other, equalFunc, customizer, isLoose, stackA, 
 
 module.exports = baseIsEqualDeep;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArray":163,"../lang/isTypedArray":168,"./equalArrays":143,"./equalByTag":144,"./equalObjects":145,"./isHostObject":151}],129:[function(require,module,exports){
+=======
+},{"../lang/isArray":164,"../lang/isTypedArray":169,"./equalArrays":144,"./equalByTag":145,"./equalObjects":146,"./isHostObject":152}],130:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseIsEqual = require('./baseIsEqual'),
     toObject = require('./toObject');
 
@@ -16273,7 +16814,11 @@ function baseIsMatch(object, matchData, customizer) {
 
 module.exports = baseIsMatch;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseIsEqual":127,"./toObject":160}],130:[function(require,module,exports){
+=======
+},{"./baseIsEqual":128,"./toObject":161}],131:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseIsMatch = require('./baseIsMatch'),
     getMatchData = require('./getMatchData'),
     toObject = require('./toObject');
@@ -16306,7 +16851,11 @@ function baseMatches(source) {
 
 module.exports = baseMatches;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseIsMatch":129,"./getMatchData":147,"./toObject":160}],131:[function(require,module,exports){
+=======
+},{"./baseIsMatch":130,"./getMatchData":148,"./toObject":161}],132:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseGet = require('./baseGet'),
     baseIsEqual = require('./baseIsEqual'),
     baseSlice = require('./baseSlice'),
@@ -16353,7 +16902,11 @@ function baseMatchesProperty(path, srcValue) {
 
 module.exports = baseMatchesProperty;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../array/last":108,"../lang/isArray":163,"./baseGet":125,"./baseIsEqual":127,"./baseSlice":134,"./isKey":153,"./isStrictComparable":156,"./toObject":160,"./toPath":161}],132:[function(require,module,exports){
+=======
+},{"../array/last":109,"../lang/isArray":164,"./baseGet":126,"./baseIsEqual":128,"./baseSlice":135,"./isKey":154,"./isStrictComparable":157,"./toObject":161,"./toPath":162}],133:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var toObject = require('./toObject');
 
 /**
@@ -16371,7 +16924,11 @@ function baseProperty(key) {
 
 module.exports = baseProperty;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./toObject":160}],133:[function(require,module,exports){
+=======
+},{"./toObject":161}],134:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseGet = require('./baseGet'),
     toPath = require('./toPath');
 
@@ -16392,7 +16949,11 @@ function basePropertyDeep(path) {
 
 module.exports = basePropertyDeep;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseGet":125,"./toPath":161}],134:[function(require,module,exports){
+=======
+},{"./baseGet":126,"./toPath":162}],135:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * The base implementation of `_.slice` without an iteratee call guard.
  *
@@ -16426,7 +16987,11 @@ function baseSlice(array, start, end) {
 
 module.exports = baseSlice;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],135:[function(require,module,exports){
+=======
+},{}],136:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Converts `value` to a string if it's not one. An empty string is returned
  * for `null` or `undefined` values.
@@ -16441,7 +17006,11 @@ function baseToString(value) {
 
 module.exports = baseToString;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],136:[function(require,module,exports){
+=======
+},{}],137:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var identity = require('../utility/identity');
 
 /**
@@ -16482,7 +17051,11 @@ function bindCallback(func, thisArg, argCount) {
 
 module.exports = bindCallback;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../utility/identity":175}],137:[function(require,module,exports){
+=======
+},{"../utility/identity":176}],138:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('../lang/isObject');
 
 /**
@@ -16503,7 +17076,11 @@ function cacheIndexOf(cache, value) {
 
 module.exports = cacheIndexOf;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isObject":166}],138:[function(require,module,exports){
+=======
+},{"../lang/isObject":167}],139:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('../lang/isObject');
 
 /**
@@ -16525,7 +17102,11 @@ function cachePush(value) {
 
 module.exports = cachePush;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isObject":166}],139:[function(require,module,exports){
+=======
+},{"../lang/isObject":167}],140:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var getLength = require('./getLength'),
     isLength = require('./isLength'),
     toObject = require('./toObject');
@@ -16558,7 +17139,11 @@ function createBaseEach(eachFunc, fromRight) {
 
 module.exports = createBaseEach;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./getLength":146,"./isLength":154,"./toObject":160}],140:[function(require,module,exports){
+=======
+},{"./getLength":147,"./isLength":155,"./toObject":161}],141:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var toObject = require('./toObject');
 
 /**
@@ -16587,7 +17172,11 @@ function createBaseFor(fromRight) {
 
 module.exports = createBaseFor;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./toObject":160}],141:[function(require,module,exports){
+=======
+},{"./toObject":161}],142:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (global){
 var SetCache = require('./SetCache'),
     getNative = require('./getNative');
@@ -16612,7 +17201,11 @@ function createCache(values) {
 module.exports = createCache;
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SetCache":111,"./getNative":148}],142:[function(require,module,exports){
+=======
+},{"./SetCache":112,"./getNative":149}],143:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseCallback = require('./baseCallback'),
     baseFind = require('./baseFind'),
     baseFindIndex = require('./baseFindIndex'),
@@ -16639,7 +17232,11 @@ function createFind(eachFunc, fromRight) {
 
 module.exports = createFind;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArray":163,"./baseCallback":116,"./baseFind":119,"./baseFindIndex":120}],143:[function(require,module,exports){
+=======
+},{"../lang/isArray":164,"./baseCallback":117,"./baseFind":120,"./baseFindIndex":121}],144:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var arraySome = require('./arraySome');
 
 /**
@@ -16692,7 +17289,11 @@ function equalArrays(array, other, equalFunc, customizer, isLoose, stackA, stack
 
 module.exports = equalArrays;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./arraySome":115}],144:[function(require,module,exports){
+=======
+},{"./arraySome":116}],145:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /** `Object#toString` result references. */
 var boolTag = '[object Boolean]',
     dateTag = '[object Date]',
@@ -16742,7 +17343,11 @@ function equalByTag(object, other, tag) {
 
 module.exports = equalByTag;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],145:[function(require,module,exports){
+=======
+},{}],146:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var keys = require('../object/keys');
 
 /** Used for native method references. */
@@ -16811,7 +17416,11 @@ function equalObjects(object, other, equalFunc, customizer, isLoose, stackA, sta
 
 module.exports = equalObjects;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../object/keys":169}],146:[function(require,module,exports){
+=======
+},{"../object/keys":170}],147:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseProperty = require('./baseProperty');
 
 /**
@@ -16828,7 +17437,11 @@ var getLength = baseProperty('length');
 
 module.exports = getLength;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseProperty":132}],147:[function(require,module,exports){
+=======
+},{"./baseProperty":133}],148:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isStrictComparable = require('./isStrictComparable'),
     pairs = require('../object/pairs');
 
@@ -16851,7 +17464,11 @@ function getMatchData(object) {
 
 module.exports = getMatchData;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../object/pairs":172,"./isStrictComparable":156}],148:[function(require,module,exports){
+=======
+},{"../object/pairs":173,"./isStrictComparable":157}],149:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isNative = require('../lang/isNative');
 
 /**
@@ -16869,7 +17486,11 @@ function getNative(object, key) {
 
 module.exports = getNative;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isNative":165}],149:[function(require,module,exports){
+=======
+},{"../lang/isNative":166}],150:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Gets the index at which the first occurrence of `NaN` is found in `array`.
  *
@@ -16894,7 +17515,11 @@ function indexOfNaN(array, fromIndex, fromRight) {
 
 module.exports = indexOfNaN;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],150:[function(require,module,exports){
+=======
+},{}],151:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var getLength = require('./getLength'),
     isLength = require('./isLength');
 
@@ -16911,7 +17536,11 @@ function isArrayLike(value) {
 
 module.exports = isArrayLike;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./getLength":146,"./isLength":154}],151:[function(require,module,exports){
+=======
+},{"./getLength":147,"./isLength":155}],152:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Checks if `value` is a host object in IE < 9.
  *
@@ -16934,7 +17563,11 @@ var isHostObject = (function() {
 
 module.exports = isHostObject;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],152:[function(require,module,exports){
+=======
+},{}],153:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /** Used to detect unsigned integer values. */
 var reIsUint = /^\d+$/;
 
@@ -16960,7 +17593,11 @@ function isIndex(value, length) {
 
 module.exports = isIndex;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],153:[function(require,module,exports){
+=======
+},{}],154:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isArray = require('../lang/isArray'),
     toObject = require('./toObject');
 
@@ -16990,7 +17627,11 @@ function isKey(value, object) {
 
 module.exports = isKey;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArray":163,"./toObject":160}],154:[function(require,module,exports){
+=======
+},{"../lang/isArray":164,"./toObject":161}],155:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Used as the [maximum length](http://ecma-international.org/ecma-262/6.0/#sec-number.max_safe_integer)
  * of an array-like value.
@@ -17012,7 +17653,11 @@ function isLength(value) {
 
 module.exports = isLength;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],155:[function(require,module,exports){
+=======
+},{}],156:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Checks if `value` is object-like.
  *
@@ -17026,7 +17671,11 @@ function isObjectLike(value) {
 
 module.exports = isObjectLike;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],156:[function(require,module,exports){
+=======
+},{}],157:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('../lang/isObject');
 
 /**
@@ -17043,7 +17692,11 @@ function isStrictComparable(value) {
 
 module.exports = isStrictComparable;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isObject":166}],157:[function(require,module,exports){
+=======
+},{"../lang/isObject":167}],158:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var toObject = require('./toObject');
 
 /**
@@ -17073,7 +17726,11 @@ function pickByArray(object, props) {
 
 module.exports = pickByArray;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./toObject":160}],158:[function(require,module,exports){
+=======
+},{"./toObject":161}],159:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseForIn = require('./baseForIn');
 
 /**
@@ -17097,7 +17754,11 @@ function pickByCallback(object, predicate) {
 
 module.exports = pickByCallback;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./baseForIn":123}],159:[function(require,module,exports){
+=======
+},{"./baseForIn":124}],160:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isArguments = require('../lang/isArguments'),
     isArray = require('../lang/isArray'),
     isIndex = require('./isIndex'),
@@ -17141,7 +17802,11 @@ function shimKeys(object) {
 
 module.exports = shimKeys;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArguments":162,"../lang/isArray":163,"../lang/isString":167,"../object/keysIn":170,"./isIndex":152,"./isLength":154}],160:[function(require,module,exports){
+=======
+},{"../lang/isArguments":163,"../lang/isArray":164,"../lang/isString":168,"../object/keysIn":171,"./isIndex":153,"./isLength":155}],161:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('../lang/isObject'),
     isString = require('../lang/isString'),
     support = require('../support');
@@ -17169,7 +17834,11 @@ function toObject(value) {
 
 module.exports = toObject;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isObject":166,"../lang/isString":167,"../support":174}],161:[function(require,module,exports){
+=======
+},{"../lang/isObject":167,"../lang/isString":168,"../support":175}],162:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseToString = require('./baseToString'),
     isArray = require('../lang/isArray');
 
@@ -17199,7 +17868,11 @@ function toPath(value) {
 
 module.exports = toPath;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../lang/isArray":163,"./baseToString":135}],162:[function(require,module,exports){
+=======
+},{"../lang/isArray":164,"./baseToString":136}],163:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isArrayLike = require('../internal/isArrayLike'),
     isObjectLike = require('../internal/isObjectLike');
 
@@ -17235,7 +17908,11 @@ function isArguments(value) {
 
 module.exports = isArguments;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/isArrayLike":150,"../internal/isObjectLike":155}],163:[function(require,module,exports){
+=======
+},{"../internal/isArrayLike":151,"../internal/isObjectLike":156}],164:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var getNative = require('../internal/getNative'),
     isLength = require('../internal/isLength'),
     isObjectLike = require('../internal/isObjectLike');
@@ -17277,7 +17954,11 @@ var isArray = nativeIsArray || function(value) {
 
 module.exports = isArray;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/getNative":148,"../internal/isLength":154,"../internal/isObjectLike":155}],164:[function(require,module,exports){
+=======
+},{"../internal/getNative":149,"../internal/isLength":155,"../internal/isObjectLike":156}],165:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObject = require('./isObject');
 
 /** `Object#toString` result references. */
@@ -17317,7 +17998,11 @@ function isFunction(value) {
 
 module.exports = isFunction;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./isObject":166}],165:[function(require,module,exports){
+=======
+},{"./isObject":167}],166:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isFunction = require('./isFunction'),
     isHostObject = require('../internal/isHostObject'),
     isObjectLike = require('../internal/isObjectLike');
@@ -17368,7 +18053,11 @@ function isNative(value) {
 
 module.exports = isNative;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/isHostObject":151,"../internal/isObjectLike":155,"./isFunction":164}],166:[function(require,module,exports){
+=======
+},{"../internal/isHostObject":152,"../internal/isObjectLike":156,"./isFunction":165}],167:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
  * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
@@ -17398,7 +18087,11 @@ function isObject(value) {
 
 module.exports = isObject;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],167:[function(require,module,exports){
+=======
+},{}],168:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isObjectLike = require('../internal/isObjectLike');
 
 /** `Object#toString` result references. */
@@ -17435,7 +18128,11 @@ function isString(value) {
 
 module.exports = isString;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/isObjectLike":155}],168:[function(require,module,exports){
+=======
+},{"../internal/isObjectLike":156}],169:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var isLength = require('../internal/isLength'),
     isObjectLike = require('../internal/isObjectLike');
 
@@ -17511,7 +18208,11 @@ function isTypedArray(value) {
 
 module.exports = isTypedArray;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/isLength":154,"../internal/isObjectLike":155}],169:[function(require,module,exports){
+=======
+},{"../internal/isLength":155,"../internal/isObjectLike":156}],170:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var getNative = require('../internal/getNative'),
     isArrayLike = require('../internal/isArrayLike'),
     isObject = require('../lang/isObject'),
@@ -17559,7 +18260,11 @@ var keys = !nativeKeys ? shimKeys : function(object) {
 
 module.exports = keys;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/getNative":148,"../internal/isArrayLike":150,"../internal/shimKeys":159,"../lang/isObject":166,"../support":174}],170:[function(require,module,exports){
+=======
+},{"../internal/getNative":149,"../internal/isArrayLike":151,"../internal/shimKeys":160,"../lang/isObject":167,"../support":175}],171:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var arrayEach = require('../internal/arrayEach'),
     isArguments = require('../lang/isArguments'),
     isArray = require('../lang/isArray'),
@@ -17697,7 +18402,11 @@ function keysIn(object) {
 
 module.exports = keysIn;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/arrayEach":112,"../internal/isIndex":152,"../internal/isLength":154,"../lang/isArguments":162,"../lang/isArray":163,"../lang/isFunction":164,"../lang/isObject":166,"../lang/isString":167,"../support":174}],171:[function(require,module,exports){
+=======
+},{"../internal/arrayEach":113,"../internal/isIndex":153,"../internal/isLength":155,"../lang/isArguments":163,"../lang/isArray":164,"../lang/isFunction":165,"../lang/isObject":167,"../lang/isString":168,"../support":175}],172:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var arrayMap = require('../internal/arrayMap'),
     baseDifference = require('../internal/baseDifference'),
     baseFlatten = require('../internal/baseFlatten'),
@@ -17746,7 +18455,11 @@ var omit = restParam(function(object, props) {
 
 module.exports = omit;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../function/restParam":110,"../internal/arrayMap":113,"../internal/baseDifference":117,"../internal/baseFlatten":121,"../internal/bindCallback":136,"../internal/pickByArray":157,"../internal/pickByCallback":158,"./keysIn":170}],172:[function(require,module,exports){
+=======
+},{"../function/restParam":111,"../internal/arrayMap":114,"../internal/baseDifference":118,"../internal/baseFlatten":122,"../internal/bindCallback":137,"../internal/pickByArray":158,"../internal/pickByCallback":159,"./keysIn":171}],173:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var keys = require('./keys'),
     toObject = require('../internal/toObject');
 
@@ -17781,7 +18494,11 @@ function pairs(object) {
 
 module.exports = pairs;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/toObject":160,"./keys":169}],173:[function(require,module,exports){
+=======
+},{"../internal/toObject":161,"./keys":170}],174:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseFlatten = require('../internal/baseFlatten'),
     bindCallback = require('../internal/bindCallback'),
     pickByArray = require('../internal/pickByArray'),
@@ -17825,7 +18542,11 @@ var pick = restParam(function(object, props) {
 
 module.exports = pick;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../function/restParam":110,"../internal/baseFlatten":121,"../internal/bindCallback":136,"../internal/pickByArray":157,"../internal/pickByCallback":158}],174:[function(require,module,exports){
+=======
+},{"../function/restParam":111,"../internal/baseFlatten":122,"../internal/bindCallback":137,"../internal/pickByArray":158,"../internal/pickByCallback":159}],175:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /** Used for native method references. */
 var arrayProto = Array.prototype,
     errorProto = Error.prototype,
@@ -17923,7 +18644,11 @@ var support = {};
 
 module.exports = support;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],175:[function(require,module,exports){
+=======
+},{}],176:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * This method returns the first argument provided to it.
  *
@@ -17945,7 +18670,11 @@ function identity(value) {
 
 module.exports = identity;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],176:[function(require,module,exports){
+=======
+},{}],177:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 var baseProperty = require('../internal/baseProperty'),
     basePropertyDeep = require('../internal/basePropertyDeep'),
     isKey = require('../internal/isKey');
@@ -17978,7 +18707,11 @@ function property(path) {
 
 module.exports = property;
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../internal/baseProperty":132,"../internal/basePropertyDeep":133,"../internal/isKey":153}],177:[function(require,module,exports){
+=======
+},{"../internal/baseProperty":133,"../internal/basePropertyDeep":134,"../internal/isKey":154}],178:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -18160,7 +18893,11 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],178:[function(require,module,exports){
+=======
+},{}],179:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18191,7 +18928,11 @@ var Accordion = _react2['default'].createClass({
 
 exports['default'] = Accordion;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./PanelGroup":243,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"react":422}],179:[function(require,module,exports){
+=======
+},{"./PanelGroup":244,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"react":468}],180:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18285,7 +19026,11 @@ var Alert = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(_styleMaps.State.values(), _styleMaps.State.INFO, _utilsBootstrapUtils.bsClass('alert', Alert));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],180:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],181:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18345,7 +19090,11 @@ var Badge = _react2['default'].createClass({
 
 exports['default'] = Badge;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],181:[function(require,module,exports){
+=======
+},{"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],182:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -18414,7 +19163,11 @@ Breadcrumb.Item = _BreadcrumbItem2['default'];
 
 exports['default'] = Breadcrumb;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./BreadcrumbItem":182,"./utils/ValidComponentChildren":262,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],182:[function(require,module,exports){
+=======
+},{"./BreadcrumbItem":183,"./utils/ValidComponentChildren":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],183:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -18511,7 +19264,11 @@ var BreadcrumbItem = _react2['default'].createClass({
 
 exports['default'] = BreadcrumbItem;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SafeAnchor":248,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],183:[function(require,module,exports){
+=======
+},{"./SafeAnchor":249,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],184:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18640,7 +19397,11 @@ Button.types = types;
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(ButtonStyles, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL, _styleMaps.Sizes.XSMALL], _utilsBootstrapUtils.bsClass('btn', Button)));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],184:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],185:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18715,7 +19476,11 @@ var ButtonGroup = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsClass('btn-group', ButtonGroup);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/all":288}],185:[function(require,module,exports){
+=======
+},{"./Button":184,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/all":334}],186:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -18805,7 +19570,11 @@ ButtonInput.propTypes = {
 
 exports['default'] = ButtonInput;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./FormGroup":201,"./InputBase":206,"./utils/childrenValueInputValidation":265,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":422}],186:[function(require,module,exports){
+=======
+},{"./Button":184,"./FormGroup":202,"./InputBase":207,"./utils/childrenValueInputValidation":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":468}],187:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -18858,7 +19627,11 @@ var ButtonToolbar = _react2['default'].createClass({
 
 exports['default'] = ButtonToolbar;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],187:[function(require,module,exports){
+=======
+},{"./Button":184,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],188:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -19181,7 +19954,11 @@ Carousel = _Object$assign(Carousel, { Caption: _CarouselCaption2['default'], Ite
 
 exports['default'] = Carousel;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CarouselCaption":188,"./CarouselItem":189,"./Glyphicon":202,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"babel-runtime/core-js/object/assign":14,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],188:[function(require,module,exports){
+=======
+},{"./CarouselCaption":189,"./CarouselItem":190,"./Glyphicon":203,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"babel-runtime/core-js/object/assign":14,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],189:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -19230,7 +20007,11 @@ var CarouselCaption = _react2['default'].createClass({
 
 exports['default'] = CarouselCaption;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],189:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],190:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -19354,7 +20135,11 @@ var CarouselItem = _react2['default'].createClass({
 
 exports['default'] = CarouselItem;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/TransitionEvents":261,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-dom":269}],190:[function(require,module,exports){
+=======
+},{"./utils/TransitionEvents":262,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-dom":270}],191:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -19452,7 +20237,11 @@ var Clearfix = _react2['default'].createClass({
 
 exports['default'] = Clearfix;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],191:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],192:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -19701,7 +20490,11 @@ var Col = _react2['default'].createClass({
 
 exports['default'] = Col;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],192:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],193:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -19948,7 +20741,11 @@ Collapse.defaultProps = {
 
 exports['default'] = Collapse;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"dom-helpers/style":68,"react":422,"react-overlays/lib/Transition":276,"react-prop-types/lib/deprecated":290}],193:[function(require,module,exports){
+=======
+},{"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"dom-helpers/style":69,"react":468,"react-overlays/lib/Transition":322,"react-prop-types/lib/deprecated":336}],194:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -20066,7 +20863,11 @@ var CollapsibleNav = _react2['default'].createClass({
 
 exports['default'] = _utilsDeprecationWarning2['default'].wrapper(CollapsibleNav, 'CollapsibleNav', 'Navbar.Collapse', 'http://react-bootstrap.github.io/components.html#navbars');
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Collapse":192,"./utils/ValidComponentChildren":262,"./utils/createChainedFunction":266,"./utils/deprecationWarning":268,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],194:[function(require,module,exports){
+=======
+},{"./Collapse":193,"./utils/ValidComponentChildren":263,"./utils/createChainedFunction":267,"./utils/deprecationWarning":269,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],195:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -20467,7 +21268,11 @@ Dropdown.Menu = _DropdownMenu2['default'];
 
 exports['default'] = Dropdown;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ButtonGroup":184,"./DropdownMenu":196,"./DropdownToggle":197,"./utils/CustomPropTypes":260,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"dom-helpers/activeElement":49,"dom-helpers/query/contains":59,"keycode":107,"lodash-compat/collection/find":109,"lodash-compat/object/omit":171,"react":422,"react-dom":269,"react-prop-types/lib/all":288,"react-prop-types/lib/elementType":291,"react-prop-types/lib/isRequiredForA11y":292,"uncontrollable":424}],195:[function(require,module,exports){
+=======
+},{"./ButtonGroup":185,"./DropdownMenu":197,"./DropdownToggle":198,"./utils/CustomPropTypes":261,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"dom-helpers/activeElement":50,"dom-helpers/query/contains":60,"keycode":108,"lodash-compat/collection/find":110,"lodash-compat/object/omit":172,"react":468,"react-dom":270,"react-prop-types/lib/all":334,"react-prop-types/lib/elementType":337,"react-prop-types/lib/isRequiredForA11y":338,"uncontrollable":470}],196:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -20574,7 +21379,11 @@ DropdownButton.defaultProps = {
 
 exports['default'] = DropdownButton;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./Dropdown":194,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"lodash-compat/object/omit":171,"lodash-compat/object/pick":173,"react":422}],196:[function(require,module,exports){
+=======
+},{"./Button":184,"./Dropdown":195,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"lodash-compat/object/omit":172,"lodash-compat/object/pick":174,"react":468}],197:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -20771,7 +21580,11 @@ DropdownMenu.propTypes = {
 
 exports['default'] = DropdownMenu;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"keycode":107,"react":422,"react-dom":269,"react-overlays/lib/RootCloseWrapper":275}],197:[function(require,module,exports){
+=======
+},{"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"keycode":108,"react":468,"react-dom":270,"react-overlays/lib/RootCloseWrapper":321}],198:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -20860,7 +21673,11 @@ DropdownToggle.isToggle = true;
 DropdownToggle.titleProp = 'title';
 DropdownToggle.onClickProp = 'onClick';
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./SafeAnchor":248,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],198:[function(require,module,exports){
+=======
+},{"./Button":184,"./SafeAnchor":249,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],199:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -20984,7 +21801,11 @@ Fade.defaultProps = {
 
 exports['default'] = Fade;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-overlays/lib/Transition":276,"react-prop-types/lib/deprecated":290}],199:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-overlays/lib/Transition":322,"react-prop-types/lib/deprecated":336}],200:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21067,7 +21888,11 @@ Static.defaultProps = {
 
 exports['default'] = Static;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../InputBase":206,"../utils/childrenValueInputValidation":265,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],200:[function(require,module,exports){
+=======
+},{"../InputBase":207,"../utils/childrenValueInputValidation":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],201:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -21079,7 +21904,11 @@ var _Static2 = require('./Static');
 var _Static3 = _interopRequireDefault(_Static2);
 
 exports.Static = _Static3['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Static":199,"babel-runtime/helpers/interop-require-default":21}],201:[function(require,module,exports){
+=======
+},{"./Static":200,"babel-runtime/helpers/interop-require-default":21}],202:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21149,7 +21978,11 @@ FormGroup.propTypes = {
 
 exports['default'] = FormGroup;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],202:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],203:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -21208,7 +22041,11 @@ var Glyphicon = _react2['default'].createClass({
 
 exports['default'] = Glyphicon;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],203:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],204:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -21267,7 +22104,11 @@ var Grid = _react2['default'].createClass({
 
 exports['default'] = Grid;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],204:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],205:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -21333,7 +22174,11 @@ var Image = _react2['default'].createClass({
 
 exports['default'] = Image;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],205:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],206:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21389,7 +22234,11 @@ Input.propTypes = {
 
 exports['default'] = Input;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./FormControls":200,"./InputBase":206,"./utils/deprecationWarning":268,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/interop-require-wildcard":22,"react":422}],206:[function(require,module,exports){
+=======
+},{"./FormControls":201,"./InputBase":207,"./utils/deprecationWarning":269,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/interop-require-wildcard":22,"react":468}],207:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21652,7 +22501,11 @@ InputBase.defaultProps = {
 
 exports['default'] = InputBase;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./FormGroup":201,"./Glyphicon":202,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],207:[function(require,module,exports){
+=======
+},{"./FormGroup":202,"./Glyphicon":203,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],208:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 // https://www.npmjs.org/package/react-interpolate-component
 // TODO: Drop this in favor of es6 string interpolation
 
@@ -21750,7 +22603,11 @@ var Interpolate = _react2['default'].createClass({
 
 exports['default'] = Interpolate;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/ValidComponentChildren":262,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"react":422}],208:[function(require,module,exports){
+=======
+},{"./utils/ValidComponentChildren":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"react":468}],209:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -21798,7 +22655,11 @@ var Jumbotron = _react2['default'].createClass({
 
 exports['default'] = Jumbotron;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],209:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],210:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21852,7 +22713,11 @@ var Label = (function (_React$Component) {
 
 exports['default'] = Label;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],210:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],211:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -21980,7 +22845,11 @@ ListGroup.propTypes = {
 
 exports['default'] = ListGroup;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ListGroupItem":211,"./utils/ValidComponentChildren":262,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],211:[function(require,module,exports){
+=======
+},{"./ListGroupItem":212,"./utils/ValidComponentChildren":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],212:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -22117,7 +22986,11 @@ ListGroupItem.defaultTypes = {
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(_styleMaps.State.values(), _utilsBootstrapUtils.bsClass('list-group-item', ListGroupItem));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],212:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],213:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22196,7 +23069,11 @@ Media = _Object$assign(Media, { Heading: _MediaHeading2['default'], Body: _Media
 
 exports['default'] = Media;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./MediaBody":213,"./MediaHeading":214,"./MediaLeft":215,"./MediaList":216,"./MediaListItem":217,"./MediaRight":218,"babel-runtime/core-js/object/assign":14,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],213:[function(require,module,exports){
+=======
+},{"./MediaBody":214,"./MediaHeading":215,"./MediaLeft":216,"./MediaList":217,"./MediaListItem":218,"./MediaRight":219,"babel-runtime/core-js/object/assign":14,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],214:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22247,7 +23124,11 @@ var MediaBody = _react2['default'].createClass({
 
 exports['default'] = MediaBody;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],214:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],215:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22298,7 +23179,11 @@ var MediaHeading = _react2['default'].createClass({
 
 exports['default'] = MediaHeading;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],215:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],216:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22345,7 +23230,11 @@ var MediaLeft = _react2['default'].createClass({
 
 exports['default'] = MediaLeft;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],216:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],217:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22378,7 +23267,11 @@ var MediaList = _react2['default'].createClass({
 
 exports['default'] = MediaList;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],217:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],218:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22411,7 +23304,11 @@ var MediaListItem = _react2['default'].createClass({
 
 exports['default'] = MediaListItem;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],218:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],219:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -22458,7 +23355,11 @@ var MediaRight = _react2['default'].createClass({
 
 exports['default'] = MediaRight;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],219:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],220:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -22651,7 +23552,11 @@ MenuItem.defaultProps = {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('dropdown', MenuItem);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SafeAnchor":248,"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/all":288}],220:[function(require,module,exports){
+=======
+},{"./SafeAnchor":249,"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/all":334}],221:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 
 /* eslint-disable react/prop-types */
 'use strict';
@@ -22977,7 +23882,11 @@ Modal.BACKDROP_TRANSITION_DURATION = 150;
 
 exports['default'] = _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL], _utilsBootstrapUtils.bsClass('modal', Modal));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Fade":198,"./ModalBody":221,"./ModalDialog":222,"./ModalFooter":223,"./ModalHeader":224,"./ModalTitle":225,"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"dom-helpers/events":55,"dom-helpers/ownerDocument":58,"dom-helpers/util/inDOM":76,"dom-helpers/util/scrollbarSize":77,"lodash-compat/object/pick":173,"react":422,"react-dom":269,"react-overlays/lib/Modal":270,"react-overlays/lib/utils/isOverflowing":281,"react-prop-types/lib/elementType":291}],221:[function(require,module,exports){
+=======
+},{"./Fade":199,"./ModalBody":222,"./ModalDialog":223,"./ModalFooter":224,"./ModalHeader":225,"./ModalTitle":226,"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"dom-helpers/events":56,"dom-helpers/ownerDocument":59,"dom-helpers/util/inDOM":77,"dom-helpers/util/scrollbarSize":78,"lodash-compat/object/pick":174,"react":468,"react-dom":270,"react-overlays/lib/Modal":316,"react-overlays/lib/utils/isOverflowing":327,"react-prop-types/lib/elementType":337}],222:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23025,7 +23934,11 @@ var ModalBody = (function (_React$Component) {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('modal', ModalBody);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],222:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],223:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /* eslint-disable react/prop-types */
 'use strict';
 
@@ -23093,7 +24006,11 @@ var ModalDialog = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsSizes([_styleMaps.Sizes.LARGE, _styleMaps.Sizes.SMALL], _utilsBootstrapUtils.bsClass('modal', ModalDialog));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],223:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],224:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23152,7 +24069,11 @@ ModalFooter.defaultProps = {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('modal', ModalFooter);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],224:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],225:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23257,7 +24178,11 @@ ModalHeader.defaultProps = {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('modal', ModalHeader);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],225:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],226:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23305,7 +24230,11 @@ var ModalTitle = (function (_React$Component) {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('modal', ModalTitle);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],226:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],227:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23519,7 +24448,11 @@ Nav.defaultProps = {
 
 exports['default'] = _utilsBootstrapUtils.bsClass('nav', _utilsBootstrapUtils.bsStyles(['tabs', 'pills'], Nav));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Collapse":192,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/all":288,"react-prop-types/lib/deprecated":290}],227:[function(require,module,exports){
+=======
+},{"./Collapse":193,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/all":334,"react-prop-types/lib/deprecated":336}],228:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -23538,7 +24471,11 @@ exports['default'] = _utilsDeprecationWarning2['default'].wrapper(_NavbarBrand2[
   message: 'The `NavBrand` component has been renamed to: `NavbarBrand`. ' + 'Please use that component instead; this alias will be removed in an upcoming release'
 });
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./NavbarBrand":231,"./utils/deprecationWarning":268,"babel-runtime/helpers/interop-require-default":21}],228:[function(require,module,exports){
+=======
+},{"./NavbarBrand":232,"./utils/deprecationWarning":269,"babel-runtime/helpers/interop-require-default":21}],229:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -23608,7 +24545,11 @@ NavDropdown.propTypes = _extends({
 
 exports['default'] = NavDropdown;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Dropdown":194,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":422}],229:[function(require,module,exports){
+=======
+},{"./Dropdown":195,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":468}],230:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -23720,7 +24661,11 @@ var NavItem = _react2['default'].createClass({
 exports['default'] = NavItem;
 module.exports = exports['default'];
 //eslint-disable-line
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SafeAnchor":248,"./utils/createChainedFunction":266,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],230:[function(require,module,exports){
+=======
+},{"./SafeAnchor":249,"./utils/createChainedFunction":267,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],231:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /* eslint react/no-multi-comp: 0 */
 'use strict';
 
@@ -23989,7 +24934,11 @@ Navbar.Link = createSimpleWrapper('a', 'link', 'NavbarLink');
 
 exports['default'] = Navbar;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Grid":203,"./NavbarBrand":231,"./NavbarCollapse":232,"./NavbarHeader":233,"./NavbarToggle":234,"./deprecated/Navbar":257,"./styleMaps":259,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/deprecationWarning":268,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/deprecated":290,"react-prop-types/lib/elementType":291,"uncontrollable":424}],231:[function(require,module,exports){
+=======
+},{"./Grid":204,"./NavbarBrand":232,"./NavbarCollapse":233,"./NavbarHeader":234,"./NavbarToggle":235,"./deprecated/Navbar":258,"./styleMaps":260,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/deprecationWarning":269,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/deprecated":336,"react-prop-types/lib/elementType":337,"uncontrollable":470}],232:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -24059,7 +25008,11 @@ NavbarBrand.contextTypes = {
 
 exports['default'] = NavbarBrand;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],232:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],233:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -24115,7 +25068,11 @@ var NavbarCollapse = _react2['default'].createClass({
 
 exports['default'] = NavbarCollapse;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Collapse":192,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":422}],233:[function(require,module,exports){
+=======
+},{"./Collapse":193,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"react":468}],234:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -24162,7 +25119,11 @@ var NavbarHeader = _react2['default'].createClass({
 
 exports['default'] = NavbarHeader;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],234:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],235:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -24250,7 +25211,11 @@ var NavbarToggle = _react2['default'].createClass({
 
 exports['default'] = NavbarToggle;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],235:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],236:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /* eslint react/prop-types: [2, {ignore: ["container", "containerPadding", "target", "placement", "children"] }] */
 /* These properties are validated in 'Portal' and 'Position' components */
 
@@ -24390,7 +25355,11 @@ Overlay.defaultProps = {
 
 exports['default'] = Overlay;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Fade":198,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-overlays/lib/Overlay":272,"react-prop-types/lib/elementType":291}],236:[function(require,module,exports){
+=======
+},{"./Fade":199,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-overlays/lib/Overlay":318,"react-prop-types/lib/elementType":337}],237:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /* eslint-disable react/prop-types */
 
@@ -24707,7 +25676,11 @@ var OverlayTrigger = _react2['default'].createClass({
 exports['default'] = OverlayTrigger;
 module.exports = exports['default'];
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Overlay":235,"./utils/createChainedFunction":266,"_process":177,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"dom-helpers/query/contains":59,"lodash-compat/object/pick":173,"react":422,"react-dom":269,"warning":427}],237:[function(require,module,exports){
+=======
+},{"./Overlay":236,"./utils/createChainedFunction":267,"_process":178,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"dom-helpers/query/contains":60,"lodash-compat/object/pick":174,"react":468,"react-dom":270,"warning":473}],238:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -24742,7 +25715,11 @@ var PageHeader = _react2['default'].createClass({
 
 exports['default'] = PageHeader;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],238:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],239:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -24821,7 +25798,11 @@ var PageItem = _react2['default'].createClass({
 
 exports['default'] = PageItem;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SafeAnchor":248,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],239:[function(require,module,exports){
+=======
+},{"./SafeAnchor":249,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],240:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -24872,7 +25853,11 @@ var Pager = _react2['default'].createClass({
 
 exports['default'] = Pager;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/ValidComponentChildren":262,"./utils/createChainedFunction":266,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],240:[function(require,module,exports){
+=======
+},{"./utils/ValidComponentChildren":263,"./utils/createChainedFunction":267,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],241:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -25167,7 +26152,11 @@ var Pagination = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsClass('pagination', Pagination);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./PaginationButton":241,"./SafeAnchor":248,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],241:[function(require,module,exports){
+=======
+},{"./PaginationButton":242,"./SafeAnchor":249,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],242:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -25251,7 +26240,11 @@ var PaginationButton = _react2['default'].createClass({
 
 exports['default'] = PaginationButton;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/createSelectedEvent":267,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],242:[function(require,module,exports){
+=======
+},{"./utils/createSelectedEvent":268,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],243:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -25517,7 +26510,11 @@ var PANEL_STATES = _styleMaps.State.values().concat(_styleMaps.DEFAULT, _styleMa
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(PANEL_STATES, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsClass('panel', Panel));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Collapse":192,"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],243:[function(require,module,exports){
+=======
+},{"./Collapse":193,"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],244:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -25633,7 +26630,11 @@ var PanelGroup = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsClass('panel-group', PanelGroup);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],244:[function(require,module,exports){
+=======
+},{"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],245:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -25746,7 +26747,11 @@ var Popover = _react2['default'].createClass({
 exports['default'] = Popover;
 module.exports = exports['default'];
 // we don't want to expose the `style` property
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/isRequiredForA11y":292}],245:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/isRequiredForA11y":338}],246:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -25946,7 +26951,11 @@ ProgressBar.defaultProps = _extends({}, ProgressBar.defaultProps, {
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(_styleMaps.State.values(), _utilsBootstrapUtils.bsClass('progress-bar', ProgressBar));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Interpolate":207,"./styleMaps":259,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422}],246:[function(require,module,exports){
+=======
+},{"./Interpolate":208,"./styleMaps":260,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468}],247:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 'use strict';
 
@@ -26042,7 +27051,11 @@ ResponsiveEmbed.propTypes = {
 exports['default'] = ResponsiveEmbed;
 module.exports = exports['default'];
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"warning":427}],247:[function(require,module,exports){
+=======
+},{"_process":178,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"warning":473}],248:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -26092,7 +27105,11 @@ var Row = _react2['default'].createClass({
 
 exports['default'] = Row;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/elementType":291}],248:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/elementType":337}],249:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -26153,7 +27170,11 @@ SafeAnchor.propTypes = {
   onClick: _react2['default'].PropTypes.func
 };
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/createChainedFunction":266,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"react":422}],249:[function(require,module,exports){
+=======
+},{"./utils/createChainedFunction":267,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"react":468}],250:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -26282,7 +27303,11 @@ SplitButton.Toggle = _SplitToggle2['default'];
 
 exports['default'] = SplitButton;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Button":183,"./Dropdown":194,"./SplitToggle":250,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"lodash-compat/object/omit":171,"lodash-compat/object/pick":173,"react":422}],250:[function(require,module,exports){
+=======
+},{"./Button":184,"./Dropdown":195,"./SplitToggle":251,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"lodash-compat/object/omit":172,"lodash-compat/object/pick":174,"react":468}],251:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -26326,7 +27351,11 @@ exports['default'] = SplitToggle;
 
 SplitToggle.defaultProps = _DropdownToggle2['default'].defaultProps;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DropdownToggle":197,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"react":422}],251:[function(require,module,exports){
+=======
+},{"./DropdownToggle":198,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"react":468}],252:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -26454,7 +27483,11 @@ var Tab = _react2['default'].createClass({
 
 exports['default'] = Tab;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/TransitionEvents":261,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-dom":269}],252:[function(require,module,exports){
+=======
+},{"./utils/TransitionEvents":262,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-dom":270}],253:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -26516,7 +27549,11 @@ var Table = _react2['default'].createClass({
 
 exports['default'] = Table;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],253:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],254:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -26960,7 +27997,11 @@ var Tabs = _react2['default'].createClass({
 
 exports['default'] = Tabs;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Col":191,"./Nav":226,"./NavItem":229,"./styleMaps":259,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/createChainedFunction":266,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"keycode":107,"react":422,"react-dom":269}],254:[function(require,module,exports){
+=======
+},{"./Col":192,"./Nav":227,"./NavItem":230,"./styleMaps":260,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/createChainedFunction":267,"babel-runtime/core-js/object/keys":16,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"keycode":108,"react":468,"react-dom":270}],255:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -27028,7 +28069,11 @@ var Thumbnail = _react2['default'].createClass({
 
 exports['default'] = _utilsBootstrapUtils.bsClass('thumbnail', Thumbnail);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SafeAnchor":248,"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],255:[function(require,module,exports){
+=======
+},{"./SafeAnchor":249,"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],256:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _extends = require('babel-runtime/helpers/extends')['default'];
@@ -27128,7 +28173,11 @@ var Tooltip = _react2['default'].createClass({
 
 exports['default'] = Tooltip;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/bootstrapUtils":263,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422,"react-prop-types/lib/isRequiredForA11y":292}],256:[function(require,module,exports){
+=======
+},{"./utils/bootstrapUtils":264,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468,"react-prop-types/lib/isRequiredForA11y":338}],257:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _inherits = require('babel-runtime/helpers/inherits')['default'];
@@ -27182,7 +28231,11 @@ var Well = (function (_React$Component) {
 
 exports['default'] = Well;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./styleMaps":259,"./utils/bootstrapUtils":263,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":25,"react":422}],257:[function(require,module,exports){
+=======
+},{"./styleMaps":260,"./utils/bootstrapUtils":264,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"classnames":26,"react":468}],258:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _objectWithoutProperties = require('babel-runtime/helpers/object-without-properties')['default'];
@@ -27442,7 +28495,11 @@ var NAVBAR_STATES = [_styleMaps.DEFAULT, _styleMaps.INVERSE];
 
 exports['default'] = _utilsBootstrapUtils.bsStyles(NAVBAR_STATES, _styleMaps.DEFAULT, _utilsBootstrapUtils.bsClass('navbar', Navbar));
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../Grid":203,"../NavBrand":227,"../styleMaps":259,"../utils/ValidComponentChildren":262,"../utils/bootstrapUtils":263,"../utils/createChainedFunction":266,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":25,"react":422,"react-prop-types/lib/deprecated":290,"react-prop-types/lib/elementType":291}],258:[function(require,module,exports){
+=======
+},{"../Grid":204,"../NavBrand":228,"../styleMaps":260,"../utils/ValidComponentChildren":263,"../utils/bootstrapUtils":264,"../utils/createChainedFunction":267,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/object-without-properties":23,"classnames":26,"react":468,"react-prop-types/lib/deprecated":336,"react-prop-types/lib/elementType":337}],259:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -27839,7 +28896,11 @@ var utils = {
   ValidComponentChildren: _utilsValidComponentChildren2['default']
 };
 exports.utils = utils;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Accordion":178,"./Alert":179,"./Badge":180,"./Breadcrumb":181,"./BreadcrumbItem":182,"./Button":183,"./ButtonGroup":184,"./ButtonInput":185,"./ButtonToolbar":186,"./Carousel":187,"./CarouselItem":189,"./Clearfix":190,"./Col":191,"./Collapse":192,"./CollapsibleNav":193,"./Dropdown":194,"./DropdownButton":195,"./Fade":198,"./FormControls":200,"./Glyphicon":202,"./Grid":203,"./Image":204,"./Input":205,"./Interpolate":207,"./Jumbotron":208,"./Label":209,"./ListGroup":210,"./ListGroupItem":211,"./Media":212,"./MenuItem":219,"./Modal":220,"./ModalBody":221,"./ModalFooter":223,"./ModalHeader":224,"./ModalTitle":225,"./Nav":226,"./NavBrand":227,"./NavDropdown":228,"./NavItem":229,"./Navbar":230,"./NavbarBrand":231,"./Overlay":235,"./OverlayTrigger":236,"./PageHeader":237,"./PageItem":238,"./Pager":239,"./Pagination":240,"./Panel":242,"./PanelGroup":243,"./Popover":244,"./ProgressBar":245,"./ResponsiveEmbed":246,"./Row":247,"./SafeAnchor":248,"./SplitButton":249,"./Tab":251,"./Table":252,"./Tabs":253,"./Thumbnail":254,"./Tooltip":255,"./Well":256,"./utils/ValidComponentChildren":262,"./utils/bootstrapUtils":263,"./utils/childrenValueInputValidation":265,"./utils/createChainedFunction":266,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/interop-require-wildcard":22}],259:[function(require,module,exports){
+=======
+},{"./Accordion":179,"./Alert":180,"./Badge":181,"./Breadcrumb":182,"./BreadcrumbItem":183,"./Button":184,"./ButtonGroup":185,"./ButtonInput":186,"./ButtonToolbar":187,"./Carousel":188,"./CarouselItem":190,"./Clearfix":191,"./Col":192,"./Collapse":193,"./CollapsibleNav":194,"./Dropdown":195,"./DropdownButton":196,"./Fade":199,"./FormControls":201,"./Glyphicon":203,"./Grid":204,"./Image":205,"./Input":206,"./Interpolate":208,"./Jumbotron":209,"./Label":210,"./ListGroup":211,"./ListGroupItem":212,"./Media":213,"./MenuItem":220,"./Modal":221,"./ModalBody":222,"./ModalFooter":224,"./ModalHeader":225,"./ModalTitle":226,"./Nav":227,"./NavBrand":228,"./NavDropdown":229,"./NavItem":230,"./Navbar":231,"./NavbarBrand":232,"./Overlay":236,"./OverlayTrigger":237,"./PageHeader":238,"./PageItem":239,"./Pager":240,"./Pagination":241,"./Panel":243,"./PanelGroup":244,"./Popover":245,"./ProgressBar":246,"./ResponsiveEmbed":247,"./Row":248,"./SafeAnchor":249,"./SplitButton":250,"./Tab":252,"./Table":253,"./Tabs":254,"./Thumbnail":255,"./Tooltip":256,"./Well":257,"./utils/ValidComponentChildren":263,"./utils/bootstrapUtils":264,"./utils/childrenValueInputValidation":266,"./utils/createChainedFunction":267,"babel-runtime/helpers/interop-require-default":21,"babel-runtime/helpers/interop-require-wildcard":22}],260:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _Object$assign = require('babel-runtime/core-js/object/assign')['default'];
@@ -27903,7 +28964,11 @@ var INVERSE = 'inverse';
 
 exports.INVERSE = INVERSE;
 exports['default'] = styleMaps;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/create":15,"babel-runtime/core-js/object/keys":16}],260:[function(require,module,exports){
+=======
+},{"babel-runtime/core-js/object/assign":14,"babel-runtime/core-js/object/create":15,"babel-runtime/core-js/object/keys":16}],261:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -27975,7 +29040,11 @@ exports['default'] = {
   }
 };
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./childrenToArray":264,"babel-runtime/helpers/interop-require-default":21,"react-prop-types/lib/common":289}],261:[function(require,module,exports){
+=======
+},{"./childrenToArray":265,"babel-runtime/helpers/interop-require-default":21,"react-prop-types/lib/common":335}],262:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2014, Facebook, Inc.
  * All rights reserved.
@@ -28090,7 +29159,11 @@ var ReactTransitionEvents = {
 
 exports['default'] = ReactTransitionEvents;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],262:[function(require,module,exports){
+=======
+},{}],263:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -28234,7 +29307,11 @@ exports['default'] = {
   hasValidComponent: hasValidComponent
 };
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/interop-require-default":21,"react":422}],263:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/interop-require-default":21,"react":468}],264:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 'use strict';
 
@@ -28413,7 +29490,11 @@ exports['default'] = {
 var _curry = curry;
 exports._curry = _curry;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"../styleMaps":259,"_process":177,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"invariant":105,"react":422,"warning":427}],264:[function(require,module,exports){
+=======
+},{"../styleMaps":260,"_process":178,"babel-runtime/helpers/extends":19,"babel-runtime/helpers/interop-require-default":21,"invariant":106,"react":468,"warning":473}],265:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -28440,7 +29521,11 @@ function childrenAsArray(children) {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ValidComponentChildren":262,"babel-runtime/helpers/interop-require-default":21}],265:[function(require,module,exports){
+=======
+},{"./ValidComponentChildren":263,"babel-runtime/helpers/interop-require-default":21}],266:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 var _interopRequireDefault = require('babel-runtime/helpers/interop-require-default')['default'];
@@ -28467,7 +29552,11 @@ function valueValidation(props, propName, componentName) {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"babel-runtime/helpers/interop-require-default":21,"react":422,"react-prop-types/lib/singlePropFrom":293}],266:[function(require,module,exports){
+=======
+},{"babel-runtime/helpers/interop-require-default":21,"react":468,"react-prop-types/lib/singlePropFrom":339}],267:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Safe chained function
  *
@@ -28509,7 +29598,11 @@ function createChainedFunction() {
 
 exports['default'] = createChainedFunction;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],267:[function(require,module,exports){
+=======
+},{}],268:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 
 exports.__esModule = true;
@@ -28532,7 +29625,11 @@ function createSelectedEvent(eventKey) {
 }
 
 module.exports = exports["default"];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],268:[function(require,module,exports){
+=======
+},{}],269:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 'use strict';
 
@@ -28606,12 +29703,4583 @@ deprecationWarning.wrapper = function (Component) {
 exports['default'] = deprecationWarning;
 module.exports = exports['default'];
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"warning":427}],269:[function(require,module,exports){
+=======
+},{"_process":178,"babel-runtime/helpers/class-call-check":18,"babel-runtime/helpers/inherits":20,"babel-runtime/helpers/interop-require-default":21,"warning":473}],270:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = require('react/lib/ReactDOM');
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"react/lib/ReactDOM":328}],270:[function(require,module,exports){
+'use strict';
+=======
+},{"react/lib/ReactDOM":374}],271:[function(require,module,exports){
+module.exports={
+  "_args": [
+    [
+      {
+        "raw": "react-dom@^0.14.7",
+        "scope": null,
+        "escapedName": "react-dom",
+        "name": "react-dom",
+        "rawSpec": "^0.14.7",
+        "spec": ">=0.14.7 <0.15.0",
+        "type": "range"
+      },
+      "/Users/carolineverticchio/Documents/code/Final_Project/shopping/static"
+    ]
+  ],
+  "_from": "react-dom@>=0.14.7 <0.15.0",
+  "_id": "react-dom@0.14.8",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-dom",
+  "_nodeVersion": "4.2.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/react-dom-0.14.8.tgz_1459268390053_0.8757442627102137"
+  },
+  "_npmUser": {
+    "name": "gaearon",
+    "email": "dan.abramov@gmail.com"
+  },
+  "_npmVersion": "2.14.7",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "react-dom@^0.14.7",
+    "scope": null,
+    "escapedName": "react-dom",
+    "name": "react-dom",
+    "rawSpec": "^0.14.7",
+    "spec": ">=0.14.7 <0.15.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-dom/-/react-dom-0.14.8.tgz",
+  "_shasum": "0f1c547514263f771bd31814a739e5306575069e",
+  "_shrinkwrap": null,
+  "_spec": "react-dom@^0.14.7",
+  "_where": "/Users/carolineverticchio/Documents/code/Final_Project/shopping/static",
+  "bugs": {
+    "url": "https://github.com/facebook/react/issues"
+  },
+  "dependencies": {},
+  "description": "React package for working with the DOM.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "0f1c547514263f771bd31814a739e5306575069e",
+    "tarball": "https://registry.npmjs.org/react-dom/-/react-dom-0.14.8.tgz"
+  },
+  "homepage": "https://facebook.github.io/react/",
+  "keywords": [
+    "react"
+  ],
+  "license": "BSD-3-Clause",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "gaearon",
+      "email": "dan.abramov@gmail.com"
+    },
+    {
+      "name": "graue",
+      "email": "scott@oceanbase.org"
+    },
+    {
+      "name": "sebmarkbage",
+      "email": "sebastian@calyptus.eu"
+    },
+    {
+      "name": "spicyj",
+      "email": "ben@benalpert.com"
+    },
+    {
+      "name": "zpao",
+      "email": "paul@oshannessy.com"
+    }
+  ],
+  "name": "react-dom",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "react": "^0.14.8"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/facebook/react.git"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "version": "0.14.8"
+}
+
+},{}],272:[function(require,module,exports){
+"use strict";
+>>>>>>> added glyphicon files, map tinkering
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; /*eslint-disable react/prop-types */
+
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _warning = require('warning');
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _componentOrElement = require('react-prop-types/lib/componentOrElement');
+
+var _componentOrElement2 = _interopRequireDefault(_componentOrElement);
+
+var _elementType = require('react-prop-types/lib/elementType');
+
+var _elementType2 = _interopRequireDefault(_elementType);
+
+var _Portal = require('./Portal');
+
+var _Portal2 = _interopRequireDefault(_Portal);
+
+var _ModalManager = require('./ModalManager');
+
+var _ModalManager2 = _interopRequireDefault(_ModalManager);
+
+var _ownerDocument = require('./utils/ownerDocument');
+
+var _ownerDocument2 = _interopRequireDefault(_ownerDocument);
+
+var _addEventListener = require('./utils/addEventListener');
+
+var _addEventListener2 = _interopRequireDefault(_addEventListener);
+
+var _addFocusListener = require('./utils/addFocusListener');
+
+var _addFocusListener2 = _interopRequireDefault(_addFocusListener);
+
+var _inDOM = require('dom-helpers/util/inDOM');
+
+var _inDOM2 = _interopRequireDefault(_inDOM);
+
+var _activeElement = require('dom-helpers/activeElement');
+
+var _activeElement2 = _interopRequireDefault(_activeElement);
+
+var _contains = require('dom-helpers/query/contains');
+
+var _contains2 = _interopRequireDefault(_contains);
+
+var _getContainer = require('./utils/getContainer');
+
+var _getContainer2 = _interopRequireDefault(_getContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var modalManager = new _ModalManager2.default();
+
+/**
+ * Love them or hate them, `<Modal/>` provides a solid foundation for creating dialogs, lightboxes, or whatever else.
+ * The Modal component renders its `children` node in front of a backdrop component.
+ *
+ * The Modal offers a few helpful features over using just a `<Portal/>` component and some styles:
+ *
+ * - Manages dialog stacking when one-at-a-time just isn't enough.
+ * - Creates a backdrop, for disabling interaction below the modal.
+ * - It properly manages focus; moving to the modal content, and keeping it there until the modal is closed.
+ * - It disables scrolling of the page content while open.
+ * - Adds the appropriate ARIA roles are automatically.
+ * - Easily pluggable animations via a `<Transition/>` component.
+ *
+ * Note that, in the same way the backdrop element prevents users from clicking or interacting
+ * with the page content underneath the Modal, Screen readers also need to be signaled to not to
+ * interact with page content while the Modal is open. To do this, we use a common technique of applying
+ * the `aria-hidden='true'` attribute to the non-Modal elements in the Modal `container`. This means that for
+ * a Modal to be truly modal, it should have a `container` that is _outside_ your app's
+ * React hierarchy (such as the default: document.body).
+ */
+var Modal = _react2.default.createClass({
+  displayName: 'Modal',
+
+
+  propTypes: _extends({}, _Portal2.default.propTypes, {
+
+    /**
+     * Set the visibility of the Modal
+     */
+    show: _react2.default.PropTypes.bool,
+
+    /**
+     * A Node, Component instance, or function that returns either. The Modal is appended to it's container element.
+     *
+     * For the sake of assistive technologies, the container should usually be the document body, so that the rest of the
+     * page content can be placed behind a virtual backdrop as well as a visual one.
+     */
+    container: _react2.default.PropTypes.oneOfType([_componentOrElement2.default, _react2.default.PropTypes.func]),
+
+    /**
+     * A callback fired when the Modal is opening.
+     */
+    onShow: _react2.default.PropTypes.func,
+
+    /**
+     * A callback fired when either the backdrop is clicked, or the escape key is pressed.
+     *
+     * The `onHide` callback only signals intent from the Modal,
+     * you must actually set the `show` prop to `false` for the Modal to close.
+     */
+    onHide: _react2.default.PropTypes.func,
+
+    /**
+     * Include a backdrop component.
+     */
+    backdrop: _react2.default.PropTypes.oneOfType([_react2.default.PropTypes.bool, _react2.default.PropTypes.oneOf(['static'])]),
+
+    /**
+     * A function that returns a backdrop component. Useful for custom
+     * backdrop rendering.
+     *
+     * ```js
+     *  renderBackdrop={props => <MyBackdrop {...props} />}
+     * ```
+     */
+    renderBackdrop: _react2.default.PropTypes.func,
+
+    /**
+     * A callback fired when the escape key, if specified in `keyboard`, is pressed.
+     */
+    onEscapeKeyUp: _react2.default.PropTypes.func,
+
+    /**
+     * A callback fired when the backdrop, if specified, is clicked.
+     */
+    onBackdropClick: _react2.default.PropTypes.func,
+
+    /**
+     * A style object for the backdrop component.
+     */
+    backdropStyle: _react2.default.PropTypes.object,
+
+    /**
+     * A css class or classes for the backdrop component.
+     */
+    backdropClassName: _react2.default.PropTypes.string,
+
+    /**
+     * A css class or set of classes applied to the modal container when the modal is open,
+     * and removed when it is closed.
+     */
+    containerClassName: _react2.default.PropTypes.string,
+
+    /**
+     * Close the modal when escape key is pressed
+     */
+    keyboard: _react2.default.PropTypes.bool,
+
+    /**
+     * A `<Transition/>` component to use for the dialog and backdrop components.
+     */
+    transition: _elementType2.default,
+
+    /**
+     * The `timeout` of the dialog transition if specified. This number is used to ensure that
+     * transition callbacks are always fired, even if browser transition events are canceled.
+     *
+     * See the Transition `timeout` prop for more infomation.
+     */
+    dialogTransitionTimeout: _react2.default.PropTypes.number,
+
+    /**
+     * The `timeout` of the backdrop transition if specified. This number is used to
+     * ensure that transition callbacks are always fired, even if browser transition events are canceled.
+     *
+     * See the Transition `timeout` prop for more infomation.
+     */
+    backdropTransitionTimeout: _react2.default.PropTypes.number,
+
+    /**
+     * When `true` The modal will automatically shift focus to itself when it opens, and
+     * replace it to the last focused element when it closes. This also
+     * works correctly with any Modal children that have the `autoFocus` prop.
+     *
+     * Generally this should never be set to `false` as it makes the Modal less
+     * accessible to assistive technologies, like screen readers.
+     */
+    autoFocus: _react2.default.PropTypes.bool,
+
+    /**
+     * When `true` The modal will prevent focus from leaving the Modal while open.
+     *
+     * Generally this should never be set to `false` as it makes the Modal less
+     * accessible to assistive technologies, like screen readers.
+     */
+    enforceFocus: _react2.default.PropTypes.bool,
+
+    /**
+     * Callback fired before the Modal transitions in
+     */
+    onEnter: _react2.default.PropTypes.func,
+
+    /**
+     * Callback fired as the Modal begins to transition in
+     */
+    onEntering: _react2.default.PropTypes.func,
+
+    /**
+     * Callback fired after the Modal finishes transitioning in
+     */
+    onEntered: _react2.default.PropTypes.func,
+
+    /**
+     * Callback fired right before the Modal transitions out
+     */
+    onExit: _react2.default.PropTypes.func,
+
+    /**
+     * Callback fired as the Modal begins to transition out
+     */
+    onExiting: _react2.default.PropTypes.func,
+
+    /**
+     * Callback fired after the Modal finishes transitioning out
+     */
+    onExited: _react2.default.PropTypes.func,
+
+    /**
+     * A ModalManager instance used to track and manage the state of open
+     * Modals. Useful when customizing how modals interact within a container
+     */
+    manager: _react2.default.PropTypes.object.isRequired
+  }),
+
+  getDefaultProps: function getDefaultProps() {
+    var noop = function noop() {};
+
+    return {
+      show: false,
+      backdrop: true,
+      keyboard: true,
+      autoFocus: true,
+      enforceFocus: true,
+      onHide: noop,
+      manager: modalManager,
+      renderBackdrop: function renderBackdrop(props) {
+        return _react2.default.createElement('div', props);
+      }
+    };
+  },
+  getInitialState: function getInitialState() {
+    return { exited: !this.props.show };
+  },
+  render: function render() {
+    var _props = this.props;
+    var show = _props.show;
+    var container = _props.container;
+    var children = _props.children;
+    var Transition = _props.transition;
+    var backdrop = _props.backdrop;
+    var dialogTransitionTimeout = _props.dialogTransitionTimeout;
+    var className = _props.className;
+    var style = _props.style;
+    var onExit = _props.onExit;
+    var onExiting = _props.onExiting;
+    var onEnter = _props.onEnter;
+    var onEntering = _props.onEntering;
+    var onEntered = _props.onEntered;
+
+
+    var dialog = _react2.default.Children.only(children);
+
+    var mountModal = show || Transition && !this.state.exited;
+    if (!mountModal) {
+      return null;
+    }
+
+    var _dialog$props = dialog.props;
+    var role = _dialog$props.role;
+    var tabIndex = _dialog$props.tabIndex;
+
+
+    if (role === undefined || tabIndex === undefined) {
+      dialog = (0, _react.cloneElement)(dialog, {
+        role: role === undefined ? 'document' : role,
+        tabIndex: tabIndex == null ? '-1' : tabIndex
+      });
+    }
+
+    if (Transition) {
+      dialog = _react2.default.createElement(
+        Transition,
+        {
+          transitionAppear: true,
+          unmountOnExit: true,
+          'in': show,
+          timeout: dialogTransitionTimeout,
+          onExit: onExit,
+          onExiting: onExiting,
+          onExited: this.handleHidden,
+          onEnter: onEnter,
+          onEntering: onEntering,
+          onEntered: onEntered
+        },
+        dialog
+      );
+    }
+
+    return _react2.default.createElement(
+      _Portal2.default,
+      {
+        ref: this.setMountNode,
+        container: container
+      },
+      _react2.default.createElement(
+        'div',
+        {
+          ref: 'modal',
+          role: role || 'dialog',
+          style: style,
+          className: className
+        },
+        backdrop && this.renderBackdrop(),
+        dialog
+      )
+    );
+  },
+  renderBackdrop: function renderBackdrop() {
+    var _this = this;
+
+    var _props2 = this.props;
+    var backdropStyle = _props2.backdropStyle;
+    var backdropClassName = _props2.backdropClassName;
+    var renderBackdrop = _props2.renderBackdrop;
+    var Transition = _props2.transition;
+    var backdropTransitionTimeout = _props2.backdropTransitionTimeout;
+
+
+    var backdropRef = function backdropRef(ref) {
+      return _this.backdrop = ref;
+    };
+
+    var backdrop = _react2.default.createElement('div', {
+      ref: backdropRef,
+      style: this.props.backdropStyle,
+      className: this.props.backdropClassName,
+      onClick: this.handleBackdropClick
+    });
+
+    if (Transition) {
+      backdrop = _react2.default.createElement(
+        Transition,
+        { transitionAppear: true,
+          'in': this.props.show,
+          timeout: backdropTransitionTimeout
+        },
+        renderBackdrop({
+          ref: backdropRef,
+          style: backdropStyle,
+          className: backdropClassName,
+          onClick: this.handleBackdropClick
+        })
+      );
+    }
+
+    return backdrop;
+  },
+  componentWillReceiveProps: function componentWillReceiveProps(nextProps) {
+    if (nextProps.show) {
+      this.setState({ exited: false });
+    } else if (!nextProps.transition) {
+      // Otherwise let handleHidden take care of marking exited.
+      this.setState({ exited: true });
+    }
+  },
+  componentWillUpdate: function componentWillUpdate(nextProps) {
+    if (!this.props.show && nextProps.show) {
+      this.checkForFocus();
+    }
+  },
+  componentDidMount: function componentDidMount() {
+    if (this.props.show) {
+      this.onShow();
+    }
+  },
+  componentDidUpdate: function componentDidUpdate(prevProps) {
+    var transition = this.props.transition;
+
+
+    if (prevProps.show && !this.props.show && !transition) {
+      // Otherwise handleHidden will call this.
+      this.onHide();
+    } else if (!prevProps.show && this.props.show) {
+      this.onShow();
+    }
+  },
+  componentWillUnmount: function componentWillUnmount() {
+    var _props3 = this.props;
+    var show = _props3.show;
+    var transition = _props3.transition;
+
+
+    if (show || transition && !this.state.exited) {
+      this.onHide();
+    }
+  },
+  onShow: function onShow() {
+    var doc = (0, _ownerDocument2.default)(this);
+    var container = (0, _getContainer2.default)(this.props.container, doc.body);
+
+    this.props.manager.add(this, container, this.props.containerClassName);
+
+    this._onDocumentKeyupListener = (0, _addEventListener2.default)(doc, 'keyup', this.handleDocumentKeyUp);
+
+    this._onFocusinListener = (0, _addFocusListener2.default)(this.enforceFocus);
+
+    this.focus();
+
+    if (this.props.onShow) {
+      this.props.onShow();
+    }
+  },
+  onHide: function onHide() {
+    this.props.manager.remove(this);
+
+    this._onDocumentKeyupListener.remove();
+
+    this._onFocusinListener.remove();
+=======
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsCircleCreator = require("./creators/CircleCreator");
+
+var _creatorsCircleCreator2 = _interopRequireDefault(_creatorsCircleCreator);
+
+var Circle = (function (_Component) {
+  _inherits(Circle, _Component);
+
+  function Circle() {
+    _classCallCheck(this, Circle);
+
+    _get(Object.getPrototypeOf(Circle.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(Circle, [{
+    key: "getBounds",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getBounds() {
+      return this.state.circle.getBounds();
+    }
+  }, {
+    key: "getCenter",
+    value: function getCenter() {
+      return this.state.circle.getCenter();
+    }
+  }, {
+    key: "getDraggable",
+    value: function getDraggable() {
+      return this.state.circle.getDraggable();
+    }
+  }, {
+    key: "getEditable",
+    value: function getEditable() {
+      return this.state.circle.getEditable();
+    }
+  }, {
+    key: "getMap",
+    value: function getMap() {
+      return this.state.circle.getMap();
+    }
+  }, {
+    key: "getRadius",
+    value: function getRadius() {
+      return this.state.circle.getRadius();
+    }
+  }, {
+    key: "getVisible",
+    value: function getVisible() {
+      return this.state.circle.getVisible();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var circle = _creatorsCircleCreator2["default"]._createCircle(this.props);
+
+      this.setState({ circle: circle });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.circle) {
+        return _react2["default"].createElement(
+          _creatorsCircleCreator2["default"],
+          _extends({ circle: this.state.circle }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsCircleCreator.circleDefaultPropTypes, _creatorsCircleCreator.circleControlledPropTypes, _creatorsCircleCreator.circleEventPropTypes),
+    enumerable: true
+  }]);
+
+  return Circle;
+})(_react.Component);
+
+exports["default"] = Circle;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/CircleCreator":285,"can-use-dom":25,"react":468}],273:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsDirectionsRendererCreator = require("./creators/DirectionsRendererCreator");
+
+var _creatorsDirectionsRendererCreator2 = _interopRequireDefault(_creatorsDirectionsRendererCreator);
+
+/*
+ * Original author: @alexishevia
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/22
+ */
+
+var DirectionsRenderer = (function (_Component) {
+  _inherits(DirectionsRenderer, _Component);
+
+  function DirectionsRenderer() {
+    _classCallCheck(this, DirectionsRenderer);
+
+    _get(Object.getPrototypeOf(DirectionsRenderer.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(DirectionsRenderer, [{
+    key: "getDirections",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getDirections() {
+      return this.state.directionsRenderer.getDirections();
+    }
+  }, {
+    key: "getPanel",
+    value: function getPanel() {
+      return this.state.directionsRenderer.getPanel();
+    }
+  }, {
+    key: "getRouteIndex",
+    value: function getRouteIndex() {
+      return this.state.directionsRenderer.getRouteIndex();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var directionsRenderer = _creatorsDirectionsRendererCreator2["default"]._createDirectionsRenderer(this.props);
+
+      this.setState({ directionsRenderer: directionsRenderer });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.directionsRenderer) {
+        return _react2["default"].createElement(
+          _creatorsDirectionsRendererCreator2["default"],
+          _extends({ directionsRenderer: this.state.directionsRenderer }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsDirectionsRendererCreator.directionsRendererDefaultPropTypes, _creatorsDirectionsRendererCreator.directionsRendererControlledPropTypes, _creatorsDirectionsRendererCreator.directionsRendererEventPropTypes),
+    enumerable: true
+  }]);
+
+  return DirectionsRenderer;
+})(_react.Component);
+
+exports["default"] = DirectionsRenderer;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/DirectionsRendererCreator":286,"can-use-dom":25,"react":468}],274:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsDrawingManagerCreator = require("./creators/DrawingManagerCreator");
+
+var _creatorsDrawingManagerCreator2 = _interopRequireDefault(_creatorsDrawingManagerCreator);
+
+/*
+ * Original author: @idolize
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/46
+ */
+
+var DrawingManager = (function (_Component) {
+  _inherits(DrawingManager, _Component);
+
+  function DrawingManager() {
+    _classCallCheck(this, DrawingManager);
+
+    _get(Object.getPrototypeOf(DrawingManager.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(DrawingManager, [{
+    key: "getDrawingMode",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getDrawingMode() {
+      return this.state.drawingManager.getDrawingMode();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var drawingManager = _creatorsDrawingManagerCreator2["default"]._createDrawingManager(this.props);
+
+      this.setState({ drawingManager: drawingManager });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.drawingManager) {
+        return _react2["default"].createElement(
+          _creatorsDrawingManagerCreator2["default"],
+          _extends({ drawingManager: this.state.drawingManager }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsDrawingManagerCreator.drawingManagerDefaultPropTypes, _creatorsDrawingManagerCreator.drawingManagerControlledPropTypes, _creatorsDrawingManagerCreator.drawingManagerEventPropTypes),
+    enumerable: true
+  }]);
+
+  return DrawingManager;
+})(_react.Component);
+
+exports["default"] = DrawingManager;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/DrawingManagerCreator":287,"can-use-dom":25,"react":468}],275:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _warning = require("warning");
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _creatorsGoogleMapHolder = require("./creators/GoogleMapHolder");
+
+var _creatorsGoogleMapHolder2 = _interopRequireDefault(_creatorsGoogleMapHolder);
+
+var _GoogleMapLoader = require("./GoogleMapLoader");
+
+var _GoogleMapLoader2 = _interopRequireDefault(_GoogleMapLoader);
+
+var USE_NEW_BEHAVIOR_TAG_NAME = "__new_behavior__";
+
+var GoogleMap = (function (_Component) {
+  _inherits(GoogleMap, _Component);
+
+  function GoogleMap() {
+    _classCallCheck(this, GoogleMap);
+
+    _get(Object.getPrototypeOf(GoogleMap.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(GoogleMap, [{
+    key: "getBounds",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+    value: function getBounds() {
+      return (this.props.map || this.refs.delegate).getBounds();
+    }
+  }, {
+    key: "getCenter",
+    value: function getCenter() {
+      return (this.props.map || this.refs.delegate).getCenter();
+    }
+  }, {
+    key: "getDiv",
+    value: function getDiv() {
+      return (this.props.map || this.refs.delegate).getDiv();
+    }
+  }, {
+    key: "getHeading",
+    value: function getHeading() {
+      return (this.props.map || this.refs.delegate).getHeading();
+    }
+  }, {
+    key: "getMapTypeId",
+    value: function getMapTypeId() {
+      return (this.props.map || this.refs.delegate).getMapTypeId();
+    }
+  }, {
+    key: "getProjection",
+    value: function getProjection() {
+      return (this.props.map || this.refs.delegate).getProjection();
+    }
+  }, {
+    key: "getStreetView",
+    value: function getStreetView() {
+      return (this.props.map || this.refs.delegate).getStreetView();
+    }
+  }, {
+    key: "getTilt",
+    value: function getTilt() {
+      return (this.props.map || this.refs.delegate).getTilt();
+    }
+  }, {
+    key: "getZoom",
+    value: function getZoom() {
+      return (this.props.map || this.refs.delegate).getZoom();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+    //
+    // Public APIs - Use this carefully
+    // See discussion in https://github.com/tomchentw/react-google-maps/issues/62
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return !it.match(/^get/) && !it.match(/^set/) && !it.match(/Map$/); })
+  }, {
+    key: "fitBounds",
+    value: function fitBounds(bounds) {
+      return (this.props.map || this.refs.delegate).fitBounds(bounds);
+    }
+  }, {
+    key: "panBy",
+    value: function panBy(x, y) {
+      return (this.props.map || this.refs.delegate).panBy(x, y);
+    }
+  }, {
+    key: "panTo",
+    value: function panTo(latLng) {
+      return (this.props.map || this.refs.delegate).panTo(latLng);
+    }
+  }, {
+    key: "panToBounds",
+    value: function panToBounds(latLngBounds) {
+      return (this.props.map || this.refs.delegate).panToBounds(latLngBounds);
+    }
+
+    // END - Public APIs - Use this carefully
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      var containerTagName = this.props.containerTagName;
+
+      var isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
+
+      (0, _warning2["default"])(isUsingNewBehavior, "\"GoogleMap\" with containerTagName is deprecated now and will be removed in next major release (5.0.0).\nUse \"GoogleMapLoader\" instead. See https://github.com/tomchentw/react-google-maps/pull/157 for more details.");
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props = this.props;
+      var containerTagName = _props.containerTagName;
+      var _props$containerProps = _props.containerProps;
+      var containerProps = _props$containerProps === undefined ? {} : _props$containerProps;
+      var children = _props.children;
+
+      var mapProps = _objectWithoutProperties(_props, ["containerTagName", "containerProps", "children"]);
+
+      var isUsingNewBehavior = USE_NEW_BEHAVIOR_TAG_NAME === containerTagName;
+
+      if (isUsingNewBehavior) {
+        return _react2["default"].createElement(
+          _creatorsGoogleMapHolder2["default"],
+          mapProps,
+          children
+        );
+      } else {
+        // ------------ Deprecated ------------
+        var realContainerTagName = containerTagName === undefined || containerTagName === null ? "div" : containerTagName;
+
+        return _react2["default"].createElement(_GoogleMapLoader2["default"], {
+          ref: "loader",
+          containerElement: _react2["default"].createElement(realContainerTagName, containerProps),
+          googleMapElement: _react2["default"].createElement(
+            GoogleMap,
+            _extends({ ref: "delegate", containerTagName: USE_NEW_BEHAVIOR_TAG_NAME }, mapProps),
+            children
+          )
+        });
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({
+      containerTagName: _react.PropTypes.string,
+      containerProps: _react.PropTypes.object,
+      map: _react.PropTypes.object
+    }, _creatorsGoogleMapHolder.mapDefaultPropTypes, _creatorsGoogleMapHolder.mapControlledPropTypes, _creatorsGoogleMapHolder.mapEventPropTypes),
+    enumerable: true
+  }]);
+
+  return GoogleMap;
+})(_react.Component);
+
+exports["default"] = GoogleMap;
+module.exports = exports["default"];
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./GoogleMapLoader":276,"./creators/GoogleMapHolder":288,"react":468,"warning":473}],276:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _creatorsGoogleMapHolder = require("./creators/GoogleMapHolder");
+
+var _creatorsGoogleMapHolder2 = _interopRequireDefault(_creatorsGoogleMapHolder);
+
+var USE_NEW_BEHAVIOR_TAG_NAME = "__new_behavior__"; /* CIRCULAR_DEPENDENCY */
+
+var GoogleMapLoader = (function (_Component) {
+  _inherits(GoogleMapLoader, _Component);
+
+  function GoogleMapLoader() {
+    _classCallCheck(this, GoogleMapLoader);
+
+    _get(Object.getPrototypeOf(GoogleMapLoader.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {
+      map: null
+    };
+  }
+
+  _createClass(GoogleMapLoader, [{
+    key: "mountGoogleMap",
+    value: function mountGoogleMap(domEl) {
+      if (this.state.map || domEl === null) {
+        return;
+      }
+      var _props$googleMapElement$props = this.props.googleMapElement.props;
+      var children = _props$googleMapElement$props.children;
+
+      var mapProps = _objectWithoutProperties(_props$googleMapElement$props, ["children"]);
+
+      //
+      // Create google.maps.Map instance so that dom is initialized before
+      // React's children creators.
+      //
+      var map = _creatorsGoogleMapHolder2["default"]._createMap(domEl, mapProps);
+      this.setState({ map: map });
+    }
+  }, {
+    key: "renderChild",
+    value: function renderChild() {
+      if (this.state.map) {
+        // Notice: implementation details
+        //
+        // In this state, the DOM of google.maps.Map is already initialized in
+        // my innerHTML. Adding extra React components will not clean it
+        // in current version*. It will use prepend to add DOM of
+        // GoogleMapHolder and become a sibling of the DOM of google.maps.Map
+        // Not sure this is subject to change
+        //
+        // *current version: 0.13.3, 0.14.2
+        //
+        return _react2["default"].cloneElement(this.props.googleMapElement, {
+          map: this.state.map,
+          // ------------ Deprecated ------------
+          containerTagName: USE_NEW_BEHAVIOR_TAG_NAME
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].cloneElement(this.props.containerElement, {
+        ref: this.mountGoogleMap.bind(this)
+      }, this.renderChild());
+    }
+  }], [{
+    key: "propTypes",
+    value: {
+      containerElement: _react.PropTypes.node.isRequired,
+      googleMapElement: _react.PropTypes.element.isRequired },
+    enumerable: true
+  }, {
+    key: "defaultProps",
+    /* CIRCULAR_DEPENDENCY. Uncomment when 5.0.0 comes: propTypesElementOfType(GoogleMap).isRequired, */
+    value: {
+      containerElement: _react2["default"].createElement("div", null)
+    },
+    enumerable: true
+  }]);
+
+  return GoogleMapLoader;
+})(_react.Component);
+
+exports["default"] = GoogleMapLoader;
+module.exports = exports["default"];
+},{"./creators/GoogleMapHolder":288,"react":468}],277:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsInfoWindowCreator = require("./creators/InfoWindowCreator");
+
+var _creatorsInfoWindowCreator2 = _interopRequireDefault(_creatorsInfoWindowCreator);
+
+var InfoWindow = (function (_Component) {
+  _inherits(InfoWindow, _Component);
+
+  function InfoWindow() {
+    _classCallCheck(this, InfoWindow);
+
+    _get(Object.getPrototypeOf(InfoWindow.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(InfoWindow, [{
+    key: "getContent",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getContent() {/* TODO: children */}
+  }, {
+    key: "getPosition",
+    value: function getPosition() {
+      return this.state.infoWindow.getPosition();
+    }
+  }, {
+    key: "getZIndex",
+    value: function getZIndex() {
+      return this.state.infoWindow.getZIndex();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var infoWindow = _creatorsInfoWindowCreator2["default"]._createInfoWindow(this.props);
+
+      this.setState({ infoWindow: infoWindow });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.infoWindow) {
+        return _react2["default"].createElement(
+          _creatorsInfoWindowCreator2["default"],
+          _extends({ infoWindow: this.state.infoWindow }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsInfoWindowCreator.infoWindowDefaultPropTypes, _creatorsInfoWindowCreator.infoWindowControlledPropTypes, _creatorsInfoWindowCreator.infoWindowEventPropTypes),
+    enumerable: true
+  }]);
+
+  return InfoWindow;
+})(_react.Component);
+
+exports["default"] = InfoWindow;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/InfoWindowCreator":289,"can-use-dom":25,"react":468}],278:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsKmlLayerCreator = require("./creators/KmlLayerCreator");
+
+var _creatorsKmlLayerCreator2 = _interopRequireDefault(_creatorsKmlLayerCreator);
+
+var KmlLayer = (function (_Component) {
+  _inherits(KmlLayer, _Component);
+
+  function KmlLayer() {
+    _classCallCheck(this, KmlLayer);
+
+    _get(Object.getPrototypeOf(KmlLayer.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(KmlLayer, [{
+    key: "getDefaultViewport",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+    value: function getDefaultViewport() {
+      return this.state.kmlLayer.getDefaultViewport();
+    }
+  }, {
+    key: "getMetadata",
+    value: function getMetadata() {
+      return this.state.kmlLayer.getMetadata();
+    }
+  }, {
+    key: "getStatus",
+    value: function getStatus() {
+      return this.state.kmlLayer.getStatus();
+    }
+  }, {
+    key: "getUrl",
+    value: function getUrl() {
+      return this.state.kmlLayer.getUrl();
+    }
+  }, {
+    key: "getZIndex",
+    value: function getZIndex() {
+      return this.state.marker.getZIndex();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var kmlLayer = _creatorsKmlLayerCreator2["default"]._createKmlLayer(this.props);
+
+      this.setState({ kmlLayer: kmlLayer });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.kmlLayer) {
+        return _react2["default"].createElement(
+          _creatorsKmlLayerCreator2["default"],
+          _extends({ kmlLayer: this.state.kmlLayer }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsKmlLayerCreator.kmlLayerDefaultPropTypes, _creatorsKmlLayerCreator.kmlLayerControlledPropTypes, _creatorsKmlLayerCreator.kmlLayerEventPropTypes),
+    enumerable: true
+  }]);
+
+  return KmlLayer;
+})(_react.Component);
+
+exports["default"] = KmlLayer;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/KmlLayerCreator":290,"can-use-dom":25,"react":468}],279:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsMarkerCreator = require("./creators/MarkerCreator");
+
+var _creatorsMarkerCreator2 = _interopRequireDefault(_creatorsMarkerCreator);
+
+var Marker = (function (_Component) {
+  _inherits(Marker, _Component);
+
+  function Marker() {
+    _classCallCheck(this, Marker);
+
+    _get(Object.getPrototypeOf(Marker.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(Marker, [{
+    key: "getAnimation",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+    value: function getAnimation() {
+      return this.state.marker.getAnimation();
+    }
+  }, {
+    key: "getAttribution",
+    value: function getAttribution() {
+      return this.state.marker.getAttribution();
+    }
+  }, {
+    key: "getClickable",
+    value: function getClickable() {
+      return this.state.marker.getClickable();
+    }
+  }, {
+    key: "getCursor",
+    value: function getCursor() {
+      return this.state.marker.getCursor();
+    }
+  }, {
+    key: "getDraggable",
+    value: function getDraggable() {
+      return this.state.marker.getDraggable();
+    }
+  }, {
+    key: "getIcon",
+    value: function getIcon() {
+      return this.state.marker.getIcon();
+    }
+  }, {
+    key: "getLabel",
+    value: function getLabel() {
+      return this.state.marker.getLabel();
+    }
+  }, {
+    key: "getOpacity",
+    value: function getOpacity() {
+      return this.state.marker.getOpacity();
+    }
+  }, {
+    key: "getPlace",
+    value: function getPlace() {
+      return this.state.marker.getPlace();
+    }
+  }, {
+    key: "getPosition",
+    value: function getPosition() {
+      return this.state.marker.getPosition();
+    }
+  }, {
+    key: "getShape",
+    value: function getShape() {
+      return this.state.marker.getShape();
+    }
+  }, {
+    key: "getTitle",
+    value: function getTitle() {
+      return this.state.marker.getTitle();
+    }
+  }, {
+    key: "getVisible",
+    value: function getVisible() {
+      return this.state.marker.getVisible();
+    }
+  }, {
+    key: "getZIndex",
+    value: function getZIndex() {
+      return this.state.marker.getZIndex();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var marker = _creatorsMarkerCreator2["default"]._createMarker(this.props);
+
+      this.setState({ marker: marker });
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+
+      var anchorHolderRef = this.props.anchorHolderRef;
+      var marker = this.state.marker;
+
+      if (anchorHolderRef) {
+        if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+          anchorHolderRef.getAnchor().removeMarker(marker);
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.marker) {
+        return _react2["default"].createElement(
+          _creatorsMarkerCreator2["default"],
+          _extends({ marker: this.state.marker }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsMarkerCreator.markerDefaultPropTypes, _creatorsMarkerCreator.markerControlledPropTypes, _creatorsMarkerCreator.markerEventPropTypes),
+    enumerable: true
+  }]);
+
+  return Marker;
+})(_react.Component);
+
+exports["default"] = Marker;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/MarkerCreator":291,"can-use-dom":25,"react":468}],280:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsOverlayViewCreator = require("./creators/OverlayViewCreator");
+
+var _creatorsOverlayViewCreator2 = _interopRequireDefault(_creatorsOverlayViewCreator);
+
+/*
+ * Original author: @petebrowne
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/63
+ */
+
+var OverlayView = (function (_Component) {
+  _inherits(OverlayView, _Component);
+
+  function OverlayView() {
+    _classCallCheck(this, OverlayView);
+
+    _get(Object.getPrototypeOf(OverlayView.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(OverlayView, [{
+    key: "getPanes",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getPanes() {
+      return this.state.overlayView.getPanes();
+    }
+  }, {
+    key: "getProjection",
+    value: function getProjection() {
+      return this.state.overlayView.getProjection();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var overlayView = _creatorsOverlayViewCreator2["default"]._createOverlayView(this.props);
+
+      this.setState({ overlayView: overlayView });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.overlayView) {
+        return _react2["default"].createElement(
+          _creatorsOverlayViewCreator2["default"],
+          _extends({ overlayView: this.state.overlayView }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "FLOAT_PANE",
+    value: "floatPane",
+    enumerable: true
+  }, {
+    key: "MAP_PANE",
+    value: "mapPane",
+    enumerable: true
+  }, {
+    key: "MARKER_LAYER",
+    value: "markerLayer",
+    enumerable: true
+  }, {
+    key: "OVERLAY_LAYER",
+    value: "overlayLayer",
+    enumerable: true
+  }, {
+    key: "OVERLAY_MOUSE_TARGET",
+    value: "overlayMouseTarget",
+    enumerable: true
+  }, {
+    key: "propTypes",
+    value: _extends({}, _creatorsOverlayViewCreator.overlayViewDefaultPropTypes, _creatorsOverlayViewCreator.overlayViewControlledPropTypes),
+    enumerable: true
+  }, {
+    key: "defaultProps",
+    value: {
+      mapPaneName: OverlayView.OVERLAY_LAYER
+    },
+    enumerable: true
+  }]);
+
+  return OverlayView;
+})(_react.Component);
+
+exports["default"] = OverlayView;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+},{"./creators/OverlayViewCreator":292,"can-use-dom":25,"react":468}],281:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsPolygonCreator = require("./creators/PolygonCreator");
+
+var _creatorsPolygonCreator2 = _interopRequireDefault(_creatorsPolygonCreator);
+
+var Polygon = (function (_Component) {
+  _inherits(Polygon, _Component);
+
+  function Polygon() {
+    _classCallCheck(this, Polygon);
+
+    _get(Object.getPrototypeOf(Polygon.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(Polygon, [{
+    key: "getDraggable",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getDraggable() {
+      return this.state.polygon.getDraggable();
+    }
+  }, {
+    key: "getEditable",
+    value: function getEditable() {
+      return this.state.polygon.getEditable();
+    }
+  }, {
+    key: "getPath",
+    value: function getPath() {
+      return this.state.polygon.getPath();
+    }
+  }, {
+    key: "getPaths",
+    value: function getPaths() {
+      return this.state.polygon.getPaths();
+    }
+  }, {
+    key: "getVisible",
+    value: function getVisible() {
+      return this.state.polygon.getVisible();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var polygon = _creatorsPolygonCreator2["default"]._createPolygon(this.props);
+
+      this.setState({ polygon: polygon });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.polygon) {
+        return _react2["default"].createElement(
+          _creatorsPolygonCreator2["default"],
+          _extends({ polygon: this.state.polygon }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsPolygonCreator.polygonDefaultPropTypes, _creatorsPolygonCreator.polygonControlledPropTypes, _creatorsPolygonCreator.polygonEventPropTypes),
+    enumerable: true
+  }]);
+
+  return Polygon;
+})(_react.Component);
+
+exports["default"] = Polygon;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/PolygonCreator":293,"can-use-dom":25,"react":468}],282:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsPolylineCreator = require("./creators/PolylineCreator");
+
+var _creatorsPolylineCreator2 = _interopRequireDefault(_creatorsPolylineCreator);
+
+var Polyline = (function (_Component) {
+  _inherits(Polyline, _Component);
+
+  function Polyline() {
+    _classCallCheck(this, Polyline);
+
+    _get(Object.getPrototypeOf(Polyline.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(Polyline, [{
+    key: "getDraggable",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getDraggable() {
+      return this.state.polyline.getDraggable();
+    }
+  }, {
+    key: "getEditable",
+    value: function getEditable() {
+      return this.state.polyline.getEditable();
+    }
+  }, {
+    key: "getPath",
+    value: function getPath() {
+      return this.state.polyline.getPath();
+    }
+  }, {
+    key: "getVisible",
+    value: function getVisible() {
+      return this.state.polyline.getVisible();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var polyline = _creatorsPolylineCreator2["default"]._createPolyline(this.props);
+
+      this.setState({ polyline: polyline });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.polyline) {
+        return _react2["default"].createElement(
+          _creatorsPolylineCreator2["default"],
+          _extends({ polyline: this.state.polyline }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsPolylineCreator.polylineDefaultPropTypes, _creatorsPolylineCreator.polylineControlledPropTypes, _creatorsPolylineCreator.polylineEventPropTypes),
+    enumerable: true
+  }]);
+
+  return Polyline;
+})(_react.Component);
+
+exports["default"] = Polyline;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/PolylineCreator":294,"can-use-dom":25,"react":468}],283:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsRectangleCreator = require("./creators/RectangleCreator");
+
+var _creatorsRectangleCreator2 = _interopRequireDefault(_creatorsRectangleCreator);
+
+/*
+ * Original author: @alistairjcbrown
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/80
+ */
+
+var Rectangle = (function (_Component) {
+  _inherits(Rectangle, _Component);
+
+  function Rectangle() {
+    _classCallCheck(this, Rectangle);
+
+    _get(Object.getPrototypeOf(Rectangle.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(Rectangle, [{
+    key: "getBounds",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/^getMap/); })
+    value: function getBounds() {
+      return this.state.rectangle.getBounds();
+    }
+  }, {
+    key: "getDraggable",
+    value: function getDraggable() {
+      return this.state.rectangle.getDraggable();
+    }
+  }, {
+    key: "getEditable",
+    value: function getEditable() {
+      return this.state.rectangle.getEditable();
+    }
+  }, {
+    key: "getVisible",
+    value: function getVisible() {
+      return this.state.rectangle.getVisible();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var rectangle = _creatorsRectangleCreator2["default"]._createRectangle(this.props);
+
+      this.setState({ rectangle: rectangle });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      if (this.state.rectangle) {
+        return _react2["default"].createElement(
+          _creatorsRectangleCreator2["default"],
+          _extends({ rectangle: this.state.rectangle }, this.props),
+          this.props.children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsRectangleCreator.rectangleDefaultPropTypes, _creatorsRectangleCreator.rectangleControlledPropTypes, _creatorsRectangleCreator.rectangleEventPropTypes),
+    enumerable: true
+  }]);
+
+  return Rectangle;
+})(_react.Component);
+
+exports["default"] = Rectangle;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/RectangleCreator":295,"can-use-dom":25,"react":468}],284:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _canUseDom = require("can-use-dom");
+
+var _canUseDom2 = _interopRequireDefault(_canUseDom);
+
+var _creatorsSearchBoxCreator = require("./creators/SearchBoxCreator");
+
+var _creatorsSearchBoxCreator2 = _interopRequireDefault(_creatorsSearchBoxCreator);
+
+/*
+ * Original author: @eyebraus
+ * Original PR: https://github.com/tomchentw/react-google-maps/pull/110
+ */
+
+var SearchBox = (function (_Component) {
+  _inherits(SearchBox, _Component);
+
+  function SearchBox() {
+    _classCallCheck(this, SearchBox);
+
+    _get(Object.getPrototypeOf(SearchBox.prototype), "constructor", this).apply(this, arguments);
+
+    this.state = {};
+  }
+
+  _createClass(SearchBox, [{
+    key: "getBounds",
+
+    // Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+    //
+    // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^get/) && !it.match(/Map$/); })
+    value: function getBounds() {
+      return this.state.searchBox.getBounds();
+    }
+  }, {
+    key: "getPlaces",
+    value: function getPlaces() {
+      return this.state.searchBox.getPlaces();
+    }
+
+    // END - Public APIs
+    //
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+
+  }, {
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      if (!_canUseDom2["default"]) {
+        return;
+      }
+      var _props = this.props;
+      var mapHolderRef = _props.mapHolderRef;
+      var classes = _props.classes;
+      var style = _props.style;
+      var placeholder = _props.placeholder;
+
+      var searchBoxProps = _objectWithoutProperties(_props, ["mapHolderRef", "classes", "style", "placeholder"]);
+
+      // Cannot create input via component - Google Maps will mess with React's internal state by detaching/attaching.
+      // Allow developers to style the "hidden element" via inputClasses.
+      var domEl = document.createElement("input");
+      domEl.className = classes;
+      domEl.type = "text";
+      domEl.placeholder = placeholder;
+
+      for (var propKey in style) {
+        if (style.hasOwnProperty(propKey)) {
+          domEl.style[propKey] = style[propKey];
+        }
+      }
+
+      var searchBox = _creatorsSearchBoxCreator2["default"]._createSearchBox(domEl, searchBoxProps);
+
+      this.setState({
+        inputElement: domEl,
+        searchBox: searchBox
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props2 = this.props;
+      var mapHolderRef = _props2.mapHolderRef;
+      var controlPosition = _props2.controlPosition;
+
+      return this.state.searchBox ? _react2["default"].createElement(
+        _creatorsSearchBoxCreator2["default"],
+        _extends({ controlPosition: controlPosition, inputElement: this.state.inputElement, mapHolderRef: mapHolderRef, searchBox: this.state.searchBox }, this.props),
+        this.props.children
+      ) : _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "propTypes",
+    value: _extends({}, _creatorsSearchBoxCreator.searchBoxDefaultPropTypes, _creatorsSearchBoxCreator.searchBoxControlledPropTypes, _creatorsSearchBoxCreator.searchBoxEventPropTypes),
+    enumerable: true
+  }]);
+
+  return SearchBox;
+})(_react.Component);
+
+exports["default"] = SearchBox;
+module.exports = exports["default"];
+
+// Uncontrolled default[props] - used only in componentDidMount
+
+// Controlled [props] - used in componentDidMount/componentDidUpdate
+
+// Event [onEventName]
+},{"./creators/SearchBoxCreator":296,"can-use-dom":25,"react":468}],285:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsCircleEventList = require("../eventLists/CircleEventList");
+
+var _eventListsCircleEventList2 = _interopRequireDefault(_eventListsCircleEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var circleControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+  center: _react.PropTypes.any,
+  draggable: _react.PropTypes.bool,
+  editable: _react.PropTypes.bool,
+  options: _react.PropTypes.object,
+  radius: _react.PropTypes.number,
+  visible: _react.PropTypes.bool
+};
+
+exports.circleControlledPropTypes = circleControlledPropTypes;
+var circleDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(circleControlledPropTypes);
+
+exports.circleDefaultPropTypes = circleDefaultPropTypes;
+var circleUpdaters = {
+  center: function center(_center, component) {
+    component.getCircle().setCenter(_center);
+  },
+  draggable: function draggable(_draggable, component) {
+    component.getCircle().setDraggable(_draggable);
+  },
+  editable: function editable(_editable, component) {
+    component.getCircle().setEditable(_editable);
+  },
+  options: function options(_options, component) {
+    component.getCircle().setOptions(_options);
+  },
+  radius: function radius(_radius, component) {
+    component.getCircle().setRadius(_radius);
+  },
+  visible: function visible(_visible, component) {
+    component.getCircle().setVisible(_visible);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsCircleEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var circleEventPropTypes = eventPropTypes;
+
+exports.circleEventPropTypes = circleEventPropTypes;
+
+var CircleCreator = (function (_Component) {
+  _inherits(CircleCreator, _Component);
+
+  function CircleCreator() {
+    _classCallCheck(this, _CircleCreator);
+
+    _get(Object.getPrototypeOf(_CircleCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(CircleCreator, [{
+    key: "getCircle",
+    value: function getCircle() {
+      return this.props.circle;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createCircle",
+    value: function _createCircle(circleProps) {
+      var mapHolderRef = circleProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+      var circle = new google.maps.Circle((0, _utilsComposeOptions2["default"])(circleProps, circleControlledPropTypes));
+
+      circle.setMap(mapHolderRef.getMap());
+
+      return circle;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      circle: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _CircleCreator = CircleCreator;
+  CircleCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getCircle",
+    updaters: circleUpdaters
+  })(CircleCreator) || CircleCreator;
+  return CircleCreator;
+})(_react.Component);
+
+exports["default"] = CircleCreator;
+},{"../eventLists/CircleEventList":297,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],286:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsDirectionsRendererEventList = require("../eventLists/DirectionsRendererEventList");
+
+var _eventListsDirectionsRendererEventList2 = _interopRequireDefault(_eventListsDirectionsRendererEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var directionsRendererControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+  directions: _react.PropTypes.any,
+  options: _react.PropTypes.object,
+  panel: _react.PropTypes.object,
+  routeIndex: _react.PropTypes.number
+};
+
+exports.directionsRendererControlledPropTypes = directionsRendererControlledPropTypes;
+var directionsRendererDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(directionsRendererControlledPropTypes);
+
+exports.directionsRendererDefaultPropTypes = directionsRendererDefaultPropTypes;
+var directionsRendererUpdaters = {
+  directions: function directions(_directions, component) {
+    component.getDirectionsRenderer().setDirections(_directions);
+  },
+  options: function options(_options, component) {
+    component.getDirectionsRenderer().setOptions(_options);
+  },
+  panel: function panel(_panel, component) {
+    component.getDirectionsRenderer().setPanel(_panel);
+  },
+  routeIndex: function routeIndex(_routeIndex, component) {
+    component.getDirectionsRenderer().setRouteIndex(_routeIndex);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsDirectionsRendererEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var directionsRendererEventPropTypes = eventPropTypes;
+
+exports.directionsRendererEventPropTypes = directionsRendererEventPropTypes;
+
+var DirectionsRendererCreator = (function (_Component) {
+  _inherits(DirectionsRendererCreator, _Component);
+
+  function DirectionsRendererCreator() {
+    _classCallCheck(this, _DirectionsRendererCreator);
+
+    _get(Object.getPrototypeOf(_DirectionsRendererCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(DirectionsRendererCreator, [{
+    key: "getDirectionsRenderer",
+    value: function getDirectionsRenderer() {
+      return this.props.directionsRenderer;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var children = this.props.children;
+
+      if (_react.Children.count(children) > 0) {
+        // TODO: take a look at DirectionsRendererOptions#infoWindow and DirectionsRendererOptions#markerOptions ?
+        return _react2["default"].createElement(
+          "div",
+          null,
+          children
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "_createDirectionsRenderer",
+    value: function _createDirectionsRenderer(directionsRendererProps) {
+      var mapHolderRef = directionsRendererProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+      var directionsRenderer = new google.maps.DirectionsRenderer((0, _utilsComposeOptions2["default"])(directionsRendererProps, directionsRendererControlledPropTypes));
+
+      directionsRenderer.setMap(mapHolderRef.getMap());
+
+      return directionsRenderer;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      directionsRenderer: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _DirectionsRendererCreator = DirectionsRendererCreator;
+  DirectionsRendererCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getDirectionsRenderer",
+    updaters: directionsRendererUpdaters
+  })(DirectionsRendererCreator) || DirectionsRendererCreator;
+  return DirectionsRendererCreator;
+})(_react.Component);
+
+exports["default"] = DirectionsRendererCreator;
+},{"../eventLists/DirectionsRendererEventList":298,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],287:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsDrawingManagerEventList = require("../eventLists/DrawingManagerEventList");
+
+var _eventListsDrawingManagerEventList2 = _interopRequireDefault(_eventListsDrawingManagerEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var drawingManagerControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+  drawingMode: _react.PropTypes.any,
+  options: _react.PropTypes.object
+};
+
+exports.drawingManagerControlledPropTypes = drawingManagerControlledPropTypes;
+var drawingManagerDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(drawingManagerControlledPropTypes);
+
+exports.drawingManagerDefaultPropTypes = drawingManagerDefaultPropTypes;
+var drawingManagerUpdaters = {
+  drawingMode: function drawingMode(_drawingMode, component) {
+    component.getDrawingManager().setDrawingMode(_drawingMode);
+  },
+  options: function options(_options, component) {
+    component.getDrawingManager().setOptions(_options);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsDrawingManagerEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var drawingManagerEventPropTypes = eventPropTypes;
+
+exports.drawingManagerEventPropTypes = drawingManagerEventPropTypes;
+
+var DrawingManagerCreator = (function (_Component) {
+  _inherits(DrawingManagerCreator, _Component);
+
+  function DrawingManagerCreator() {
+    _classCallCheck(this, _DrawingManagerCreator);
+
+    _get(Object.getPrototypeOf(_DrawingManagerCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(DrawingManagerCreator, [{
+    key: "getDrawingManager",
+    value: function getDrawingManager() {
+      return this.props.drawingManager;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createDrawingManager",
+    value: function _createDrawingManager(drawingManagerProps) {
+      var mapHolderRef = drawingManagerProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+      var drawingManager = new google.maps.drawing.DrawingManager((0, _utilsComposeOptions2["default"])(drawingManagerProps, drawingManagerControlledPropTypes));
+
+      drawingManager.setMap(mapHolderRef.getMap());
+
+      return drawingManager;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      drawingManager: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _DrawingManagerCreator = DrawingManagerCreator;
+  DrawingManagerCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getDrawingManager",
+    updaters: drawingManagerUpdaters
+  })(DrawingManagerCreator) || DrawingManagerCreator;
+  return DrawingManagerCreator;
+})(_react.Component);
+
+exports["default"] = DrawingManagerCreator;
+},{"../eventLists/DrawingManagerEventList":299,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],288:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _warning = require("warning");
+
+var _warning2 = _interopRequireDefault(_warning);
+
+var _eventListsGoogleMapEventList = require("../eventLists/GoogleMapEventList");
+
+var _eventListsGoogleMapEventList2 = _interopRequireDefault(_eventListsGoogleMapEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var mapControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+  center: _react.PropTypes.object,
+  heading: _react.PropTypes.number,
+  mapTypeId: _react.PropTypes.any,
+  options: _react.PropTypes.object,
+  streetView: _react.PropTypes.any,
+  tilt: _react.PropTypes.number,
+  zoom: _react.PropTypes.number
+};
+
+exports.mapControlledPropTypes = mapControlledPropTypes;
+var mapDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(mapControlledPropTypes);
+
+exports.mapDefaultPropTypes = mapDefaultPropTypes;
+var mapUpdaters = {
+  center: function center(_center, component) {
+    component.getMap().setCenter(_center);
+  },
+  heading: function heading(_heading, component) {
+    component.getMap().setHeading(_heading);
+  },
+  mapTypeId: function mapTypeId(_mapTypeId, component) {
+    component.getMap().setMapTypeId(_mapTypeId);
+  },
+  options: function options(_options, component) {
+    component.getMap().setOptions(_options);
+  },
+  streetView: function streetView(_streetView, component) {
+    component.getMap().setStreetView(_streetView);
+  },
+  tilt: function tilt(_tilt, component) {
+    component.getMap().setTilt(_tilt);
+  },
+  zoom: function zoom(_zoom, component) {
+    component.getMap().setZoom(_zoom);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsGoogleMapEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var mapEventPropTypes = eventPropTypes;
+
+exports.mapEventPropTypes = mapEventPropTypes;
+
+var GoogleMapHolder = (function (_Component) {
+  _inherits(GoogleMapHolder, _Component);
+
+  function GoogleMapHolder() {
+    _classCallCheck(this, _GoogleMapHolder);
+
+    _get(Object.getPrototypeOf(_GoogleMapHolder.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(GoogleMapHolder, [{
+    key: "getMap",
+    value: function getMap() {
+      return this.props.map;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      return _react2["default"].createElement(
+        "div",
+        null,
+        _react.Children.map(this.props.children, function (childElement) {
+          if (_react2["default"].isValidElement(childElement)) {
+            return _react2["default"].cloneElement(childElement, {
+              mapHolderRef: _this
+            });
+          } else {
+            return childElement;
+          }
+        })
+      );
+    }
+  }], [{
+    key: "_createMap",
+    value: function _createMap(domEl, mapProps) {
+      (0, _warning2["default"])("undefined" !== typeof google, "Make sure you've put a <script> tag in your <head> element to load Google Maps JavaScript API v3.\n If you're looking for built-in support to load it for you, use the \"async/ScriptjsLoader\" instead.\n See https://github.com/tomchentw/react-google-maps/pull/168");
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+      return new google.maps.Map(domEl, (0, _utilsComposeOptions2["default"])(mapProps, mapControlledPropTypes));
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      map: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _GoogleMapHolder = GoogleMapHolder;
+  GoogleMapHolder = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getMap",
+    updaters: mapUpdaters
+  })(GoogleMapHolder) || GoogleMapHolder;
+  return GoogleMapHolder;
+})(_react.Component);
+
+exports["default"] = GoogleMapHolder;
+},{"../eventLists/GoogleMapEventList":300,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"react":468,"warning":473}],289:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsInfoWindowEventList = require("../eventLists/InfoWindowEventList");
+
+var _eventListsInfoWindowEventList2 = _interopRequireDefault(_eventListsInfoWindowEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsSetContentForOptionalReactElement = require("../utils/setContentForOptionalReactElement");
+
+var _utilsSetContentForOptionalReactElement2 = _interopRequireDefault(_utilsSetContentForOptionalReactElement);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var infoWindowControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+  content: _react.PropTypes.any,
+  options: _react.PropTypes.object,
+  position: _react.PropTypes.any,
+  zIndex: _react.PropTypes.number
+};
+
+exports.infoWindowControlledPropTypes = infoWindowControlledPropTypes;
+var infoWindowDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(infoWindowControlledPropTypes);
+
+exports.infoWindowDefaultPropTypes = infoWindowDefaultPropTypes;
+var infoWindowUpdaters = {
+  children: function children(_children, component) {
+    (0, _utilsSetContentForOptionalReactElement2["default"])(_children, component.getInfoWindow());
+  },
+  content: function content(_content, component) {
+    component.getInfoWindow().setContent(_content);
+  },
+  options: function options(_options, component) {
+    component.getInfoWindow().setOptions(_options);
+  },
+  position: function position(_position, component) {
+    component.getInfoWindow().setPosition(_position);
+  },
+  zIndex: function zIndex(_zIndex, component) {
+    component.getInfoWindow().setZIndex(_zIndex);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsInfoWindowEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var infoWindowEventPropTypes = eventPropTypes;
+
+exports.infoWindowEventPropTypes = infoWindowEventPropTypes;
+
+var InfoWindowCreator = (function (_Component) {
+  _inherits(InfoWindowCreator, _Component);
+
+  function InfoWindowCreator() {
+    _classCallCheck(this, _InfoWindowCreator);
+
+    _get(Object.getPrototypeOf(_InfoWindowCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(InfoWindowCreator, [{
+    key: "getInfoWindow",
+    value: function getInfoWindow() {
+      return this.props.infoWindow;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createInfoWindow",
+    value: function _createInfoWindow(infoWindowProps) {
+      var mapHolderRef = infoWindowProps.mapHolderRef;
+      var anchorHolderRef = infoWindowProps.anchorHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+      var infoWindow = new google.maps.InfoWindow((0, _utilsComposeOptions2["default"])(infoWindowProps, infoWindowControlledPropTypes));
+
+      if (infoWindowProps.children) {
+        (0, _utilsSetContentForOptionalReactElement2["default"])(infoWindowProps.children, infoWindow);
+      }
+
+      if (anchorHolderRef) {
+        infoWindow.open(mapHolderRef.getMap(), anchorHolderRef.getAnchor());
+      } else {
+        infoWindow.setMap(mapHolderRef.getMap());
+      }
+
+      return infoWindow;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      infoWindow: _react.PropTypes.object.isRequired,
+      anchorHolderRef: _react.PropTypes.object
+    },
+    enumerable: true
+  }]);
+
+  var _InfoWindowCreator = InfoWindowCreator;
+  InfoWindowCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getInfoWindow",
+    updaters: infoWindowUpdaters
+  })(InfoWindowCreator) || InfoWindowCreator;
+  return InfoWindowCreator;
+})(_react.Component);
+
+exports["default"] = InfoWindowCreator;
+},{"../eventLists/InfoWindowEventList":301,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"../utils/setContentForOptionalReactElement":315,"./GoogleMapHolder":288,"react":468}],290:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsKmlLayerEventList = require("../eventLists/KmlLayerEventList");
+
+var _eventListsKmlLayerEventList2 = _interopRequireDefault(_eventListsKmlLayerEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var kmlLayerControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+  defaultViewport: _react.PropTypes.any,
+  metadata: _react.PropTypes.any,
+  status: _react.PropTypes.any,
+  url: _react.PropTypes.string,
+  zIndex: _react.PropTypes.number
+};
+
+exports.kmlLayerControlledPropTypes = kmlLayerControlledPropTypes;
+var kmlLayerDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(kmlLayerControlledPropTypes);
+
+exports.kmlLayerDefaultPropTypes = kmlLayerDefaultPropTypes;
+var kmlLayerUpdaters = {
+  defaultViewport: function defaultViewport(_defaultViewport, component) {
+    component.getKmlLayer().setDefaultViewport(_defaultViewport);
+  },
+  metadata: function metadata(_metadata, component) {
+    component.getKmlLayer().setMetadata(_metadata);
+  },
+  status: function status(_status, component) {
+    component.getKmlLayer().setStatus(_status);
+  },
+  url: function url(_url, component) {
+    component.getKmlLayer().setUrl(_url);
+  },
+  zIndex: function zIndex(_zIndex, component) {
+    component.getKmlLayer().setZIndex(_zIndex);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsKmlLayerEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var kmlLayerEventPropTypes = eventPropTypes;
+
+exports.kmlLayerEventPropTypes = kmlLayerEventPropTypes;
+
+var KmlLayerCreator = (function (_Component) {
+  _inherits(KmlLayerCreator, _Component);
+
+  function KmlLayerCreator() {
+    _classCallCheck(this, _KmlLayerCreator);
+
+    _get(Object.getPrototypeOf(_KmlLayerCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(KmlLayerCreator, [{
+    key: "getKmlLayer",
+    value: function getKmlLayer() {
+      return this.props.kmlLayer;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _props = this.props;
+      var mapHolderRef = _props.mapHolderRef;
+      var children = _props.children;
+
+      if (_react.Children.count(children) > 0) {
+        return _react2["default"].createElement(
+          "div",
+          null,
+          _react.Children.map(children, function (childElement) {
+            return childElement && _react2["default"].cloneElement(childElement, {
+              mapHolderRef: mapHolderRef
+            });
+          })
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "_createKmlLayer",
+    value: function _createKmlLayer(kmlLayerProps) {
+      var mapHolderRef = kmlLayerProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+      var kmlLayer = new google.maps.KmlLayer((0, _utilsComposeOptions2["default"])(kmlLayerProps, kmlLayerControlledPropTypes));
+
+      kmlLayer.setMap(mapHolderRef.getMap());
+
+      return kmlLayer;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      kmlLayer: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _KmlLayerCreator = KmlLayerCreator;
+  KmlLayerCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getKmlLayer",
+    updaters: kmlLayerUpdaters
+  })(KmlLayerCreator) || KmlLayerCreator;
+  return KmlLayerCreator;
+})(_react.Component);
+
+exports["default"] = KmlLayerCreator;
+},{"../eventLists/KmlLayerEventList":302,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],291:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsMarkerEventList = require("../eventLists/MarkerEventList");
+
+var _eventListsMarkerEventList2 = _interopRequireDefault(_eventListsMarkerEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var markerControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code", function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+  animation: _react.PropTypes.any,
+  attribution: _react.PropTypes.any,
+  clickable: _react.PropTypes.bool,
+  cursor: _react.PropTypes.string,
+  draggable: _react.PropTypes.bool,
+  icon: _react.PropTypes.any,
+  label: _react.PropTypes.any,
+  opacity: _react.PropTypes.number,
+  options: _react.PropTypes.object,
+  place: _react.PropTypes.any,
+  position: _react.PropTypes.any,
+  shape: _react.PropTypes.any,
+  title: _react.PropTypes.string,
+  visible: _react.PropTypes.bool,
+  zIndex: _react.PropTypes.number
+};
+
+exports.markerControlledPropTypes = markerControlledPropTypes;
+var markerDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(markerControlledPropTypes);
+
+exports.markerDefaultPropTypes = markerDefaultPropTypes;
+var markerUpdaters = {
+  animation: function animation(_animation, component) {
+    component.getMarker().setAnimation(_animation);
+  },
+  attribution: function attribution(_attribution, component) {
+    component.getMarker().setAttribution(_attribution);
+  },
+  clickable: function clickable(_clickable, component) {
+    component.getMarker().setClickable(_clickable);
+  },
+  cursor: function cursor(_cursor, component) {
+    component.getMarker().setCursor(_cursor);
+  },
+  draggable: function draggable(_draggable, component) {
+    component.getMarker().setDraggable(_draggable);
+  },
+  icon: function icon(_icon, component) {
+    component.getMarker().setIcon(_icon);
+  },
+  label: function label(_label, component) {
+    component.getMarker().setLabel(_label);
+  },
+  opacity: function opacity(_opacity, component) {
+    component.getMarker().setOpacity(_opacity);
+  },
+  options: function options(_options, component) {
+    component.getMarker().setOptions(_options);
+  },
+  place: function place(_place, component) {
+    component.getMarker().setPlace(_place);
+  },
+  position: function position(_position, component) {
+    component.getMarker().setPosition(_position);
+  },
+  shape: function shape(_shape, component) {
+    component.getMarker().setShape(_shape);
+  },
+  title: function title(_title, component) {
+    component.getMarker().setTitle(_title);
+  },
+  visible: function visible(_visible, component) {
+    component.getMarker().setVisible(_visible);
+  },
+  zIndex: function zIndex(_zIndex, component) {
+    component.getMarker().setZIndex(_zIndex);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsMarkerEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var markerEventPropTypes = eventPropTypes;
+
+exports.markerEventPropTypes = markerEventPropTypes;
+
+var MarkerCreator = (function (_Component) {
+  _inherits(MarkerCreator, _Component);
+
+  function MarkerCreator() {
+    _classCallCheck(this, _MarkerCreator);
+
+    _get(Object.getPrototypeOf(_MarkerCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(MarkerCreator, [{
+    key: "getMarker",
+    value: function getMarker() {
+      return this.props.marker;
+    }
+
+    // https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindowOptions
+    // In the core API, the only anchor is the Marker class.
+  }, {
+    key: "getAnchor",
+    value: function getAnchor() {
+      return this.props.marker;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var _props = this.props;
+      var mapHolderRef = _props.mapHolderRef;
+      var children = _props.children;
+
+      if (_react.Children.count(children) > 0) {
+        return _react2["default"].createElement(
+          "div",
+          null,
+          _react.Children.map(children, function (childElement) {
+            return childElement && _react2["default"].cloneElement(childElement, {
+              mapHolderRef: mapHolderRef,
+              anchorHolderRef: _this
+            });
+          })
+        );
+      } else {
+        return _react2["default"].createElement("noscript", null);
+      }
+    }
+  }], [{
+    key: "_createMarker",
+    value: function _createMarker(markerProps) {
+      var mapHolderRef = markerProps.mapHolderRef;
+      var anchorHolderRef = markerProps.anchorHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+      var marker = new google.maps.Marker((0, _utilsComposeOptions2["default"])(markerProps, markerControlledPropTypes));
+
+      if (anchorHolderRef) {
+        if ("MarkerClusterer" === anchorHolderRef.getAnchorType()) {
+          anchorHolderRef.getAnchor().addMarker(marker);
+        }
+      } else {
+        marker.setMap(mapHolderRef.getMap());
+      }
+
+      return marker;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      marker: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _MarkerCreator = MarkerCreator;
+  MarkerCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getMarker",
+    updaters: markerUpdaters
+  })(MarkerCreator) || MarkerCreator;
+  return MarkerCreator;
+})(_react.Component);
+
+exports["default"] = MarkerCreator;
+},{"../eventLists/MarkerEventList":303,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],292:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+var _invariant = require("invariant");
+
+var _invariant2 = _interopRequireDefault(_invariant);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var overlayViewControlledPropTypes = {
+  // CustomProps
+  mapPaneName: _react.PropTypes.string,
+  getPixelPositionOffset: _react.PropTypes.func,
+  position: _react.PropTypes.object,
+  children: _react.PropTypes.node,
+  bounds: _react.PropTypes.object
+};
+
+exports.overlayViewControlledPropTypes = overlayViewControlledPropTypes;
+// NOTICE!!!!!!
+//
+// Only expose those with getters & setters in the table as controlled props.
+//
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+//
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference
+var overlayViewDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(overlayViewControlledPropTypes);
+
+exports.overlayViewDefaultPropTypes = overlayViewDefaultPropTypes;
+
+var OverlayViewCreator = (function (_Component) {
+  _inherits(OverlayViewCreator, _Component);
+
+  function OverlayViewCreator() {
+    _classCallCheck(this, OverlayViewCreator);
+
+    _get(Object.getPrototypeOf(OverlayViewCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(OverlayViewCreator, [{
+    key: "getOverlayView",
+    value: function getOverlayView() {
+      return this.props.overlayView;
+    }
+  }, {
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.getOverlayView().setMap(this.props.mapHolderRef.getMap());
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      this.getOverlayView().setValues(this.props);
+      this.getOverlayView()._redraw(this.props.mapPaneName !== prevProps.mapPaneName);
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.getOverlayView().setMap(null);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createOverlayView",
+    value: function _createOverlayView(overlayViewProps) {
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#OverlayView
+      var overlayView = new google.maps.OverlayView();
+      overlayView.setValues((0, _utilsComposeOptions2["default"])(overlayViewProps, overlayViewControlledPropTypes));
+
+      overlayView.onAdd = function onAdd() {
+        this._containerElement = document.createElement("div");
+        this._containerElement.style.position = "absolute";
+      };
+
+      overlayView.draw = function draw() {
+        this._mountContainerToPane();
+        this._renderContent();
+      };
+
+      overlayView.onRemove = function onRemove() {
+        (0, _reactDom.unmountComponentAtNode)(this._containerElement);
+        this._unmountContainerFromPane();
+        this._containerElement = null;
+      };
+
+      overlayView._redraw = function _redraw(mapPaneNameChanged) {
+        if (mapPaneNameChanged) {
+          this._unmountContainerFromPane();
+          this._mountContainerToPane();
+        }
+        this._renderContent();
+      };
+
+      overlayView._renderContent = function _renderContent() {
+        if (this._containerElement) {
+          (0, _reactDom.render)(_react.Children.only(this.get("children")), this._containerElement, this._positionContainerElement.bind(this));
+        }
+      };
+
+      overlayView._mountContainerToPane = function _mountContainerToPane() {
+        var mapPaneName = this.get("mapPaneName");
+        (0, _invariant2["default"])(!!mapPaneName, "OverlayView requires a mapPaneName/defaultMapPaneName in your props instead of %s", mapPaneName);
+
+        this.getPanes()[mapPaneName].appendChild(this._containerElement);
+      };
+
+      overlayView._unmountContainerFromPane = function _unmountContainerFromPane() {
+        this._containerElement.parentNode.removeChild(this._containerElement);
+      };
+
+      overlayView._positionContainerElement = function _positionContainerElement() {
+        var left = undefined;
+        var top = undefined;
+        var offset = this._getOffset();
+        if (this.get("bounds")) {
+          var bounds = this._getPixelBounds();
+          if (bounds) {
+            var sw = bounds.sw;
+            var ne = bounds.ne;
+
+            if (offset) {
+              sw.x += offset.x;
+              ne.y += offset.y;
+            }
+            left = sw.x + "px";
+            top = ne.y + "px";
+            this._containerElement.style.width = ne.x - sw.x + "px";
+            this._containerElement.style.height = sw.y - ne.y + "px";
+          }
+        } else {
+          var position = this._getPixelPosition();
+          if (position) {
+            var x = position.x;
+            var y = position.y;
+
+            if (offset) {
+              x += offset.x;
+              y += offset.y;
+            }
+            left = x + "px";
+            top = y + "px";
+          }
+        }
+
+        this._containerElement.style.left = left;
+        this._containerElement.style.top = top;
+      };
+
+      overlayView._getPixelPosition = function _getPixelPosition() {
+        var projection = this.getProjection();
+        var position = this.get("position");
+        (0, _invariant2["default"])(!!position, "OverlayView requires a position/defaultPosition in your props instead of %s", position);
+        if (projection && position) {
+          if (!(position instanceof google.maps.LatLng)) {
+            position = new google.maps.LatLng(position.lat, position.lng);
+          }
+          return projection.fromLatLngToDivPixel(position);
+        }
+      };
+
+      overlayView._getPixelBounds = function _getPixelBounds() {
+        var projection = this.getProjection();
+        var bounds = this.get("bounds");
+        (0, _invariant2["default"])(!!bounds, "OverlayView requires a bounds in your props instead of %s", bounds);
+        if (projection && bounds) {
+          if (!(bounds instanceof google.maps.LatLngBounds)) {
+            bounds = new google.maps.LatLngBounds(new google.maps.LatLng(bounds.ne.lat, bounds.ne.lng), new google.maps.LatLng(bounds.sw.lat, bounds.sw.lng));
+          }
+          return {
+            sw: projection.fromLatLngToDivPixel(this.bounds.getSouthWest()),
+            ne: projection.fromLatLngToDivPixel(this.bounds.getNorthEast())
+          };
+        }
+      };
+
+      overlayView._getOffset = function _getOffset() {
+        // Allows the component to control the visual position of the OverlayView
+        // relative to the LatLng pixel position.
+        var getPixelPositionOffset = this.get("getPixelPositionOffset");
+        if (getPixelPositionOffset) {
+          return getPixelPositionOffset(this._containerElement.offsetWidth, this._containerElement.offsetHeight);
+        }
+      };
+
+      // If we're inside a MarkerClusterer, allow ourselves to be clustered
+      if (overlayViewProps.anchorHolderRef) {
+        if ("MarkerClusterer" === overlayViewProps.anchorHolderRef.getAnchorType()) {
+          overlayView.getDraggable = function getDraggable() {
+            return !!overlayViewProps.draggable;
+          };
+
+          overlayView.getPosition = function getPosition() {
+            return new google.maps.LatLng(this.position);
+          };
+
+          overlayViewProps.anchorHolderRef.getAnchor().addMarker(overlayView);
+        }
+      }
+
+      return overlayView;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      mapPaneName: _react.PropTypes.string,
+      overlayView: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  return OverlayViewCreator;
+})(_react.Component);
+
+exports["default"] = OverlayViewCreator;
+},{"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"./GoogleMapHolder":288,"invariant":106,"react":468,"react-dom":270}],293:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsPolygonEventList = require("../eventLists/PolygonEventList");
+
+var _eventListsPolygonEventList2 = _interopRequireDefault(_eventListsPolygonEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var polygonControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+  draggable: _react.PropTypes.bool,
+  editable: _react.PropTypes.bool,
+  options: _react.PropTypes.object,
+  path: _react.PropTypes.any,
+  paths: _react.PropTypes.any,
+  visible: _react.PropTypes.bool
+};
+
+exports.polygonControlledPropTypes = polygonControlledPropTypes;
+var polygonDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(polygonControlledPropTypes);
+
+exports.polygonDefaultPropTypes = polygonDefaultPropTypes;
+var polygonUpdaters = {
+  draggable: function draggable(_draggable, component) {
+    component.getPolygon().setDraggable(_draggable);
+  },
+  editable: function editable(_editable, component) {
+    component.getPolygon().setEditable(_editable);
+  },
+  options: function options(_options, component) {
+    component.getPolygon().setOptions(_options);
+  },
+  path: function path(_path, component) {
+    component.getPolygon().setPath(_path);
+  },
+  paths: function paths(_paths, component) {
+    component.getPolygon().setPaths(_paths);
+  },
+  visible: function visible(_visible, component) {
+    component.getPolygon().setVisible(_visible);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsPolygonEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var polygonEventPropTypes = eventPropTypes;
+
+exports.polygonEventPropTypes = polygonEventPropTypes;
+
+var PolygonCreator = (function (_Component) {
+  _inherits(PolygonCreator, _Component);
+
+  function PolygonCreator() {
+    _classCallCheck(this, _PolygonCreator);
+
+    _get(Object.getPrototypeOf(_PolygonCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(PolygonCreator, [{
+    key: "getPolygon",
+    value: function getPolygon() {
+      return this.props.polygon;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createPolygon",
+    value: function _createPolygon(polygonProps) {
+      var mapHolderRef = polygonProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+      var polygon = new google.maps.Polygon((0, _utilsComposeOptions2["default"])(polygonProps, polygonControlledPropTypes));
+
+      polygon.setMap(mapHolderRef.getMap());
+
+      return polygon;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      polygon: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _PolygonCreator = PolygonCreator;
+  PolygonCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getPolygon",
+    updaters: polygonUpdaters
+  })(PolygonCreator) || PolygonCreator;
+  return PolygonCreator;
+})(_react.Component);
+
+exports["default"] = PolygonCreator;
+},{"../eventLists/PolygonEventList":304,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],294:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsPolylineEventList = require("../eventLists/PolylineEventList");
+
+var _eventListsPolylineEventList2 = _interopRequireDefault(_eventListsPolylineEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var polylineControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+  draggable: _react.PropTypes.bool,
+  editable: _react.PropTypes.bool,
+  options: _react.PropTypes.object,
+  path: _react.PropTypes.any,
+  visible: _react.PropTypes.bool
+};
+
+exports.polylineControlledPropTypes = polylineControlledPropTypes;
+var polylineDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(polylineControlledPropTypes);
+
+exports.polylineDefaultPropTypes = polylineDefaultPropTypes;
+var polylineUpdaters = {
+  draggable: function draggable(_draggable, component) {
+    component.getPolyline().setDraggable(_draggable);
+  },
+  editable: function editable(_editable, component) {
+    component.getPolyline().setEditable(_editable);
+  },
+  options: function options(_options, component) {
+    component.getPolyline().setOptions(_options);
+  },
+  path: function path(_path, component) {
+    component.getPolyline().setPath(_path);
+  },
+  visible: function visible(_visible, component) {
+    component.getPolyline().setVisible(_visible);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsPolylineEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var polylineEventPropTypes = eventPropTypes;
+
+exports.polylineEventPropTypes = polylineEventPropTypes;
+
+var PolylineCreator = (function (_Component) {
+  _inherits(PolylineCreator, _Component);
+
+  function PolylineCreator() {
+    _classCallCheck(this, _PolylineCreator);
+
+    _get(Object.getPrototypeOf(_PolylineCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(PolylineCreator, [{
+    key: "getPolyline",
+    value: function getPolyline() {
+      return this.props.polyline;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createPolyline",
+    value: function _createPolyline(polylineProps) {
+      var mapHolderRef = polylineProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+      var polyline = new google.maps.Polyline((0, _utilsComposeOptions2["default"])(polylineProps, polylineControlledPropTypes));
+
+      polyline.setMap(mapHolderRef.getMap());
+
+      return polyline;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      polyline: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _PolylineCreator = PolylineCreator;
+  PolylineCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getPolyline",
+    updaters: polylineUpdaters
+  })(PolylineCreator) || PolylineCreator;
+  return PolylineCreator;
+})(_react.Component);
+
+exports["default"] = PolylineCreator;
+},{"../eventLists/PolylineEventList":305,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],295:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsRectangleEventList = require("../eventLists/RectangleEventList");
+
+var _eventListsRectangleEventList2 = _interopRequireDefault(_eventListsRectangleEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var rectangleControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  // [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; }).filter(function(it){ return it.match(/^set/) && !it.match(/^setMap/); })
+  //
+  // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+  bounds: _react.PropTypes.any,
+  draggable: _react.PropTypes.bool,
+  editable: _react.PropTypes.bool,
+  options: _react.PropTypes.object,
+  visible: _react.PropTypes.bool
+};
+
+exports.rectangleControlledPropTypes = rectangleControlledPropTypes;
+var rectangleDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(rectangleControlledPropTypes);
+
+exports.rectangleDefaultPropTypes = rectangleDefaultPropTypes;
+var rectangleUpdaters = {
+  bounds: function bounds(_bounds, component) {
+    component.getRectangle().setBounds(_bounds);
+  },
+  draggable: function draggable(_draggable, component) {
+    component.getRectangle().setDraggable(_draggable);
+  },
+  editable: function editable(_editable, component) {
+    component.getRectangle().setEditable(_editable);
+  },
+  options: function options(_options, component) {
+    component.getRectangle().setOptions(_options);
+  },
+  visible: function visible(_visible, component) {
+    component.getRectangle().setVisible(_visible);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsRectangleEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var rectangleEventPropTypes = eventPropTypes;
+
+exports.rectangleEventPropTypes = rectangleEventPropTypes;
+
+var RectangleCreator = (function (_Component) {
+  _inherits(RectangleCreator, _Component);
+
+  function RectangleCreator() {
+    _classCallCheck(this, _RectangleCreator);
+
+    _get(Object.getPrototypeOf(_RectangleCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(RectangleCreator, [{
+    key: "getRectangle",
+    value: function getRectangle() {
+      return this.props.rectangle;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createRectangle",
+    value: function _createRectangle(rectangleProps) {
+      var mapHolderRef = rectangleProps.mapHolderRef;
+
+      // https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+      var rectangle = new google.maps.Rectangle((0, _utilsComposeOptions2["default"])(rectangleProps, rectangleControlledPropTypes));
+
+      rectangle.setMap(mapHolderRef.getMap());
+
+      return rectangle;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      rectangle: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _RectangleCreator = RectangleCreator;
+  RectangleCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getRectangle",
+    updaters: rectangleUpdaters
+  })(RectangleCreator) || RectangleCreator;
+  return RectangleCreator;
+})(_react.Component);
+
+exports["default"] = RectangleCreator;
+},{"../eventLists/RectangleEventList":306,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],296:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _eventListsSearchBoxEventList = require("../eventLists/SearchBoxEventList");
+
+var _eventListsSearchBoxEventList2 = _interopRequireDefault(_eventListsSearchBoxEventList);
+
+var _utilsEventHandlerCreator = require("../utils/eventHandlerCreator");
+
+var _utilsEventHandlerCreator2 = _interopRequireDefault(_utilsEventHandlerCreator);
+
+var _utilsDefaultPropsCreator = require("../utils/defaultPropsCreator");
+
+var _utilsDefaultPropsCreator2 = _interopRequireDefault(_utilsDefaultPropsCreator);
+
+var _utilsComposeOptions = require("../utils/composeOptions");
+
+var _utilsComposeOptions2 = _interopRequireDefault(_utilsComposeOptions);
+
+var _utilsComponentLifecycleDecorator = require("../utils/componentLifecycleDecorator");
+
+var _utilsComponentLifecycleDecorator2 = _interopRequireDefault(_utilsComponentLifecycleDecorator);
+
+var _GoogleMapHolder = require("./GoogleMapHolder");
+
+var _GoogleMapHolder2 = _interopRequireDefault(_GoogleMapHolder);
+
+var searchBoxControlledPropTypes = {
+  // NOTICE!!!!!!
+  //
+  // Only expose those with getters & setters in the table as controlled props.
+  //
+  bounds: _react.PropTypes.any
+};
+
+exports.searchBoxControlledPropTypes = searchBoxControlledPropTypes;
+var searchBoxDefaultPropTypes = (0, _utilsDefaultPropsCreator2["default"])(searchBoxControlledPropTypes);
+
+exports.searchBoxDefaultPropTypes = searchBoxDefaultPropTypes;
+var searchBoxUpdaters = {
+  bounds: function bounds(_bounds, component) {
+    component.getSearchBox().setBounds(_bounds);
+  }
+};
+
+var _eventHandlerCreator = (0, _utilsEventHandlerCreator2["default"])(_eventListsSearchBoxEventList2["default"]);
+
+var eventPropTypes = _eventHandlerCreator.eventPropTypes;
+var registerEvents = _eventHandlerCreator.registerEvents;
+var searchBoxEventPropTypes = eventPropTypes;
+
+exports.searchBoxEventPropTypes = searchBoxEventPropTypes;
+
+var SearchBoxCreator = (function (_Component) {
+  _inherits(SearchBoxCreator, _Component);
+
+  function SearchBoxCreator() {
+    _classCallCheck(this, _SearchBoxCreator);
+
+    _get(Object.getPrototypeOf(_SearchBoxCreator.prototype), "constructor", this).apply(this, arguments);
+  }
+
+  _createClass(SearchBoxCreator, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this._mountComponentToMap(this.props.controlPosition);
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (this.props.controlPosition !== prevProps.controlPosition) {
+        this._unmountComponentFromMap(prevProps.controlPosition);
+        this._mountComponentToMap(this.props.controlPosition);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this._unmountComponentFromMap(this.props.controlPosition);
+    }
+  }, {
+    key: "_mountComponentToMap",
+    value: function _mountComponentToMap(controlPosition) {
+      var _props = this.props;
+      var mapHolderRef = _props.mapHolderRef;
+      var inputElement = _props.inputElement;
+
+      mapHolderRef.getMap().controls[controlPosition].push(inputElement);
+    }
+  }, {
+    key: "_unmountComponentFromMap",
+    value: function _unmountComponentFromMap(controlPosition) {
+      var _props2 = this.props;
+      var mapHolderRef = _props2.mapHolderRef;
+      var inputElement = _props2.inputElement;
+
+      var index = mapHolderRef.getMap().controls[controlPosition].getArray().indexOf(inputElement);
+      mapHolderRef.getMap().controls[controlPosition].removeAt(index);
+    }
+  }, {
+    key: "getSearchBox",
+    value: function getSearchBox() {
+      return this.props.searchBox;
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return _react2["default"].createElement("noscript", null);
+    }
+  }], [{
+    key: "_createSearchBox",
+    value: function _createSearchBox(inputElement, searchBoxProps) {
+      var searchBox = new google.maps.places.SearchBox(inputElement, (0, _utilsComposeOptions2["default"])(searchBoxProps, searchBoxControlledPropTypes));
+
+      return searchBox;
+    }
+  }, {
+    key: "propTypes",
+    value: {
+      mapHolderRef: _react.PropTypes.instanceOf(_GoogleMapHolder2["default"]).isRequired,
+      searchBox: _react.PropTypes.object.isRequired
+    },
+    enumerable: true
+  }]);
+
+  var _SearchBoxCreator = SearchBoxCreator;
+  SearchBoxCreator = (0, _utilsComponentLifecycleDecorator2["default"])({
+    registerEvents: registerEvents,
+    instanceMethodName: "getSearchBox",
+    updaters: searchBoxUpdaters
+  })(SearchBoxCreator) || SearchBoxCreator;
+  return SearchBoxCreator;
+})(_react.Component);
+
+exports["default"] = SearchBoxCreator;
+},{"../eventLists/SearchBoxEventList":307,"../utils/componentLifecycleDecorator":310,"../utils/composeOptions":311,"../utils/defaultPropsCreator":313,"../utils/eventHandlerCreator":314,"./GoogleMapHolder":288,"react":468}],297:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Circle
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["center_changed", "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "radius_changed", "rightclick"];
+module.exports = exports["default"];
+},{}],298:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#DirectionsRenderer
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["directions_changed"];
+module.exports = exports["default"];
+},{}],299:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#DrawingManager
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["circlecomplete", "markercomplete", "overlaycomplete", "polygoncomplete", "polylinecomplete", "rectanglecomplete"];
+module.exports = exports["default"];
+},{}],300:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Map
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["bounds_changed", "center_changed", "click", "dblclick", "drag", "dragend", "dragstart", "heading_changed", "idle", "maptypeid_changed", "mousemove", "mouseout", "mouseover", "projection_changed", "resize", "rightclick", "tilesloaded", "tilt_changed", "zoom_changed"];
+module.exports = exports["default"];
+},{}],301:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#InfoWindow
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["closeclick", "content_changed", "domready", "position_changed", "zindex_changed"];
+module.exports = exports["default"];
+},{}],302:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#KmlLayer
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["click", "defaultviewport_changed", "status_changed"];
+module.exports = exports["default"];
+},{}],303:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Marker
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["animation_changed", "click", "clickable_changed", "cursor_changed", "dblclick", "drag", "dragend", "draggable_changed", "dragstart", "flat_changed", "icon_changed", "mousedown", "mouseout", "mouseover", "mouseup", "position_changed", "rightclick", "shape_changed", "title_changed", "visible_changed", "zindex_changed"];
+module.exports = exports["default"];
+},{}],304:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polygon
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick"];
+module.exports = exports["default"];
+},{}],305:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Polyline
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick"];
+module.exports = exports["default"];
+},{}],306:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#Rectangle
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["bounds_changed", "click", "dblclick", "drag", "dragend", "dragstart", "mousedown", "mousemove", "mouseout", "mouseover", "mouseup", "rightclick"];
+module.exports = exports["default"];
+},{}],307:[function(require,module,exports){
+// https://developers.google.com/maps/documentation/javascript/3.exp/reference#SearchBox
+// [].map.call($0.querySelectorAll("tr>td>code"), function(it){ return it.textContent; })
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = ["places_changed"];
+module.exports = exports["default"];
+},{}],308:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+function _interopRequire(obj) { return obj && obj.__esModule ? obj["default"] : obj; }
+
+var _GoogleMapLoader = require("./GoogleMapLoader");
+
+exports.GoogleMapLoader = _interopRequire(_GoogleMapLoader);
+
+var _GoogleMap = require("./GoogleMap");
+
+exports.GoogleMap = _interopRequire(_GoogleMap);
+
+var _Circle = require("./Circle");
+
+exports.Circle = _interopRequire(_Circle);
+
+var _DirectionsRenderer = require("./DirectionsRenderer");
+
+exports.DirectionsRenderer = _interopRequire(_DirectionsRenderer);
+
+var _DrawingManager = require("./DrawingManager");
+
+exports.DrawingManager = _interopRequire(_DrawingManager);
+
+var _InfoWindow = require("./InfoWindow");
+
+exports.InfoWindow = _interopRequire(_InfoWindow);
+
+var _KmlLayer = require("./KmlLayer");
+
+exports.KmlLayer = _interopRequire(_KmlLayer);
+
+var _Marker = require("./Marker");
+
+exports.Marker = _interopRequire(_Marker);
+
+var _OverlayView = require("./OverlayView");
+
+exports.OverlayView = _interopRequire(_OverlayView);
+
+var _Polygon = require("./Polygon");
+
+exports.Polygon = _interopRequire(_Polygon);
+
+var _Polyline = require("./Polyline");
+
+exports.Polyline = _interopRequire(_Polyline);
+
+var _Rectangle = require("./Rectangle");
+
+exports.Rectangle = _interopRequire(_Rectangle);
+
+var _SearchBox = require("./SearchBox");
+
+exports.SearchBox = _interopRequire(_SearchBox);
+},{"./Circle":272,"./DirectionsRenderer":273,"./DrawingManager":274,"./GoogleMap":275,"./GoogleMapLoader":276,"./InfoWindow":277,"./KmlLayer":278,"./Marker":279,"./OverlayView":280,"./Polygon":281,"./Polyline":282,"./Rectangle":283,"./SearchBox":284}],309:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = addDefaultPrefix;
+
+function addDefaultPrefix(name) {
+  return "default" + (name[0].toUpperCase() + name.slice(1));
+}
+
+module.exports = exports["default"];
+},{}],310:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = componentLifecycleDecorator;
+
+function componentLifecycleDecorator(_ref) {
+  var registerEvents = _ref.registerEvents;
+  var instanceMethodName = _ref.instanceMethodName;
+  var updaters = _ref.updaters;
+
+  // This modify the Component.prototype directly
+  return function (Component) {
+    function register() {
+      this._unregisterEvents = registerEvents(google.maps.event, this.props, this[instanceMethodName]());
+    }
+
+    function unregister() {
+      if (this._unregisterEvents) {
+        this._unregisterEvents();
+        this._unregisterEvents = null;
+      }
+    }
+
+    function noop() {}
+
+    // Stash component's own lifecycle methods to be invoked later
+    var componentDidMount = Component.prototype.hasOwnProperty("componentDidMount") ? Component.prototype.componentDidMount : noop;
+    var componentDidUpdate = Component.prototype.hasOwnProperty("componentDidUpdate") ? Component.prototype.componentDidUpdate : noop;
+    var componentWillUnmount = Component.prototype.hasOwnProperty("componentWillUnmount") ? Component.prototype.componentWillUnmount : noop;
+
+    Object.defineProperty(Component.prototype, "componentDidMount", {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: function value() {
+        // Hook into client's implementation, if it has any
+        componentDidMount.call(this);
+
+        register.call(this);
+      }
+    });
+
+    Object.defineProperty(Component.prototype, "componentDidUpdate", {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: function value(prevProps) {
+        unregister.call(this);
+
+        for (var _name in updaters) {
+          if (Object.prototype.hasOwnProperty.call(this.props, _name)) {
+            updaters[_name](this.props[_name], this);
+          }
+        }
+
+        // Hook into client's implementation, if it has any
+        componentDidUpdate.call(this, prevProps);
+
+        register.call(this);
+      }
+    });
+
+    Object.defineProperty(Component.prototype, "componentWillUnmount", {
+      enumerable: false,
+      configurable: true,
+      writable: true,
+      value: function value() {
+        // Hook into client's implementation, if it has any
+        componentWillUnmount.call(this);
+
+        unregister.call(this);
+        var instance = this[instanceMethodName]();
+        if ("setMap" in instance) {
+          instance.setMap(null);
+        }
+      }
+    });
+
+    return Component;
+  };
+}
+
+module.exports = exports["default"];
+},{}],311:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+exports["default"] = composeOptions;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _controlledOrDefault = require("./controlledOrDefault");
+
+var _controlledOrDefault2 = _interopRequireDefault(_controlledOrDefault);
+
+function composeOptions(props, controlledPropTypes) {
+  var optionNameList = Object.keys(controlledPropTypes);
+  var getter = (0, _controlledOrDefault2["default"])(props);
+
+  // props from arguments may contain unknow props.
+  // We only interested those in optionNameList
+  return optionNameList.reduce(function (acc, optionName) {
+    if ("options" !== optionName) {
+      var value = getter(optionName);
+      if ("undefined" !== typeof value) {
+        acc[optionName] = value;
+      }
+    }
+    return acc;
+  }, _extends({}, getter("options")));
+}
+
+module.exports = exports["default"];
+},{"./controlledOrDefault":312}],312:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = controlledOrDefault;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _addDefaultPrefix = require("./addDefaultPrefix");
+
+var _addDefaultPrefix2 = _interopRequireDefault(_addDefaultPrefix);
+
+function controlledOrDefault(props) {
+  return function (name) {
+    if (Object.prototype.hasOwnProperty.call(props, name)) {
+      return props[name];
+    } else {
+      return props[(0, _addDefaultPrefix2["default"])(name)];
+    }
+  };
+}
+
+module.exports = exports["default"];
+},{"./addDefaultPrefix":309}],313:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = defaultPropsCreator;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _addDefaultPrefix = require("./addDefaultPrefix");
+
+var _addDefaultPrefix2 = _interopRequireDefault(_addDefaultPrefix);
+
+function defaultPropsCreator(propTypes) {
+  return Object.keys(propTypes).reduce(function (acc, name) {
+    acc[(0, _addDefaultPrefix2["default"])(name)] = propTypes[name];
+    return acc;
+  }, {});
+}
+
+module.exports = exports["default"];
+},{"./addDefaultPrefix":309}],314:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = eventHandlerCreator;
+
+var _react = require("react");
+
+function groupToUpperCase(match, group) {
+  return group.toUpperCase();
+}
+
+function toOnEventName(rawName) {
+  return "on" + rawName.replace(/^(.)/, groupToUpperCase).replace(/_(.)/g, groupToUpperCase);
+}
+
+function eventHandlerCreator(rawNameList) {
+  var eventPropTypes = {};
+  var onEventNameByRawName = {};
+
+  rawNameList.forEach(function (rawName) {
+    var onEventName = toOnEventName(rawName);
+    eventPropTypes[onEventName] = _react.PropTypes.func;
+    onEventNameByRawName[rawName] = onEventName;
+  });
+
+  function registerEvents(event, props, googleMapInstance) {
+    var registered = rawNameList.reduce(function (acc, rawName) {
+      var onEventName = onEventNameByRawName[rawName];
+
+      if (Object.prototype.hasOwnProperty.call(props, onEventName)) {
+        acc.push(event.addListener(googleMapInstance, rawName, props[onEventName]));
+      }
+      return acc;
+    }, []);
+
+    return registered.forEach.bind(registered, event.removeListener, event);
+  }
+
+  return {
+    eventPropTypes: eventPropTypes,
+    registerEvents: registerEvents
+  };
+}
+
+module.exports = exports["default"];
+},{"react":468}],315:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = setContentForOptionalReactElement;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = require("react-dom");
+
+function renderElement(contentElement, possiblePrevContent) {
+  var prevContent = possiblePrevContent;
+  if ("[object HTMLDivElement]" !== Object.prototype.toString.call(prevContent)) {
+    prevContent = document.createElement("div");
+  }
+
+  (0, _reactDom.render)(contentElement, prevContent);
+  return prevContent;
+}
+
+function setContentForOptionalReactElement(contentOptionalReactElement, infoWindowLikeInstance) {
+  if (_react2["default"].isValidElement(contentOptionalReactElement)) {
+    var contentElement = _react.Children.only(contentOptionalReactElement);
+    var prevContent = infoWindowLikeInstance.getContent();
+
+    var domEl = renderElement(contentElement, prevContent);
+    infoWindowLikeInstance.setContent(domEl);
+  } else {
+    infoWindowLikeInstance.setContent(contentOptionalReactElement);
+  }
+}
+
+module.exports = exports["default"];
+},{"react":468,"react-dom":270}],316:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29045,6 +34713,7 @@ var Modal = _react2.default.createClass({
     this._onDocumentKeyupListener.remove();
 
     this._onFocusinListener.remove();
+>>>>>>> added glyphicon files, map tinkering
 
     this.restoreLastFocus();
   },
@@ -29142,7 +34811,11 @@ Modal.Manager = _ModalManager2.default;
 
 exports.default = Modal;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ModalManager":271,"./Portal":273,"./utils/addEventListener":277,"./utils/addFocusListener":278,"./utils/getContainer":280,"./utils/ownerDocument":283,"dom-helpers/activeElement":49,"dom-helpers/query/contains":59,"dom-helpers/util/inDOM":76,"react":422,"react-prop-types/lib/componentOrElement":284,"react-prop-types/lib/elementType":285,"warning":287}],271:[function(require,module,exports){
+=======
+},{"./ModalManager":317,"./Portal":319,"./utils/addEventListener":323,"./utils/addFocusListener":324,"./utils/getContainer":326,"./utils/ownerDocument":329,"dom-helpers/activeElement":50,"dom-helpers/query/contains":60,"dom-helpers/util/inDOM":77,"react":468,"react-prop-types/lib/componentOrElement":330,"react-prop-types/lib/elementType":331,"warning":333}],317:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29330,7 +35003,11 @@ var ModalManager = function () {
 
 exports.default = ModalManager;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/isOverflowing":281,"./utils/manageAriaHidden":282,"dom-helpers/class":52,"dom-helpers/style":68,"dom-helpers/util/scrollbarSize":77}],272:[function(require,module,exports){
+=======
+},{"./utils/isOverflowing":327,"./utils/manageAriaHidden":328,"dom-helpers/class":53,"dom-helpers/style":69,"dom-helpers/util/scrollbarSize":78}],318:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29559,7 +35236,11 @@ Overlay.propTypes = _extends({}, _Portal2.default.propTypes, _Position2.default.
 
 exports.default = Overlay;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Portal":273,"./Position":274,"./RootCloseWrapper":275,"react":422,"react-prop-types/lib/elementType":285}],273:[function(require,module,exports){
+=======
+},{"./Portal":319,"./Position":320,"./RootCloseWrapper":321,"react":468,"react-prop-types/lib/elementType":331}],319:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29677,7 +35358,11 @@ var Portal = _react2.default.createClass({
 
 exports.default = Portal;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/getContainer":280,"./utils/ownerDocument":283,"react":422,"react-dom":269,"react-prop-types/lib/componentOrElement":284}],274:[function(require,module,exports){
+=======
+},{"./utils/getContainer":326,"./utils/ownerDocument":329,"react":468,"react-dom":270,"react-prop-types/lib/componentOrElement":330}],320:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -29889,7 +35574,11 @@ Position.defaultProps = {
 
 exports.default = Position;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/calculatePosition":279,"./utils/getContainer":280,"./utils/ownerDocument":283,"classnames":25,"react":422,"react-dom":269,"react-prop-types/lib/componentOrElement":284}],275:[function(require,module,exports){
+=======
+},{"./utils/calculatePosition":325,"./utils/getContainer":326,"./utils/ownerDocument":329,"classnames":26,"react":468,"react-dom":270,"react-prop-types/lib/componentOrElement":330}],321:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30050,7 +35739,11 @@ RootCloseWrapper.defaultProps = {
   event: 'click'
 };
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/addEventListener":277,"./utils/ownerDocument":283,"dom-helpers/query/contains":59,"react":422,"react-dom":269}],276:[function(require,module,exports){
+=======
+},{"./utils/addEventListener":323,"./utils/ownerDocument":329,"dom-helpers/query/contains":60,"react":468,"react-dom":270}],322:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30414,7 +36107,11 @@ Transition.defaultProps = {
 };
 
 exports.default = Transition;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"classnames":25,"dom-helpers/events/on":57,"dom-helpers/transition/properties":70,"react":422,"react-dom":269}],277:[function(require,module,exports){
+=======
+},{"classnames":26,"dom-helpers/events/on":58,"dom-helpers/transition/properties":71,"react":468,"react-dom":270}],323:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30442,7 +36139,11 @@ var _off2 = _interopRequireDefault(_off);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"dom-helpers/events/off":56,"dom-helpers/events/on":57}],278:[function(require,module,exports){
+=======
+},{"dom-helpers/events/off":57,"dom-helpers/events/on":58}],324:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30474,7 +36175,11 @@ function addFocusListener(handler) {
   return { remove: remove };
 }
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],279:[function(require,module,exports){
+=======
+},{}],325:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30604,7 +36309,11 @@ function calculatePosition(placement, overlayNode, target, container, padding) {
   return { positionLeft: positionLeft, positionTop: positionTop, arrowOffsetLeft: arrowOffsetLeft, arrowOffsetTop: arrowOffsetTop };
 }
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ownerDocument":283,"dom-helpers/query/offset":61,"dom-helpers/query/position":63,"dom-helpers/query/scrollTop":66}],280:[function(require,module,exports){
+=======
+},{"./ownerDocument":329,"dom-helpers/query/offset":62,"dom-helpers/query/position":64,"dom-helpers/query/scrollTop":67}],326:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30623,7 +36332,11 @@ function getContainer(container, defaultContainer) {
   return _reactDom2.default.findDOMNode(container) || defaultContainer;
 }
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"react-dom":269}],281:[function(require,module,exports){
+=======
+},{"react-dom":270}],327:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30665,7 +36378,11 @@ function isOverflowing(container) {
   return win || isBody(container) ? bodyIsOverflowing(container) : container.scrollHeight > container.clientHeight;
 }
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"dom-helpers/ownerDocument":58,"dom-helpers/query/isWindow":60}],282:[function(require,module,exports){
+=======
+},{"dom-helpers/ownerDocument":59,"dom-helpers/query/isWindow":61}],328:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30715,7 +36432,11 @@ function showSiblings(container, mountNode) {
     return ariaHidden(false, node);
   });
 }
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],283:[function(require,module,exports){
+=======
+},{}],329:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -30737,7 +36458,11 @@ var _ownerDocument2 = _interopRequireDefault(_ownerDocument);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"dom-helpers/ownerDocument":58,"react-dom":269}],284:[function(require,module,exports){
+=======
+},{"dom-helpers/ownerDocument":59,"react-dom":270}],330:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -30770,7 +36495,11 @@ function validate(props, propName, componentName, location, propFullName) {
 }
 
 exports.default = (0, _createChainableTypeChecker2.default)(validate);
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/createChainableTypeChecker":286,"react":422}],285:[function(require,module,exports){
+=======
+},{"./utils/createChainableTypeChecker":332,"react":468}],331:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -30803,7 +36532,11 @@ function elementType(props, propName, componentName, location, propFullName) {
 }
 
 exports.default = (0, _createChainableTypeChecker2.default)(elementType);
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils/createChainableTypeChecker":286,"react":422}],286:[function(require,module,exports){
+=======
+},{"./utils/createChainableTypeChecker":332,"react":468}],332:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -30844,7 +36577,11 @@ function createChainableTypeChecker(validate) {
 
   return chainedCheckType;
 }
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],287:[function(require,module,exports){
+=======
+},{}],333:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -30908,7 +36645,11 @@ if (process.env.NODE_ENV !== 'production') {
 module.exports = warning;
 
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],288:[function(require,module,exports){
+=======
+},{"_process":178}],334:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -30949,7 +36690,11 @@ function all() {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./common":289}],289:[function(require,module,exports){
+=======
+},{"./common":335}],335:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -30984,7 +36729,11 @@ function createChainableTypeChecker(validate) {
 
   return chainedCheckType;
 }
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],290:[function(require,module,exports){
+=======
+},{}],336:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -31018,7 +36767,11 @@ function _resetWarned() {
 
 deprecated._resetWarned = _resetWarned;
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"warning":427}],291:[function(require,module,exports){
+=======
+},{"warning":473}],337:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -31060,7 +36813,11 @@ function validate(props, propName, componentName) {
 
 exports['default'] = _common.createChainableTypeChecker(validate);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./common":289,"react":422}],292:[function(require,module,exports){
+=======
+},{"./common":335,"react":468}],338:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 "use strict";
 
 exports.__esModule = true;
@@ -31077,7 +36834,11 @@ function isRequiredForA11y(propType) {
 }
 
 module.exports = exports["default"];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],293:[function(require,module,exports){
+=======
+},{}],339:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Checks if only one of the listed properties is in use. An error is given
  * if multiple have a value
@@ -31116,7 +36877,11 @@ function createSinglePropFromChecker() {
 }
 
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],294:[function(require,module,exports){
+=======
+},{}],340:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31153,7 +36918,11 @@ var AutoFocusUtils = {
 };
 
 module.exports = AutoFocusUtils;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactMount":358,"./findDOMNode":401,"fbjs/lib/focusNode":87}],295:[function(require,module,exports){
+=======
+},{"./ReactMount":404,"./findDOMNode":447,"fbjs/lib/focusNode":88}],341:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015 Facebook, Inc.
  * All rights reserved.
@@ -31559,7 +37328,11 @@ var BeforeInputEventPlugin = {
 };
 
 module.exports = BeforeInputEventPlugin;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPropagators":311,"./FallbackCompositionState":312,"./SyntheticCompositionEvent":383,"./SyntheticInputEvent":387,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/keyOf":97}],296:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPropagators":357,"./FallbackCompositionState":358,"./SyntheticCompositionEvent":429,"./SyntheticInputEvent":433,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/keyOf":98}],342:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -31699,7 +37472,11 @@ var CSSProperty = {
 };
 
 module.exports = CSSProperty;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],297:[function(require,module,exports){
+=======
+},{}],343:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31877,7 +37654,11 @@ ReactPerf.measureMethods(CSSPropertyOperations, 'CSSPropertyOperations', {
 
 module.exports = CSSPropertyOperations;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CSSProperty":296,"./ReactPerf":364,"./dangerousStyleValue":398,"_process":177,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/camelizeStyleName":81,"fbjs/lib/hyphenateStyleName":92,"fbjs/lib/memoizeStringOnly":99,"fbjs/lib/warning":104}],298:[function(require,module,exports){
+=======
+},{"./CSSProperty":342,"./ReactPerf":410,"./dangerousStyleValue":444,"_process":178,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/camelizeStyleName":82,"fbjs/lib/hyphenateStyleName":93,"fbjs/lib/memoizeStringOnly":100,"fbjs/lib/warning":105}],344:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -31973,7 +37754,11 @@ PooledClass.addPoolingTo(CallbackQueue);
 
 module.exports = CallbackQueue;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./PooledClass":316,"_process":177,"fbjs/lib/invariant":93}],299:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./PooledClass":362,"_process":178,"fbjs/lib/invariant":94}],345:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32295,7 +38080,11 @@ var ChangeEventPlugin = {
 };
 
 module.exports = ChangeEventPlugin;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPluginHub":308,"./EventPropagators":311,"./ReactUpdates":376,"./SyntheticEvent":385,"./getEventTarget":407,"./isEventSupported":412,"./isTextInputElement":413,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/keyOf":97}],300:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPluginHub":354,"./EventPropagators":357,"./ReactUpdates":422,"./SyntheticEvent":431,"./getEventTarget":453,"./isEventSupported":458,"./isTextInputElement":459,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/keyOf":98}],346:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -32319,7 +38108,11 @@ var ClientReactRootIndex = {
 };
 
 module.exports = ClientReactRootIndex;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],301:[function(require,module,exports){
+=======
+},{}],347:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32451,7 +38244,11 @@ ReactPerf.measureMethods(DOMChildrenOperations, 'DOMChildrenOperations', {
 
 module.exports = DOMChildrenOperations;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Danger":304,"./ReactMultiChildUpdateTypes":360,"./ReactPerf":364,"./setInnerHTML":417,"./setTextContent":418,"_process":177,"fbjs/lib/invariant":93}],302:[function(require,module,exports){
+=======
+},{"./Danger":350,"./ReactMultiChildUpdateTypes":406,"./ReactPerf":410,"./setInnerHTML":463,"./setTextContent":464,"_process":178,"fbjs/lib/invariant":94}],348:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32688,7 +38485,11 @@ var DOMProperty = {
 
 module.exports = DOMProperty;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],303:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],349:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -32916,7 +38717,11 @@ ReactPerf.measureMethods(DOMPropertyOperations, 'DOMPropertyOperations', {
 
 module.exports = DOMPropertyOperations;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302,"./ReactPerf":364,"./quoteAttributeValueForBrowser":415,"_process":177,"fbjs/lib/warning":104}],304:[function(require,module,exports){
+=======
+},{"./DOMProperty":348,"./ReactPerf":410,"./quoteAttributeValueForBrowser":461,"_process":178,"fbjs/lib/warning":105}],350:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -33064,7 +38869,11 @@ var Danger = {
 
 module.exports = Danger;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/createNodesFromMarkup":84,"fbjs/lib/emptyFunction":85,"fbjs/lib/getMarkupWrap":89,"fbjs/lib/invariant":93}],305:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/createNodesFromMarkup":85,"fbjs/lib/emptyFunction":86,"fbjs/lib/getMarkupWrap":90,"fbjs/lib/invariant":94}],351:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33092,7 +38901,11 @@ var keyOf = require('fbjs/lib/keyOf');
 var DefaultEventPluginOrder = [keyOf({ ResponderEventPlugin: null }), keyOf({ SimpleEventPlugin: null }), keyOf({ TapEventPlugin: null }), keyOf({ EnterLeaveEventPlugin: null }), keyOf({ ChangeEventPlugin: null }), keyOf({ SelectEventPlugin: null }), keyOf({ BeforeInputEventPlugin: null })];
 
 module.exports = DefaultEventPluginOrder;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/keyOf":97}],306:[function(require,module,exports){
+=======
+},{"fbjs/lib/keyOf":98}],352:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33217,7 +39030,11 @@ var EnterLeaveEventPlugin = {
 };
 
 module.exports = EnterLeaveEventPlugin;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPropagators":311,"./ReactMount":358,"./SyntheticMouseEvent":389,"fbjs/lib/keyOf":97}],307:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPropagators":357,"./ReactMount":404,"./SyntheticMouseEvent":435,"fbjs/lib/keyOf":98}],353:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -33310,7 +39127,11 @@ var EventConstants = {
 };
 
 module.exports = EventConstants;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/keyMirror":96}],308:[function(require,module,exports){
+=======
+},{"fbjs/lib/keyMirror":97}],354:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -33592,7 +39413,11 @@ var EventPluginHub = {
 
 module.exports = EventPluginHub;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventPluginRegistry":309,"./EventPluginUtils":310,"./ReactErrorUtils":349,"./accumulateInto":395,"./forEachAccumulated":403,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],309:[function(require,module,exports){
+=======
+},{"./EventPluginRegistry":355,"./EventPluginUtils":356,"./ReactErrorUtils":395,"./accumulateInto":441,"./forEachAccumulated":449,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],355:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -33815,7 +39640,11 @@ var EventPluginRegistry = {
 
 module.exports = EventPluginRegistry;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],310:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],356:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34020,7 +39849,11 @@ var EventPluginUtils = {
 
 module.exports = EventPluginUtils;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./ReactErrorUtils":349,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],311:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./ReactErrorUtils":395,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],357:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34158,7 +39991,11 @@ var EventPropagators = {
 
 module.exports = EventPropagators;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPluginHub":308,"./accumulateInto":395,"./forEachAccumulated":403,"_process":177,"fbjs/lib/warning":104}],312:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPluginHub":354,"./accumulateInto":441,"./forEachAccumulated":449,"_process":178,"fbjs/lib/warning":105}],358:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34254,7 +40091,11 @@ assign(FallbackCompositionState.prototype, {
 PooledClass.addPoolingTo(FallbackCompositionState);
 
 module.exports = FallbackCompositionState;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./PooledClass":316,"./getTextContentAccessor":410}],313:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./PooledClass":362,"./getTextContentAccessor":456}],359:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34485,7 +40326,11 @@ var HTMLDOMPropertyConfig = {
 };
 
 module.exports = HTMLDOMPropertyConfig;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302,"fbjs/lib/ExecutionEnvironment":79}],314:[function(require,module,exports){
+=======
+},{"./DOMProperty":348,"fbjs/lib/ExecutionEnvironment":80}],360:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34622,7 +40467,11 @@ var LinkedValueUtils = {
 
 module.exports = LinkedValueUtils;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactPropTypeLocations":366,"./ReactPropTypes":367,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],315:[function(require,module,exports){
+=======
+},{"./ReactPropTypeLocations":412,"./ReactPropTypes":413,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],361:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -34670,7 +40519,11 @@ function assign(target, sources) {
 }
 
 module.exports = assign;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],316:[function(require,module,exports){
+=======
+},{}],362:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34792,7 +40645,11 @@ var PooledClass = {
 
 module.exports = PooledClass;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],317:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],363:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -34833,7 +40690,11 @@ React.__SECRET_DOM_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOM;
 React.__SECRET_DOM_SERVER_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactDOMServer;
 
 module.exports = React;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactDOM":328,"./ReactDOMServer":338,"./ReactIsomorphic":356,"./deprecated":399}],318:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactDOM":374,"./ReactDOMServer":384,"./ReactIsomorphic":402,"./deprecated":445}],364:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -34872,7 +40733,11 @@ var ReactBrowserComponentMixin = {
 
 module.exports = ReactBrowserComponentMixin;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactInstanceMap":355,"./findDOMNode":401,"_process":177,"fbjs/lib/warning":104}],319:[function(require,module,exports){
+=======
+},{"./ReactInstanceMap":401,"./findDOMNode":447,"_process":178,"fbjs/lib/warning":105}],365:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35197,7 +41062,11 @@ ReactPerf.measureMethods(ReactBrowserEventEmitter, 'ReactBrowserEventEmitter', {
 });
 
 module.exports = ReactBrowserEventEmitter;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPluginHub":308,"./EventPluginRegistry":309,"./Object.assign":315,"./ReactEventEmitterMixin":350,"./ReactPerf":364,"./ViewportMetrics":394,"./isEventSupported":412}],320:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPluginHub":354,"./EventPluginRegistry":355,"./Object.assign":361,"./ReactEventEmitterMixin":396,"./ReactPerf":410,"./ViewportMetrics":440,"./isEventSupported":458}],366:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -35322,7 +41191,11 @@ var ReactChildReconciler = {
 
 module.exports = ReactChildReconciler;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactReconciler":369,"./instantiateReactComponent":411,"./shouldUpdateReactComponent":419,"./traverseAllChildren":420,"_process":177,"fbjs/lib/warning":104}],321:[function(require,module,exports){
+=======
+},{"./ReactReconciler":415,"./instantiateReactComponent":457,"./shouldUpdateReactComponent":465,"./traverseAllChildren":466,"_process":178,"fbjs/lib/warning":105}],367:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -35505,7 +41378,11 @@ var ReactChildren = {
 };
 
 module.exports = ReactChildren;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./PooledClass":316,"./ReactElement":345,"./traverseAllChildren":420,"fbjs/lib/emptyFunction":85}],322:[function(require,module,exports){
+=======
+},{"./PooledClass":362,"./ReactElement":391,"./traverseAllChildren":466,"fbjs/lib/emptyFunction":86}],368:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36279,7 +42156,11 @@ var ReactClass = {
 
 module.exports = ReactClass;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactComponent":323,"./ReactElement":345,"./ReactNoopUpdateQueue":362,"./ReactPropTypeLocationNames":365,"./ReactPropTypeLocations":366,"_process":177,"fbjs/lib/emptyObject":86,"fbjs/lib/invariant":93,"fbjs/lib/keyMirror":96,"fbjs/lib/keyOf":97,"fbjs/lib/warning":104}],323:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactComponent":369,"./ReactElement":391,"./ReactNoopUpdateQueue":408,"./ReactPropTypeLocationNames":411,"./ReactPropTypeLocations":412,"_process":178,"fbjs/lib/emptyObject":87,"fbjs/lib/invariant":94,"fbjs/lib/keyMirror":97,"fbjs/lib/keyOf":98,"fbjs/lib/warning":105}],369:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -36404,7 +42285,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactNoopUpdateQueue":362,"./canDefineProperty":397,"_process":177,"fbjs/lib/emptyObject":86,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],324:[function(require,module,exports){
+=======
+},{"./ReactNoopUpdateQueue":408,"./canDefineProperty":443,"_process":178,"fbjs/lib/emptyObject":87,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],370:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -36446,7 +42331,11 @@ var ReactComponentBrowserEnvironment = {
 };
 
 module.exports = ReactComponentBrowserEnvironment;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactDOMIDOperations":333,"./ReactMount":358}],325:[function(require,module,exports){
+=======
+},{"./ReactDOMIDOperations":379,"./ReactMount":404}],371:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -36500,7 +42389,11 @@ var ReactComponentEnvironment = {
 
 module.exports = ReactComponentEnvironment;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],326:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],372:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37197,7 +43090,11 @@ var ReactCompositeComponent = {
 
 module.exports = ReactCompositeComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactComponentEnvironment":325,"./ReactCurrentOwner":327,"./ReactElement":345,"./ReactInstanceMap":355,"./ReactPerf":364,"./ReactPropTypeLocationNames":365,"./ReactPropTypeLocations":366,"./ReactReconciler":369,"./ReactUpdateQueue":375,"./shouldUpdateReactComponent":419,"_process":177,"fbjs/lib/emptyObject":86,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],327:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactComponentEnvironment":371,"./ReactCurrentOwner":373,"./ReactElement":391,"./ReactInstanceMap":401,"./ReactPerf":410,"./ReactPropTypeLocationNames":411,"./ReactPropTypeLocations":412,"./ReactReconciler":415,"./ReactUpdateQueue":421,"./shouldUpdateReactComponent":465,"_process":178,"fbjs/lib/emptyObject":87,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],373:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37228,7 +43125,11 @@ var ReactCurrentOwner = {
 };
 
 module.exports = ReactCurrentOwner;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],328:[function(require,module,exports){
+=======
+},{}],374:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -37323,7 +43224,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = React;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactCurrentOwner":327,"./ReactDOMTextComponent":339,"./ReactDefaultInjection":342,"./ReactInstanceHandles":354,"./ReactMount":358,"./ReactPerf":364,"./ReactReconciler":369,"./ReactUpdates":376,"./ReactVersion":377,"./findDOMNode":401,"./renderSubtreeIntoContainer":416,"_process":177,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/warning":104}],329:[function(require,module,exports){
+=======
+},{"./ReactCurrentOwner":373,"./ReactDOMTextComponent":385,"./ReactDefaultInjection":388,"./ReactInstanceHandles":400,"./ReactMount":404,"./ReactPerf":410,"./ReactReconciler":415,"./ReactUpdates":422,"./ReactVersion":423,"./findDOMNode":447,"./renderSubtreeIntoContainer":462,"_process":178,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/warning":105}],375:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -37374,7 +43279,11 @@ var ReactDOMButton = {
 };
 
 module.exports = ReactDOMButton;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],330:[function(require,module,exports){
+=======
+},{}],376:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38339,7 +44248,11 @@ assign(ReactDOMComponent.prototype, ReactDOMComponent.Mixin, ReactMultiChild.Mix
 
 module.exports = ReactDOMComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./AutoFocusUtils":294,"./CSSPropertyOperations":297,"./DOMProperty":302,"./DOMPropertyOperations":303,"./EventConstants":307,"./Object.assign":315,"./ReactBrowserEventEmitter":319,"./ReactComponentBrowserEnvironment":324,"./ReactDOMButton":329,"./ReactDOMInput":334,"./ReactDOMOption":335,"./ReactDOMSelect":336,"./ReactDOMTextarea":340,"./ReactMount":358,"./ReactMultiChild":359,"./ReactPerf":364,"./ReactUpdateQueue":375,"./canDefineProperty":397,"./escapeTextContentForBrowser":400,"./isEventSupported":412,"./setInnerHTML":417,"./setTextContent":418,"./validateDOMNesting":421,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/keyOf":97,"fbjs/lib/shallowEqual":102,"fbjs/lib/warning":104}],331:[function(require,module,exports){
+=======
+},{"./AutoFocusUtils":340,"./CSSPropertyOperations":343,"./DOMProperty":348,"./DOMPropertyOperations":349,"./EventConstants":353,"./Object.assign":361,"./ReactBrowserEventEmitter":365,"./ReactComponentBrowserEnvironment":370,"./ReactDOMButton":375,"./ReactDOMInput":380,"./ReactDOMOption":381,"./ReactDOMSelect":382,"./ReactDOMTextarea":386,"./ReactMount":404,"./ReactMultiChild":405,"./ReactPerf":410,"./ReactUpdateQueue":421,"./canDefineProperty":443,"./escapeTextContentForBrowser":446,"./isEventSupported":458,"./setInnerHTML":463,"./setTextContent":464,"./validateDOMNesting":467,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/keyOf":98,"fbjs/lib/shallowEqual":103,"fbjs/lib/warning":105}],377:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38519,7 +44432,11 @@ var ReactDOMFactories = mapObject({
 
 module.exports = ReactDOMFactories;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactElement":345,"./ReactElementValidator":346,"_process":177,"fbjs/lib/mapObject":98}],332:[function(require,module,exports){
+=======
+},{"./ReactElement":391,"./ReactElementValidator":392,"_process":178,"fbjs/lib/mapObject":99}],378:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -38538,7 +44455,11 @@ var ReactDOMFeatureFlags = {
 };
 
 module.exports = ReactDOMFeatureFlags;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],333:[function(require,module,exports){
+=======
+},{}],379:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38635,7 +44556,11 @@ ReactPerf.measureMethods(ReactDOMIDOperations, 'ReactDOMIDOperations', {
 
 module.exports = ReactDOMIDOperations;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMChildrenOperations":301,"./DOMPropertyOperations":303,"./ReactMount":358,"./ReactPerf":364,"_process":177,"fbjs/lib/invariant":93}],334:[function(require,module,exports){
+=======
+},{"./DOMChildrenOperations":347,"./DOMPropertyOperations":349,"./ReactMount":404,"./ReactPerf":410,"_process":178,"fbjs/lib/invariant":94}],380:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38791,7 +44716,11 @@ function _handleChange(event) {
 
 module.exports = ReactDOMInput;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./LinkedValueUtils":314,"./Object.assign":315,"./ReactDOMIDOperations":333,"./ReactMount":358,"./ReactUpdates":376,"_process":177,"fbjs/lib/invariant":93}],335:[function(require,module,exports){
+=======
+},{"./LinkedValueUtils":360,"./Object.assign":361,"./ReactDOMIDOperations":379,"./ReactMount":404,"./ReactUpdates":422,"_process":178,"fbjs/lib/invariant":94}],381:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -38883,7 +44812,11 @@ var ReactDOMOption = {
 
 module.exports = ReactDOMOption;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactChildren":321,"./ReactDOMSelect":336,"_process":177,"fbjs/lib/warning":104}],336:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactChildren":367,"./ReactDOMSelect":382,"_process":178,"fbjs/lib/warning":105}],382:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39074,7 +45007,11 @@ function _handleChange(event) {
 
 module.exports = ReactDOMSelect;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./LinkedValueUtils":314,"./Object.assign":315,"./ReactMount":358,"./ReactUpdates":376,"_process":177,"fbjs/lib/warning":104}],337:[function(require,module,exports){
+=======
+},{"./LinkedValueUtils":360,"./Object.assign":361,"./ReactMount":404,"./ReactUpdates":422,"_process":178,"fbjs/lib/warning":105}],383:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39287,7 +45224,11 @@ var ReactDOMSelection = {
 };
 
 module.exports = ReactDOMSelection;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./getNodeForCharacterOffset":409,"./getTextContentAccessor":410,"fbjs/lib/ExecutionEnvironment":79}],338:[function(require,module,exports){
+=======
+},{"./getNodeForCharacterOffset":455,"./getTextContentAccessor":456,"fbjs/lib/ExecutionEnvironment":80}],384:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39314,7 +45255,11 @@ var ReactDOMServer = {
 };
 
 module.exports = ReactDOMServer;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactDefaultInjection":342,"./ReactServerRendering":373,"./ReactVersion":377}],339:[function(require,module,exports){
+=======
+},{"./ReactDefaultInjection":388,"./ReactServerRendering":419,"./ReactVersion":423}],385:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39444,7 +45389,11 @@ assign(ReactDOMTextComponent.prototype, {
 
 module.exports = ReactDOMTextComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMChildrenOperations":301,"./DOMPropertyOperations":303,"./Object.assign":315,"./ReactComponentBrowserEnvironment":324,"./ReactMount":358,"./escapeTextContentForBrowser":400,"./setTextContent":418,"./validateDOMNesting":421,"_process":177}],340:[function(require,module,exports){
+=======
+},{"./DOMChildrenOperations":347,"./DOMPropertyOperations":349,"./Object.assign":361,"./ReactComponentBrowserEnvironment":370,"./ReactMount":404,"./escapeTextContentForBrowser":446,"./setTextContent":464,"./validateDOMNesting":467,"_process":178}],386:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39560,7 +45509,11 @@ function _handleChange(event) {
 
 module.exports = ReactDOMTextarea;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./LinkedValueUtils":314,"./Object.assign":315,"./ReactDOMIDOperations":333,"./ReactUpdates":376,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],341:[function(require,module,exports){
+=======
+},{"./LinkedValueUtils":360,"./Object.assign":361,"./ReactDOMIDOperations":379,"./ReactUpdates":422,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],387:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39628,7 +45581,11 @@ var ReactDefaultBatchingStrategy = {
 };
 
 module.exports = ReactDefaultBatchingStrategy;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactUpdates":376,"./Transaction":393,"fbjs/lib/emptyFunction":85}],342:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactUpdates":422,"./Transaction":439,"fbjs/lib/emptyFunction":86}],388:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -39728,7 +45685,11 @@ module.exports = {
   inject: inject
 };
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./BeforeInputEventPlugin":295,"./ChangeEventPlugin":299,"./ClientReactRootIndex":300,"./DefaultEventPluginOrder":305,"./EnterLeaveEventPlugin":306,"./HTMLDOMPropertyConfig":313,"./ReactBrowserComponentMixin":318,"./ReactComponentBrowserEnvironment":324,"./ReactDOMComponent":330,"./ReactDOMTextComponent":339,"./ReactDefaultBatchingStrategy":341,"./ReactDefaultPerf":343,"./ReactEventListener":351,"./ReactInjection":352,"./ReactInstanceHandles":354,"./ReactMount":358,"./ReactReconcileTransaction":368,"./SVGDOMPropertyConfig":378,"./SelectEventPlugin":379,"./ServerReactRootIndex":380,"./SimpleEventPlugin":381,"_process":177,"fbjs/lib/ExecutionEnvironment":79}],343:[function(require,module,exports){
+=======
+},{"./BeforeInputEventPlugin":341,"./ChangeEventPlugin":345,"./ClientReactRootIndex":346,"./DefaultEventPluginOrder":351,"./EnterLeaveEventPlugin":352,"./HTMLDOMPropertyConfig":359,"./ReactBrowserComponentMixin":364,"./ReactComponentBrowserEnvironment":370,"./ReactDOMComponent":376,"./ReactDOMTextComponent":385,"./ReactDefaultBatchingStrategy":387,"./ReactDefaultPerf":389,"./ReactEventListener":397,"./ReactInjection":398,"./ReactInstanceHandles":400,"./ReactMount":404,"./ReactReconcileTransaction":414,"./SVGDOMPropertyConfig":424,"./SelectEventPlugin":425,"./ServerReactRootIndex":426,"./SimpleEventPlugin":427,"_process":178,"fbjs/lib/ExecutionEnvironment":80}],389:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -39966,7 +45927,11 @@ var ReactDefaultPerf = {
 };
 
 module.exports = ReactDefaultPerf;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302,"./ReactDefaultPerfAnalysis":344,"./ReactMount":358,"./ReactPerf":364,"fbjs/lib/performanceNow":101}],344:[function(require,module,exports){
+=======
+},{"./DOMProperty":348,"./ReactDefaultPerfAnalysis":390,"./ReactMount":404,"./ReactPerf":410,"fbjs/lib/performanceNow":102}],390:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40168,7 +46133,11 @@ var ReactDefaultPerfAnalysis = {
 };
 
 module.exports = ReactDefaultPerfAnalysis;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315}],345:[function(require,module,exports){
+=======
+},{"./Object.assign":361}],391:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -40418,7 +46387,11 @@ ReactElement.isValidElement = function (object) {
 
 module.exports = ReactElement;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactCurrentOwner":327,"./canDefineProperty":397,"_process":177}],346:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactCurrentOwner":373,"./canDefineProperty":443,"_process":178}],392:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -40702,7 +46675,11 @@ var ReactElementValidator = {
 
 module.exports = ReactElementValidator;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactCurrentOwner":327,"./ReactElement":345,"./ReactPropTypeLocationNames":365,"./ReactPropTypeLocations":366,"./canDefineProperty":397,"./getIteratorFn":408,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],347:[function(require,module,exports){
+=======
+},{"./ReactCurrentOwner":373,"./ReactElement":391,"./ReactPropTypeLocationNames":411,"./ReactPropTypeLocations":412,"./canDefineProperty":443,"./getIteratorFn":454,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],393:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -40758,7 +46735,11 @@ assign(ReactEmptyComponent.prototype, {
 ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 
 module.exports = ReactEmptyComponent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactElement":345,"./ReactEmptyComponentRegistry":348,"./ReactReconciler":369}],348:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactElement":391,"./ReactEmptyComponentRegistry":394,"./ReactReconciler":415}],394:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -40807,7 +46788,11 @@ var ReactEmptyComponentRegistry = {
 };
 
 module.exports = ReactEmptyComponentRegistry;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],349:[function(require,module,exports){
+=======
+},{}],395:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -40887,7 +46872,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactErrorUtils;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],350:[function(require,module,exports){
+=======
+},{"_process":178}],396:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -40926,7 +46915,11 @@ var ReactEventEmitterMixin = {
 };
 
 module.exports = ReactEventEmitterMixin;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventPluginHub":308}],351:[function(require,module,exports){
+=======
+},{"./EventPluginHub":354}],397:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41138,7 +47131,11 @@ var ReactEventListener = {
 };
 
 module.exports = ReactEventListener;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./PooledClass":316,"./ReactInstanceHandles":354,"./ReactMount":358,"./ReactUpdates":376,"./getEventTarget":407,"fbjs/lib/EventListener":78,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/getUnboundedScrollPosition":90}],352:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./PooledClass":362,"./ReactInstanceHandles":400,"./ReactMount":404,"./ReactUpdates":422,"./getEventTarget":453,"fbjs/lib/EventListener":79,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/getUnboundedScrollPosition":91}],398:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41177,7 +47174,11 @@ var ReactInjection = {
 };
 
 module.exports = ReactInjection;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302,"./EventPluginHub":308,"./ReactBrowserEventEmitter":319,"./ReactClass":322,"./ReactComponentEnvironment":325,"./ReactEmptyComponent":347,"./ReactNativeComponent":361,"./ReactPerf":364,"./ReactRootIndex":371,"./ReactUpdates":376}],353:[function(require,module,exports){
+=======
+},{"./DOMProperty":348,"./EventPluginHub":354,"./ReactBrowserEventEmitter":365,"./ReactClass":368,"./ReactComponentEnvironment":371,"./ReactEmptyComponent":393,"./ReactNativeComponent":407,"./ReactPerf":410,"./ReactRootIndex":417,"./ReactUpdates":422}],399:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41302,7 +47303,11 @@ var ReactInputSelection = {
 };
 
 module.exports = ReactInputSelection;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactDOMSelection":337,"fbjs/lib/containsNode":82,"fbjs/lib/focusNode":87,"fbjs/lib/getActiveElement":88}],354:[function(require,module,exports){
+=======
+},{"./ReactDOMSelection":383,"fbjs/lib/containsNode":83,"fbjs/lib/focusNode":88,"fbjs/lib/getActiveElement":89}],400:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41607,7 +47612,11 @@ var ReactInstanceHandles = {
 
 module.exports = ReactInstanceHandles;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactRootIndex":371,"_process":177,"fbjs/lib/invariant":93}],355:[function(require,module,exports){
+=======
+},{"./ReactRootIndex":417,"_process":178,"fbjs/lib/invariant":94}],401:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41655,7 +47664,11 @@ var ReactInstanceMap = {
 };
 
 module.exports = ReactInstanceMap;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],356:[function(require,module,exports){
+=======
+},{}],402:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -41732,7 +47745,11 @@ var React = {
 
 module.exports = React;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactChildren":321,"./ReactClass":322,"./ReactComponent":323,"./ReactDOMFactories":331,"./ReactElement":345,"./ReactElementValidator":346,"./ReactPropTypes":367,"./ReactVersion":377,"./onlyChild":414,"_process":177}],357:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactChildren":367,"./ReactClass":368,"./ReactComponent":369,"./ReactDOMFactories":377,"./ReactElement":391,"./ReactElementValidator":392,"./ReactPropTypes":413,"./ReactVersion":423,"./onlyChild":460,"_process":178}],403:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -41778,7 +47795,11 @@ var ReactMarkupChecksum = {
 };
 
 module.exports = ReactMarkupChecksum;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./adler32":396}],358:[function(require,module,exports){
+=======
+},{"./adler32":442}],404:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -42631,7 +48652,11 @@ ReactPerf.measureMethods(ReactMount, 'ReactMount', {
 
 module.exports = ReactMount;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302,"./Object.assign":315,"./ReactBrowserEventEmitter":319,"./ReactCurrentOwner":327,"./ReactDOMFeatureFlags":332,"./ReactElement":345,"./ReactEmptyComponentRegistry":348,"./ReactInstanceHandles":354,"./ReactInstanceMap":355,"./ReactMarkupChecksum":357,"./ReactPerf":364,"./ReactReconciler":369,"./ReactUpdateQueue":375,"./ReactUpdates":376,"./instantiateReactComponent":411,"./setInnerHTML":417,"./shouldUpdateReactComponent":419,"./validateDOMNesting":421,"_process":177,"fbjs/lib/containsNode":82,"fbjs/lib/emptyObject":86,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],359:[function(require,module,exports){
+=======
+},{"./DOMProperty":348,"./Object.assign":361,"./ReactBrowserEventEmitter":365,"./ReactCurrentOwner":373,"./ReactDOMFeatureFlags":378,"./ReactElement":391,"./ReactEmptyComponentRegistry":394,"./ReactInstanceHandles":400,"./ReactInstanceMap":401,"./ReactMarkupChecksum":403,"./ReactPerf":410,"./ReactReconciler":415,"./ReactUpdateQueue":421,"./ReactUpdates":422,"./instantiateReactComponent":457,"./setInnerHTML":463,"./shouldUpdateReactComponent":465,"./validateDOMNesting":467,"_process":178,"fbjs/lib/containsNode":83,"fbjs/lib/emptyObject":87,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],405:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43130,7 +49155,11 @@ var ReactMultiChild = {
 
 module.exports = ReactMultiChild;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactChildReconciler":320,"./ReactComponentEnvironment":325,"./ReactCurrentOwner":327,"./ReactMultiChildUpdateTypes":360,"./ReactReconciler":369,"./flattenChildren":402,"_process":177}],360:[function(require,module,exports){
+=======
+},{"./ReactChildReconciler":366,"./ReactComponentEnvironment":371,"./ReactCurrentOwner":373,"./ReactMultiChildUpdateTypes":406,"./ReactReconciler":415,"./flattenChildren":448,"_process":178}],406:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43163,7 +49192,11 @@ var ReactMultiChildUpdateTypes = keyMirror({
 });
 
 module.exports = ReactMultiChildUpdateTypes;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/keyMirror":96}],361:[function(require,module,exports){
+=======
+},{"fbjs/lib/keyMirror":97}],407:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -43260,7 +49293,11 @@ var ReactNativeComponent = {
 
 module.exports = ReactNativeComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"_process":177,"fbjs/lib/invariant":93}],362:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"_process":178,"fbjs/lib/invariant":94}],408:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -43381,7 +49418,11 @@ var ReactNoopUpdateQueue = {
 
 module.exports = ReactNoopUpdateQueue;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/warning":104}],363:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/warning":105}],409:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43475,7 +49516,11 @@ var ReactOwner = {
 
 module.exports = ReactOwner;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],364:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],410:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43574,7 +49619,11 @@ function _noMeasure(objName, fnName, func) {
 
 module.exports = ReactPerf;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],365:[function(require,module,exports){
+=======
+},{"_process":178}],411:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -43601,7 +49650,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = ReactPropTypeLocationNames;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],366:[function(require,module,exports){
+=======
+},{"_process":178}],412:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43624,7 +49677,11 @@ var ReactPropTypeLocations = keyMirror({
 });
 
 module.exports = ReactPropTypeLocations;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/keyMirror":96}],367:[function(require,module,exports){
+=======
+},{"fbjs/lib/keyMirror":97}],413:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -43981,7 +50038,11 @@ function getClassName(propValue) {
 }
 
 module.exports = ReactPropTypes;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactElement":345,"./ReactPropTypeLocationNames":365,"./getIteratorFn":408,"fbjs/lib/emptyFunction":85}],368:[function(require,module,exports){
+=======
+},{"./ReactElement":391,"./ReactPropTypeLocationNames":411,"./getIteratorFn":454,"fbjs/lib/emptyFunction":86}],414:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44133,7 +50194,11 @@ assign(ReactReconcileTransaction.prototype, Transaction.Mixin, Mixin);
 PooledClass.addPoolingTo(ReactReconcileTransaction);
 
 module.exports = ReactReconcileTransaction;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CallbackQueue":298,"./Object.assign":315,"./PooledClass":316,"./ReactBrowserEventEmitter":319,"./ReactDOMFeatureFlags":332,"./ReactInputSelection":353,"./Transaction":393}],369:[function(require,module,exports){
+=======
+},{"./CallbackQueue":344,"./Object.assign":361,"./PooledClass":362,"./ReactBrowserEventEmitter":365,"./ReactDOMFeatureFlags":378,"./ReactInputSelection":399,"./Transaction":439}],415:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44241,7 +50306,11 @@ var ReactReconciler = {
 };
 
 module.exports = ReactReconciler;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactRef":370}],370:[function(require,module,exports){
+=======
+},{"./ReactRef":416}],416:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44320,7 +50389,11 @@ ReactRef.detachRefs = function (instance, element) {
 };
 
 module.exports = ReactRef;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactOwner":363}],371:[function(require,module,exports){
+=======
+},{"./ReactOwner":409}],417:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -44350,7 +50423,11 @@ var ReactRootIndex = {
 };
 
 module.exports = ReactRootIndex;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],372:[function(require,module,exports){
+=======
+},{}],418:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -44374,7 +50451,11 @@ var ReactServerBatchingStrategy = {
 };
 
 module.exports = ReactServerBatchingStrategy;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],373:[function(require,module,exports){
+=======
+},{}],419:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -44460,7 +50541,11 @@ module.exports = {
   renderToStaticMarkup: renderToStaticMarkup
 };
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactDefaultBatchingStrategy":341,"./ReactElement":345,"./ReactInstanceHandles":354,"./ReactMarkupChecksum":357,"./ReactServerBatchingStrategy":372,"./ReactServerRenderingTransaction":374,"./ReactUpdates":376,"./instantiateReactComponent":411,"_process":177,"fbjs/lib/emptyObject":86,"fbjs/lib/invariant":93}],374:[function(require,module,exports){
+=======
+},{"./ReactDefaultBatchingStrategy":387,"./ReactElement":391,"./ReactInstanceHandles":400,"./ReactMarkupChecksum":403,"./ReactServerBatchingStrategy":418,"./ReactServerRenderingTransaction":420,"./ReactUpdates":422,"./instantiateReactComponent":457,"_process":178,"fbjs/lib/emptyObject":87,"fbjs/lib/invariant":94}],420:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2014-2015, Facebook, Inc.
  * All rights reserved.
@@ -44548,7 +50633,11 @@ assign(ReactServerRenderingTransaction.prototype, Transaction.Mixin, Mixin);
 PooledClass.addPoolingTo(ReactServerRenderingTransaction);
 
 module.exports = ReactServerRenderingTransaction;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CallbackQueue":298,"./Object.assign":315,"./PooledClass":316,"./Transaction":393,"fbjs/lib/emptyFunction":85}],375:[function(require,module,exports){
+=======
+},{"./CallbackQueue":344,"./Object.assign":361,"./PooledClass":362,"./Transaction":439,"fbjs/lib/emptyFunction":86}],421:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -44808,7 +50897,11 @@ var ReactUpdateQueue = {
 
 module.exports = ReactUpdateQueue;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactCurrentOwner":327,"./ReactElement":345,"./ReactInstanceMap":355,"./ReactUpdates":376,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],376:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactCurrentOwner":373,"./ReactElement":391,"./ReactInstanceMap":401,"./ReactUpdates":422,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],422:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -45034,7 +51127,11 @@ var ReactUpdates = {
 
 module.exports = ReactUpdates;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CallbackQueue":298,"./Object.assign":315,"./PooledClass":316,"./ReactPerf":364,"./ReactReconciler":369,"./Transaction":393,"_process":177,"fbjs/lib/invariant":93}],377:[function(require,module,exports){
+=======
+},{"./CallbackQueue":344,"./Object.assign":361,"./PooledClass":362,"./ReactPerf":410,"./ReactReconciler":415,"./Transaction":439,"_process":178,"fbjs/lib/invariant":94}],423:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -45049,7 +51146,11 @@ module.exports = ReactUpdates;
 'use strict';
 
 module.exports = '0.14.8';
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],378:[function(require,module,exports){
+=======
+},{}],424:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -45177,7 +51278,11 @@ var SVGDOMPropertyConfig = {
 };
 
 module.exports = SVGDOMPropertyConfig;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./DOMProperty":302}],379:[function(require,module,exports){
+=======
+},{"./DOMProperty":348}],425:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -45379,7 +51484,11 @@ var SelectEventPlugin = {
 };
 
 module.exports = SelectEventPlugin;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPropagators":311,"./ReactInputSelection":353,"./SyntheticEvent":385,"./isTextInputElement":413,"fbjs/lib/ExecutionEnvironment":79,"fbjs/lib/getActiveElement":88,"fbjs/lib/keyOf":97,"fbjs/lib/shallowEqual":102}],380:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPropagators":357,"./ReactInputSelection":399,"./SyntheticEvent":431,"./isTextInputElement":459,"fbjs/lib/ExecutionEnvironment":80,"fbjs/lib/getActiveElement":89,"fbjs/lib/keyOf":98,"fbjs/lib/shallowEqual":103}],426:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -45409,7 +51518,11 @@ var ServerReactRootIndex = {
 };
 
 module.exports = ServerReactRootIndex;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],381:[function(require,module,exports){
+=======
+},{}],427:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -45999,7 +52112,11 @@ var SimpleEventPlugin = {
 
 module.exports = SimpleEventPlugin;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./EventConstants":307,"./EventPropagators":311,"./ReactMount":358,"./SyntheticClipboardEvent":382,"./SyntheticDragEvent":384,"./SyntheticEvent":385,"./SyntheticFocusEvent":386,"./SyntheticKeyboardEvent":388,"./SyntheticMouseEvent":389,"./SyntheticTouchEvent":390,"./SyntheticUIEvent":391,"./SyntheticWheelEvent":392,"./getEventCharCode":404,"_process":177,"fbjs/lib/EventListener":78,"fbjs/lib/emptyFunction":85,"fbjs/lib/invariant":93,"fbjs/lib/keyOf":97}],382:[function(require,module,exports){
+=======
+},{"./EventConstants":353,"./EventPropagators":357,"./ReactMount":404,"./SyntheticClipboardEvent":428,"./SyntheticDragEvent":430,"./SyntheticEvent":431,"./SyntheticFocusEvent":432,"./SyntheticKeyboardEvent":434,"./SyntheticMouseEvent":435,"./SyntheticTouchEvent":436,"./SyntheticUIEvent":437,"./SyntheticWheelEvent":438,"./getEventCharCode":450,"_process":178,"fbjs/lib/EventListener":79,"fbjs/lib/emptyFunction":86,"fbjs/lib/invariant":94,"fbjs/lib/keyOf":98}],428:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46039,7 +52156,11 @@ function SyntheticClipboardEvent(dispatchConfig, dispatchMarker, nativeEvent, na
 SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 
 module.exports = SyntheticClipboardEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticEvent":385}],383:[function(require,module,exports){
+=======
+},{"./SyntheticEvent":431}],429:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46077,7 +52198,11 @@ function SyntheticCompositionEvent(dispatchConfig, dispatchMarker, nativeEvent, 
 SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface);
 
 module.exports = SyntheticCompositionEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticEvent":385}],384:[function(require,module,exports){
+=======
+},{"./SyntheticEvent":431}],430:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46115,7 +52240,11 @@ function SyntheticDragEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeE
 SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 
 module.exports = SyntheticDragEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticMouseEvent":389}],385:[function(require,module,exports){
+=======
+},{"./SyntheticMouseEvent":435}],431:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -46298,7 +52427,11 @@ PooledClass.addPoolingTo(SyntheticEvent, PooledClass.fourArgumentPooler);
 
 module.exports = SyntheticEvent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./PooledClass":316,"_process":177,"fbjs/lib/emptyFunction":85,"fbjs/lib/warning":104}],386:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./PooledClass":362,"_process":178,"fbjs/lib/emptyFunction":86,"fbjs/lib/warning":105}],432:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46336,7 +52469,11 @@ function SyntheticFocusEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 
 module.exports = SyntheticFocusEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticUIEvent":391}],387:[function(require,module,exports){
+=======
+},{"./SyntheticUIEvent":437}],433:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46375,7 +52512,11 @@ function SyntheticInputEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 
 module.exports = SyntheticInputEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticEvent":385}],388:[function(require,module,exports){
+=======
+},{"./SyntheticEvent":431}],434:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46461,7 +52602,11 @@ function SyntheticKeyboardEvent(dispatchConfig, dispatchMarker, nativeEvent, nat
 SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 
 module.exports = SyntheticKeyboardEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticUIEvent":391,"./getEventCharCode":404,"./getEventKey":405,"./getEventModifierState":406}],389:[function(require,module,exports){
+=======
+},{"./SyntheticUIEvent":437,"./getEventCharCode":450,"./getEventKey":451,"./getEventModifierState":452}],435:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46535,7 +52680,11 @@ function SyntheticMouseEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 
 module.exports = SyntheticMouseEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticUIEvent":391,"./ViewportMetrics":394,"./getEventModifierState":406}],390:[function(require,module,exports){
+=======
+},{"./SyntheticUIEvent":437,"./ViewportMetrics":440,"./getEventModifierState":452}],436:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46582,7 +52731,11 @@ function SyntheticTouchEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 
 module.exports = SyntheticTouchEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticUIEvent":391,"./getEventModifierState":406}],391:[function(require,module,exports){
+=======
+},{"./SyntheticUIEvent":437,"./getEventModifierState":452}],437:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46643,7 +52796,11 @@ function SyntheticUIEvent(dispatchConfig, dispatchMarker, nativeEvent, nativeEve
 SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 
 module.exports = SyntheticUIEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticEvent":385,"./getEventTarget":407}],392:[function(require,module,exports){
+=======
+},{"./SyntheticEvent":431,"./getEventTarget":453}],438:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46699,7 +52856,11 @@ function SyntheticWheelEvent(dispatchConfig, dispatchMarker, nativeEvent, native
 SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 
 module.exports = SyntheticWheelEvent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./SyntheticMouseEvent":389}],393:[function(require,module,exports){
+=======
+},{"./SyntheticMouseEvent":435}],439:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -46933,7 +53094,11 @@ var Transaction = {
 
 module.exports = Transaction;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],394:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],440:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -46961,7 +53126,11 @@ var ViewportMetrics = {
 };
 
 module.exports = ViewportMetrics;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],395:[function(require,module,exports){
+=======
+},{}],441:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2014-2015, Facebook, Inc.
@@ -47023,7 +53192,11 @@ function accumulateInto(current, next) {
 
 module.exports = accumulateInto;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"fbjs/lib/invariant":93}],396:[function(require,module,exports){
+=======
+},{"_process":178,"fbjs/lib/invariant":94}],442:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47066,7 +53239,11 @@ function adler32(data) {
 }
 
 module.exports = adler32;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],397:[function(require,module,exports){
+=======
+},{}],443:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -47093,7 +53270,11 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = canDefineProperty;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177}],398:[function(require,module,exports){
+=======
+},{"_process":178}],444:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47149,7 +53330,11 @@ function dangerousStyleValue(name, value) {
 }
 
 module.exports = dangerousStyleValue;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./CSSProperty":296}],399:[function(require,module,exports){
+=======
+},{"./CSSProperty":342}],445:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -47200,7 +53385,11 @@ function deprecated(fnName, newModule, newPackage, ctx, fn) {
 
 module.exports = deprecated;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"_process":177,"fbjs/lib/warning":104}],400:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"_process":178,"fbjs/lib/warning":105}],446:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47239,7 +53428,11 @@ function escapeTextContentForBrowser(text) {
 }
 
 module.exports = escapeTextContentForBrowser;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],401:[function(require,module,exports){
+=======
+},{}],447:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -47291,7 +53484,11 @@ function findDOMNode(componentOrElement) {
 
 module.exports = findDOMNode;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactCurrentOwner":327,"./ReactInstanceMap":355,"./ReactMount":358,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],402:[function(require,module,exports){
+=======
+},{"./ReactCurrentOwner":373,"./ReactInstanceMap":401,"./ReactMount":404,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],448:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -47342,7 +53539,11 @@ function flattenChildren(children) {
 
 module.exports = flattenChildren;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./traverseAllChildren":420,"_process":177,"fbjs/lib/warning":104}],403:[function(require,module,exports){
+=======
+},{"./traverseAllChildren":466,"_process":178,"fbjs/lib/warning":105}],449:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47372,7 +53573,11 @@ var forEachAccumulated = function (arr, cb, scope) {
 };
 
 module.exports = forEachAccumulated;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],404:[function(require,module,exports){
+=======
+},{}],450:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47423,7 +53628,11 @@ function getEventCharCode(nativeEvent) {
 }
 
 module.exports = getEventCharCode;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],405:[function(require,module,exports){
+=======
+},{}],451:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47527,7 +53736,11 @@ function getEventKey(nativeEvent) {
 }
 
 module.exports = getEventKey;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./getEventCharCode":404}],406:[function(require,module,exports){
+=======
+},{"./getEventCharCode":450}],452:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47572,7 +53785,11 @@ function getEventModifierState(nativeEvent) {
 }
 
 module.exports = getEventModifierState;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],407:[function(require,module,exports){
+=======
+},{}],453:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47602,7 +53819,11 @@ function getEventTarget(nativeEvent) {
 }
 
 module.exports = getEventTarget;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],408:[function(require,module,exports){
+=======
+},{}],454:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47643,7 +53864,11 @@ function getIteratorFn(maybeIterable) {
 }
 
 module.exports = getIteratorFn;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],409:[function(require,module,exports){
+=======
+},{}],455:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47717,7 +53942,11 @@ function getNodeForCharacterOffset(root, offset) {
 }
 
 module.exports = getNodeForCharacterOffset;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],410:[function(require,module,exports){
+=======
+},{}],456:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47751,7 +53980,11 @@ function getTextContentAccessor() {
 }
 
 module.exports = getTextContentAccessor;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/ExecutionEnvironment":79}],411:[function(require,module,exports){
+=======
+},{"fbjs/lib/ExecutionEnvironment":80}],457:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -47866,7 +54099,11 @@ function instantiateReactComponent(node) {
 
 module.exports = instantiateReactComponent;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"./ReactCompositeComponent":326,"./ReactEmptyComponent":347,"./ReactNativeComponent":361,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],412:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"./ReactCompositeComponent":372,"./ReactEmptyComponent":393,"./ReactNativeComponent":407,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],458:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47927,7 +54164,11 @@ function isEventSupported(eventNameSuffix, capture) {
 }
 
 module.exports = isEventSupported;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/ExecutionEnvironment":79}],413:[function(require,module,exports){
+=======
+},{"fbjs/lib/ExecutionEnvironment":80}],459:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -47968,7 +54209,11 @@ function isTextInputElement(elem) {
 }
 
 module.exports = isTextInputElement;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],414:[function(require,module,exports){
+=======
+},{}],460:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -48004,7 +54249,11 @@ function onlyChild(children) {
 
 module.exports = onlyChild;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactElement":345,"_process":177,"fbjs/lib/invariant":93}],415:[function(require,module,exports){
+=======
+},{"./ReactElement":391,"_process":178,"fbjs/lib/invariant":94}],461:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -48031,7 +54280,11 @@ function quoteAttributeValueForBrowser(value) {
 }
 
 module.exports = quoteAttributeValueForBrowser;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./escapeTextContentForBrowser":400}],416:[function(require,module,exports){
+=======
+},{"./escapeTextContentForBrowser":446}],462:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -48048,7 +54301,11 @@ module.exports = quoteAttributeValueForBrowser;
 var ReactMount = require('./ReactMount');
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactMount":358}],417:[function(require,module,exports){
+=======
+},{"./ReactMount":404}],463:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -48139,7 +54396,11 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setInnerHTML;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"fbjs/lib/ExecutionEnvironment":79}],418:[function(require,module,exports){
+=======
+},{"fbjs/lib/ExecutionEnvironment":80}],464:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -48180,7 +54441,11 @@ if (ExecutionEnvironment.canUseDOM) {
 }
 
 module.exports = setTextContent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./escapeTextContentForBrowser":400,"./setInnerHTML":417,"fbjs/lib/ExecutionEnvironment":79}],419:[function(require,module,exports){
+=======
+},{"./escapeTextContentForBrowser":446,"./setInnerHTML":463,"fbjs/lib/ExecutionEnvironment":80}],465:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 /**
  * Copyright 2013-2015, Facebook, Inc.
  * All rights reserved.
@@ -48224,7 +54489,11 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 }
 
 module.exports = shouldUpdateReactComponent;
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],420:[function(require,module,exports){
+=======
+},{}],466:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2013-2015, Facebook, Inc.
@@ -48416,7 +54685,11 @@ function traverseAllChildren(children, callback, traverseContext) {
 
 module.exports = traverseAllChildren;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./ReactCurrentOwner":327,"./ReactElement":345,"./ReactInstanceHandles":354,"./getIteratorFn":408,"_process":177,"fbjs/lib/invariant":93,"fbjs/lib/warning":104}],421:[function(require,module,exports){
+=======
+},{"./ReactCurrentOwner":373,"./ReactElement":391,"./ReactInstanceHandles":400,"./getIteratorFn":454,"_process":178,"fbjs/lib/invariant":94,"fbjs/lib/warning":105}],467:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 /**
  * Copyright 2015, Facebook, Inc.
@@ -48782,12 +55055,20 @@ if (process.env.NODE_ENV !== 'production') {
 
 module.exports = validateDOMNesting;
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./Object.assign":315,"_process":177,"fbjs/lib/emptyFunction":85,"fbjs/lib/warning":104}],422:[function(require,module,exports){
+=======
+},{"./Object.assign":361,"_process":178,"fbjs/lib/emptyFunction":86,"fbjs/lib/warning":105}],468:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 module.exports = require('./lib/React');
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./lib/React":317}],423:[function(require,module,exports){
+=======
+},{"./lib/React":363}],469:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -48939,7 +55220,11 @@ function createUncontrollable(mixins, set) {
   }
 }
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./utils":425,"invariant":105,"react":422}],424:[function(require,module,exports){
+=======
+},{"./utils":471,"invariant":106,"react":468}],470:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 'use strict';
 
 exports.__esModule = true;
@@ -48971,7 +55256,11 @@ function set(component, propName, handler, value, args) {
 
 exports.default = (0, _createUncontrollable2.default)([mixin], set);
 module.exports = exports['default'];
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"./createUncontrollable":423}],425:[function(require,module,exports){
+=======
+},{"./createUncontrollable":469}],471:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 (function (process){
 'use strict';
 
@@ -49099,7 +55388,11 @@ function has(o, k) {
   return o ? Object.prototype.hasOwnProperty.call(o, k) : false;
 }
 }).call(this,require('_process'))
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{"_process":177,"invariant":105,"react":422}],426:[function(require,module,exports){
+=======
+},{"_process":178,"invariant":106,"react":468}],472:[function(require,module,exports){
+>>>>>>> added glyphicon files, map tinkering
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -50649,6 +56942,12 @@ function has(o, k) {
   }
 }.call(this));
 
+<<<<<<< ebfe6363ac81c840604d47ddb4253042551d0939
 },{}],427:[function(require,module,exports){
 arguments[4][287][0].apply(exports,arguments)
 },{"_process":177,"dup":287}]},{},[9]);
+=======
+},{}],473:[function(require,module,exports){
+arguments[4][333][0].apply(exports,arguments)
+},{"_process":178,"dup":333}]},{},[9]);
+>>>>>>> added glyphicon files, map tinkering

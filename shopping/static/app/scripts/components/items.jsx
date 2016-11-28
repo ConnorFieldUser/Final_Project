@@ -109,15 +109,16 @@ var FoodItemContainer = React.createClass({
     console.log('quantity', quantity);
   },
   addToOrder: function(item, quantity){
-    var price = item.price;
+    // var price = item.price;
+    var item = item.attributes;
     var cart = this.state.cart;
     var orderCollection = this.state.orderCollection;
-
+    console.log('item', item)
 
     $.ajax({
-      url: 'api/carts/latest/add_item/',
+      url: 'api/test/add_item_by_ref_id/',
       type: 'POST',
-      data: ({name:item.name, price:item.price, quantity:quantity, id:item.id}),
+      data: ({name:item.Itemname, quantity:quantity, ref_id:item.ItemID}),
       success: function(result){
         console.log('DONE')
       }
