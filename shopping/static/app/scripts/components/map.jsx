@@ -2,7 +2,23 @@ var React = require('react');
 var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 
+require("react-dom/package.json"); // react-dom is a peer dependency
+var GoogleMapLoader = require('google-maps-react').GoogleMapLoader;
+var Marker = require('google-maps-react').Marker;
+var GoogleMap = require('google-maps-react');
+console.log('googlemap', GoogleMap)
 
+var MapLocation = React.createClass({
+render: function() {
+    var style = this.props.$hover ? greatPlaceStyleHover : greatPlaceStyle;
+
+    return (
+       <div style={style}>
+          {this.props.text}
+       </div>
+    );
+  }
+});
 
 var MapContainer = React.createClass({
   handleClick: function(e){
@@ -20,11 +36,13 @@ var MapContainer = React.createClass({
     return (
       <TemplateContainer>
         <h1>Locations</h1>
-        <div id="map">{function(){self.handleMap()}}</div>
+          <GoogleMap
+          defaultCenter={this.props.center}
+          defaultZoom={this.props.zoom}>
+          <MapLocation lat={59.955413} lng={30.337844} text={'A'} />
+        </GoogleMap>
         <button onClick={this.handleClick} className="btn btn-success navItemsBtn">Next: View Items <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-          <script async defer
-         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJEwAaweEQb7eNqNzQJ7LpZ7Eqsh8rLdg&callback=initMap">
-         </script>
+
     </TemplateContainer>
     )
   }

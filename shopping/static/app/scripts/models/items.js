@@ -74,7 +74,7 @@ var CartItemModel = Backbone.Model.extend({
 
 var CartItemCollection = Backbone.Collection.extend({
   model: CartItemModel,
-  url: 'api/carts/latest/add_item/',
+  url: 'api/test/add_item_by_ref_id/',
   total: function(){
     return this.reduce(function(sum, model){
       return sum + parseFloat(model.get('price'));
