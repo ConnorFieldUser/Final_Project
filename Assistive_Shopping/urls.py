@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestAddItemAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemRefIdAPIView
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView
 # TestAPIView,
 from django.conf import settings
 from django.conf.urls.static import static
@@ -33,8 +33,8 @@ urlpatterns = [
     url(r'^api/account/profile/$', AccountDetailUpdateAPIView.as_view(), name="account_detail_update_api_view"),
     url(r'^api/carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view"),
     url(r'^api/carts/latest/$', CartLatestDetailUpdateViewAPIView.as_view(), name="cart_latest_detail_update_api_view"),
-    url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="cart_latest_add_item_api_view"),
-    url(r'^api/carts/latest/add_item/ref_id/$', CartLatestAddItemRefIdAPIView.as_view(), name="test_ref_id"),
+    # url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="cart_latest_add_item_api_view"),
+    url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="test_ref_id"),
     url(r'^api/carts/latest/remove_item/$', CartLatestRemoveItemAPIView.as_view(), name="cart_latest_remove_item_api_view"),
     url(r'^api/cartitems/$', CartItemListCreateAPIView.as_view(), name="cartitem_list_api_view"),
     url(r'^api/cartitems/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),

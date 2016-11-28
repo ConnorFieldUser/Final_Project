@@ -204,21 +204,21 @@ class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
         return Cart.objects.filter(user=self.request.user).latest('created_time')
 
 
-class CartLatestAddItemAPIView(APIView):
-
-    serializer_class = CartSerializer
-
-    def post(self, request, format=None):
-        # cart = Cart.objects.get(user=request.POST['user']).latest('created_time')
-        cart = Cart.objects.filter(user=request.user).latest('created_time')
-        item = request.data["id"]
-        quantity = request.data["quantity"]
-        print(item)
-        print(cart)
-        i1 = CartItem(cart=cart, item_id=item, quantity=quantity)
-        # i1 = CartItem()
-        i1.save()
-        return Response(request.data)
+# class CartLatestAddItemAPIView(APIView):
+#
+#     serializer_class = CartSerializer
+#
+#     def post(self, request, format=None):
+#         # cart = Cart.objects.get(user=request.POST['user']).latest('created_time')
+#         cart = Cart.objects.filter(user=request.user).latest('created_time')
+#         item = request.data["id"]
+#         quantity = request.data["quantity"]
+#         print(item)
+#         print(cart)
+#         i1 = CartItem(cart=cart, item_id=item, quantity=quantity)
+#         # i1 = CartItem()
+#         i1.save()
+#         return Response(request.data)
 
 
 class CartLatestRemoveItemAPIView(APIView):
@@ -303,7 +303,7 @@ class ItemDetailAPIView(RetrieveAPIView):
     #     return Item.objects.get(user=self.request.user)
 
 
-class CartLatestAddItemRefIdAPIView(APIView):
+class CartLatestAddItemAPIView(APIView):
 
     serializer_class = CartSerializer
 
