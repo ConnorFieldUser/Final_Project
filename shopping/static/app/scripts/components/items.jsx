@@ -24,12 +24,12 @@ var FoodItem = React.createClass({
     this.setState({quantity: quantity});
   },
   handleDetail: function(item){
-    var itemD = item.attributes
-    console.log(itemD);
-
+    var item = item.attributes
+    console.log(item);
+    localStorage.setItem("item", JSON.stringify(item));
 
     // $(itemD.ItemDescription).show();
-    // Backbone.history.navigate('#detail/', {trigger: true});
+    Backbone.history.navigate('#detail/', {trigger: true});
   },
   handleSearchInput: function(e){
     this.setState({search: e.target.value})
@@ -53,12 +53,12 @@ var FoodItem = React.createClass({
             <img className="itemImage" src={item.get('ItemImage')} />
           </div>
           <span className="name">{item.get('Itemname')}</span>
-          <span id="descrip">{item.get('ItemDescription')}</span>
+          <span className="hidden"id="descrip">{item.get('ItemDescription')}</span>
           <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
           <span className="price">Price: $ {self.props.randomPrice()}</span>
           <div>
             <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
-            <button onClick={function(){$("#descrip").remove()}} className="btn btn-danger viewDetail">View Item Details</button>
+            <button onClick={function(){self.handleDetail(item)}} className="btn btn-danger viewDetail">View Item Details</button>
         </div>
       </div>
       );
