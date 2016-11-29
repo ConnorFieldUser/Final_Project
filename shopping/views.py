@@ -3,11 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
-# from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
-
-# from django.shortcuts import get_object_or_404
 
 from django.views.generic.edit import FormView
 
@@ -160,7 +157,7 @@ class SupermarketAPIView(APIView):
 class UserCreateView(CreateView):
     model = User
     form_class = UserCreationForm
-    success_url = reverse_lazy("account_list_view")
+    success_url = reverse_lazy("login")
 
 
 class DriverView(DriverAccessMixin, TemplateView):
@@ -175,12 +172,15 @@ class AccountDetailView(DriverAccessMixin, DetailView):
     model = Account
 
 
-class AccountUpdateView(DriverAccessMixin, UpdateView):
+class AccountUpdateView(UpdateView):
     model = Account
     fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email', 'image', 'zipcode')
 
     def get_success_url(self):
-        return reverse_lazy("account_detail_view", args=(self.object.id,))
+        if not self.request.user.account.user_type == 'c':
+            return reverse_lazy("account_detail_view", args=(self.object.id,))
+        else:
+            return reverse_lazy("login")
 
     permission_classes = (IsAuthenticated, )
 

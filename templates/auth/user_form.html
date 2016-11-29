@@ -2,7 +2,7 @@
 {% block content %}
 
 
-    <h2>Sign Up</h2>
+    <h2>If you want to become a driver, please create an account.</h2>
 
 <form class="" action="" method="post">
   {% csrf_token %}
@@ -11,4 +11,6 @@
 
 </form>
 
+
+<h6>If you are already a driver, <a href="{% url 'login' %}">login here.</a></h6>
 {% endblock %}
