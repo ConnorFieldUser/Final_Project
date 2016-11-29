@@ -11,9 +11,21 @@ var Order = React.createClass({
     e.preventDefault();
     Backbone.history.navigate('#items/', {trigger:true});
   },
+  generateNewCart: function(){
+    // e.preventDefault();
+    $.ajax({
+      url: 'api/carts/',
+      type: 'POST',
+      success: function(result){
+        console.log('DONE')
+      }
+    });
+    Backbone.history.navigate('#items/', {trigger:true});
+  },
   render: function(cart){
     var orderCollection = this.props.orderCollection;
     var cart = this.props.cart.attributes;
+    console.log('cart', cart)
     var self = this;
 
     var order = this.props.cart.get('cart_items').map(function(item){
@@ -21,7 +33,7 @@ var Order = React.createClass({
         <div className="cartItem row well" key={item.id}>
           <span className="col-md-4">{item.item__name}</span>
           <span className="col-md-4">{item.quantity}</span>
-          <span className="col-md-4">{item.price}</span>
+          <span className="col-md-4">${item.item__price}.00</span>
           <button onClick={function(){self.props.deleteItem(item)}} className="btn btn-success deleteBtn" type="submit">Delete</button>
         </div>
       );
@@ -37,9 +49,10 @@ var Order = React.createClass({
       <div className="containsItem">
         {order}
       </div>
-      <strong className="total">Total: ${this.props.orderCollection.total()}</strong>
+      <strong className="total">Total: ${this.props.cart.total(self.props.cart.get('cart_items'))}</strong>
       <div>
         <button className="placeOrderBtn btn btn-warning">Place Order</button>
+        <button onClick={function(){self.generateNewCart()}} className="newCartBtn btn btn-success">New Cart</button>
         <div><button className="btn btn-success backItemsBtn" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
       </div>
     </div>
@@ -73,6 +86,7 @@ var Order = React.createClass({
     console.log('quantity', quantity);
   },
   deleteItem: function(item){
+    console.log('item', item);
     var self = this;
     var cart = this.state.cart.get('cart_items');
     console.log('cart', cart);
@@ -86,15 +100,16 @@ var Order = React.createClass({
       // delete (item.id);
       // console.log('ID', item.id);
       // cart.splice(index, 1);
-      $.ajax({
-        url: 'api/carts/latest/remove_item/',
-        type: 'POST',
-        data: (item),
-        success: function(result){
-          console.log('DONE')
-          self.setState({cart: cart});
-        }
-      });
+      // $.ajax({
+      //   url: 'api/carts/latest/remove_item/',
+      //   type: 'POST',
+      //   data: (item),
+      //   success: function(result){
+      //     console.log('DONE')
+      //     // self.setState({cart: cart});
+      //   }
+      // });
+      // $('item').remove();
     // }
     // return false;
   },

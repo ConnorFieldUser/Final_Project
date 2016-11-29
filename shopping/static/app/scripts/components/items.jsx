@@ -116,7 +116,7 @@ var FoodItemContainer = React.createClass({
     console.log('item', item)
 
     $.ajax({
-      url: 'api/test/add_item_by_ref_id/',
+      url: 'api/carts/latest/add_item/',
       type: 'POST',
       data: ({name:item.Itemname, quantity:quantity, ref_id:item.ItemID}),
       success: function(result){

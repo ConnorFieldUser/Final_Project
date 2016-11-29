@@ -1,63 +1,146 @@
 var React = require('react');
+var ReactDOM = require('react-dom');
 var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var $ = require('jquery');
-
-require("react-dom/package.json"); // react-dom is a peer dependency
-
+require('backbone-react-component');
 var google = require('react-google-maps');
-
+var ScriptjsLoader = require("react-google-maps/lib/async/ScriptjsLoader");
 var GoogleMapLoader = google.GoogleMapLoader;
 var GoogleMap = google.GoogleMap;
+var Marker = google.Marker;
+var InfoWindow = google.InfoWindow;
+console.log('googlemap', google)
 
-console.log('GoogleMap', GoogleMap)
+// THANKS GRAYSON HICKS! :
+// https://github.com/graysonhicks/parkary/blob/master/app/scripts/components/mapview/dynamicmap.jsx
 
+var GroceryMap = React.createClass({
+  getInitialState: function(){
+    var state = {
+      zoom: 12,
+      center: {
+        lat:  (34.852619),
+        lng:  (-82.394012)
+      },
+      locations: [
+        {id: 1, name:'Mcbee', lat :(34.84802340), lng:(-82.39543630), locName:'Publix McAbee Station', address:'400 E McBee Ave Ste 100, Greenville, SC 29601'},
+        {id: 2, name:'Pleasantburg', lat:(34.8362131), lng:(-82.3666505), locName:'Publix McAlister Square', address:'235 S Pleasantburg Dr, Greenville, SC 29607'},
+        {id: 3, name:'Pelham', lat:(34.8671485), lng:(-82.3496166), locName:'Publix Supermarket at Pelham Commons', address:' 215 Pelham Rd, Greenville, SC 29615'},
+        {id: 4, name:'Woodruff', lat:(34.8182439), lng:(-82.2738621), locName:'Publix at Woodruff', address:'1750 Woodruff Rd, Greenville, SC 29607'},
+        {id: 5, name:'Buncombe', lat:(34.9109245), lng:(-82.4298842), locName:'Publix Super Market at University Square', address:'5000 Old Buncombe Rd, Greenville, SC 29617'},
+      ],
+      windowLoad: [
+        {id: 100, name:'Publix McAbee Station', address:'400 E McBee Ave Ste 100, Greenville, SC 29601'},
+        {id: 200, name:'Publix McAlister Square', address:'235 S Pleasantburg Dr, Greenville, SC 29607'},
+        {id: 300, name:'Publix Supermarket at Pelham Commons', address:' 215 Pelham Rd, Greenville, SC 29615'},
+        {id: 400, name:'Publix at Woodruff', address:'1750 Woodruff Rd, Greenville, SC 29607'},
+        {id: 500, name:'Publix Super Market at Universtiy Square SC', address:'5000 Old Buncombe Rd, Greenville, SC 29617'},
+      ],
+      showingInfoWindow: false,
+      activeMarker: {},
+      selectedPlace: {}
+    }
+    return state;
+  },
+  onMarkerClick: function(props, marker, e){
+    this.setState({
+      selectedPlace: props,
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  },
+  onMapClicked: function(props){
+    if(this.state.showingInfoWindow) {
+      this.setState({
+        showingInfoWindow: false,
+        activeMarker: null
+      })
+    }
+  },
+//   onMarkerClick: function(props, marker, e){
+//     console.log("marker clicked")
+//     this.setState({
+//     selectedPlace: props,
+//     activeMarker: marker,
+//     showingInfoWindow: true
+//   });
+// },
+  render: function(){
+    var self = this;
+    var center = this.state.center;
+    var zoom = this.state.zoom;
+    var locations = this.state.locations;
+    var windowLoad = this.state.windowLoad;
+    var showingInfoWindow = this.state.showingInfoWindow
+    console.log('windowload', showingInfoWindow);
 
-var MapLocation = React.createClass({
-render: function() {
+    var markers = locations.map(function(location){
+      return (
+        <Marker key={location.id} onClick={self.onMarkerClick} name={location.name} position={{lat: location.lat, lng: location.lng}} />
+      )
+    });
+    var windowLoad = windowLoad.map(function(info){
+      return (
+      <InfoWindow key={info.id} marker={self.state.activeMarker} visible={self.state.showingInfoWindow}>
+        <div>
+          <h5>{info.name}</h5>
+          <h6>{info.address}</h6>
+        </div>
+      </InfoWindow>
+    )
+    });
     return (
-       <div>
-          {this.props.text}
-       </div>
+      <section id="map-section" style={{height:"525px"}}>
+
+        <GoogleMapLoader containerElement={
+            <div
+              {...this.props}
+              style={{
+                height: "100%"
+              }}
+            />
+          }
+           googleMapElement={
+            <GoogleMap google={this.props.google} onClick={this.onMapClicked}
+              id="map"
+              zoom={zoom}
+              ref="map"
+              center={center}
+              defaultCenter={center}
+            > {markers}{windowLoad}
+            </GoogleMap>
+          }
+        />
+      </section>
     );
   }
 });
 
+// <Marker onClick={this.onMarkerClick} name={'McAbee'} position={{lat:34.84802340, lng:-82.39543630}} />
+// <InfoWindow
+//   marker={this.state.activeMarker}
+//   visible={this.state.showingInfoWindow}>
+//   <div>
+//     <h5>Publix McAbee Station</h5>
+//     <h6>400 E McBee Ave Ste 100, Greenville, SC 29601</h6>
+//   </div>
+// </InfoWindow>
+
+
+
 var MapContainer = React.createClass({
+  mixins: [Backbone.React.Component.mixin],
   handleClick: function(e){
     e.preventDefault();
     Backbone.history.navigate('#items/', {trigger:true});
   },
-  handleMap: function(){
-    new google.maps.Map(), {
-      zoom: 16,
-      center: new google.maps.LatLng(-34.397, 150.644),
-      mapTypeId: 'roadmap'
-    }
-  },
-  getDefaultProps: function(){
-      return {
-        center: {
-          lat: 59.938043,
-          lng: 30.337157
-        }, // [59.938043, 30.337157],
-        zoom: 9,
-        greatPlaceCoords: {lat: 59.724465, lng: 30.080121}
-      };
-  },
   render: function(){
     return (
       <TemplateContainer>
-        <h1>Locations</h1>
-        <GoogleMapLoader googleMapElement={
-            <GoogleMap
-              center={this.props.center}
-              zoom={this.props.zoom}>
-              <MapLocation lat={59.955413} lng={30.337844} text={'A'} />
-            </GoogleMap>
-        } />
+        <h1 className="locationTitle">Locations</h1>
+          <GroceryMap lat={34.852619} long={-82.394012} />
         <button onClick={this.handleClick} className="btn btn-success navItemsBtn">Next: View Items <span className="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button>
-
     </TemplateContainer>
     )
   }

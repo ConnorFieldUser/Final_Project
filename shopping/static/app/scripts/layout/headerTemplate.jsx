@@ -1,5 +1,7 @@
 var React = require('react');
 var Backbone = require('backbone');
+var NavDropdown = require('react-bootstrap').NavDropdown;
+var MenuItem = require('react-bootstrap').MenuItem;
 
 
 var TemplateContainer = React.createClass({
@@ -50,14 +52,22 @@ var TemplateContainer = React.createClass({
                 <li className="nav-item">
                   <a onClick={this.navCart} className="nav-link" href="#">Cart</a>
                 </li>
+                <li className="nav-item welcome">
+                <span className="userWelcome nav-item">Welcome, {localStorage.getItem('USERNAME')}!</span>
+                </li>
+                <NavDropdown id="nav-dropdown">
+                  <MenuItem
+                    onClick={this.handleLogout}
+                  >
+                    Logout
+                  </MenuItem>
+                </NavDropdown>
+                <li className="nav-item prof">
+                  <div className="profilePicture"><img src={localStorage.getItem('image')} /></div>
+                </li>
               </ul>
-              <div>
-              <span className="userWelcome">Welcome, {localStorage.getItem('USERNAME')}!</span>
-              <button className="btn btn-success logoutBtn" onClick={this.handleLogout}>Logout</button>
-              </div>
             </nav>
         </div>
-
 
 
         {this.props.children}
@@ -85,3 +95,7 @@ var TemplateContainer = React.createClass({
 module.exports = {
   TemplateContainer: TemplateContainer
 }
+
+// <li>
+//   <button className="btn btn-success logoutBtn" onClick={this.handleLogout}>Logout</button>
+// </li>

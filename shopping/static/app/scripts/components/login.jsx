@@ -140,7 +140,8 @@ var LoginSignUpContainer = React.createClass({
               <h1>Assistive Shopper {this.state.user.get('token') ? 'Logged in' : ''}</h1>
                 <SignUpForm signUp={this.signUp} />
                 <SignInForm signIn={this.signIn} />
-                <a className="driverLink" href="create_user/">Interested in Becoming a Driver?</a>
+                <a className="driverLink" href="email/">Interested in Becoming a Driver?</a>
+                <a className="driverSignIn" href="login/">Driver Sign In</a>
             </div>
           </div>
       </div>
@@ -148,7 +149,7 @@ var LoginSignUpContainer = React.createClass({
   }
 });
 
-
+//CREATE A LOGIN LINK WITH THE URL:  login/
 module.exports = {
   LoginSignUpContainer: LoginSignUpContainer
 };

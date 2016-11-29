@@ -17,7 +17,7 @@ html {
   height: 100%;
   // font-family: 'Domine', serif;
   // background-image: 'https://www.photocase.com/photos/1238726-healthy-eating-life-eating-food-photograph-style-background-picture-photocase-stock-photo-large.jpeg',
-  background-image: url('https://www.photocase.com/photos/1663924-healthy-eating-life-eating-food-photograph-style-food-photocase-stock-photo-large.jpeg');
+  background-image: url('../images/background.jpg');
   // background-image: url('http://shushi168.com/data/out/222/37188142-textured-wallpaper.jpg');
   background-size: 100%;
   // background-repeat: no-repeat;
@@ -73,7 +73,7 @@ a.nav-link{
 
 .logoutBtn {
   font-family: 'Oswald', sans-serif;
-  // font-weight: 300;
+  font-weight: 300;
   font-size: 14px;
   padding: 15px;
   background: #5E86A9;
@@ -82,10 +82,37 @@ a.nav-link{
 }
 
 .userWelcome {
-  margin-left: 330px;
-  margin-right: 10px;
+  // float: right;
+  // margin-top: 16px;
+  // margin-left: 285px;
+  // margin-right: 10px;
   font-family:'Old Standard TT', sans-serif;
   font-size: 16px;
+}
+
+.prof {
+  float: right;
+}
+.welcome {
+  float: right;
+  margin-top: 16px;
+  margin-left: 320px;
+  // margin-right:10px;
+}
+.profilePicture {
+  // float: right;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+   img {
+    flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%
+   }
 }
 
 
@@ -210,6 +237,82 @@ a.nav-link{
   opacity: 0.9;
 }
 
+.dirOne {
+  background-color: #5E86A9;
+  border: #5E86A9;
+  color: white;
+  // width: 400px;
+  // height: 140px;
+  // margin-left: 345px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top:20px;
+}
+// .glyphOne {
+//   position: relative;
+//   right: 160px;
+//   top: 50px;
+// }
+.dirTwo {
+  background-color: #5E86A9;
+  border: #5E86A9;
+  color: white;
+  // width: 400px;
+  // height: 160px;
+  // margin-left: 345px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+// .glyphTwo {
+//   position: relative;
+//   top: 40px;
+//   right: 149px;
+// }
+.dirThree {
+  background-color: #5E86A9;
+  border: #5E86A9;
+  color: white;
+  // width: 400px;
+  // height: 140px;
+  // margin-left: 345px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+// .glyphThree {
+//   position: relative;
+//   left: -1px;
+//   top: 20px;
+// }
+.dirFour {
+  background-color: #5E86A9;
+  border: #5E86A9;
+  color: white;
+  // width: 400px;
+  // height: 175px;
+  // margin-left: 345px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+// .glyphFour {
+//   position: relative;
+//   top: 40px;
+//   right: 37px;
+// }
+.dirFive {
+  background-color: #5E86A9;
+  border: #5E86A9;
+  color: white;
+  // width: 400px;
+  // margin-left: 345px;
+  padding: 10px;
+  font-size: 20px;
+  margin-top: 20px;
+}
+
+
 
 //############      ACCOUNT PAGE STYLING   ############################################################//
 
@@ -240,6 +343,7 @@ a.nav-link{
 
 
 
+
 //############      MAP PAGE STYLING   ############################################################//
 
 
@@ -250,6 +354,9 @@ a.nav-link{
   float: right;
   background-color: #5E86A9;
   border: #5E86A9;
+}
+.locationTitle {
+  color: white;
 }
 
 
@@ -289,9 +396,9 @@ a.nav-link{
   border: 1px solid #5E86A9;
 }
 
-.glyphicon {
-  top: -2px;
-}
+// .glyphicon {
+//   top: -2px;
+// }
 
 .navCartBtn {
   float: right;
@@ -319,7 +426,7 @@ h2.searchDirections {
   color: white;
 }
 .itemDetailImg {
-  margin-left: 140px;
+  margin-left: 120px;
 }
 
 
