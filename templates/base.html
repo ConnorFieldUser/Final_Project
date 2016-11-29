@@ -26,6 +26,7 @@
     </ul>
     </div>
     {% if request.user.is_authenticated %}
+      <p class="navbar-text navbar-right"> <a href="{% url 'logout' %}?next={% url 'login' %}"><button type="button" class="btn btn-default navbar-btn">Log out</button></a></p>
       <p class="navbar-text navbar-right">Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></p>
       {% endif %}
     </div>
