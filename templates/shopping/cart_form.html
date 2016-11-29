@@ -1,18 +1,30 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
+{% if not object.complete %}
 
     <h2>Update cart</h2>
-{{ self }}
-<h6><a href="{% url 'cart_detail_view' object.id %}">back</a></h6>
+{{ object }}
 
       <form class="" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
-          {{ form.as_p }}
+
+{% if object.in_progress %}
+
+          <p><label for="complete">Complete:</label>
+              <input type="checkbox" name="complete"  /></p>
+
+{% else %}
+          <p><label for="in_progress">In progress:</label>
+              <input type="checkbox" name="in_progress" /></p>
+{% endif %}
+
       <input type="submit" name="" value="Update">
 
       </form>
 
+{% else %}
+This cart has already been completed.
+{% endif %}
 
 {% endblock %}

@@ -18,8 +18,8 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartDetailView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView
-# TestAPIView,
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, DriverView, CartUpdateView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView
+# CartUpdateView
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -40,13 +40,12 @@ urlpatterns = [
     url(r'^api/cartitems/(?P<pk>\d+)/$', CartItemDetailDestroyView.as_view(), name="cartitem_detail_destroy_view"),
     url(r'^api/items/$', ItemListCreateAPIView.as_view(), name="item_list_create_api_view"),
     url(r'^api/supermarket/$', SupermarketAPIView.as_view(), name="supermarket_api_view"),
-    # url(r'^api/test/$', TestAPIView.as_view(), name="test_api_view"),
     url(r'^accounts/$', AccountListView.as_view(), name="account_list_view"),
     url(r'^accounts/(?P<pk>\d+)/$', AccountDetailView.as_view(), name="account_detail_view"),
     url(r'^accounts/update/$', AccountUpdateView.as_view(), name="account_update_view"),
     url(r'^driver/$', DriverView.as_view(), name="driver_view"),
-    url(r'^carts/update$', CartUpdateView.as_view(), name="cart_update_view"),
-    url(r'^carts/(?P<pk>\d+)/$', CartDetailView.as_view(), name="cart_detail_view"),
+    # url(r'^carts/update$', CartUpdateView.as_view(), name="cart_update_view"),
+    url(r'^carts/update/(?P<pk>\d+)/$', CartUpdateView.as_view(), name="cart_update_view"),
     url(r'^send_email/$', EmailView.as_view(), name="email_view"),
     url(r'^email/$', EmailTemplateView.as_view(), name="email_template_view"),
     url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view")

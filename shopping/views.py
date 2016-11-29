@@ -167,15 +167,15 @@ class DriverView(DriverAccessMixin, TemplateView):
     template_name = "driver.html"
 
 
-class AccountListView(ListView):
+class AccountListView(DriverAccessMixin, ListView):
     model = Account
 
 
-class AccountDetailView(DetailView):
+class AccountDetailView(DriverAccessMixin, DetailView):
     model = Account
 
 
-class AccountUpdateView(UpdateView):
+class AccountUpdateView(DriverAccessMixin, UpdateView):
     model = Account
     fields = ('first_name', 'last_name', 'phone_number', 'adress', 'city', 'state', 'email', 'image', 'zipcode')
 
@@ -188,22 +188,27 @@ class AccountUpdateView(UpdateView):
         return Account.objects.get(user=self.request.user)
 
 
-class CartUpdateView(UpdateView):
+# class CartUpdateView(DriverAccessMixin, UpdateView):
 
+#     model = Cart
+#     fields = ('complete',)
+
+#     def get_success_url(self):
+#         return reverse_lazy("cart_detail_view", args=(self.object.id,))
+
+#     permission_classes = (IsAuthenticated, )
+
+#     def get_object(self):
+#         return Cart.objects.filter(user=self.request.user).latest('created_time')
+
+
+class CartUpdateView(DriverAccessMixin, UpdateView):
     model = Cart
-    fields = ('complete',)
+    fields = ('complete', 'in_progress')
+    success_url = reverse_lazy("account_list_view")
 
-    def get_success_url(self):
-        return reverse_lazy("cart_detail_view", args=(self.object.id,))
-
-    permission_classes = (IsAuthenticated, )
-
-    def get_object(self):
-        return Cart.objects.filter(user=self.request.user).latest('created_time')
-
-
-class CartDetailView(DetailView):
-    model = Cart
+    # def get_success_url(self):
+    #     return reverse_lazy('account_detail_view', args=(self.user.id,))
 
 
 class EmailView(FormView):

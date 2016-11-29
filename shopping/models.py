@@ -97,7 +97,7 @@ class Cart(models.Model):
     user = models.ForeignKey('auth.User')
     created_time = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Item, through='CartItem')
-    complete = models.BooleanField(default=True)
+    complete = models.BooleanField(default=False)
     in_progress = models.BooleanField(default=False)
 
     def __str__(self):

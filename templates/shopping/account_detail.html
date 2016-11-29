@@ -4,7 +4,7 @@
   {% if account.is_customer and request.user.account.is_driver or account.user.id == request.user.id or request.user.account.is_customer and account.is_driver %}
 
   <div class=>
-  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}"/>
+  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}" height="150" width="150"/>
 </div>
 
 
@@ -22,7 +22,10 @@
 
 <h3>Contact info
 </h3>
-Phone: &nbsp;{{ account.phone_number }}
+<p>
+  Phone: &nbsp;{{ account.phone_number }}
+  
+</p>
 <p>
 Home address: &nbsp;{{ account.adress }}
 </p>
@@ -47,10 +50,14 @@ Email adress:&nbsp; {{ account.email }}
 
 {% endif %}
 
-{% for item in account.get_last_cart.items.all %}
-<ul>
-  {{item}}
-</ul>
-{% endfor %}
+<a href="#">
+<div class="panel panel-default">
+  <div class="panel-body">{% for item in account.get_last_cart.items.all %}
+  <ul>
+    {{item}}
+  </ul>
+  {% endfor %}</div>
+</div>
+</a>
 
 {% endblock %}
