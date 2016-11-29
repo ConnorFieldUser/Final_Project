@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("SECRET_KEY_FINAL_PROJECT")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["shrouded-eyrie-43286.herokuapp.com", "localhost"]
+ALLOWED_HOSTS = ["store-to-door.herokuapp.com", "localhost"]
 
 
 # Application definition
