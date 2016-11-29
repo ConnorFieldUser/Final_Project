@@ -94,11 +94,12 @@ class Item(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey('auth.User')
+    user = models.ForeignKey('auth.User', related_name='user')
     created_time = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Item, through='CartItem')
     complete = models.BooleanField(default=False)
     in_progress = models.BooleanField(default=False)
+    driver = models.ForeignKey('auth.User', related_name='driver', null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.user, self.id)

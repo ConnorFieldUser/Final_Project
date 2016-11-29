@@ -104,7 +104,6 @@ class ItemDetailAPIView(RetrieveAPIView):
 
     def get_object(self):
         ref_id = self.request.GET.get("ref_id")
-        print("KLJLKJLKJLK", ref_id)
         return Item.objects.get(ref_id=ref_id)
 
 
