@@ -24,7 +24,7 @@
 </h3>
 <p>
   Phone: &nbsp;{{ account.phone_number }}
-  
+
 </p>
 <p>
 Home address: &nbsp;{{ account.adress }}
@@ -50,14 +50,18 @@ Email adress:&nbsp; {{ account.email }}
 
 {% endif %}
 
-<a href="#">
+
+{% if account.get_last_cart %}
+
 <div class="panel panel-default">
+  <a href="{% url 'cart_update_view' account.get_last_cart.id %}">Accept this list?</a>
+
   <div class="panel-body">{% for item in account.get_last_cart.items.all %}
+
   <ul>
     {{item}}
   </ul>
   {% endfor %}</div>
 </div>
-</a>
-
+{% endif %}
 {% endblock %}
