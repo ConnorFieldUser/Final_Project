@@ -105,7 +105,7 @@ class ItemDetailAPIView(RetrieveAPIView):
         return Item.objects.get(ref_id=ref_id)
 
 
-class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
+class CartLatestDetailUpdateAPIView(RetrieveUpdateAPIView):
 
     serializer_class = CartSerializer
     permission_classes = (IsAuthenticated, )
@@ -254,3 +254,10 @@ class EmailTemplateView(TemplateView):
         context = super().get_context_data()
         context["form"] = SignUpForm(user=self.request.user)
         return context
+
+
+class CartListView(ListView):
+    model = Cart
+
+    def get_queryset(self):
+        return Cart.objects.filter(driver=self.request.user)

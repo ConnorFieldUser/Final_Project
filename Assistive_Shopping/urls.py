@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, ThanksView, CartUpdateView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView, login_success
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, ThanksView, CartUpdateView, CartLatestDetailUpdateAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView, login_success, CartListView
 # CartUpdateView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -32,7 +32,7 @@ urlpatterns = [
     url(r'^api/user/create/$', UserCreateAPIView.as_view(), name="user_create_api_view"),
     url(r'^api/account/profile/$', AccountDetailUpdateAPIView.as_view(), name="account_detail_update_api_view"),
     url(r'^api/carts/$', CartListCreateAPIView.as_view(), name="cart_list_create_api_view"),
-    url(r'^api/carts/latest/$', CartLatestDetailUpdateViewAPIView.as_view(), name="cart_latest_detail_update_api_view"),
+    url(r'^api/carts/latest/$', CartLatestDetailUpdateAPIView.as_view(), name="cart_latest_detail_update_api_view"),
     # url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="cart_latest_add_item_api_view"),
     url(r'^api/carts/latest/add_item/$', CartLatestAddItemAPIView.as_view(), name="test_ref_id"),
     url(r'^api/carts/latest/remove_item/$', CartLatestRemoveItemAPIView.as_view(), name="cart_latest_remove_item_api_view"),
@@ -50,5 +50,6 @@ urlpatterns = [
     url(r'^email/$', EmailTemplateView.as_view(), name="email_template_view"),
     # url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view"),
     url(r'^api/items/detail/$', ItemDetailAPIView.as_view(), name="item_detail_api_view"),
+    url(r'^carts/$', CartListView.as_view(), name="cart_list_view"),
     url(r'login_success/$', login_success, name='login_success')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

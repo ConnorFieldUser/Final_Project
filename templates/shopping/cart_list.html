@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+{% if not object_list %}
+<h4>You haven't signed up for any deliveries.</h4>
+
+<h5><a href="{% url 'accounts_list_view' %}">Click here</a> to see a list of active orders.</5>
+
+{% else %}
+
+{% for object in object_list %}
+{% if not object.complete %}
+<p>
+  <a href="#">{{ object.user }}</a>
+</p>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+
+
+
+
+{% endblock %}

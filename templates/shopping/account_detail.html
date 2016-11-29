@@ -50,7 +50,7 @@ Email adress:&nbsp; {{ account.email }}
 
 {% endif %}
 
-
+{% if account.user_type == 'c' %}
 {% if account.get_last_cart %}
 
 <div class="panel panel-default">
@@ -59,9 +59,10 @@ Email adress:&nbsp; {{ account.email }}
   <div class="panel-body">{% for item in account.get_last_cart.items.all %}
 
   <ul>
-    {{item}}
+    {{ item }}
   </ul>
   {% endfor %}</div>
 </div>
+{% endif %}
 {% endif %}
 {% endblock %}
