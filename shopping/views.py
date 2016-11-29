@@ -87,9 +87,7 @@ class CartLatestRemoveItemAPIView(APIView):
     serializer_class = CartSerializer
 
     def post(self, request, format=None):
-        print('test')
         cart_item = request.data["id"]
-        print(cart_item)
         i1 = CartItem(id=cart_item)
         i1.delete()
         return Response("Deleted")
