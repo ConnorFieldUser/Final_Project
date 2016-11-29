@@ -160,8 +160,8 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy("login")
 
 
-class DriverView(DriverAccessMixin, TemplateView):
-    template_name = "driver.html"
+class ThanksView(TemplateView):
+    template_name = "thanks.html"
 
 
 class AccountListView(DriverAccessMixin, ListView):
@@ -180,7 +180,7 @@ class AccountUpdateView(UpdateView):
         if not self.request.user.account.user_type == 'c':
             return reverse_lazy("account_detail_view", args=(self.object.id,))
         else:
-            return reverse_lazy("login")
+            return reverse_lazy("email_template_view")
 
     permission_classes = (IsAuthenticated, )
 
@@ -213,7 +213,7 @@ class CartUpdateView(DriverAccessMixin, UpdateView):
 
 class EmailView(FormView):
     form_class = SignUpForm
-    success_url = reverse_lazy("account_list_view")
+    success_url = reverse_lazy("thanks_view")
 
     def get_form_kwargs(self):
         kwargs = super(EmailView, self).get_form_kwargs()

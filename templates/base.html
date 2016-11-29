@@ -15,16 +15,22 @@
   <body>
 
 
-
     <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="{% url 'index_view' %}">Store To Door</a>
         <ul class="nav navbar-nav">
-
-        <li><h4>Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></h4></li>
-        <li><a href="{% url 'account_list_view' %}">Pending Orders</a></li>
-      </ul>
-      </div>
+    {% if request.user.account.user_type == 'd' %}
+          <li><a href="{% url 'account_list_view' %}">Pending Orders</a></li>
+    {% endif %}
+    </ul>
+    </div>
+    {% if request.user.is_authenticated %}
+      <p class="navbar-text navbar-right">Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></p>
+      {% endif %}
+    </div>
     </nav>
+
 
 <div class="container">
   {% block content %}
