@@ -56,7 +56,8 @@ class Account(models.Model):
     @property
     def get_last_cart(self):
         try:
-            return self.user.cart_set.all().order_by('-created_time')[0]
+            # return self.user.cart_set.all().order_by('-created_time')[0]
+            return self.user.carts.order_by('-created_time')[0]
         except IndexError:
             pass
 
@@ -94,12 +95,12 @@ class Item(models.Model):
 
 
 class Cart(models.Model):
-    user = models.ForeignKey('auth.User', related_name='user')
+    user = models.ForeignKey('auth.User', related_name='carts')
     created_time = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Item, through='CartItem')
     complete = models.BooleanField(default=False)
     in_progress = models.BooleanField(default=False)
-    driver = models.ForeignKey('auth.User', related_name='driver', null=True, blank=True)
+    driver = models.ForeignKey('auth.User', related_name='driver_carts', null=True, blank=True)
 
     def __str__(self):
         return "{} {}".format(self.user, self.id)
