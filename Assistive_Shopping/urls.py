@@ -18,7 +18,7 @@ from django.contrib import admin
 from rest_framework.authtoken import views
 
 
-from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, ThanksView, CartUpdateView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView
+from shopping.views import UserCreateView, IndexView, UserCreateAPIView, AccountDetailUpdateAPIView, CartListCreateAPIView, ItemListCreateAPIView, CartItemListCreateAPIView, CartItemDetailDestroyView, SupermarketAPIView, AccountListView, AccountDetailView, AccountUpdateView, ThanksView, CartUpdateView, CartLatestDetailUpdateViewAPIView, CartLatestRemoveItemAPIView, EmailView, EmailTemplateView, ItemDetailAPIView, CartLatestAddItemAPIView, login_success
 # CartUpdateView
 from django.conf import settings
 from django.conf.urls.static import static
@@ -48,5 +48,7 @@ urlpatterns = [
     url(r'^carts/update/(?P<pk>\d+)/$', CartUpdateView.as_view(), name="cart_update_view"),
     url(r'^send_email/$', EmailView.as_view(), name="email_view"),
     url(r'^email/$', EmailTemplateView.as_view(), name="email_template_view"),
-    url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view")
+    # url(r'^api/items/(?P<pk>\d+)/$', ItemDetailAPIView.as_view(), name="item_detail_api_view"),
+    url(r'^api/items/detail/$', ItemDetailAPIView.as_view(), name="item_detail_api_view"),
+    url(r'login_success/$', login_success, name='login_success')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

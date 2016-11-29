@@ -5,6 +5,8 @@ from django.views.generic import TemplateView, ListView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
+
 
 from django.views.generic.edit import FormView
 
@@ -93,9 +95,17 @@ class CartLatestRemoveItemAPIView(APIView):
         return Response("Deleted")
 
 
+# class ItemDetailAPIView(RetrieveAPIView):
+#     serializer_class = ItemSerializer
+#     queryset = Item.objects.all()
+
 class ItemDetailAPIView(RetrieveAPIView):
     serializer_class = ItemSerializer
-    queryset = Item.objects.all()
+
+    def get_object(self):
+        ref_id = self.request.GET.get("ref_id")
+        print("KLJLKJLKJLK", ref_id)
+        return Item.objects.get(ref_id=ref_id)
 
 
 class CartLatestDetailUpdateViewAPIView(RetrieveUpdateAPIView):
@@ -160,6 +170,14 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy("login")
 
 
+def login_success(request):
+
+    if request.user.account.user_type == 'd':
+        return redirect("account_list_view")
+    else:
+        return redirect("account_update_view")
+
+
 class ThanksView(TemplateView):
     template_name = "thanks.html"
 
@@ -216,7 +234,7 @@ class EmailView(FormView):
     success_url = reverse_lazy("thanks_view")
 
     def get_form_kwargs(self):
-        kwargs = super(EmailView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
 

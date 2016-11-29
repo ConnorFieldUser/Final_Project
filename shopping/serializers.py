@@ -19,6 +19,13 @@ class UserSerializer(ModelSerializer):
 
 
 class AccountSerializer(serializers.ModelSerializer):
+
+    user = serializers.SerializerMethodField()
+    user_type = serializers.ReadOnlyField()
+
+    def get_user(self, obj):
+        return obj.user.id
+
     class Meta:
         model = Account
         fields = '__all__'
