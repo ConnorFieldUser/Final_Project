@@ -15,14 +15,14 @@
     </p>
 {% for account in object_list %}
 
-  in
 {% if account.is_customer %}
-is
-{{ account.get_last_cart }}
+{% if account.get_last_cart %}
 {% if not account.get_last_cart.complete and not account.get_last_cart.in_progress %}
 <h3>
  <a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
 </h3>
+<hr>
+{% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}

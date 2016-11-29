@@ -109,7 +109,7 @@ class Cart(models.Model):
 class CartItem(models.Model):
     cart = models.ForeignKey(Cart)
     item = models.ForeignKey(Item)
-    quantity = models.PositiveIntegerField(default=0)
+    quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):
         return "{}: {}".format(self.cart, self.item)
