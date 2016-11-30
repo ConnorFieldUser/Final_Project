@@ -32,9 +32,9 @@ var Order = React.createClass({
     var order = this.props.cart.get('cart_items').map(function(item){
       return (
         <div className="cartItem row well" key={item.id}>
-          <span className="col-md-4">{item.item__name}</span>
-          <span className="col-md-4">{item.quantity}</span>
-          <span className="col-md-4">${item.item__price}.00</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">{item.item__name}</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">{item.quantity}</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">${item.item__price}.00</span>
           <button onClick={function(){self.props.deleteItem(item)}} className="btn btn-success deleteBtn" type="submit">Delete</button>
         </div>
       );
@@ -43,16 +43,16 @@ var Order = React.createClass({
     return (
       <div>
       <div className="cartHeadings row well">
-          <span className="col-md-4">Item</span>
-          <span className="col-md-4">Quantity</span>
-          <span className="col-md-4">Price</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">Item</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">Quantity</span>
+          <span className="col-md-4 col-sm-4 col-xs-4">Price</span>
       </div>
       <div className="containsItem">
         {order}
       </div>
       <strong className="total">Total: ${this.props.cart.total(self.props.cart.get('cart_items'))}</strong>
       <div>
-        <button className="placeOrderBtn btn btn-warning">Place Order</button>
+        <button onClick={function(){self.props.submitOrder(order)}} className="placeOrderBtn btn btn-warning">Place Order</button>
         <button onClick={function(){self.generateNewCart()}} className="newCartBtn btn btn-success"><span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>New Cart</button>
         <div><button className="btn btn-success backItemsBtn" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
       </div>
@@ -114,26 +114,21 @@ var Order = React.createClass({
           self.setState({cart: self.state.cart});
         }
       });
-      // $('item').remove();
-    // }
-    // return false;
+  },
+  submitOrder: function(order){
+    console.log('order', order);
+      $.ajax({
+        url: 'api/carts/latest/',
+        type: 'PATCH',
+        success: function(result){
+          console.log('Order Completed')
+          Backbone.history.navigate('#finished/', {trigger: true});
+        }
+    });
   },
 
-  // addToOrder: function(item, quantity){
-  //   var price = item.price;
-  //   var cart = this.state.cart;
-  //   var orderCollection = this.state.orderCollection;
-  //
-  //
-  //   $.ajax({
-  //     url: 'api/carts/latest/add_item/',
-  //     type: 'POST',
-  //     data: ({name:item.name, price:item.price, quantity:quantity, id:item.id}),
-  //     success: function(result){
-  //       console.log('DONE')
-  //     }
-  //   });
-  // },
+
+
   render: function(){
     var self = this;
 
@@ -141,7 +136,7 @@ var Order = React.createClass({
       <TemplateContainer>
         <div className="row well">
           <h1>Cart</h1>
-            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection} deleteItem={this.deleteItem}/>
+            <Order cart={this.state.cart} orderCollection ={this.state.orderCollection} deleteItem={this.deleteItem} submitOrder={this.submitOrder}/>
         </div>
       </TemplateContainer>
     )

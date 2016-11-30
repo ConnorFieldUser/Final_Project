@@ -34,7 +34,7 @@ h1{
   text-align: center;
   font-family: 'Oswald', sans-serif;
   font-weight: 300;
-  font-size: 50px;
+  font-size: 4vw;
 }
 
 .btn {
@@ -67,7 +67,7 @@ img {
 a.nav-link{
   color: #202D38;
   font-family: 'Oswald', sans-serif;
-  font-size: 20px;
+  font-size: 1.6vw;
   font-weight: 300;
 }
 
@@ -87,7 +87,7 @@ a.nav-link{
   // margin-left: 285px;
   // margin-right: 10px;
   font-family:'Old Standard TT', sans-serif;
-  font-size: 16px;
+  font-size: 1.2vw;
 }
 
 .prof {
@@ -97,12 +97,21 @@ a.nav-link{
   float: right;
   margin-top: 16px;
   margin-left: 320px;
+  @media (max-width: 1200px){
+   margin-left:150px;
+ }
+  // @media(max-width: 1050px){
+  //   margin-left: px;
+  // }
+  @media(max-width: 993px){
+    margin-left: 55px;
+  }
   // margin-right:10px;
 }
 .profilePicture {
   // float: right;
-  width: 50px;
-  height: 50px;
+  width: 4vw;
+  height: 4vw;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -143,15 +152,16 @@ a.nav-link{
   }
   h2 {
     margin-bottom: 40px;
+    font-size: 2.8vw;
   }
   .info{
     margin-right: 40px;
-    font-size: 20px;
+    font-size: 1.5vw;
   }
   i {
     background-color: #5E86A9;
     padding:10px;
-    font-size: 20px;
+    font-size: 1.8vw;
     border-radius: 50%;
     margin-right: 10px;
     margin-top: 20px;
@@ -169,6 +179,36 @@ a.nav-link{
 .signInBtn {
   background-color: #5E86A9;
   border: #5E86A9;
+  font-size: 1.5vw;
+}
+.driverSignIn {
+  font-family: 'Old Standard TT';
+  text-decoration: none;
+  font-size: 1.5vw;
+  float: right;
+  margin-right: 15px;
+}
+.driverLink {
+  color: #337ab7;
+  text-decoration: none;
+  font-family: 'Old Standard TT';
+  font-size: 1.5vw;
+  margin: 10px;
+}
+.loginLabel,
+.signupLabel {
+  font-size: 2.5vw;
+}
+.loginContainer {
+  margin-top: 100px;
+}
+.mainLogin {
+  opacity: 0.9;
+}
+label,
+h2,
+input.form-control {
+  font-family: 'Old Standard TT', serif;
 }
 
 
@@ -178,8 +218,14 @@ a.nav-link{
 
 .mainImage {
   background-image: url('http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg');
-  height:333px;
+  height:26vw;
   background-size: 100%;
+  @media(max-width: 1199px){
+    height: 23vw;
+  }
+  @media (max-width: 991px){
+    height: 21vw;
+  }
   background-repeat: no-repeat;
 }
 
@@ -197,10 +243,14 @@ a.nav-link{
   }
   .navMap {
     float: right;
+    font-size: 1.5vw;
     margin-right: 10px;
     background-color: #5E86A9;
     border: #5E86A9;
     margin-top: 20px;
+    @media(max-width: 991px){
+      margin-top: 30px;
+    }
   }
   .description {
     opacity: 0.9;
@@ -306,7 +356,10 @@ a.nav-link{
   // opacity: 0.9;
   padding: 50px;
   label {
-    font-size: 20px;
+    font-size: 1.6vw;
+    @media (max-width: 800px){
+     font-size: 15px;
+    }
   }
 }
 .accountHeader {
@@ -318,9 +371,10 @@ a.nav-link{
   bottom: 25px;
   background-color: #5E86A9;
   border: #5E86A9;
+  font-size: 1.6vw;
 }
 .glyphicon-chevron-right {
-  font-size: 18px;
+  font-size: 1.6vw;
 }
 
 
@@ -349,8 +403,8 @@ a.nav-link{
 .foodListItem {
   list-style: none;
   height: 350px;
-  // border: 1px solid black;
-  // margin:5px;
+  border: 1px solid black;
+  position: relative;
   .name {
     font-size: 15px;
     font-family: 'Old Standard TT', sans-serif;
@@ -361,6 +415,9 @@ a.nav-link{
   }
   #quantity {
     width: 80px;
+  }
+  .orderButtons {
+    position: absolute;
   }
 }
 
@@ -377,16 +434,21 @@ a.nav-link{
 .addToCartBtn {
   background: #5E86A9;
   border: 1px solid #5E86A9;
+  font-size: 1.5vw;
 }
 
-// .glyphicon {
-//   top: -2px;
-// }
+.glyphicon-search {
+  top: -2px;
+}
 
 .navCartBtn {
   float: right;
   background-color: #5E86A9;
   border: #5E86A9;
+  font-size: 1.5vw;
+}
+.viewDetail {
+  font-size: 1.5vw;
 }
 
 img.itemImage {
@@ -418,33 +480,45 @@ h2.searchDirections {
 //############      CART PAGE STYLING   ############################################################//
 .cartHeadings span {
   font-family: 'Old Standard TT', sans-serif;
-  font-size: 30px;
+  font-size: 2vw;
   color: #727C77;
+  // @media(max-width: 992px){
+  //   margin-right: 150px;
+  // }
+  // @media(max-width: 596px){
+  //   margin-right: 120px;
+  // }
 }
 
+
 .cartItem.well{
-font-size: 20px;
 font-family: 'Old Standard TT', sans-serif;
 height: 70px;
 }
 
 .containsItem {
   padding-bottom: 35px;
+  font-size: 1.8vw;
 }
 
 .deleteBtn {
   float: right;
   position: relative;
   top: -35px;
+  @media(max-width: 991px){
+    top: -4px;
+  }
   font-family: 'Oswald';
   background: #5E86A9;
   border: 1px solid #5E86A9;
+  font-size: 1.5vw;
 }
 
 .backItemsBtn {
   background: #5E86A9;
   border: 1px solid #5E86A9;
   margin-top: 20px;
+  font-size: 1.5vw;
 }
 
 .total {
@@ -452,6 +526,7 @@ height: 70px;
 }
 .placeOrderBtn {
   float: right;
+  font-size: 1.5vw;
 //   position: relative;
 //   top: 10px;
 //   left: 900px;
@@ -459,29 +534,15 @@ height: 70px;
 .glyphicon-shopping-cart {
   margin-right: 5px;
 }
+.newCartBtn {
+  font-size: 1.5vw;
+}
 
 
-//############      LOGIN PAGE STYLING   ############################################################//
+//############      FINAL PAGE STYLING   ############################################################//
 
-.loginContainer {
-  margin-top: 100px;
-}
-.mainLogin {
-  opacity: 0.9;
-}
-label {
-  font-family: 'Old Standard TT', serif;
-}
-h2 {
-  font-family: 'Old Standard TT', serif;
-}
-input.form-control {
-  font-family: 'Old Standard TT', serif;
-}
-.driverLink {
-  color: #337ab7;
-  text-decoration: none;
-  font-family: 'Old Standard TT';
-  font-size: 16px;
-  margin: 10px;
+.finished {
+  color: #1E2C38;
+  padding: 50px;
+  font-size: 3vw;
 }

@@ -11,6 +11,7 @@ var HomeContainer = require('./components/home.jsx').HomeContainer;
 var MapContainer = require('./components/map.jsx').MapContainer;
 var CartContainer = require('./components/cart.jsx').CartContainer;
 var DetailContainer = require('./components/detail.jsx').DetailContainer;
+var FinishedContainer = require('./components/finish.jsx').FinishedContainer;
 
 var AppRouter = Backbone.Router.extend({
   routes: {
@@ -21,6 +22,7 @@ var AppRouter = Backbone.Router.extend({
     'items/' : 'items',
     'detail/': 'detail',
     'cart/' : 'cart',
+    'finished/': 'finished'
   },
   initialize: function(){
       $.ajaxSetup({
@@ -68,6 +70,12 @@ var AppRouter = Backbone.Router.extend({
   cart: function(){
     ReactDOM.render(
       React.createElement(CartContainer),
+      document.getElementById('app')
+    )
+  },
+  finished: function(){
+    ReactDOM.render(
+      React.createElement(FinishedContainer),
       document.getElementById('app')
     )
   }

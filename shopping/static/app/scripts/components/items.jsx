@@ -48,7 +48,7 @@ var FoodItem = React.createClass({
     var foodList = this.props.foodCollection.map(function(item){
 
       return (
-        <div className="foodListItem col-md-4" key={item.cid}>
+        <div className="foodListItem col-md-4 col-sm-6 col-xs-6" key={item.cid}>
           <div className="imageContainer">
             <img className="itemImage" src={item.get('ItemImage')} />
           </div>
@@ -56,10 +56,10 @@ var FoodItem = React.createClass({
           <span className="hidden"id="descrip">{item.get('ItemDescription')}</span>
           <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
           <span className="price">Price: $ {item.get('price')}</span>
-          <div>
+          <div className="orderButtons">
             <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
             <button onClick={function(){self.handleDetail(item)}} className="btn btn-danger viewDetail">View Item Details</button>
-        </div>
+          </div>
       </div>
       );
     });

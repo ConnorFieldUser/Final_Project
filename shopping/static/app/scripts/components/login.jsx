@@ -28,7 +28,7 @@ var SignUpForm = React.createClass({
   render: function(){
     return(
       <div className="col-md-6">
-        <h2>Need an Account? Sign Up!</h2>
+        <h2 className="signupLabel">Need an Account? Sign Up!</h2>
         <form onSubmit={this.handleSignUp} id="signup">
 
           <div className="form-group">
@@ -71,7 +71,7 @@ var SignInForm = React.createClass({
   render: function(){
     return(
         <div className="col-md-6">
-          <h2>Please Login</h2>
+          <h2 className="loginLabel">Please Login</h2>
           <form onSubmit={this.handleSignIn} id="login">
             <div className="form-group">
               <label htmlFor="username-login">Username</label>
