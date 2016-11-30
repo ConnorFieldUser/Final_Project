@@ -103,6 +103,13 @@ class Cart(models.Model):
     in_progress = models.BooleanField(default=False)
     driver = models.ForeignKey('auth.User', related_name='driver_carts', null=True, blank=True)
 
+    @property
+    def total(self):
+        total_price = 0
+        for i in self.cartitem_set.all():
+            total_price += i.item.price
+        return total_price
+
     def __str__(self):
         return "{} {}".format(self.user, self.id)
 
