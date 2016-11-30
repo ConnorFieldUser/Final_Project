@@ -26,7 +26,6 @@ var FoodItem = Backbone.Model.extend({
 
 
 
-
 var FoodItemCollection = Backbone.Collection.extend({
   model: FoodItem,
   // url: 'https://private-02760-finalproject3.apiary-mock.com/questions'
@@ -46,6 +45,9 @@ var FoodItemCollection = Backbone.Collection.extend({
     return this.sync('create', this, options);
   },
   parse: function(data){
+    data.Product.forEach(function(item){
+      item.price = _.random(4, 10);
+    })
     return data.Product
     console.log('product', data.Product);
   }

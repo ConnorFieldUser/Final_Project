@@ -77,19 +77,27 @@ var GroceryMap = React.createClass({
 
     var markers = locations.map(function(location){
       return (
-        <Marker key={location.id} onClick={self.onMarkerClick} name={location.name} position={{lat: location.lat, lng: location.lng}} />
+        <Marker key={location.id} onClick={self.onMarkerClick} name={location.name} position={{lat: location.lat, lng: location.lng}}>
+
+        <InfoWindow marker={self.state.activeMarker} visible={self.state.showingInfoWindow}>
+          <div>
+            <h5>{location.locName}</h5>
+            <h6>{location.address}</h6>
+          </div>
+        </InfoWindow>
+    </Marker>
       )
     });
-    var windowLoad = windowLoad.map(function(info){
-      return (
-      <InfoWindow key={info.id} marker={self.state.activeMarker} visible={self.state.showingInfoWindow}>
-        <div>
-          <h5>{info.name}</h5>
-          <h6>{info.address}</h6>
-        </div>
-      </InfoWindow>
-    )
-    });
+    // var windowLoad = windowLoad.map(function(info){
+    //   return (
+    //   <InfoWindow key={info.id} marker={self.state.activeMarker} visible={self.state.showingInfoWindow}>
+    //     <div>
+    //       <h5>{info.name}</h5>
+    //       <h6>{info.address}</h6>
+    //     </div>
+    //   </InfoWindow>
+    // )
+    // });
     return (
       <section id="map-section" style={{height:"525px"}}>
 
@@ -108,7 +116,7 @@ var GroceryMap = React.createClass({
               ref="map"
               center={center}
               defaultCenter={center}
-            > {markers}{windowLoad}
+            > {markers}
             </GoogleMap>
           }
         />

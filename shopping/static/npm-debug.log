@@ -10,8 +10,8 @@
 6 silly lifecycle @~prebuild: no script for prebuild, continuing
 7 info lifecycle @~build: @
 8 verbose lifecycle @~build: unsafe-perm in lifecycle true
-9 verbose lifecycle @~build: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/ConQuest/Final_Project/shopping/static/node_modules/.bin:/usr/local/Cellar/node/6.5.0/bin:/Users/ConQuest/Final_Project/.direnv/python-3.5.2/bin:/Users/ConQuest/.rbenv/shims:/Users/ConQuest/.rbenv/bin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin:/Users/ConQuest/Final_Project/shopping/static/node_modules/.bin
-10 verbose lifecycle @~build: CWD: /Users/ConQuest/Final_Project/shopping/static
+9 verbose lifecycle @~build: PATH: /usr/local/lib/node_modules/npm/bin/node-gyp-bin:/Users/carolineverticchio/Documents/code/Final_Project/shopping/static/node_modules/.bin:/usr/local/Cellar/node/6.5.0/bin:/Users/carolineverticchio/.rbenv/shims:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+10 verbose lifecycle @~build: CWD: /Users/carolineverticchio/Documents/code/Final_Project/shopping/static
 11 silly lifecycle @~build: Args: [ '-c',
 11 silly lifecycle   'npm run html && npm run fonts && npm run build:css && npm run build:js && npm run build:images' ]
 12 silly lifecycle @~build: Returned: code: 1  signal: null
@@ -27,8 +27,8 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid @
-16 verbose cwd /Users/ConQuest/Final_Project/shopping/static
-17 error Darwin 15.6.0
+16 verbose cwd /Users/carolineverticchio/Documents/code/Final_Project/shopping/static
+17 error Darwin 15.4.0
 18 error argv "/usr/local/Cellar/node/6.5.0/bin/node" "/usr/local/bin/npm" "run" "build"
 19 error node v6.5.0
 20 error npm  v3.10.3

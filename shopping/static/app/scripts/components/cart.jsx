@@ -3,6 +3,7 @@ var Backbone = require('backbone');
 var TemplateContainer = require('../layout/headerTemplate.jsx').TemplateContainer;
 var models = require('../models/items.js');
 var $ = require('jquery');
+var _ = require('underscore');
 require('react-bootstrap');
 
 
@@ -52,7 +53,7 @@ var Order = React.createClass({
       <strong className="total">Total: ${this.props.cart.total(self.props.cart.get('cart_items'))}</strong>
       <div>
         <button className="placeOrderBtn btn btn-warning">Place Order</button>
-        <button onClick={function(){self.generateNewCart()}} className="newCartBtn btn btn-success">New Cart</button>
+        <button onClick={function(){self.generateNewCart()}} className="newCartBtn btn btn-success"><span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>New Cart</button>
         <div><button className="btn btn-success backItemsBtn" onClick={self.handleClick}><span className="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Back to Item Listing</button></div>
       </div>
     </div>
@@ -100,15 +101,19 @@ var Order = React.createClass({
       // delete (item.id);
       // console.log('ID', item.id);
       // cart.splice(index, 1);
-      // $.ajax({
-      //   url: 'api/carts/latest/remove_item/',
-      //   type: 'POST',
-      //   data: (item),
-      //   success: function(result){
-      //     console.log('DONE')
-      //     // self.setState({cart: cart});
-      //   }
-      // });
+      $.ajax({
+        url: 'api/carts/latest/remove_item/',
+        type: 'POST',
+        data: (item),
+        success: function(result){
+          console.log('DONE')
+          var newItems = _.reject(cart, function(cartitem){
+            return cartitem.id == item.id
+          })
+          self.state.cart.set('cart_items', newItems)
+          self.setState({cart: self.state.cart});
+        }
+      });
       // $('item').remove();
     // }
     // return false;

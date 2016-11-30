@@ -31,27 +31,28 @@ var AccountInfoContainer = React.createClass({
     var account = this.state.account;
     var self = this;
 
-    var formData = account.fetch().then(function(data){
+    account.fetch().then(function(data){
+      console.log('account!', account)
       localStorage.setItem('id', data.id);
-      localStorage.setItem('USERNAME', data.first_name);
       console.log("your username", localStorage.getItem('USERNAME'));
       self.setState({account:account})
     });
   },
-  // handleInputChange: function(e){
-  //   var account = this.state.account;
+  handleInputChange: function(e){
+    var account = this.state.account;
 
-  //   // var accountInfoField = e. target;
-  //
-  //   // var newState = {};
-  //   // newState[accountInfoField.name] = accountInfoField.value;
-  //   account.set(e.target.name, e.target.value);
-  //   // var data = account.toJSON();
-  //   // console.log('data', data);
-  //   this.setState({account: account});
-  // },
+    // var accountInfoField = e. target;
+
+    // var newState = {};
+    // newState[accountInfoField.name] = accountInfoField.value;
+    account.set(e.target.name, e.target.value);
+    // var data = account.toJSON();
+    // console.log('data', data);
+    this.setState({account: account});
+  },
   handleSubmit: function(e){
     e.preventDefault();
+
     var data = new FormData();
     if (this.state.account){
       var type = 'PUT';
@@ -60,14 +61,17 @@ var AccountInfoContainer = React.createClass({
     }
     var url = '/api/account/profile/';
     var image = $('#image')[0].files[0];
-    data.append('image', image);
-    data.append('firstName', $('#firstName').val());
-    data.append('lastName', $('#lastName').val());
+    if(image){
+      data.append('image', image);
+    }
+    data.append('first_name', $('#firstName').val());
+    data.append('last_name', $('#lastName').val());
     data.append('adress', $('#address').val());
     data.append('city', $('#city').val());
     data.append('state', $('#state').val());
     data.append('zipcode', $('#zipcode').val());
-    data.append('phoneNumber', $('#phone_number').val());
+    data.append('phone_number', $('#phone_number').val());
+    console.log( $('#phone_number').val());
     data.append('email', $('#email').val());
 
 
@@ -79,11 +83,14 @@ var AccountInfoContainer = React.createClass({
       processData: false,
       type: type,
       success: function(data){
-        console.log('DONE');
+        console.log('DONE', data);
+        localStorage.setItem('image', data.image);
+        localStorage.setItem('USERNAME', data.first_name);
         Backbone.history.navigate('#home/', {trigger:true});
-        localStorage.setItem('image', account.get('image'));
+
       },
       error: function(data){
+        alert('error!')
         Backbone.history.navigate('#home/', {trigger:true});
       }
     });
@@ -106,6 +113,7 @@ var AccountInfoContainer = React.createClass({
   //     var imageField= (
   //       <div className="profilePic">
   //       <img src={account.get('image')} />
+  //       <input id="image" className="profilePic" type="file" name="pic" accept="image/*" />
   //       </div>
   //     )
   //   } else {
@@ -162,7 +170,7 @@ var AccountInfoContainer = React.createClass({
           <div className="form-group row">
             <label htmlFor="telephone" className="col-xs-2 col-form-label">Telephone</label>
               <div className="col-xs-10">
-                <input onChange={this.handleInputChange} value={account.get('phone_number')} name="phone_number" className="form-control" type="tel" id="telephone" />
+                <input onChange={this.handleInputChange} value={account.get('phone_number')} name="phone_number" className="form-control" type="tel" id="phone_number" />
               </div>
           </div>
           <div className="form-group row">

@@ -55,7 +55,7 @@ var FoodItem = React.createClass({
           <span className="name">{item.get('Itemname')}</span>
           <span className="hidden"id="descrip">{item.get('ItemDescription')}</span>
           <input onChange={self.handleQuantity} type="text" id='quantity' className="form-control" placeholder="Quantity" />
-          <span className="price">Price: $ {self.props.randomPrice()}</span>
+          <span className="price">Price: $ {item.get('price')}</span>
           <div>
             <button onClick={function(){self.props.addToOrder(item, self.state.quantity, self.state.price)}} className="addToCartBtn btn btn-danger addCart">Add to Cart</button>
             <button onClick={function(){self.handleDetail(item)}} className="btn btn-danger viewDetail">View Item Details</button>
@@ -124,11 +124,20 @@ var FoodItemContainer = React.createClass({
       }
     });
   },
-  randomPrice: function(min, max){
-    var price = ((Math.random() * 10.50) + 2.00).toFixed(2);
-    return price
-    console.log('price');
-  },
+  // randomPrice: function(item){
+  //   console.log('item!!!', item.get('ItemID'));
+  //   // var price = ((Math.random() * 10.50) + 2.00).toFixed(2);
+  //   // return price
+  //   // console.log('price');
+  //   // $.get('api/items/detail/?ref_id=' + item.get('ItemID'));
+  //   $.ajax({
+  //     url: ('api/items/detail/?ref_id=' + item.get('ItemID')),
+  //     type: 'GET',
+  //     success: function(result){
+  //       console.log(result.price)
+  //     }
+  //   });
+  // },
   handleForward: function(e){
     e.preventDefault();
     Backbone.history.navigate('#cart/', {trigger: true});

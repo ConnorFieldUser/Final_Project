@@ -114,6 +114,9 @@ a.nav-link{
     min-height: 100%
    }
 }
+.logout {
+  font-family: "Old Standard TT", sans-serif;
+}
 
 
 //############      FOOTER  STYLING   ############################################################//
@@ -181,7 +184,7 @@ a.nav-link{
 }
 
   h1 {
-    font-family: 'Old Standard TT';
+    font-family: 'Oswald';
     font-weight: bold;
   }
   h3, h4, h3 {
@@ -197,19 +200,12 @@ a.nav-link{
     margin-right: 10px;
     background-color: #5E86A9;
     border: #5E86A9;
+    margin-top: 20px;
   }
   .description {
-    // width: 800px;
-    // margin-left: 150px;
-    // background-color: #28313A;
-    // color: white;
     opacity: 0.9;
-    // margin-top: 40px;
     padding: 30px;
     border-radius: 5px;
-    // h3 {
-    //   line-height: 1.5;
-    // }
     h4 {
       line-height: 1.5;
       padding-left: 100px;
@@ -217,100 +213,86 @@ a.nav-link{
     }
   }
   .appDirections {
-    ul, li{
       list-style: none;
-      // background-color: #28313A;
-      // color: white;
-      // opacity: 0.9;
-      // padding: 40px;
-      border-radius: 5px;
-      // width:800px;
-      // margin-left:150px;
       line-height: 1.5;
-    }
+
+      .numberOne,
+      .numberTwo,
+      .numberThree,
+      .numberFour  {
+        background-color:#D93809;
+        display:inline-block;
+        margin-right:5px;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        padding-top: 5px;
+        color: white;
+      }
+      .numberTwo {
+        background-color: #E69509;
+      }
+      .numberThree {
+        background-color: #8DAE00;
+      }
+      .numberFour {
+        background-color: #5C313D;
+      }
+      .headingOne,
+      .headingTwo,
+      .headingThree,
+      .headingFour {
+        background-color:#D93809;
+        display:inline-block;
+        height: 35px;
+        width: 200px;
+        color: white;
+        text-transform: uppercase;
+        padding-top: 2px;
+        font-family: 'Oswald';
+        letter-spacing: 0.2em;
+        padding: 5px;
+        text-align: left;
+      }
+      // .headingOne:before {
+      //   content: '';
+      //   position: absolute;
+      //   left: 50%;
+      //   width: 100%; height: 100%;
+      //   border-radius: 100%;
+      //   // box-shadow: 0px 300px 0px 300px #000;
+      // }
+      .headingTwo {
+        background-color: #E69509;
+      }
+      .headingThree {
+        background-color: #8DAE00;
+      }
+      .headingFour {
+        background-color: #5C313D;
+      }
+      .dirOne span,
+      .dirTwo span,
+      .dirThree span,
+      .dirFour span {
+        display: block;
+        text-align: left;
+        margin-left: 42px;
+      }
+      // .dirOne span{
+      //   display: block;
+      // }
+      // .dirTwo span{
+      //   display: block;
+      // }
+      // .dirThree span{
+      //   display: block;
+      // }
+      // .dirFour span{
+      //   display: block;
+      // }
   }
 
-
-.itemBackground {
-  // background-color: #28313A;
-  // background-color: white;
-  opacity: 0.9;
-}
-
-.dirOne {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  // width: 400px;
-  // height: 140px;
-  // margin-left: 345px;
-  padding: 10px;
-  font-size: 20px;
-  margin-top:20px;
-}
-// .glyphOne {
-//   position: relative;
-//   right: 160px;
-//   top: 50px;
-// }
-.dirTwo {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  // width: 400px;
-  // height: 160px;
-  // margin-left: 345px;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-// .glyphTwo {
-//   position: relative;
-//   top: 40px;
-//   right: 149px;
-// }
-.dirThree {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  // width: 400px;
-  // height: 140px;
-  // margin-left: 345px;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-// .glyphThree {
-//   position: relative;
-//   left: -1px;
-//   top: 20px;
-// }
-.dirFour {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  // width: 400px;
-  // height: 175px;
-  // margin-left: 345px;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px;
-}
-// .glyphFour {
-//   position: relative;
-//   top: 40px;
-//   right: 37px;
-// }
-.dirFive {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  // width: 400px;
-  // margin-left: 345px;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px;
-}
 
 
 
@@ -354,6 +336,7 @@ a.nav-link{
   float: right;
   background-color: #5E86A9;
   border: #5E86A9;
+  margin-top: 20px;
 }
 .locationTitle {
   color: white;
@@ -461,6 +444,7 @@ height: 70px;
 .backItemsBtn {
   background: #5E86A9;
   border: 1px solid #5E86A9;
+  margin-top: 20px;
 }
 
 .total {
@@ -471,6 +455,9 @@ height: 70px;
 //   position: relative;
 //   top: 10px;
 //   left: 900px;
+}
+.glyphicon-shopping-cart {
+  margin-right: 5px;
 }
 
 

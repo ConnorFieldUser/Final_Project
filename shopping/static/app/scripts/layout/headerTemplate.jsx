@@ -56,7 +56,7 @@ var TemplateContainer = React.createClass({
                 <span className="userWelcome nav-item">Welcome, {localStorage.getItem('USERNAME')}!</span>
                 </li>
                 <NavDropdown id="nav-dropdown">
-                  <MenuItem
+                  <MenuItem className="logout"
                     onClick={this.handleLogout}
                   >
                     Logout

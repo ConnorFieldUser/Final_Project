@@ -5835,6 +5835,9 @@ a.nav-link {
     min-width: 100%;
     min-height: 100%; }
 
+.logout {
+  font-family: "Old Standard TT", sans-serif; }
+
 .footer {
   font-family: 'Old Standard TT', serif;
   text-align: center;
@@ -5876,7 +5879,7 @@ a.nav-link {
   background-repeat: no-repeat; }
 
 h1 {
-  font-family: 'Old Standard TT';
+  font-family: 'Oswald';
   font-weight: bold; }
 
 h3, h4, h3 {
@@ -5891,7 +5894,8 @@ h3 {
   float: right;
   margin-right: 10px;
   background-color: #5E86A9;
-  border: #5E86A9; }
+  border: #5E86A9;
+  margin-top: 20px; }
 
 .description {
   opacity: 0.9;
@@ -5902,53 +5906,55 @@ h3 {
     padding-left: 100px;
     padding-right: 100px; }
 
-.appDirections ul, .appDirections li {
+.appDirections {
   list-style: none;
-  border-radius: 5px;
   line-height: 1.5; }
-
-.itemBackground {
-  opacity: 0.9; }
-
-.dirOne {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px; }
-
-.dirTwo {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px; }
-
-.dirThree {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px; }
-
-.dirFour {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px; }
-
-.dirFive {
-  background-color: #5E86A9;
-  border: #5E86A9;
-  color: white;
-  padding: 10px;
-  font-size: 20px;
-  margin-top: 20px; }
+  .appDirections .numberOne,
+  .appDirections .numberTwo,
+  .appDirections .numberThree,
+  .appDirections .numberFour {
+    background-color: #D93809;
+    display: inline-block;
+    margin-right: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding-top: 5px;
+    color: white; }
+  .appDirections .numberTwo {
+    background-color: #E69509; }
+  .appDirections .numberThree {
+    background-color: #8DAE00; }
+  .appDirections .numberFour {
+    background-color: #5C313D; }
+  .appDirections .headingOne,
+  .appDirections .headingTwo,
+  .appDirections .headingThree,
+  .appDirections .headingFour {
+    background-color: #D93809;
+    display: inline-block;
+    height: 35px;
+    width: 200px;
+    color: white;
+    text-transform: uppercase;
+    padding-top: 2px;
+    font-family: 'Oswald';
+    letter-spacing: 0.2em;
+    padding: 5px;
+    text-align: left; }
+  .appDirections .headingTwo {
+    background-color: #E69509; }
+  .appDirections .headingThree {
+    background-color: #8DAE00; }
+  .appDirections .headingFour {
+    background-color: #5C313D; }
+  .appDirections .dirOne span,
+  .appDirections .dirTwo span,
+  .appDirections .dirThree span,
+  .appDirections .dirFour span {
+    display: block;
+    text-align: left;
+    margin-left: 42px; }
 
 .form-group {
   height: 50px; }
@@ -5978,7 +5984,8 @@ h3 {
 .navItemsBtn {
   float: right;
   background-color: #5E86A9;
-  border: #5E86A9; }
+  border: #5E86A9;
+  margin-top: 20px; }
 
 .locationTitle {
   color: white; }
@@ -6053,13 +6060,17 @@ h2.searchDirections {
 
 .backItemsBtn {
   background: #5E86A9;
-  border: 1px solid #5E86A9; }
+  border: 1px solid #5E86A9;
+  margin-top: 20px; }
 
 .total {
   font-size: 15px; }
 
 .placeOrderBtn {
   float: right; }
+
+.glyphicon-shopping-cart {
+  margin-right: 5px; }
 
 .loginContainer {
   margin-top: 100px; }
