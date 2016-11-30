@@ -3,6 +3,8 @@
 
 
 
+<div class="panel panel-default">
+<div class="panel-body">
 {% if not object.complete and object.posted %}
 
     <h2>Update cart</h2>
@@ -16,22 +18,33 @@
 
 {% if object.in_progress %}
         Order has been completed?
-          <p><label for="complete">Complete:</label>
-              <input type="checkbox" name="complete"  /></p>
+        <br>
+              <label for="complete">Complete:</label>
+              <div class=double>
+                <input type=checkbox name="complete">
+              </div>
 
 {% else %}
         Agree to deliver this order?
-          <p><label for="in_progress">In progress:</label>
-              <input type="checkbox" name="in_progress" /></p>
-{% endif %}
+<br>
+              <label for="in_progress">I accept:</label>
+              <div class=double>
+                <input type=checkbox name="in_progress">
+              </div>
 
-      <input type="submit" name="" value="Update">
+{% endif %}
+<br><br><br><br>
+
+      <input type="submit" name="" value="Submit">
 
       </form>
 
 {% else %}
 This cart, order num:{{ object.id }}, has already been completed.
 {% endif %}
+
+</div>
+</div>
 
 <h1>MAP:</h1>
 

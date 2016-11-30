@@ -1,20 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="panel panel-default">
+<div class="panel-body">
+
 
   {% if account.is_customer and request.user.account.is_driver or account.user.id == request.user.id or request.user.account.is_customer and account.is_driver %}
+  <h2>This page belongs to:</h2>
+  <p style="text-align: right;">
+    <a style="color:black;" href="{% url 'account_list_view' %}">back</a>
 
-  <div class=>
-  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}" height="150" width="150"/>
+  </p>
+
+  <hr>
+    <h3>{{ account.first_name }}
+        {{ account.last_name }}
+    </h3>
+  <p>
+  <div style="height: 150px; width: 150px;">
+  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}" width="100%"/>
 </div>
 
-
-<a href="{% url 'account_list_view' %}">back</a>
-
-<h2>This page belongs to:</h2>
-  <h3>{{ account.first_name }}
-      {{ account.last_name }}
-  </h3>
-<p>
   Username: {{ account.user }}
 </p>
 <br>
@@ -22,6 +27,7 @@
 
 <h3>Contact info
 </h3>
+<hr>
 <p>
   Phone: &nbsp;{{ account.phone_number }}
 
@@ -40,7 +46,6 @@ Email adress:&nbsp; {{ account.email }}
 </p>
 <br><br>
 
-<h1>MAP HERE:</h1>
 
 {% if object.user.id == request.user.id %}
   <p>
@@ -53,18 +58,29 @@ Email adress:&nbsp; {{ account.email }}
 {% if account.user_type == 'c' %}
 {% if account.get_last_cart %}
 {% if account.get_last_cart.posted %}
+{% if not account.get_last_cart.in_progress %}
+{% if not account.get_last_cart.complete %}
 
-<div class="panel panel-default">
+<h1>Current List:</h1>
+<hr>
+
+<div class="well well-lg">
+
   <a href="{% url 'cart_update_view' account.get_last_cart.id %}">Accept this list?</a>
 
-  <div class="panel-body">{% for item in account.get_last_cart.items.all %}
+{% for item in account.get_last_cart.items.all %}
 
   <ul>
     {{ item }}
   </ul>
   {% endfor %}</div>
-</div>
+
+{% endif %}
+{% endif %}
 {% endif %}
 {% endif %}
 {% endif %}
 {% endblock %}
+
+</div>
+</div>
