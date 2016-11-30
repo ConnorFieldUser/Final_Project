@@ -20,9 +20,11 @@
 {% if object.posted %}
 {% if object.in_progress %}
   <div class="panel-body">
-<h2>
-<a style="color: black; " href="{% url 'cart_update_view' object.user.account.get_last_cart.id %}">{{ object.user }}</a>
+<h2 style="text-align: center;">
+<a style="color: black;" href="{% url 'cart_update_view' object.user.account.get_last_cart.id %}">{{ object.user }}</a>
 </h2>
+<h4> <a href="{% url 'account_detail_view' object.user.account.id %}">See profile</a>
+</h4>
 <hr>
 {% endif %}
 {% endif %}
