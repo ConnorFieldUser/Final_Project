@@ -6047,15 +6047,19 @@ h3 {
   border: 1px solid black;
   position: relative; }
   .foodListItem .name {
-    font-size: 15px;
+    font-size: 1.5vw;
     font-family: 'Old Standard TT', sans-serif;
-    font-weight: bold; }
+    font-weight: 900; }
   .foodListItem .price {
-    font-family: 'Old Standard TT', sans-serif; }
+    font-family: 'Old Standard TT', sans-serif;
+    position: absolute;
+    bottom: 62px;
+    font-size: 1.3vw; }
   .foodListItem #quantity {
     width: 80px; }
   .foodListItem .orderButtons {
-    position: absolute; }
+    position: absolute;
+    bottom: 10px; }
 
 .navbar-form {
   text-align: center; }
@@ -6086,9 +6090,11 @@ h3 {
 img.itemImage {
   max-width: 100%; }
 
-.imgContainer {
-  width: 50px;
-  height: 50px; }
+.imageContainer {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  text-align: center; }
 
 h2.searchDirections {
   text-align: center;
@@ -6148,3 +6154,7 @@ h2.searchDirections {
   color: #1E2C38;
   padding: 50px;
   font-size: 3vw; }
+<<<<<<< ba446f2f400fba47a9b6450aa3250172f694cf7f
+=======
+/*# sourceMappingURL=app.css.map */
+>>>>>>> changes

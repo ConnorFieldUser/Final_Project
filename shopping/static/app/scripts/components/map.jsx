@@ -78,14 +78,13 @@ var GroceryMap = React.createClass({
     var markers = locations.map(function(location){
       return (
         <Marker key={location.id} onClick={self.onMarkerClick} name={location.name} position={{lat: location.lat, lng: location.lng}}>
-
-        <InfoWindow marker={self.state.activeMarker} visible={self.state.showingInfoWindow}>
-          <div>
-            <h5>{location.locName}</h5>
-            <h6>{location.address}</h6>
-          </div>
-        </InfoWindow>
-    </Marker>
+          <InfoWindow marker={self.state.activeMarker} visibile={false}>
+            <div>
+              <h5>{location.locName}</h5>
+              <h6>{location.address}</h6>
+            </div>
+          </InfoWindow>
+        </Marker>
       )
     });
     // var windowLoad = windowLoad.map(function(info){

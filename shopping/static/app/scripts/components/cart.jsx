@@ -26,7 +26,7 @@ var Order = React.createClass({
   render: function(cart){
     var orderCollection = this.props.orderCollection;
     var cart = this.props.cart.attributes;
-    console.log('cart', cart)
+    console.log('cart', cart.total)
     var self = this;
 
     var order = this.props.cart.get('cart_items').map(function(item){
@@ -50,7 +50,7 @@ var Order = React.createClass({
       <div className="containsItem">
         {order}
       </div>
-      <strong className="total">Total: ${this.props.cart.total(self.props.cart.get('cart_items'))}</strong>
+      <strong className="total">Total: ${cart.total}</strong>
       <div>
         <button onClick={function(){self.props.submitOrder(order)}} className="placeOrderBtn btn btn-warning">Place Order</button>
         <button onClick={function(){self.generateNewCart()}} className="newCartBtn btn btn-success"><span className="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>New Cart</button>

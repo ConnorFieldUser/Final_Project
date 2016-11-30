@@ -406,18 +406,22 @@ input.form-control {
   border: 1px solid black;
   position: relative;
   .name {
-    font-size: 15px;
+    font-size: 1.5vw;
     font-family: 'Old Standard TT', sans-serif;
-    font-weight: bold;
+    font-weight: 900;
   }
   .price {
     font-family: 'Old Standard TT', sans-serif;
+    position: absolute;
+    bottom: 62px;
+    font-size: 1.3vw;
   }
   #quantity {
     width: 80px;
   }
   .orderButtons {
     position: absolute;
+    bottom: 10px;
   }
 }
 
@@ -454,9 +458,11 @@ input.form-control {
 img.itemImage {
   max-width: 100%;
 }
-.imgContainer {
-  width: 50px;
-  height: 50px;
+.imageContainer {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 h2.searchDirections {
