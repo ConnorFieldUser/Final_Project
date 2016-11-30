@@ -3,7 +3,7 @@
 
 
 
-{% if not object.complete %}
+{% if not object.complete and object.posted %}
 
     <h2>Update cart</h2>
 {{ object.user }}: <br>

@@ -258,7 +258,7 @@ class EmailTemplateView(TemplateView):
         return context
 
 
-class CartListView(ListView):
+class CartListView(DriverAccessMixin, ListView):
     model = Cart
 
     def get_queryset(self):
