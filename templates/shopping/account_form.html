@@ -1,6 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+<div class="panel panel-default">
+<div class="panel-body">
     <h2>Update your account information</h2>
 {{ self }}
 <h6><a href="{% url 'account_detail_view' object.id %}">back</a></h6>
@@ -15,5 +18,9 @@
       <div class=>
       <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}"/>
     </div>
+
+
+  </div>
+</div>
 
 {% endblock %}
