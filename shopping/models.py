@@ -98,6 +98,7 @@ class Cart(models.Model):
     user = models.ForeignKey('auth.User', related_name='carts')
     created_time = models.DateTimeField(auto_now_add=True)
     items = models.ManyToManyField(Item, through='CartItem')
+    posted = models.BooleanField(default=False)
     complete = models.BooleanField(default=False)
     in_progress = models.BooleanField(default=False)
     driver = models.ForeignKey('auth.User', related_name='driver_carts', null=True, blank=True)
