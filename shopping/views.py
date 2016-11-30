@@ -148,16 +148,17 @@ class SupermarketAPIView(APIView):
         if end:
             for e in end["Product"]:
                 try:
-                    item_does_exist = Item.objects.get(ref_id=e["ItemID"])
+                    item = Item.objects.get(ref_id=e["ItemID"])
                 except ObjectDoesNotExist:
-                    item_does_exist = False
-                if not item_does_exist:
+                    item = False
+                if not item:
                     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                    Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
+                    item = Item.objects.create(name=e["Itemname"], category=e["ItemCategory"], description=e["ItemDescription"], image=e["ItemImage"], ref_id=e['ItemID'])
                     print('<<<Created>>>')
                 else:
                     print('<<<Already Stored>>>')
                     print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                e['price'] = item.price
             return Response(end)
         else:
             return Response("Nothing Found")
