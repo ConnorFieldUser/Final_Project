@@ -13,14 +13,14 @@
       <form class="" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
 
-<h1>MAP:</h1>
 
 {% if object.in_progress %}
-
+        Order has been completed?
           <p><label for="complete">Complete:</label>
               <input type="checkbox" name="complete"  /></p>
 
 {% else %}
+        Agree to deliver this order?
           <p><label for="in_progress">In progress:</label>
               <input type="checkbox" name="in_progress" /></p>
 {% endif %}
@@ -32,5 +32,8 @@
 {% else %}
 This cart, order num:{{ object.id }}, has already been completed.
 {% endif %}
+
+<h1>MAP:</h1>
+
 
 {% endblock %}
