@@ -111,7 +111,13 @@ class CartLatestDetailUpdateAPIView(RetrieveUpdateAPIView):
     permission_classes = (IsAuthenticated, )
 
     def perform_update(self, serializer):
-        pass
+        # print(self.posted)
+        instance = serializer.save()
+        print(instance.posted)
+        instance.posted = True
+        # return ('update test text')
+        # print(self.posted)
+        return super().perform_update(serializer)
 
     def get_object(self):
         return Cart.objects.filter(user=self.request.user).latest('created_time')
