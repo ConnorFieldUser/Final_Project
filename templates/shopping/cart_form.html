@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
 
+
+
 {% if not object.complete %}
 
     <h2>Update cart</h2>
-{{ object }}
-
+{{ object.user }}: <br>
+{{ object.user.account.first_name }}
+{{ object.user.account.last_name }}
+<br><br>
       <form class="" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
+
+<h1>MAP:</h1>
 
 {% if object.in_progress %}
 
