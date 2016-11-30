@@ -223,7 +223,7 @@ class AccountUpdateView(UpdateView):
 class CartUpdateView(DriverAccessMixin, UpdateView):
     model = Cart
     fields = ('complete', 'in_progress')
-    success_url = reverse_lazy("account_list_view")
+    success_url = reverse_lazy("cart_list_view")
 
     def form_valid(self, form):
         # form.save(user=self.request.user)

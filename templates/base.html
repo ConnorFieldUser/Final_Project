@@ -4,34 +4,40 @@
   <head>
     <meta charset="utf-8">
     <title>Driver view</title>
+    <link rel="stylesheet" href="{% static 'dist/css/app.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Lora|Old+Standard+TT|Open+Sans|Oswald" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" media="screen" title="no title" charset="utf-8">
+
   <style media="screen">
+
   </style>
 
 
   </head>
   <body>
 
-
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-light bg-faded well">
       <div class="container">
+        <div class="row">
         <div class="navbar-header">
-          <a class="navbar-brand" href="{% url 'index_view' %}">Store To Door</a>
+          <a style="color: black; font-weight: bold;"class="navbar-brand" href="{% url 'index_view' %}">Store To Door</a>
+          </div>
         <ul class="nav navbar-nav">
           {% if request.user.account.user_type == 'd' %}
-          <a href="{% url 'cart_list_view' %}"><button type="button" class="btn btn-default navbar-btn">Signed carts</button></a>
-          <a href="{% url 'account_list_view' %}"><button type="button" class="btn btn-default navbart-btn">Pending Orders</button></a>
+        <li class="nav-item"><a class="nav-link" href="{% url 'cart_list_view' %}">Signed carts</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'account_list_view' %}">Pending Orders</a></li>
     {% endif %}
     </ul>
-    </div>
+
     {% if request.user.is_authenticated %}
-      <p class="navbar-text navbar-right"> <a href="{% url 'logout' %}?next={% url 'login' %}"><button type="button" class="btn btn-default navbar-btn">Log out</button></a></p>
-      <p class="navbar-text navbar-right">Welcome, <a href="{% url 'account_update_view' %}">{{ request.user }}</a></p>
+
+    <ul class="nav navbar-nav navbar-right">
+      <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}?next={% url 'login' %}">Log out</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'account_update_view' %}">Welcome, {{ request.user }}</a></li>
       {% endif %}
     </div>
+  </div>
     </nav>
+
 
 <div class="container">
   {% block content %}

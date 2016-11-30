@@ -9,13 +9,28 @@
 
 {% else %}
 
+<div class="panel panel-default">
+<div class="panel-heading">
+  <p style="font-family: Old Standard TT; text-align: center; font-size: 25px">
+    These are all the orders you have agreed to deliver
+  </p>
+</div>
 {% for object in object_list %}
 {% if not object.complete %}
-<p>
-  <a href="#">{{ object.user }}</a>
-</p>
+{% if object.posted %}
+{% if object.in_progress %}
+  <div class="panel-body">
+<h2>
+<a style="color: black; " href="{% url 'cart_update_view' object.user.account.get_last_cart.id %}">{{ object.user }}</a>
+</h2>
+<hr>
+{% endif %}
+{% endif %}
 {% endif %}
 {% endfor %}
+</div>
+</div>
+
 {% endif %}
 
 

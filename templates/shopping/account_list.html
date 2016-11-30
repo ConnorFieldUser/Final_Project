@@ -4,24 +4,32 @@
 
 
     {% if request.user.account.is_driver %}
+      <div class="panel panel-default">
+    <div class="panel-heading">
 
-    <h2> Customer List </h2>
-    <p>
+    <h2 style="text-align: center;"> Customer List </h2>
+    <p style="font-family: Old Standard TT; text-align: center; font-size: 25px">
       This is a list of of our customers with pending orders.
     </p>
+  </div>
+      <div class="panel-body">
 {% for account in object_list %}
 
 {% if account.is_customer %}
 {% if account.get_last_cart %}
-{% if not account.get_last_cart.complete and not account.get_last_cart.in_progress and account.get_last_cart.posted%}
-<h3>
- <a href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
-</h3>
+{% if not account.get_last_cart.complete and not account.get_last_cart.in_progress and account.get_last_cart.posted %}
+
+<h2>
+ <a style="color: black; " href="{% url 'account_detail_view' account.id %}">{{ account }}</a>
+</h2>
 <hr>
 {% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}
+
+</div>
+</div>
 
 {% else %}
 
@@ -34,6 +42,7 @@
 <p>
   This is a list of our drivers
 </p>
+
 {% for account in object_list %}
 
 {% if account.is_driver %}
