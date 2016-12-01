@@ -9,8 +9,29 @@
 
     <h2>Update cart</h2>
 {{ object.user }}: <br>
+<p>
+
+{% if object.user.account.first_name %}
+
 {{ object.user.account.first_name }}
+
 {{ object.user.account.last_name }}
+{% endif %}
+</p>
+
+
+{% if object.user.account.adress %}
+<p> Address: {{ object.user.account.adress }}</p>
+
+{% endif %}
+{% if object.user.account.zipcode %}
+<p> Zip code: {{ object.user.account.zipcode }}</p>
+{% endif %}
+{% if object.user.account.city %}
+<p> City: {{ object.user.account.city }}</p>
+{% endif %}
+
+
 <br><br>
       <form class="" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
