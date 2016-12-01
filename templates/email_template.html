@@ -12,7 +12,7 @@
 
 
 {% if request.user.account.email %}
-<h3>Last step! Just send us an email and we will review your request.</h3>
+<h3>Fill in this form and we will review your request.</h3>
 
 <form class="" action="{% url 'email_view' %}" method="post">
   {% csrf_token %}
