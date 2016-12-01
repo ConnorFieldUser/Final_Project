@@ -4,10 +4,10 @@
 
 
 <div class="panel panel-default">
-<div class="panel-body">
+<div style="font-family: Old Standard TT; text-align: center;" class="panel-body">
 {% if not object.complete and object.posted %}
 
-    <h2>Update cart</h2>
+    <h2>Cart</h2>
 {{ object.user }}: <br>
 <p>
 
@@ -41,19 +41,20 @@
         Order has been completed?
         <br>
               <label for="complete">Complete:</label>
-              <div class=double>
+              <div class=double style="width: 277px;">
                 <input type=checkbox name="complete">
+
               </div>
               <br><br><br>
+              <input class="signUpBtn btn btn-primary" type="submit" value="Submit" />
 
-          <input class="signUpBtn btn btn-primary" type="submit" value="Submit" />
 
 {% else %}
         Agree to deliver this order?
 <br>
               <label for="in_progress">I accept:</label>
               <div class=double>
-                <input type=checkbox name="in_progress">
+                <input style="text-align: center;" type=checkbox name="in_progress">
 
               </div>
               <br><br>
@@ -66,8 +67,7 @@
 
 {% for item in object.items.all %}
 
-  <ul>
-  <li> {{ item }}</li>
+  <div> {{ item }}</div>
     ${{ item.price }}.00
     <hr>
 

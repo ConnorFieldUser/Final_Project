@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="panel panel-default">
-<div class="panel-body">
+<div style="text-align: center;" class="panel-body">
 
 
   {% if account.is_customer and request.user.account.is_driver or account.user.id == request.user.id or request.user.account.is_customer and account.is_driver %}
@@ -15,19 +15,20 @@
     <h3>{{ account.first_name }}
         {{ account.last_name }}
     </h3>
-  <p>
-  <div style="height: 150px; width: 150px;">
-  <img src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}" width="100%"/>
+  <p style="font-family: Old Standard TT; text-align: center;">
+  <div style="height: 150px; width: 150px; text-align: center;">
+  <img style="text-align: center;" src="{{ MEDIA_URL }}{{ account.image_url }}" alt="Picture of {{ account.first_name }}" width="100%"/>
 </div>
-
-  Username: {{ account.user }}
 </p>
+
+<span style="font-family: Old Standard TT;">  Username: {{ account.user }}</span>
 <br>
 <br>
 
 <h3>Contact info
 </h3>
 <hr>
+<div style="font-family: Old Standard TT; text-align: center;">
 <p>
   Phone: &nbsp;{{ account.phone_number }}
 
@@ -45,7 +46,7 @@ State: &nbsp;{{ account.state }}
 Email adress:&nbsp; {{ account.email }}
 </p>
 <br><br>
-
+</div>
 
 {% if object.user.id == request.user.id %}
   <p>
