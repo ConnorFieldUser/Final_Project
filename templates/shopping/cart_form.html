@@ -33,12 +33,27 @@
               <label for="in_progress">I accept:</label>
               <div class=double>
                 <input type=checkbox name="in_progress">
+
               </div>
-              <br><br><br>
+              <br><br>
 
               <input class="signUpBtn btn btn-primary" type="submit" value="Agree" />
 
 {% endif %}
+
+<div class="well well-lg">
+
+{% for item in object.items.all %}
+
+  <ul>
+  <li> {{ item }}</li>
+    ${{ item.price }}.00
+    <hr>
+
+  </ul>
+  {% endfor %}</div>
+
+</div>
 
       </form>
 
@@ -49,7 +64,6 @@ This cart, order num:{{ object.id }}, has already been completed.
 </div>
 </div>
 
-<h1>MAP:</h1>
 
 
 {% endblock %}
