@@ -17,5 +17,5 @@ class SignUpForm(forms.Form):
         message = self.cleaned_data["message"]
         subject = "Singup request"
         body = "Signup request from: {}     message: {}     from: {}".format(self.user, message, sent_by)
-        recipient_list = ["botemail52@gmail.com"]
+        recipient_list = ["storetodoor.heroku@gmail.com"]
         send_mail(subject, body, "storetodoor.heroku@gmail.com", recipient_list)

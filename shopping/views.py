@@ -260,7 +260,7 @@ class EmailTemplateView(TemplateView):
 
 
 class CartListView(DriverAccessMixin, ListView):
-    model = Cart
+    # model = Cart
 
     def get_queryset(self):
-        return Cart.objects.filter(driver=self.request.user)
+        return Cart.objects.filter(complete=False, driver=self.request.user)
