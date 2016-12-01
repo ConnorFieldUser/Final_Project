@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="panel panel-default">
 <div class="panel-body">
+  {% if request.user.account.user_type == 'd' %}
     <h2>Update your account information</h2>
+    {% else %}
+    <h2>Set up your account information so that we can verify you as a driver.</h2>
+    <h3>(Make sure to include your email address!)</h3>
+    {% endif %}
 {{ self }}
 <h6><a href="{% url 'account_detail_view' object.id %}">back</a></h6>
 
       <form class="" action="" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form.as_p }}
-      <input type="submit" name="" value="Update">
+          <input class="signUpBtn btn btn-primary" type="submit" value="Update Info" />
 
       </form>
 <br>
