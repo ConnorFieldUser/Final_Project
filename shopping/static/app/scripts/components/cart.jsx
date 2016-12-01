@@ -32,7 +32,7 @@ var Order = React.createClass({
     var order = this.props.cart.get('cart_items').map(function(item){
       return (
         <div className="cartItem row well" key={item.id}>
-          <span className="col-md-4 col-sm-4 col-xs-4">{item.item__name}</span>
+          <span className="itemNameCart col-md-4 col-sm-4 col-xs-4">{item.item__name}</span>
           <span className="col-md-4 col-sm-4 col-xs-4">{item.quantity}</span>
           <span className="col-md-4 col-sm-4 col-xs-4">${item.item__price}.00</span>
           <button onClick={function(){self.props.deleteItem(item)}} className="btn btn-success deleteBtn" type="submit">Delete</button>

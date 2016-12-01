@@ -137,7 +137,7 @@ var LoginSignUpContainer = React.createClass({
       <div className="container">
           <div className="row loginContainer">
             <div className="col-md-12 well mainLogin">
-              <h1>Assistive Shopper {this.state.user.get('token') ? 'Logged in' : ''}</h1>
+              <h1>Store to Door {this.state.user.get('token') ? 'Logged in' : ''}</h1>
                 <SignUpForm signUp={this.signUp} />
                 <SignInForm signIn={this.signIn} />
                 <a className="driverLink" href="create_user/">Interested in Becoming a Driver?</a>

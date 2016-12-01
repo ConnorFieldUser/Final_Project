@@ -5814,12 +5814,21 @@ a.nav-link {
   float: right;
   margin-top: 16px;
   margin-left: 320px; }
+  @media (max-width: 1850px) {
+    .welcome {
+      margin-left: 90px; } }
+  @media (max-width: 1650px) {
+    .welcome {
+      margin-left: 160px; } }
+  @media (max-width: 1280px) {
+    .welcome {
+      margin-left: 340px; } }
   @media (max-width: 1200px) {
     .welcome {
-      margin-left: 150px; } }
+      margin-left: 180px; } }
   @media (max-width: 993px) {
     .welcome {
-      margin-left: 55px; } }
+      margin-left: 20px; } }
 
 .profilePicture {
   width: 4vw;
@@ -5851,7 +5860,6 @@ a.nav-link {
   color: white;
   margin-top: 50px;
   margin-right: 0px;
-  height: 200px;
   opacity: 0.9; }
   .footer .glyphicon {
     margin-right: 10px; }
@@ -5869,7 +5877,8 @@ a.nav-link {
     font-size: 1.8vw;
     border-radius: 50%;
     margin-right: 10px;
-    margin-top: 20px; }
+    margin-top: 20px;
+    margin-bottom: 50px; }
   .footer i.fa-facebook {
     padding-left: 13px;
     padding-right: 13px; }
@@ -5914,12 +5923,12 @@ input.form-control {
   height: 26vw;
   background-size: 100%;
   background-repeat: no-repeat; }
+  @media (max-width: 1837px) {
+    .mainImage {
+      height: 18vw; } }
   @media (max-width: 1199px) {
     .mainImage {
       height: 23vw; } }
-  @media (max-width: 991px) {
-    .mainImage {
-      height: 21vw; } }
 
 h1 {
   font-family: 'Oswald';
@@ -6009,11 +6018,9 @@ h3 {
 .accountForm {
   background-color: white;
   padding: 50px; }
-  .accountForm label {
-    font-size: 1.6vw; }
-    @media (max-width: 800px) {
-      .accountForm label {
-        font-size: 15px; } }
+  @media (max-width: 800px) {
+    .accountForm label {
+      font-size: 15px; } }
 
 .accountHeader {
   color: white; }
@@ -6043,9 +6050,11 @@ h3 {
 
 .foodListItem {
   list-style: none;
-  height: 350px;
-  border: 1px solid black;
+  height: 400px;
   position: relative; }
+  @media (min-width: 1500px) {
+    .foodListItem {
+      height: 450px; } }
   .foodListItem .name {
     font-size: 1.5vw;
     font-family: 'Old Standard TT', sans-serif;
@@ -6150,11 +6159,12 @@ h2.searchDirections {
 .newCartBtn {
   font-size: 1.5vw; }
 
+.itemNameCart {
+  font-size: 1.5vw; }
+
 .finished {
   color: #1E2C38;
   padding: 50px;
   font-size: 3vw; }
-<<<<<<< ba446f2f400fba47a9b6450aa3250172f694cf7f
-=======
+
 /*# sourceMappingURL=app.css.map */
->>>>>>> changes

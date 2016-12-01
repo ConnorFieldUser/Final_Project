@@ -81,10 +81,10 @@ var TemplateContainer = React.createClass({
               <span className="glyphicon glyphicon-home" aria-hidden="true"></span><span className="info">123 Main St Greenville, SC</span>
               <span className="glyphicon glyphicon-envelope" aria-hidden="true"></span><span className="info">assistiveshopper@gmail.com</span>
               <span className="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><span className="info">(888)123-4567</span>
-              <div>
-                <i className="fa fa-facebook" aria-hidden="true"></i>
-                <i className="fa fa-twitter" aria-hidden="true"></i>
-              </div>
+                <div>
+                  <i className="fa fa-facebook" aria-hidden="true"></i>
+                  <i className="fa fa-twitter" aria-hidden="true"></i>
+                </div>
           </div>
         </div>
       </div>

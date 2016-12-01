@@ -97,15 +97,30 @@ a.nav-link{
   float: right;
   margin-top: 16px;
   margin-left: 320px;
-  @media (max-width: 1200px){
-   margin-left:150px;
- }
   // @media(max-width: 1050px){
   //   margin-left: px;
   // }
-  @media(max-width: 993px){
-    margin-left: 55px;
+
+  @media(max-width:1850px){
+    margin-left: 90px;
   }
+  @media(max-width: 1650px){
+    margin-left: 160px;
+  }
+  @media (max-width: 1280px){
+   margin-left:340px;
+ }
+ @media (max-width: 1200px){
+   margin-left: 180px;
+ }
+ @media(max-width: 993px){
+   margin-left: 20px;
+ }
+
+
+ //  @media(min-width:1750px){
+ //    margin-left: 60px;
+ //  }
   // margin-right:10px;
 }
 .profilePicture {
@@ -141,7 +156,7 @@ a.nav-link{
   // margin-left: -70px;
   margin-right: 0px;
   // width: 1280px;
-  height: 200px;
+  // height: 200px;
   opacity: 0.9;
   // font-family: 'Old Standard TT', serif;
   .glyphicon {
@@ -165,7 +180,7 @@ a.nav-link{
     border-radius: 50%;
     margin-right: 10px;
     margin-top: 20px;
-    // margin-bottom: 50px;
+    margin-bottom: 50px;
   }
   i.fa-facebook {
     padding-left: 13px;
@@ -220,12 +235,15 @@ input.form-control {
   background-image: url('http://www.kavodseniorlife.org/wp-content/uploads/2015/01/Food-Rainbow.jpg');
   height:26vw;
   background-size: 100%;
+  @media(max-width: 1837px){
+    height: 18vw;
+  }
   @media(max-width: 1199px){
     height: 23vw;
   }
-  @media (max-width: 991px){
-    height: 21vw;
-  }
+  // @media (max-width: 991px){
+  //   height: 21vw;
+  // }
   background-repeat: no-repeat;
 }
 
@@ -356,7 +374,7 @@ input.form-control {
   // opacity: 0.9;
   padding: 50px;
   label {
-    font-size: 1.6vw;
+    // font-size: 1.6vw;
     @media (max-width: 800px){
      font-size: 15px;
     }
@@ -402,9 +420,12 @@ input.form-control {
 
 .foodListItem {
   list-style: none;
-  height: 350px;
-  border: 1px solid black;
+  height: 400px;
+  // border: 1px solid black;
   position: relative;
+  @media(min-width: 1500px){
+    height: 450px;
+  }
   .name {
     font-size: 1.5vw;
     font-family: 'Old Standard TT', sans-serif;
@@ -541,6 +562,9 @@ height: 70px;
   margin-right: 5px;
 }
 .newCartBtn {
+  font-size: 1.5vw;
+}
+.itemNameCart {
   font-size: 1.5vw;
 }
 
