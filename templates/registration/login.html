@@ -4,17 +4,17 @@
 
 <div class="panel panel-default">
 <div class="panel-body">
-    <h1> Driver login  </h1>
+    <h3> Driver login  </h3>
 
 <form class="" action="" method="post">
   {% csrf_token %}
   {{ form.as_p }}
-<input type="submit" name="" value="Confirm">
+  <input class="signUpBtn btn btn-primary" type="submit" value="Login" />
 
 </form>
 
 <br><br>
-<a href="{% url 'user_create_view' %}">Create new account?</a>
+Don't have an account? <a href="{% url 'user_create_view' %}">click here!</a>
 
 </div>
 </div>
