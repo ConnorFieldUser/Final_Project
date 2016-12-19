@@ -15,7 +15,6 @@
       <div class="panel-body">
 {% for account in object_list %}
 
-{% if account.is_customer %}
 {% if account.get_last_cart %}
 {% if not account.get_last_cart.complete and not account.get_last_cart.in_progress and account.get_last_cart.posted %}
 
@@ -25,7 +24,6 @@
 <h4> <a href="{% url 'account_detail_view' account.id %}">See profile</a>
 </h4>
 <hr>
-{% endif %}
 {% endif %}
 {% endif %}
 {% endfor %}
@@ -54,5 +52,16 @@
 {% endif %}
 {% endfor %}
 {% endif %}
+
+<!-- {% for object in object_list %}
+{{ object }}
+{% endfor %} -->
+
+<!-- <h1 style="color: white;">{{ carts }}</h1> -->
+
+<!-- {% for cart in carts %}
+<h1 style="color: white;"> <a style="color: white;" href="{% url 'cart_update_view' cart.id %}">{{ cart.user }}</a></h1>
+{% endfor %} -->
+
 
 {% endblock %}

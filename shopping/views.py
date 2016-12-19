@@ -185,6 +185,15 @@ class ThanksView(TemplateView):
 class AccountListView(DriverAccessMixin, ListView):
     model = Account
 
+    def get_context_data(self):
+        context = super().get_context_data()
+        l = []
+        for cart in Cart.objects.filter(complete=False, posted=True, in_progress=False):
+            if cart.user.account.get_last_cart.id == cart.id:
+                l.append(cart)
+        context["carts"] = l
+        return context
+
 
 class AccountDetailView(DriverAccessMixin, DetailView):
     model = Account
@@ -265,4 +274,4 @@ class CartListView(DriverAccessMixin, ListView):
     # model = Cart
 
     def get_queryset(self):
-        return Cart.objects.filter(complete=False, driver=self.request.user)
+        return Cart.objects.filter(complete=False, driver=self.request.user, posted=True, in_progress=True)

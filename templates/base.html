@@ -24,6 +24,11 @@
     -webkit-transform-origin:0 0;
   }
 
+  #inner {
+    display: block;
+    margin: auto;
+    width: 1%;
+  }
 
   </style>
 
@@ -35,12 +40,13 @@
       <div class="container">
         <div class="row">
         <div class="navbar-header">
-          <a style="color: black; font-weight: bold;"class="navbar-brand" href="{% url 'index_view' %}">Store To Door</a>
+          <a style="color: black;"class="navbar-brand" href="{% url 'index_view' %}">Store To Door</a>
           </div>
         <ul class="nav navbar-nav">
           {% if request.user.account.user_type == 'd' %}
         <li class="nav-item"><a class="nav-link" href="{% url 'cart_list_view' %}">Signed carts</a></li>
         <li class="nav-item"><a class="nav-link" href="{% url 'account_list_view' %}">Pending Orders</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
     {% endif %}
     </ul>
 
