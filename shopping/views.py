@@ -37,7 +37,7 @@ api_key = os.environ.get('api_key')
 
 # Create your views here.
 
-print("ASSISTIVE SHOPPING")
+print("STORE TO DOOR")
 
 
 class IndexView(TemplateView):
