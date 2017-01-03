@@ -4,6 +4,8 @@ See it here! https://store-to-door.herokuapp.com/
 
 A collaboration with https://github.com/mcverticchio, this project was created as an ordering and delivery platform. 
 
+I was the backend engineer, and I was in charge of database management, API endpoints, driver side auth through django, email config, DRF token auth, and Heroku deployment.
+
 Customer users can add contact information, browse grocery items, look for nearby stores, add items to a cart, 
 send the list up to the driver users. Search items are pulled through the Supermarket API. 
 Driver users can mark lists as complete or in progress.
