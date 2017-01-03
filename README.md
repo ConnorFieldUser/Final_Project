@@ -13,17 +13,45 @@ The original concept was to assist the elderly, so we took care to make it clear
 Technologies:
 
 Python
+
+
 JavaScript
+
+
 HTML/CSS/SCSS
+
+
 Bootstrap
+
+
 jQuery
+
+
 Backbone
+
+
 React
+
+
 Django
+
+
 Django REST Framework
+
+
 Gunicorn wsgi server
+
+
 Psycopg2
+
+
 dj-database-url
+
+
 WhiteNoise
+
+
 Python requests library
+
+
 xmljson library
