@@ -19,22 +19,7 @@ Technologies:
 Python
 
 
-JavaScript
-
-
-HTML/CSS/SCSS
-
-
 Bootstrap
-
-
-jQuery
-
-
-Backbone
-
-
-React
 
 
 Django
@@ -59,3 +44,19 @@ Python requests library
 
 
 XMLJSON library
+
+
+JavaScript
+
+
+HTML/CSS/SCSS
+
+
+jQuery
+
+
+Backbone
+
+
+React
+
