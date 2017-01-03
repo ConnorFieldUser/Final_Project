@@ -9,6 +9,8 @@ send the list up to the driver users. Search items are pulled through the Superm
 Driver users can mark lists as complete or in progress.
 The original concept was to assist the elderly, so we took care to make it clear and simple to use. 
 
+To get the app running locally, install requirements.txt, set up a python3 virtual enviroment, set a django secret key in settings, and get an API key for the Supermarket API.
+
 
 Technologies:
 
