@@ -3,9 +3,13 @@
 
 
 {% if not object_list %}
+<div class="panel panel-default">
+<div class="panel-heading">
 <h4>You haven't signed up for any deliveries.</h4>
-<!-- broken "if" in views -->
-<h5><a href="{% url 'accounts_list_view' %}">Click here</a> to see a list of active orders.</5>
+<h5><a href="{% url 'account_list_view' %}">Click here</a> to see a list of active orders.</5>
+
+</div>
+</div>
 
 {% else %}
 
